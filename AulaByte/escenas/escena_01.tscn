@@ -261,3 +261,4 @@ text = "Puntaje:"
 position = Vector2(-122, 213)
 
 [node name="InterfazGrafica" parent="." instance=ExtResource("11_ia7rc")]
+visible = false
