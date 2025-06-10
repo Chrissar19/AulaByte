@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://dkm0atk4qawk3"]
+
+[ext_resource type="Texture2D" uid="uid://dclm53qe2idn1" path="res://recursos/sprites/Objetos/Plataforma.png" id="1_b5bdj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6eams"]
+atlas = ExtResource("1_b5bdj")
+region = Rect2(0, 0, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7hrw"]
+atlas = ExtResource("1_b5bdj")
+region = Rect2(64, 0, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwxgc"]
+atlas = ExtResource("1_b5bdj")
+region = Rect2(128, 0, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vb7ce"]
+atlas = ExtResource("1_b5bdj")
+region = Rect2(192, 0, 64, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_grm37"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6eams")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7hrw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwxgc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vb7ce")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gp8j2"]
+size = Vector2(62, 13)
+
+[node name="Plataforma" type="AnimatableBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_grm37")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_gp8j2")
+one_way_collision = true

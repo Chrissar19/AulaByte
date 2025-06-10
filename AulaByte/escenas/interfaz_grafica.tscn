@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2ayu8gvwd1id"]
+
+[ext_resource type="Texture2D" uid="uid://dj5bir4rmc6rq" path="res://recursos/sprites/Objetos/BitInfo.png" id="1_pgbe7"]
+[ext_resource type="FontFile" uid="uid://bl6iwuapx3qvw" path="res://recursos/fonts/Titulos.ttf" id="2_nnwru"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnwru"]
+atlas = ExtResource("1_pgbe7")
+region = Rect2(0, 0, 24, 24)
+
+[node name="InterfazGrafica" type="CanvasLayer"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 79.0
+offset_bottom = 79.0
+texture = SubResource("AtlasTexture_nnwru")
+
+[node name="lbBits" type="Label" parent="."]
+offset_left = 75.0
+offset_top = 32.0
+offset_right = 203.0
+offset_bottom = 64.0
+theme_override_fonts/font = ExtResource("2_nnwru")
+theme_override_font_sizes/font_size = 32
+text = "X 10"
+vertical_alignment = 1
