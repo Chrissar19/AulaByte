@@ -2,11 +2,9 @@ extends CharacterBody2D
 
 const VEL_HORIZONTAL = 150.0
 const VEL_CORRER = 300.0
-const FUERZA_SALTO = -400.0
 const FUERZA_EMPUJE = 800.0 # Fuerza que aplica a las cajas
 
 @onready var animated_sprite_player: AnimatedSprite2D = $AnimatedSprite2D
-@onready var soun_jump: AudioStreamPlayer = $SounJump
 @onready var empuje_ray: RayCast2D = $EmpujeRay
 
 # Detectar si esta empujando
@@ -28,11 +26,6 @@ func _physics_process(delta: float) -> void:
 	# Añadir gravedad
 	if not is_on_floor(): # Si el player no esta tocando suelo
 		velocity += get_gravity() * delta # Se le suma la velocidad a la gravedad
-
-	# Accion de salto
-	if Input.is_action_just_pressed("saltar") and is_on_floor(): # Si se presiona la barra espacio y se esta tocando el suelo
-		velocity.y = FUERZA_SALTO
-		soun_jump.play() # Reproduce el sonido de salto
 
 	var direction := Input.get_axis("izquierda", "derecha") # Recibe el dato entre izq o deer que envia el jugador
 	
