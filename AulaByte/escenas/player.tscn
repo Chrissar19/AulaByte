@@ -258,3 +258,5 @@ stream = ExtResource("3_j7xnp")
 bus = &"Efectos sonido"
 
 [node name="TimerCoyoteTime" type="Timer" parent="scrSalto"]
+
+[node name="tmBufferSalto" type="Timer" parent="scrSalto"]
