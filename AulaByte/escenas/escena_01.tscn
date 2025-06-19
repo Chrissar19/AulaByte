@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://hbsg7hd3yrnt"]
+[gd_scene load_steps=24 format=4 uid="uid://hbsg7hd3yrnt"]
 
 [ext_resource type="PackedScene" uid="uid://clkfnjqcilagi" path="res://escenas/player.tscn" id="1_naavg"]
 [ext_resource type="Script" uid="uid://dcpdjyh6hwpi0" path="res://scripts/game_manager.gd" id="1_vsn7t"]
@@ -12,6 +12,7 @@
 [ext_resource type="FontFile" uid="uid://bbow2nrr858wg" path="res://recursos/fonts/Ayuda.TTF" id="8_kgr4o"]
 [ext_resource type="PackedScene" uid="uid://1eeeqekb3ych" path="res://escenas/caja.tscn" id="10_im88q"]
 [ext_resource type="PackedScene" uid="uid://c2ayu8gvwd1id" path="res://escenas/interfaz_grafica.tscn" id="11_ia7rc"]
+[ext_resource type="PackedScene" uid="uid://davoghcp26fty" path="res://escenas/barra_vida.tscn" id="13_4x3o8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_npubw"]
 texture = ExtResource("1_xepe4")
@@ -337,3 +338,5 @@ position = Vector2(-122, 213)
 
 [node name="InterfazGrafica" parent="." instance=ExtResource("11_ia7rc")]
 visible = false
+
+[node name="BarraVida" parent="." instance=ExtResource("13_4x3o8")]
