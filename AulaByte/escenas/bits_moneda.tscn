@@ -38,6 +38,7 @@ animations = [{
 height = 24.0
 
 [node name="BitsMoneda" type="Area2D"]
+scale = Vector2(0.8, 0.8)
 collision_mask = 2
 script = ExtResource("1_t74wm")
 

@@ -9,4 +9,4 @@ func _ready() -> void:
 	game_manager.puntuacion_actualizada.connect(_on_puntuacion_actualizada)
 
 func _on_puntuacion_actualizada(puntuacion_actual: int) -> void:
-	lb_bits.text = "X " + str(puntuacion_actual)
+	lb_bits.text = str(puntuacion_actual)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bses6ykr1btbh"
-path="res://.godot/imported/Carga_barra_vida perdida.png-70fb6f2fd832fdb9baa930acc8a1542d.ctex"
+uid="uid://1qv7iwnmjnak"
+path="res://.godot/imported/2Contorno_barra_vida.png-ae4bd088e406ac03ac81eff0c6e29e26.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/sprites/GUI/Carga_barra_vida perdida.png"
-dest_files=["res://.godot/imported/Carga_barra_vida perdida.png-70fb6f2fd832fdb9baa930acc8a1542d.ctex"]
+source_file="res://recursos/sprites/GUI/2Contorno_barra_vida.png"
+dest_files=["res://.godot/imported/2Contorno_barra_vida.png-ae4bd088e406ac03ac81eff0c6e29e26.ctex"]
 
 [params]
 
