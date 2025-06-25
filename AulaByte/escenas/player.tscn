@@ -1,9 +1,11 @@
-[gd_scene load_steps=35 format=3 uid="uid://clkfnjqcilagi"]
+[gd_scene load_steps=37 format=3 uid="uid://clkfnjqcilagi"]
 
 [ext_resource type="Script" uid="uid://oybhdjrs5i3e" path="res://scripts/player.gd" id="1_kkt6c"]
 [ext_resource type="Texture2D" uid="uid://dpyuo5qcw8tda" path="res://recursos/sprites/Personajes/Jojoa Sheet.png" id="2_kkt6c"]
 [ext_resource type="AudioStream" uid="uid://cq2m6678f6s85" path="res://recursos/sounds/jump.wav" id="3_j7xnp"]
 [ext_resource type="Script" uid="uid://cjdk4pt3uhhct" path="res://scripts/scr_salto.gd" id="3_k4kro"]
+[ext_resource type="Script" uid="uid://bqpe3evgoown7" path="res://scripts/state_machine/state_machine.gd" id="5_6nxto"]
+[ext_resource type="Script" uid="uid://clkye2iwg3rgq" path="res://scripts/player_states/player_state_idle.gd" id="6_t3yu4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kkt6c"]
 atlas = ExtResource("2_kkt6c")
@@ -260,3 +262,11 @@ bus = &"Efectos sonido"
 [node name="TimerCoyoteTime" type="Timer" parent="scrSalto"]
 
 [node name="tmBufferSalto" type="Timer" parent="scrSalto"]
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("5_6nxto")
+estado_inicial = NodePath("PlayerStateIdle")
+metadata/_custom_type_script = "uid://bqpe3evgoown7"
+
+[node name="PlayerStateIdle" type="Node" parent="StateMachine"]
+script = ExtResource("6_t3yu4")
