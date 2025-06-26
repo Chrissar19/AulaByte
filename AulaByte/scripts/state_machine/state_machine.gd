@@ -1,4 +1,5 @@
 extends Node
+#--EtateMachine version 1.0
 
 class_name StateMachine
 
@@ -11,8 +12,9 @@ class_name StateMachine
 
 #--DEBUG --> DEPURAR
 @export var DEPURAR : bool = true #--permitira mostrar mensajes en la consola sobre el estado actual
+@export var ACTIVAR_HISTORIAL : bool = false
 @export var IMPRIMIR_HISTORIAL : bool = false
-var historial = []
+var historial: Array[String] = []
 #-----------------------------------------------------------------------------------
 
 func _ready() -> void:
@@ -30,6 +32,8 @@ func _entrar_a_estado():
 	#--Se agrega este nodo al nodo Player para controlas los nodos hijos
 	estado.node = nodo_de_control
 	
+	estado_historial()
+	
 	#--TODOS LOS ESTADOS DEBEN TENER LA VARIABLE ESTATE_MACHINE
 	#--ALMACENA LA MAQUINA DE ESTADOS
 	estado.state_machine = self #Todos los nodos tipo estado, deben tener esta variable
@@ -37,14 +41,19 @@ func _entrar_a_estado():
 	
 #--cambia a un nuevo estado
 #--nuevo estado seria el estado al que se va a cambiar
-func cambiar_a(nuevo_estado):
+func cambiar_a(nombre_de_nuevo_estado: String):
 	historial.append(estado.name) #--Se agrega el nuevo estado al arreglo historial
-	estado = get_node(nuevo_estado) #-- Se guarda el estado actual
+	estado = get_node(nombre_de_nuevo_estado) #-- Se guarda el estado actual
 	_entrar_a_estado()
+		
+func estado_historial():
+	if ACTIVAR_HISTORIAL:
+		#--Se agregan los estados al arreglo del historial
+		historial.append(estado.name)
 	#--verifica si la variable historial es verdadera e imprime
 	if IMPRIMIR_HISTORIAL:
 		print(historial)
-		
+
 #--SOBRE ESCRIBIR LOS METODOS PRINCIPALES--
 #--------------------------------------------------------------------
 	#--SOBREESCRIBIR EL MÉTODO process
