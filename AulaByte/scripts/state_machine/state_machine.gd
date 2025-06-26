@@ -3,7 +3,7 @@ extends Node
 
 class_name StateMachine
 
-#--El nodo principal seria el nodo player, se conecta mediante el owner
+#--Se obtiene el nodo principal de la Escena, en este caso el nodo Player
 @onready var nodo_de_control = self.owner
 
 #-- SE CONECTA LA MAQUINA CON LOS ESTADOS--
@@ -30,7 +30,7 @@ func _entrar_a_estado():
 	
 	#--TODOS LOS ESTADOS DEBEN TENER LA VARIABLE NODE
 	#--Se agrega este nodo al nodo Player para controlas los nodos hijos
-	estado.node = nodo_de_control
+	estado.node = nodo_de_control #--Se guarda el estado del nodo principal
 	
 	estado_historial()
 	

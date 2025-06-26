@@ -14,5 +14,9 @@ var node: Player:
 		
 var player: Player
 
+#--ESTA FUNCION SOBREESCRIBE LA FUNCION ready
 func enter():
 	pass
+
+func actualizar_animacion(nueva_animacion: String):
+	player.animation_player.play(nueva_animacion)
