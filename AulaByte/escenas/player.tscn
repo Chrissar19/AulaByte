@@ -254,7 +254,7 @@ target_position = Vector2(23, 0)
 [node name="scrSalto" type="Node2D" parent="."]
 script = ExtResource("3_k4kro")
 
-[node name="SounJump" type="AudioStreamPlayer" parent="scrSalto"]
+[node name="SoundJump" type="AudioStreamPlayer" parent="scrSalto"]
 stream = ExtResource("3_j7xnp")
 bus = &"Efectos sonido"
 

@@ -1,9 +1,10 @@
 extends PlayerState #--SE CAMBIA SIEMPRE EL extends a PlayerState de todos los estados
 
+#--REEMPLAZO DE LA FUNCION _ready()
 func enter():
 	print("Estado Idle")
-	#player.animation_player.play(player.animations.jojoa_idle_no)
 	actualizar_animacion(player.animations.jojoa_idle_no)
+	
 #--Cambiar de estado Idle a estado Move
 func process(_delta):
 	if Input.is_action_pressed("derecha"):
