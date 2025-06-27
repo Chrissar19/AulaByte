@@ -1,7 +1,7 @@
 extends PlayerState #--SE CAMBIA SIEMPRE EL extends a PlayerState DE TODOS LOS ESTADOS
 
 func enter():
-	print("Este es el estado Move")
+	print("Este es el estado Walk")
 	
 #--Cambiar de estado Move a estado Idle
 func process(_delta):

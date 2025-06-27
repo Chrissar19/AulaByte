@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cn3lo0ihr0x4w"]
+[gd_scene load_steps=6 format=3 uid="uid://cn3lo0ihr0x4w"]
 
 [ext_resource type="Script" uid="uid://bqpe3evgoown7" path="res://scripts/state_machine/state_machine.gd" id="1_ab00s"]
 [ext_resource type="Script" uid="uid://clkye2iwg3rgq" path="res://scripts/states/player_state_idle.gd" id="2_g7kee"]
 [ext_resource type="Script" uid="uid://ch1hrqip34o42" path="res://scripts/states/player_state_walk.gd" id="3_kcslu"]
+[ext_resource type="Script" uid="uid://euw0kis806nr" path="res://scripts/states/player_state_jump.gd" id="4_kcslu"]
+[ext_resource type="Script" uid="uid://duhkcx7cvl0u5" path="res://scripts/states/player_state_push.gd" id="5_mtg4q"]
 
 [node name="StateMachine" type="Node"]
 script = ExtResource("1_ab00s")
@@ -14,5 +16,11 @@ metadata/_custom_type_script = "uid://bqpe3evgoown7"
 [node name="PlayerStateIdle" type="Node" parent="."]
 script = ExtResource("2_g7kee")
 
-[node name="PlayerStateMove" type="Node" parent="."]
+[node name="PlayerStateWalk" type="Node" parent="."]
 script = ExtResource("3_kcslu")
+
+[node name="PlayerStateJump" type="Node" parent="."]
+script = ExtResource("4_kcslu")
+
+[node name="PlayerStatePush" type="Node" parent="."]
+script = ExtResource("5_mtg4q")
