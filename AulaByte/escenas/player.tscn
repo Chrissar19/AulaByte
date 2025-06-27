@@ -235,6 +235,7 @@ size = Vector2(27, 49)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 5
+position = Vector2(296, 146)
 collision_layer = 2
 script = ExtResource("1_kkt6c")
 
@@ -249,6 +250,7 @@ shape = SubResource("RectangleShape2D_k4kro")
 
 [node name="EmpujeRay" type="RayCast2D" parent="."]
 position = Vector2(0, -9)
+enabled = false
 target_position = Vector2(23, 0)
 
 [node name="scrSalto" type="Node2D" parent="."]

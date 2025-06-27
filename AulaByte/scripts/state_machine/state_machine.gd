@@ -1,6 +1,5 @@
 extends Node
 #--EtateMachine version 1.0
-
 class_name StateMachine
 
 #--Se obtiene el nodo principal de la Escena, en este caso el nodo Player

@@ -1,22 +1,31 @@
 extends Node
-
 class_name PlayerState
 
+#--Referencias que inyecta la Statemachine al entrar a un estado
 var state_machine: StateMachine
+
+var _node_ref: Player
+var player: Player
 
 var node: Player:
 	#--Cada vez que se cambie el valor de node, tambien se cambiara player
 	set (value):
-		node = value
+		_node_ref = value
 		player = value
 	get:
-		return node
-		
-var player: Player
+		return _node_ref
 
-#--ESTA FUNCION SOBREESCRIBE LA FUNCION ready
+#--MÉTODOS A SOBREESCRIBIR EN LOS ESTADOS--
 func enter():
+	#-- se ejecuta al entrar al estado
 	pass
 
+func physics_process(delta: float) -> void:
+	#-- AÑADIR GRAVEDAD--
+	if not player.is_on_floor():
+		player.velocidad += player.get_gravity() * delta #--Se le suma la velocidad a la gravedad
+		
+	player.move_and_slide()
+	
 func actualizar_animacion(nueva_animacion: String):
 	player.animation_player.play(nueva_animacion)

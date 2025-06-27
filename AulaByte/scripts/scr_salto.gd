@@ -7,7 +7,7 @@ var tocando_suelo:bool = false
 var salto_buffering : bool = false
 @export var tiempo_salto_buffering = 0.15
 @export var duracion_coyote_time = 0.20
-@onready var soun_jump: AudioStreamPlayer = $SounJump
+@onready var sound_jump: AudioStreamPlayer = $SoundJump
 @onready var timer_coyote_time: Timer = $TimerCoyoteTime
 @onready var tm_buffer_salto: Timer = $tmBufferSalto
 
@@ -48,4 +48,4 @@ func on_salto_buffe_time_timeout() -> void:
 	
 func saltar() -> void:
 	player.velocity.y = FUERZA_SALTO
-	soun_jump.play() # Reproduce el sonido de salto
+	sound_jump.play() # Reproduce el sonido de salto
