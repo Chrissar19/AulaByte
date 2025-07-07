@@ -9,11 +9,6 @@ class_name StateMachine
 @export_node_path("Node") var estado_inicial #--Almacena el estado inicial
 @onready var estado = get_node(estado_inicial) #--Guarda el estado que se este ejecutando
 
-#--DEBUG --> DEPURAR
-@export var DEPURAR : bool = true #--permitira mostrar mensajes en la consola sobre el estado actual
-@export var ACTIVAR_HISTORIAL : bool = false
-@export var IMPRIMIR_HISTORIAL : bool = false
-var historial: Array[String] = []
 #-----------------------------------------------------------------------------------
 
 func _ready() -> void:
@@ -23,35 +18,23 @@ func _ready() -> void:
 	
 #--ESTA FUNCION SE EJECUTARA COMO SI FUERA LA FUN READY EN LA MAQUINA DE EST.
 func _entrar_a_estado():
-	#--Imprime en consola el estado actual
-	if DEPURAR:
-		print(owner.name, ": Entrando al estado: ", estado.name)
-	
+	print("Entrando al estado: ", estado.name)
 	#--TODOS LOS ESTADOS DEBEN TENER LA VARIABLE NODE
 	#--Se agrega este nodo al nodo Player para controlas los nodos hijos
 	estado.node = nodo_de_control #--Se guarda el estado del nodo principal
 	
-	estado_historial()
-	
 	#--TODOS LOS ESTADOS DEBEN TENER LA VARIABLE ESTATE_MACHINE
 	#--ALMACENA LA MAQUINA DE ESTADOS
 	estado.state_machine = self #Todos los nodos tipo estado, deben tener esta variable
+
 	estado.enter() #--Reemplazara la funsion ready en los estados
 	
 #--cambia a un nuevo estado
 #--nuevo estado seria el estado al que se va a cambiar
 func cambiar_a(nombre_de_nuevo_estado: String):
-	historial.append(estado.name) #--Se agrega el nuevo estado al arreglo historial
 	estado = get_node(nombre_de_nuevo_estado) #-- Se guarda el estado actual
+	
 	_entrar_a_estado()
-		
-func estado_historial():
-	if ACTIVAR_HISTORIAL:
-		#--Se agregan los estados al arreglo del historial
-		historial.append(estado.name)
-	#--verifica si la variable historial es verdadera e imprime
-	if IMPRIMIR_HISTORIAL:
-		print(historial)
 
 #--SOBRE ESCRIBIR LOS METODOS PRINCIPALES--
 #--------------------------------------------------------------------

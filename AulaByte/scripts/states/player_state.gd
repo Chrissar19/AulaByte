@@ -12,6 +12,7 @@ var node: Player:
 	set (value):
 		_node_ref = value
 		player = value
+		print("Asignado player desde setter: ", player)
 	get:
 		return _node_ref
 
@@ -19,13 +20,6 @@ var node: Player:
 func enter():
 	#-- se ejecuta al entrar al estado
 	pass
-
-func physics_process(delta: float) -> void:
-	#-- AÑADIR GRAVEDAD--
-	if not player.is_on_floor():
-		player.velocidad += player.get_gravity() * delta #--Se le suma la velocidad a la gravedad
-		
-	player.move_and_slide()
 	
 func actualizar_animacion(nueva_animacion: String):
 	player.animation_player.play(nueva_animacion)

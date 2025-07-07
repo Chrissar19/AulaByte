@@ -1,6 +1,6 @@
 [gd_scene load_steps=27 format=4 uid="uid://hbsg7hd3yrnt"]
 
-[ext_resource type="PackedScene" uid="uid://clkfnjqcilagi" path="res://escenas/player.tscn" id="1_naavg"]
+[ext_resource type="PackedScene" uid="uid://clkfnjqcilagi" path="res://escenas/Player.tscn" id="1_naavg"]
 [ext_resource type="Script" uid="uid://dcpdjyh6hwpi0" path="res://scripts/game_manager.gd" id="1_vsn7t"]
 [ext_resource type="Texture2D" uid="uid://dr3bkmou477j5" path="res://recursos/sprites/TileSets/FondoSheet.png" id="1_xepe4"]
 [ext_resource type="Texture2D" uid="uid://cxyafbo3ck6fg" path="res://recursos/sprites/TileSets/Pisos.png" id="2_j0d25"]
@@ -334,9 +334,6 @@ tile_set = SubResource("TileSet_0ix22")
 [node name="TileMapLayer2" type="TileMapLayer" parent="TileMap"]
 tile_map_data = PackedByteArray("AADn/wgAAAAIAAMAAADn/wkAAAAIAAQAAADn/woAAAAIAAUAAADn/wsAAAAIAAYAAADo/wgAAAAJAAMAAADo/wkAAAAJAAQAAADo/woAAAAJAAUAAADo/wsAAAAJAAYAAAAFAAcAAAAIAAMAAAAFAAgAAAAIAAQAAAAFAAkAAAAIAAUAAAAFAAoAAAAIAAYAAAAGAAcAAAAJAAMAAAAGAAgAAAAJAAQAAAAGAAkAAAAJAAUAAAAGAAoAAAAJAAYAAADx/wUAAAAAAAQAAADx/wYAAAAAAAUAAADx/wcAAAAAAAYAAADy/wUAAAABAAQAAADy/wYAAAABAAUAAADy/wcAAAABAAYAAADz/wUAAAACAAQAAADz/wYAAAACAAUAAADz/wcAAAACAAYAAAD0/wUAAAADAAQAAAD0/wYAAAADAAUAAAD0/wcAAAADAAYAAAD1/wUAAAABAAQAAAD1/wYAAAABAAUAAAD1/wcAAAABAAYAAAD2/wUAAAACAAQAAAD2/wYAAAACAAUAAAD2/wcAAAACAAYAAAD3/wUAAAADAAQAAAD3/wYAAAADAAUAAAD3/wcAAAADAAYAAAD4/wUAAAABAAQAAAD4/wYAAAABAAUAAAD4/wcAAAABAAYAAAD5/wUAAAACAAQAAAD5/wYAAAACAAUAAAD5/wcAAAACAAYAAAD6/wUAAAADAAQAAAD6/wYAAAADAAUAAAD6/wcAAAADAAYAAAD7/wUAAAABAAQAAAD7/wYAAAABAAUAAAD7/wcAAAABAAYAAAD8/wUAAAACAAQAAAD8/wYAAAACAAUAAAD8/wcAAAACAAYAAAD9/wUAAAADAAQAAAD9/wYAAAADAAUAAAD9/wcAAAADAAYAAAD+/wUAAAABAAQAAAD+/wYAAAABAAUAAAD+/wcAAAABAAYAAAD//wUAAAACAAQAAAD//wYAAAACAAUAAAD//wcAAAACAAYAAAAAAAUAAAADAAQAAAAAAAYAAAADAAUAAAAAAAcAAAADAAYAAAACAAUAAAAEAAQAAAACAAYAAAAEAAUAAAACAAcAAAAEAAYAAAABAAUAAAAEAAQAAAABAAYAAAAEAAUAAAABAAcAAAAEAAYAAAA=")
 tile_set = SubResource("TileSet_btqwt")
-
-[node name="Caja" parent="TileMap" instance=ExtResource("10_im88q")]
-position = Vector2(154, 154)
 
 [node name="EnemigoSlimeBlue" parent="TileMap" instance=ExtResource("7_npubw")]
 position = Vector2(232, 232)
