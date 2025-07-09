@@ -1,28 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cn3lo0ihr0x4w"]
-
-[ext_resource type="Script" uid="uid://bqpe3evgoown7" path="res://scripts/state_machine/state_machine.gd" id="1_ab00s"]
-[ext_resource type="Script" uid="uid://clkye2iwg3rgq" path="res://scripts/states/player_state_idle.gd" id="2_g7kee"]
-[ext_resource type="Script" uid="uid://ch1hrqip34o42" path="res://scripts/states/player_state_walk.gd" id="3_kcslu"]
-[ext_resource type="Script" uid="uid://duhkcx7cvl0u5" path="res://scripts/states/player_state_push.gd" id="5_mtg4q"]
-[ext_resource type="Script" uid="uid://g1e6g4i4k8o" path="res://scripts/states/player_state_jump_up.gd" id="6_aqxq1"]
-[ext_resource type="Script" uid="uid://b4ybu4tlt7kcl" path="res://scripts/states/player_state_jump_down.gd" id="7_nhxbb"]
+[gd_scene format=3 uid="uid://ddqm22hr4en6b"]
 
 [node name="StateMachine" type="Node"]
-script = ExtResource("1_ab00s")
-estado_inicial = NodePath("PlayerStateIdle")
 metadata/_custom_type_script = "uid://bqpe3evgoown7"
-
-[node name="PlayerStateIdle" type="Node" parent="."]
-script = ExtResource("2_g7kee")
-
-[node name="PlayerStateWalk" type="Node" parent="."]
-script = ExtResource("3_kcslu")
-
-[node name="PlayerStatePush" type="Node" parent="."]
-script = ExtResource("5_mtg4q")
-
-[node name="PlayerStateJumpUp" type="Node" parent="."]
-script = ExtResource("6_aqxq1")
-
-[node name="PlayerStateJumpDown" type="Node" parent="."]
-script = ExtResource("7_nhxbb")
