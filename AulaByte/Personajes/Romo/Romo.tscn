@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1y65koi5c0vn"]
+
+[ext_resource type="PackedScene" uid="uid://54vuddp7px6k" path="res://Personajes/Base/maquina_estado.tscn" id="1_qjqox"]
+[ext_resource type="SpriteFrames" uid="uid://j40x2ec8nhi3" path="res://Personajes/Romo/animacion_romo.tres" id="2_ahfek"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_17pq4"]
+size = Vector2(18, 55)
+
+[node name="MaquinaEstado" instance=ExtResource("1_qjqox")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = ExtResource("2_ahfek")
+animation = &"RomoIdleNo"
+autoplay = "RomoIdleNo"
+frame_progress = 0.675756
+
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_17pq4")

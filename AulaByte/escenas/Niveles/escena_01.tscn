@@ -1,22 +1,22 @@
 [gd_scene load_steps=27 format=4 uid="uid://hbsg7hd3yrnt"]
 
-[ext_resource type="PackedScene" uid="uid://clkfnjqcilagi" path="res://escenas/Player.tscn" id="1_naavg"]
-[ext_resource type="Script" uid="uid://dcpdjyh6hwpi0" path="res://scripts/game_manager.gd" id="1_vsn7t"]
-[ext_resource type="Texture2D" uid="uid://dr3bkmou477j5" path="res://recursos/sprites/TileSets/FondoSheet.png" id="1_xepe4"]
-[ext_resource type="Texture2D" uid="uid://cxyafbo3ck6fg" path="res://recursos/sprites/TileSets/Pisos.png" id="2_j0d25"]
-[ext_resource type="PackedScene" uid="uid://dkm0atk4qawk3" path="res://escenas/plataforma.tscn" id="3_0ix22"]
-[ext_resource type="PackedScene" uid="uid://cydd1023br6iv" path="res://escenas/bits_moneda.tscn" id="4_fjla8"]
-[ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/sprites/TileSets/pared ladrillo.png" id="5_1hvkt"]
-[ext_resource type="PackedScene" uid="uid://bm8vysgbk4wkp" path="res://escenas/zona_muerta.tscn" id="5_qkddg"]
-[ext_resource type="Texture2D" uid="uid://dwol4vs2hvfno" path="res://recursos/sprites/TileSets/Tilesets Decoracion.png" id="6_o8orb"]
-[ext_resource type="PackedScene" uid="uid://bms0pstsaou5r" path="res://escenas/enemigo_slime_blue.tscn" id="7_npubw"]
-[ext_resource type="FontFile" uid="uid://bbow2nrr858wg" path="res://recursos/fonts/Ayuda.TTF" id="8_kgr4o"]
-[ext_resource type="PackedScene" uid="uid://1eeeqekb3ych" path="res://escenas/caja.tscn" id="10_im88q"]
-[ext_resource type="PackedScene" uid="uid://c2ayu8gvwd1id" path="res://escenas/interfaz_grafica.tscn" id="11_ia7rc"]
-[ext_resource type="PackedScene" uid="uid://davoghcp26fty" path="res://escenas/barra_vida.tscn" id="13_4x3o8"]
+[ext_resource type="Script" uid="uid://dcpdjyh6hwpi0" path="res://scripts/game_manager.gd" id="1_t8awx"]
+[ext_resource type="FontFile" uid="uid://bbow2nrr858wg" path="res://recursos/Fuentes/Ayuda.TTF" id="2_f5kba"]
+[ext_resource type="Texture2D" uid="uid://dr3bkmou477j5" path="res://recursos/sprites/TileSets/FondoSheet.png" id="3_6lk43"]
+[ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/sprites/TileSets/pared ladrillo.png" id="4_gu41u"]
+[ext_resource type="Texture2D" uid="uid://cxyafbo3ck6fg" path="res://recursos/sprites/TileSets/Pisos.png" id="5_870s8"]
+[ext_resource type="Texture2D" uid="uid://dwol4vs2hvfno" path="res://recursos/sprites/TileSets/Tilesets Decoracion.png" id="6_iw8xk"]
+[ext_resource type="PackedScene" uid="uid://bms0pstsaou5r" path="res://escenas/enemigo_slime_blue.tscn" id="7_58txc"]
+[ext_resource type="PackedScene" uid="uid://clkfnjqcilagi" path="res://escenas/player.tscn" id="8_3yna7"]
+[ext_resource type="PackedScene" uid="uid://bm8vysgbk4wkp" path="res://escenas/zona_muerta.tscn" id="9_dgd20"]
+[ext_resource type="PackedScene" uid="uid://cydd1023br6iv" path="res://recursos/Objetos Interaccion/bits_moneda.tscn" id="10_ueave"]
+[ext_resource type="PackedScene" uid="uid://dkm0atk4qawk3" path="res://recursos/Objetos Interaccion/plataforma.tscn" id="11_vyccs"]
+[ext_resource type="PackedScene" uid="uid://1eeeqekb3ych" path="res://recursos/Objetos Interaccion/caja.tscn" id="12_ocrpn"]
+[ext_resource type="PackedScene" uid="uid://c2ayu8gvwd1id" path="res://escenas/interfaz_grafica.tscn" id="13_fv1pf"]
+[ext_resource type="PackedScene" uid="uid://davoghcp26fty" path="res://escenas/barra_vida.tscn" id="14_akuvc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_npubw"]
-texture = ExtResource("1_xepe4")
+texture = ExtResource("3_6lk43")
 0:0/0 = 0
 1:0/0 = 0
 0:1/0 = 0
@@ -66,7 +66,7 @@ texture = ExtResource("1_xepe4")
 sources/0 = SubResource("TileSetAtlasSource_npubw")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4x3o8"]
-texture = ExtResource("5_1hvkt")
+texture = ExtResource("4_gu41u")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -136,7 +136,7 @@ texture = ExtResource("5_1hvkt")
 sources/1 = SubResource("TileSetAtlasSource_4x3o8")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j0d25"]
-texture = ExtResource("2_j0d25")
+texture = ExtResource("5_870s8")
 separation = Vector2i(1, 1)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -194,7 +194,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_j0d25")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_duxm2"]
-texture = ExtResource("6_o8orb")
+texture = ExtResource("6_iw8xk")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -305,7 +305,7 @@ _data = {
 
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("1_vsn7t")
+script = ExtResource("1_t8awx")
 
 [node name="txtPuntuacion" type="Label" parent="GameManager"]
 offset_left = -128.0
@@ -313,7 +313,7 @@ offset_top = -34.0
 offset_right = -42.0
 offset_bottom = -11.0
 theme_override_colors/font_color = Color(0.447059, 0, 0, 1)
-theme_override_fonts/font = ExtResource("8_kgr4o")
+theme_override_fonts/font = ExtResource("2_f5kba")
 theme_override_font_sizes/font_size = 16
 text = "0 Puntos"
 
@@ -335,10 +335,10 @@ tile_set = SubResource("TileSet_0ix22")
 tile_map_data = PackedByteArray("AADn/wgAAAAIAAMAAADn/wkAAAAIAAQAAADn/woAAAAIAAUAAADn/wsAAAAIAAYAAADo/wgAAAAJAAMAAADo/wkAAAAJAAQAAADo/woAAAAJAAUAAADo/wsAAAAJAAYAAAAFAAcAAAAIAAMAAAAFAAgAAAAIAAQAAAAFAAkAAAAIAAUAAAAFAAoAAAAIAAYAAAAGAAcAAAAJAAMAAAAGAAgAAAAJAAQAAAAGAAkAAAAJAAUAAAAGAAoAAAAJAAYAAADx/wUAAAAAAAQAAADx/wYAAAAAAAUAAADx/wcAAAAAAAYAAADy/wUAAAABAAQAAADy/wYAAAABAAUAAADy/wcAAAABAAYAAADz/wUAAAACAAQAAADz/wYAAAACAAUAAADz/wcAAAACAAYAAAD0/wUAAAADAAQAAAD0/wYAAAADAAUAAAD0/wcAAAADAAYAAAD1/wUAAAABAAQAAAD1/wYAAAABAAUAAAD1/wcAAAABAAYAAAD2/wUAAAACAAQAAAD2/wYAAAACAAUAAAD2/wcAAAACAAYAAAD3/wUAAAADAAQAAAD3/wYAAAADAAUAAAD3/wcAAAADAAYAAAD4/wUAAAABAAQAAAD4/wYAAAABAAUAAAD4/wcAAAABAAYAAAD5/wUAAAACAAQAAAD5/wYAAAACAAUAAAD5/wcAAAACAAYAAAD6/wUAAAADAAQAAAD6/wYAAAADAAUAAAD6/wcAAAADAAYAAAD7/wUAAAABAAQAAAD7/wYAAAABAAUAAAD7/wcAAAABAAYAAAD8/wUAAAACAAQAAAD8/wYAAAACAAUAAAD8/wcAAAACAAYAAAD9/wUAAAADAAQAAAD9/wYAAAADAAUAAAD9/wcAAAADAAYAAAD+/wUAAAABAAQAAAD+/wYAAAABAAUAAAD+/wcAAAABAAYAAAD//wUAAAACAAQAAAD//wYAAAACAAUAAAD//wcAAAACAAYAAAAAAAUAAAADAAQAAAAAAAYAAAADAAUAAAAAAAcAAAADAAYAAAACAAUAAAAEAAQAAAACAAYAAAAEAAUAAAACAAcAAAAEAAYAAAABAAUAAAAEAAQAAAABAAYAAAAEAAUAAAABAAcAAAAEAAYAAAA=")
 tile_set = SubResource("TileSet_btqwt")
 
-[node name="EnemigoSlimeBlue" parent="TileMap" instance=ExtResource("7_npubw")]
+[node name="EnemigoSlimeBlue" parent="TileMap" instance=ExtResource("7_58txc")]
 position = Vector2(232, 232)
 
-[node name="Player" parent="." instance=ExtResource("1_naavg")]
+[node name="Player" parent="." instance=ExtResource("8_3yna7")]
 position = Vector2(-416, -50)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -348,7 +348,7 @@ limit_bottom = 305
 limit_smoothed = true
 position_smoothing_enabled = true
 
-[node name="ZonaMuerta" parent="." instance=ExtResource("5_qkddg")]
+[node name="ZonaMuerta" parent="." instance=ExtResource("9_dgd20")]
 position = Vector2(-470, 347)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaMuerta"]
@@ -356,24 +356,24 @@ shape = SubResource("WorldBoundaryShape2D_xepe4")
 
 [node name="Monedas" type="Node2D" parent="."]
 
-[node name="BitsMoneda" parent="Monedas" instance=ExtResource("4_fjla8")]
+[node name="BitsMoneda" parent="Monedas" instance=ExtResource("10_ueave")]
 position = Vector2(-298, 235)
 
-[node name="BitsMoneda2" parent="Monedas" instance=ExtResource("4_fjla8")]
+[node name="BitsMoneda2" parent="Monedas" instance=ExtResource("10_ueave")]
 position = Vector2(-187, 231)
 
-[node name="BitsMoneda3" parent="Monedas" instance=ExtResource("4_fjla8")]
+[node name="BitsMoneda3" parent="Monedas" instance=ExtResource("10_ueave")]
 position = Vector2(-49, 233)
 
-[node name="BitsMoneda4" parent="Monedas" instance=ExtResource("4_fjla8")]
+[node name="BitsMoneda4" parent="Monedas" instance=ExtResource("10_ueave")]
 position = Vector2(14, 146)
 
-[node name="BitsMoneda5" parent="Monedas" instance=ExtResource("4_fjla8")]
+[node name="BitsMoneda5" parent="Monedas" instance=ExtResource("10_ueave")]
 position = Vector2(60, 33)
 
 [node name="Plataformas" type="Node2D" parent="."]
 
-[node name="Plataforma2" parent="Plataformas" instance=ExtResource("3_0ix22")]
+[node name="Plataforma2" parent="Plataformas" instance=ExtResource("11_vyccs")]
 position = Vector2(-393, 222)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Plataformas/Plataforma2"]
@@ -382,10 +382,10 @@ libraries = {
 }
 autoplay = "MovimientoPlataforma"
 
-[node name="Plataforma" parent="Plataformas" instance=ExtResource("3_0ix22")]
+[node name="Plataforma" parent="Plataformas" instance=ExtResource("11_vyccs")]
 position = Vector2(-59, 110)
 
-[node name="EnemigoSlimeBlue" parent="." instance=ExtResource("7_npubw")]
+[node name="EnemigoSlimeBlue" parent="." instance=ExtResource("7_58txc")]
 position = Vector2(33, 265)
 
 [node name="Label" type="Label" parent="."]
@@ -394,7 +394,7 @@ offset_top = 148.0
 offset_right = -8.0
 offset_bottom = 171.0
 theme_override_colors/font_color = Color(0.447059, 0, 0, 1)
-theme_override_fonts/font = ExtResource("8_kgr4o")
+theme_override_fonts/font = ExtResource("2_f5kba")
 theme_override_font_sizes/font_size = 16
 text = "Espacio para saltar"
 
@@ -404,13 +404,13 @@ offset_top = -36.0
 offset_right = -133.0
 offset_bottom = -13.0
 theme_override_colors/font_color = Color(0.447059, 0, 0, 1)
-theme_override_fonts/font = ExtResource("8_kgr4o")
+theme_override_fonts/font = ExtResource("2_f5kba")
 theme_override_font_sizes/font_size = 16
 text = "Puntaje:"
 
-[node name="Caja" parent="." instance=ExtResource("10_im88q")]
+[node name="Caja" parent="." instance=ExtResource("12_ocrpn")]
 position = Vector2(-122, 213)
 
-[node name="InterfazGrafica" parent="." instance=ExtResource("11_ia7rc")]
+[node name="InterfazGrafica" parent="." instance=ExtResource("13_fv1pf")]
 
-[node name="BarraVida" parent="." instance=ExtResource("13_4x3o8")]
+[node name="BarraVida" parent="." instance=ExtResource("14_akuvc")]

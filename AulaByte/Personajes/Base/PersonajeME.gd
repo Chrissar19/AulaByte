@@ -40,6 +40,10 @@ var esta_empujando: bool = false
 var estaba_empujando: bool = false
 var tiempo_empujando := 0.0 
 
+#--Contador coyote-time --
+var tiempo_coyote := 0.15
+var contador_coyote := 0.0
+
 func _ready():
 	# Configurar el raycast inicialmente
 	empuje_ray.enabled = true
@@ -53,11 +57,12 @@ func _physics_process(delta: float) -> void:
 	#Reiniciar estado de empuje
 	esta_empujando = tiempo_empujando > 0
 	var dir := Input.get_axis("izquierda", "derecha") # Recibe el dato entre izq o deer que envia el jugador
-	
+	#-- Coyote-time--
+	coyote_time(delta)
 	# Añadir gravedad
 	gravedad(delta)
 	# Accion de salto
-	if Input.is_action_just_pressed("saltar") and is_on_floor(): # Si se presiona la barra espacio y se esta tocando el suelo
+	if Input.is_action_just_pressed("saltar") and contador_coyote > 0: # Si se presiona la barra espacio y se esta tocando el suelo
 		salto()
 	
 	#--Direccion del sprite y RayCast
@@ -144,3 +149,9 @@ func salto():
 func nombre_animacion(accion: String) -> String:
 	#--nombre es el prefijo del personaje
 	return nombre + accion + equipo
+	
+func coyote_time(delta):
+	if is_on_floor():
+		contador_coyote = tiempo_coyote
+	else:
+		contador_coyote -= delta
