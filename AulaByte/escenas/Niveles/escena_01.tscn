@@ -9,9 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://bms0pstsaou5r" path="res://escenas/enemigo_slime_blue.tscn" id="7_58txc"]
 [ext_resource type="PackedScene" uid="uid://clkfnjqcilagi" path="res://escenas/player.tscn" id="8_3yna7"]
 [ext_resource type="PackedScene" uid="uid://bm8vysgbk4wkp" path="res://escenas/zona_muerta.tscn" id="9_dgd20"]
-[ext_resource type="PackedScene" uid="uid://cydd1023br6iv" path="res://recursos/Objetos Interaccion/bits_moneda.tscn" id="10_ueave"]
-[ext_resource type="PackedScene" uid="uid://dkm0atk4qawk3" path="res://recursos/Objetos Interaccion/plataforma.tscn" id="11_vyccs"]
-[ext_resource type="PackedScene" uid="uid://1eeeqekb3ych" path="res://recursos/Objetos Interaccion/caja.tscn" id="12_ocrpn"]
+[ext_resource type="PackedScene" uid="uid://cydd1023br6iv" path="res://recursos/Objetos_Interaccion/bits_moneda.tscn" id="10_ueave"]
+[ext_resource type="PackedScene" uid="uid://dkm0atk4qawk3" path="res://recursos/Objetos_Interaccion/plataforma.tscn" id="11_vyccs"]
+[ext_resource type="PackedScene" uid="uid://1eeeqekb3ych" path="res://recursos/Objetos_Interaccion/caja.tscn" id="12_ocrpn"]
 [ext_resource type="PackedScene" uid="uid://c2ayu8gvwd1id" path="res://escenas/interfaz_grafica.tscn" id="13_fv1pf"]
 [ext_resource type="PackedScene" uid="uid://davoghcp26fty" path="res://escenas/barra_vida.tscn" id="14_akuvc"]
 

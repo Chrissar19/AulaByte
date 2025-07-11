@@ -3,7 +3,6 @@ class_name PersonajeME
 
 #-- Constantes de movimiento ---
 const VEL_HORIZONTAL = 150.0
-const VEL_CORRER = 300.0
 const FUERZA_SALTO = -400.0
 const FUERZA_EMPUJE = 500.0 # Fuerza que aplica a las cajas
 const TIEMPO_DE_EMPUJE := 0.15 #-- Tiempo que se mantiene en el estado de empujar
@@ -132,8 +131,6 @@ func mover_horizontal(dir: float) -> void:
 	if dir:
 		if esta_empujando:
 			velocity.x = dir * (VEL_HORIZONTAL * 0.4)
-		else:
-			velocity.x = dir * (VEL_CORRER if Input.is_action_pressed("Correr") else VEL_HORIZONTAL)
 	else:
 		velocity.x = move_toward(velocity.x, 0, VEL_HORIZONTAL)
 
