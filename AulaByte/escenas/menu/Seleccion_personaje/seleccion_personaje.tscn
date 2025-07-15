@@ -5,3 +5,48 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = 12.0
+offset_right = 128.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureButton" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureButton2" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureButton3" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureButton4" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+offset_left = 101.0
+offset_top = 250.0
+offset_right = 109.0
+offset_bottom = 290.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 15.5
+offset_top = 8.0
+offset_right = 16.5
+offset_bottom = 31.0
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 2
+offset_left = 344.0
+offset_top = 251.0
+offset_right = 352.0
+offset_bottom = 291.0

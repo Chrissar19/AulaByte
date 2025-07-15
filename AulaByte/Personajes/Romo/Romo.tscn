@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d1y65koi5c0vn"]
 
-[ext_resource type="PackedScene" uid="uid://54vuddp7px6k" path="res://personajes/Base/maquina_estado.tscn" id="1_qjqox"]
-[ext_resource type="SpriteFrames" uid="uid://j40x2ec8nhi3" path="res://personajes/Romo/animacion_romo.tres" id="2_ahfek"]
+[ext_resource type="PackedScene" uid="uid://54vuddp7px6k" path="res://Personajes/Base/maquina_estado.tscn" id="1_qjqox"]
+[ext_resource type="SpriteFrames" uid="uid://j40x2ec8nhi3" path="res://Personajes/Romo/animacion_romo.tres" id="2_ahfek"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_17pq4"]
 size = Vector2(18, 55)

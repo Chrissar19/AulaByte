@@ -1,7 +1,7 @@
 [gd_scene load_steps=27 format=4 uid="uid://hbsg7hd3yrnt"]
 
 [ext_resource type="Script" uid="uid://dcpdjyh6hwpi0" path="res://scripts/game_manager.gd" id="1_t8awx"]
-[ext_resource type="FontFile" uid="uid://bbow2nrr858wg" path="res://recursos/fuentes/Ayuda.TTF" id="2_f5kba"]
+[ext_resource type="FontFile" uid="uid://bbow2nrr858wg" path="res://recursos/Fuentes/Ayuda.TTF" id="2_f5kba"]
 [ext_resource type="Texture2D" uid="uid://dr3bkmou477j5" path="res://recursos/sprites/TileSets/FondoSheet.png" id="3_6lk43"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/sprites/TileSets/pared ladrillo.png" id="4_gu41u"]
 [ext_resource type="Texture2D" uid="uid://cxyafbo3ck6fg" path="res://recursos/sprites/TileSets/Pisos.png" id="5_870s8"]
