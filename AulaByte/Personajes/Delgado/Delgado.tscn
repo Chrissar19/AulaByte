@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://c74ndrm058sap"]
 
-[ext_resource type="PackedScene" uid="uid://54vuddp7px6k" path="res://Personajes/Base/maquina_estado.tscn" id="1_p613e"]
+[ext_resource type="PackedScene" uid="uid://54vuddp7px6k" path="res://personajes/Base/maquina_estado.tscn" id="1_p613e"]
 [ext_resource type="Texture2D" uid="uid://mhunl33k1gw1" path="res://recursos/sprites/Personajes/natalia Sheet.png" id="2_7o1ow"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hbgvr"]

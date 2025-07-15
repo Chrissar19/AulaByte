@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://mhunl33k1gw1" path="res://recursos/sprites/Personajes/natalia Sheet.png" id="1_t6msw"]
 [ext_resource type="Texture2D" uid="uid://j6kc5tuy58mj" path="res://recursos/sprites/Personajes/Isuasty Sheet.png" id="2_b3x4a"]
 [ext_resource type="Texture2D" uid="uid://dpyuo5qcw8tda" path="res://recursos/sprites/Personajes/Jojoa Sheet.png" id="3_o7a31"]
-[ext_resource type="Texture2D" uid="uid://4bih0ukpc6v2" path="res://recursos/sprites/Personajes/RomoSheet.png" id="4_wwt84"]
+[ext_resource type="Texture2D" uid="uid://poyjgp3am50t" path="res://recursos/sprites/Personajes/RomoSheet.png" id="4_wwt84"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_otw50"]
 atlas = ExtResource("1_t6msw")

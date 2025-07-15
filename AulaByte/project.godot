@@ -18,14 +18,13 @@ config/icon="uid://dmoqu2apkie6"
 
 [autoload]
 
-Musica="*res://escenas/musica.tscn"
+Musica="*res://scripts/musica.gd"
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=360
 window/stretch/mode="viewport"
-window/stretch/aspect="expand"
 
 [global_group]
 
