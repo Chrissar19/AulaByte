@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cj8vcwm8nhfu7"]
 
 [ext_resource type="Script" uid="uid://dooupabinrph4" path="res://escenas/menu/Seleccion_personaje/seleccion_personaje.gd" id="1_jukd6"]
-[ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/fuentes/PixelOperator8.ttf" id="2_frxkc"]
-[ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/fuentes/Titulos.ttf" id="5_e7txn"]
+[ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/Fuentes/PixelOperator8.ttf" id="2_frxkc"]
+[ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="5_e7txn"]
 
 [node name="SeleccionPersonaje" type="Control"]
 layout_mode = 3
@@ -17,42 +17,51 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 200.0
-offset_top = 128.0
-offset_right = 433.0
-offset_bottom = 233.0
+layout_mode = 1
+anchors_preset = -1
+offset_left = 60.0
+offset_top = 40.0
+offset_right = 580.0
+offset_bottom = 320.0
 alignment = 1
 
 [node name="hboxPersonajes" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
 theme_override_constants/separation = 10
+alignment = 1
 
 [node name="btnRomo" type="TextureButton" parent="VBoxContainer/hboxPersonajes"]
 layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="TextureButton2" type="TextureButton" parent="VBoxContainer/hboxPersonajes"]
 layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="TextureButton3" type="TextureButton" parent="VBoxContainer/hboxPersonajes"]
 layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="TextureButton4" type="TextureButton" parent="VBoxContainer/hboxPersonajes"]
 layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="lblNombre" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_frxkc")
+text = "Prueba de texto"
+horizontal_alignment = 1
+
+[node name="lblDecoracion" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_frxkc")
+text = "----------------------"
+horizontal_alignment = 1
+
+[node name="lblEspacio" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_frxkc")
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-alignment = 2
+alignment = 1
 
 [node name="btnConfirmar" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2

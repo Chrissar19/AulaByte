@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bi77sdj5bighi"
-path="res://.godot/imported/CabezaRomo.png-aa8d172d609b92e0e23467c7fc10d177.ctex"
+path="res://.godot/imported/CabezaRomo.png-d384e39037f217bc24ce8e8aae574964.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/imagenes/personajes/CabezaRomo.png"
-dest_files=["res://.godot/imported/CabezaRomo.png-aa8d172d609b92e0e23467c7fc10d177.ctex"]
+source_file="res://recursos/Imagenes/personajes/CabezaRomo.png"
+dest_files=["res://.godot/imported/CabezaRomo.png-d384e39037f217bc24ce8e8aae574964.ctex"]
 
 [params]
 

@@ -1,6 +1,6 @@
 [gd_resource type="SpriteFrames" load_steps=30 format=3 uid="uid://ujqjpsusbxw0"]
 
-[ext_resource type="Texture2D" uid="uid://dpyuo5qcw8tda" path="res://recursos/imagenes/personajes/Jojoa Sheet.png" id="1_g3dc0"]
+[ext_resource type="Texture2D" uid="uid://dpyuo5qcw8tda" path="res://recursos/Imagenes/personajes/Jojoa Sheet.png" id="1_g3dc0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pvjn0"]
 atlas = ExtResource("1_g3dc0")

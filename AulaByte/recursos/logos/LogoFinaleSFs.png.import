@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://qik4t041dbum"
-path="res://.godot/imported/LogoFinaleSFs.png-bfcf7fc7c6af8439aa76dae631c810cf.ctex"
+path="res://.godot/imported/LogoFinaleSFs.png-4a4e59ff5a2397ea85ea07dbf173ea9d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/logos/LogoFinaleSFs.png"
-dest_files=["res://.godot/imported/LogoFinaleSFs.png-bfcf7fc7c6af8439aa76dae631c810cf.ctex"]
+source_file="res://recursos/Logos/LogoFinaleSFs.png"
+dest_files=["res://.godot/imported/LogoFinaleSFs.png-4a4e59ff5a2397ea85ea07dbf173ea9d.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://poyjgp3am50t"
-path="res://.godot/imported/RomoSheet.png-f35f539aaba05dcca9ed4644d0028091.ctex"
+path="res://.godot/imported/RomoSheet.png-f4a4d78724a85cbda5cf1145a856cce4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/imagenes/personajes/RomoSheet.png"
-dest_files=["res://.godot/imported/RomoSheet.png-f35f539aaba05dcca9ed4644d0028091.ctex"]
+source_file="res://recursos/Imagenes/personajes/RomoSheet.png"
+dest_files=["res://.godot/imported/RomoSheet.png-f4a4d78724a85cbda5cf1145a856cce4.ctex"]
 
 [params]
 

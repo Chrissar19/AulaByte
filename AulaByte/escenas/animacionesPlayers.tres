@@ -1,9 +1,9 @@
 [gd_resource type="SpriteFrames" load_steps=103 format=3 uid="uid://c6phbkelbb8ua"]
 
-[ext_resource type="Texture2D" uid="uid://mhunl33k1gw1" path="res://recursos/imagenes/personajes/natalia Sheet.png" id="1_t6msw"]
-[ext_resource type="Texture2D" uid="uid://j6kc5tuy58mj" path="res://recursos/imagenes/personajes/Isuasty Sheet.png" id="2_b3x4a"]
-[ext_resource type="Texture2D" uid="uid://dpyuo5qcw8tda" path="res://recursos/imagenes/personajes/Jojoa Sheet.png" id="3_o7a31"]
-[ext_resource type="Texture2D" uid="uid://poyjgp3am50t" path="res://recursos/imagenes/personajes/RomoSheet.png" id="4_wwt84"]
+[ext_resource type="Texture2D" uid="uid://mhunl33k1gw1" path="res://recursos/Imagenes/personajes/natalia Sheet.png" id="1_t6msw"]
+[ext_resource type="Texture2D" uid="uid://j6kc5tuy58mj" path="res://recursos/Imagenes/personajes/Isuasty Sheet.png" id="2_b3x4a"]
+[ext_resource type="Texture2D" uid="uid://dpyuo5qcw8tda" path="res://recursos/Imagenes/personajes/Jojoa Sheet.png" id="3_o7a31"]
+[ext_resource type="Texture2D" uid="uid://poyjgp3am50t" path="res://recursos/Imagenes/personajes/RomoSheet.png" id="4_wwt84"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_otw50"]
 atlas = ExtResource("1_t6msw")
