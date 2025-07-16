@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="personajeInfo" load_steps=4 format=3 uid="uid://d1rnnefd0vu4t"]
+
+[ext_resource type="Script" uid="uid://b2tv635ue2025" path="res://scripts/datos/personaje_info.gd" id="1_liuou"]
+[ext_resource type="PackedScene" uid="uid://dg8s2p2yr5wdn" path="res://personajes/Jojoa/Jojoa.tscn" id="1_xb5uk"]
+[ext_resource type="Texture2D" uid="uid://cnbqiltmvvr61" path="res://recursos/imagenes/personajes/cabezaHarold.png" id="3_0i7l7"]
+
+[resource]
+script = ExtResource("1_liuou")
+id = 2
+nombre = "Jojoa"
+sprite = ExtResource("3_0i7l7")
+archivo_escena = ExtResource("1_xb5uk")
+metadata/_custom_type_script = "uid://b2tv635ue2025"

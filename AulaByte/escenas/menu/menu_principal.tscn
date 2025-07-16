@@ -19,28 +19,30 @@ script = ExtResource("1_8qhkl")
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 offset_left = 294.0
-offset_top = 35.0
-offset_right = 334.0
-offset_bottom = 75.0
+offset_top = -21.0
+offset_right = 315.0
+offset_bottom = -2.0
 
 [node name="Cielo" type="Sprite2D" parent="Panel"]
 z_index = -2
-position = Vector2(26, 144)
+position = Vector2(26, 201)
+scale = Vector2(1.02, 1.02)
 texture = ExtResource("2_msw0b")
 
 [node name="FondoMernu" type="Sprite2D" parent="Panel"]
-position = Vector2(26, 146)
+position = Vector2(26, 202)
+scale = Vector2(1.02, 1.02)
 texture = ExtResource("3_aemwv")
 
 [node name="LogoFinaleSFs" type="Sprite2D" parent="Panel"]
 z_index = 2
-position = Vector2(-11, 80)
+position = Vector2(-11, 128)
 texture = ExtResource("4_e7qrj")
 
 [node name="Logo6" type="Sprite2D" parent="Panel"]
 visible = false
 z_index = 2
-position = Vector2(14, 94)
+position = Vector2(-6, 142)
 texture = ExtResource("5_sk0a6")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -79,5 +81,5 @@ theme_override_font_sizes/font_size = 16
 text = "SALIR"
 
 [node name="temNubes" type="Timer" parent="."]
-wait_time = 7.0
+wait_time = 5.0
 autostart = true

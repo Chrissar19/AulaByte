@@ -42,7 +42,7 @@ func _crear_nube() -> void:
 	
 func _crear_nube_fondo() -> void:
 	var nube_fondo: Node2D = escena_nubes.instantiate()
-	var alto_fondo := 260
+	var alto_fondo := 280
 	var alto_min_fondo := 4
 	var posicion_x: float = -450.0
 	var altura_fondo := randi_range(alto_min_fondo, alto_fondo)

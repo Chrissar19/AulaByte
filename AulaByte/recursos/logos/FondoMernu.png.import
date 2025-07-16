@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b75utru5tlqdy"
-path="res://.godot/imported/FondoMernu.png-e4f23ed7cb4143bf40951b85f949d4d0.ctex"
+path="res://.godot/imported/FondoMernu.png-557ea3d953696f241985b92aa8b0b507.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/Logos/FondoMernu.png"
-dest_files=["res://.godot/imported/FondoMernu.png-e4f23ed7cb4143bf40951b85f949d4d0.ctex"]
+source_file="res://recursos/logos/FondoMernu.png"
+dest_files=["res://.godot/imported/FondoMernu.png-557ea3d953696f241985b92aa8b0b507.ctex"]
 
 [params]
 
