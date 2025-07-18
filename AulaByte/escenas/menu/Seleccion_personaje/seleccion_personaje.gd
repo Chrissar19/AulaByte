@@ -87,6 +87,22 @@ func _get_info(id: int) -> personajeInfo:
 		if info.id == id:
 			return info
 	return null
+
+#-------------------------------------------------------------------------------
+#-- Movimiento por teclado
+#-------------------------------------------------------------------------------
+func _unhandled_input(event: InputEvent) -> void:
+	if lista_info.is_empty():
+		return
+		
+	if event.is_action_pressed("izquierda"):
+		indice_seleccionado = (indice_seleccionado - 1 + lista_info.size()) % lista_info.size()
+		_actualizar_ui()
+	elif event.is_action_pressed("derecha"):
+		indice_seleccionado = (indice_seleccionado + 1) % lista_info.size()
+		_actualizar_ui()
+	elif event.is_action_pressed("ui_accept") and indice_seleccionado != -1:
+		_on_confirmar()
 	
 #---------------------------------------------------------------------------------------------------
 #-- Confirmar >> guarda la seleccion y pasa al primer nivel
