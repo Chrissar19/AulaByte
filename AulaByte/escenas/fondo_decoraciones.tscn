@@ -1,7 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cl6pw180fe2nc"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rplar"]
-load_path = "res://.godot/imported/Extintor.png-d13dd35c967559229964a0486029d6b6.ctex"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uhe1h"]
 texture = SubResource("CompressedTexture2D_rplar")

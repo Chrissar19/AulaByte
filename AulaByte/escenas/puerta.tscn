@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://dvsh1umajgfmn"]
+
+[ext_resource type="Texture2D" uid="uid://br440ikta7opx" path="res://recursos/sprites/Objetos/Puertas.png" id="1_0li1g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5d6k"]
+atlas = ExtResource("1_0li1g")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtvel"]
+atlas = ExtResource("1_0li1g")
+region = Rect2(33, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2el6h"]
+atlas = ExtResource("1_0li1g")
+region = Rect2(66, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpyu7"]
+atlas = ExtResource("1_0li1g")
+region = Rect2(99, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wta5v"]
+atlas = ExtResource("1_0li1g")
+region = Rect2(132, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvwpw"]
+atlas = ExtResource("1_0li1g")
+region = Rect2(165, 0, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q3tdv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r5d6k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtvel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2el6h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpyu7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wta5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xvwpw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[node name="Puerta" type="AnimatableBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_q3tdv")
+frame_progress = 0.379188
