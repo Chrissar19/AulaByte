@@ -32,7 +32,7 @@ func _ready() -> void:
 	
 	#--reproducir musica de fondo en bucle
 	var musica_intro = preload("res://recursos/audio/Musica/tic-toc-suspenso-7312.wav")
-	Musica.reproducir(musica_intro, true)
+	MusicaGlobal.reproducir(musica_intro, true)
 
 #-------------------------------------------------------------------------------
 #--Muestra la imagen, prepara el texto y ejecuta el efecto de escritura
@@ -97,4 +97,5 @@ func _on_timer_texto_timeout():
 			
 #-- Transicion al menu principal
 func ir_a_menu_principal():
+	MusicaGlobal.detener()
 	get_tree().change_scene_to_file("res://escenas/menu/menu_principal.tscn")

@@ -4,8 +4,10 @@ extends Control
 @onready var btn_opciones: Button = $VBoxContainer/Opciones
 @onready var btn_salir: Button = $VBoxContainer/Salir
 @onready var tem_nubes: Timer = $temNubes
-
+@onready var tem_espera: Timer = $temEspera
 @onready var escena_nubes:= preload("res://escenas/menu/nubes.tscn")
+
+var jugador_activo = false
 
 func _ready() -> void:
 	randomize()
@@ -15,14 +17,22 @@ func _ready() -> void:
 	btn_opciones.pressed.connect(_on_opciones)
 	btn_salir.pressed.connect(_on_salir)
 	btn_jugar.grab_focus()
+	
+	var musica_menu = preload("res://recursos/audio/Musica/neon-pulse-30s-307999.wav")
+	MusicaGlobal.reproducir(musica_menu, true)
 
 func _on_jugar() -> void:
+	jugador_activo = true
+	MusicaGlobal.detener()
 	get_tree().change_scene_to_file("res://escenas/menu/Seleccion_personaje/seleccion_personaje.tscn")
 	
 func _on_opciones() -> void:
+	jugador_activo = true
 	print("Opcion aún no implementada")
 	
 func _on_salir() -> void:
+	jugador_activo = true
+	MusicaGlobal.detener()
 	get_tree().quit()
 	
 func _crear_nube() -> void:
@@ -51,3 +61,11 @@ func _crear_nube_fondo() -> void:
 	nube_fondo.z_index = -1
 	nube_fondo.scale = Vector2(randf_range(0.7,0.2), randf_range(0.7, 0.2))
 	$Panel.add_child(nube_fondo)
+		
+func _input(event: InputEvent) -> void:
+	if event.is_pressed():
+		$temEspera.start() #-- Reinicia el tiempo de espera
+
+func _on_tem_espera_timeout() -> void:
+	if not jugador_activo:
+		get_tree().change_scene_to_file("res://escenas/intro/Intro.tscn")

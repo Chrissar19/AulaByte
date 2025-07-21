@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cthf45o6nhr70"]
+
+[ext_resource type="Script" uid="uid://c2tlsxq8nl3jt" path="res://scripts/jugador/jugador.gd" id="1_12nyi"]
+[ext_resource type="SpriteFrames" uid="uid://ujqjpsusbxw0" path="res://escenas/personajes/Jojoa/animacion_jojoa.tres" id="1_hksel"]
+[ext_resource type="AudioStream" uid="uid://cq2m6678f6s85" path="res://recursos/audio/efectos/jump.wav" id="3_wvwjo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_12nyi"]
+size = Vector2(25, 50)
+
+[node name="Jojoa" type="CharacterBody2D"]
+script = ExtResource("1_12nyi")
+nombre = "Jojoa"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_hksel")
+animation = &"JojoaDownNo"
+autoplay = "JojoaIdleNo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 7)
+shape = SubResource("RectangleShape2D_12nyi")
+
+[node name="SonidoSalto" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_wvwjo")
+
+[node name="EmpujeRay" type="RayCast2D" parent="."]

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dclm53qe2idn1"
-path="res://.godot/imported/Plataforma.png-22f21466ac191ac570d46433a5bf1ad9.ctex"
+path="res://.godot/imported/Plataforma.png-03f2f11f90a68d3d8d2465a14f79cd69.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/Imagenes/objetos/Plataforma.png"
-dest_files=["res://.godot/imported/Plataforma.png-22f21466ac191ac570d46433a5bf1ad9.ctex"]
+source_file="res://recursos/imagenes/objetos/Plataforma.png"
+dest_files=["res://.godot/imported/Plataforma.png-03f2f11f90a68d3d8d2465a14f79cd69.ctex"]
 
 [params]
 

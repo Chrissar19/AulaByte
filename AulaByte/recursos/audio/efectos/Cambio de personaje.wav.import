@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://smlda04d7351"
+path="res://.godot/imported/Cambio de personaje.wav-3dd401de4b13d23e2193d1f0f4c19abe.sample"
+
+[deps]
+
+source_file="res://recursos/audio/efectos/Cambio de personaje.wav"
+dest_files=["res://.godot/imported/Cambio de personaje.wav-3dd401de4b13d23e2193d1f0f4c19abe.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

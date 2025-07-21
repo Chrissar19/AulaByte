@@ -4,19 +4,23 @@ extends Control
 #-- Preparado para ampliarse a un multijugador
 
 #-- RUTA DONDE SE GUARDO LOS .tres ---
-const RUTA_INFO := "res://personajes/info"
+const RUTA_INFO := "res://escenas/personajes/info/"
 
 #-- Referencias de nodos de UI (Se resuelven en _ready) ---
 @onready var hbox_personajes: HBoxContainer = $VBoxContainer/hboxPersonajes
 @onready var lbl_nombre: Label = $VBoxContainer/lblNombre
 @onready var btn_confirmar: Button = $VBoxContainer/HBoxContainer/btnConfirmar
 @onready var btn_volver: Button = $VBoxContainer/HBoxContainer/btnVolver
+@onready var audio_click: AudioStreamPlayer = $AudioClick
+@onready var audio_cambio: AudioStreamPlayer = $AudioCambio
 
 #-- Datos internos
 var lista_info : Array[Resource] =[] # <- PersonaInfo
 var indice_seleccionado : int = -1 # <- Ningun personaje seleccionado
 
 func _ready() -> void:
+	estilo_botones(btn_confirmar)
+	estilo_botones(btn_volver)
 	_cargar_personajes()
 	_crear_botones()
 	_conectar_botones()
@@ -57,6 +61,8 @@ func _conectar_botones() -> void:
 #-- Cuando se selecciona un personale
 #---------------------------------------------------------------------------------------------------
 func _on_boton_personaje(id_personaje: int) -> void:
+	audio_cambio.play() #-- Sonido
+	await get_tree().create_timer(0.2).timeout #-- Pequeña pausa para que suene
 	indice_seleccionado = id_personaje
 	_actualizar_ui()
 	
@@ -80,6 +86,7 @@ func _actualizar_ui() -> void:
 #-- Pintar el boton seleccionado
 func btn_modulate(btn: TextureButton, activo: bool) -> void:
 	btn.modulate = Color.WHITE if activo else Color(0.7,0.7,0.7,1)
+	btn.scale = Vector2(1.2, 1.2) if activo else Vector2(1, 1)
 	
 #--Devuelve el personajeInfo por id
 func _get_info(id: int) -> personajeInfo:
@@ -96,21 +103,60 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 		
 	if event.is_action_pressed("izquierda"):
+		audio_cambio.play() #-- Sonido
+		await get_tree().create_timer(0.2).timeout #-- Pequeña pausa para que suene
 		indice_seleccionado = (indice_seleccionado - 1 + lista_info.size()) % lista_info.size()
 		_actualizar_ui()
 	elif event.is_action_pressed("derecha"):
+		audio_cambio.play() #-- Sonido
+		await get_tree().create_timer(0.2).timeout #-- Pequeña pausa para que suene
 		indice_seleccionado = (indice_seleccionado + 1) % lista_info.size()
 		_actualizar_ui()
 	elif event.is_action_pressed("ui_accept") and indice_seleccionado != -1:
+		audio_click.play() #-- Sonido
+		await get_tree().create_timer(0.2).timeout #-- Pequeña pausa para que suene
 		_on_confirmar()
+	elif event.is_action_pressed("ui_cancel"):
+		audio_click.play() #-- Sonido
+		await get_tree().create_timer(0.2).timeout #-- Pequeña pausa para que suene
+		_on_volver()
 	
 #---------------------------------------------------------------------------------------------------
 #-- Confirmar >> guarda la seleccion y pasa al primer nivel
 #---------------------------------------------------------------------------------------------------
 func _on_confirmar() -> void:
+	audio_click.play() #-- Sonido
+	await get_tree().create_timer(0.2).timeout #-- Pequeña pausa para que suene
 	var info := _get_info(indice_seleccionado)
 	JugadorSeleccionado.seleccionar(info.id)
-	get_tree().change_scene_to_file("res://escenas/niveles/nivel_tuto.tscn")
+	JugadorSeleccionado.set_info(info)
+	get_tree().change_scene_to_file("res://escenas/ui/pantalla_carga.tscn")
 	
+#---------------------------------------------------------------------------------------------------
+#-- Volver al menu principal
+#---------------------------------------------------------------------------------------------------
 func _on_volver() -> void:
 	get_tree().change_scene_to_file("res://escenas/menu/menu_principal.tscn")
+
+#--------------------------------------------------------------------------------------------------
+#-- estilo de Botones confirmar y volver
+#--------------------------------------------------------------------------------------------------
+func estilo_botones(boton: Button) -> void:
+	#-- Carmbiar colores del texto
+	boton.add_theme_color_override("font_color_hover", Color.CORNFLOWER_BLUE)
+	boton.add_theme_color_override("font_color_pressed", Color.BLUE)
+	
+	#-- Estado normal
+	var fondo_normal := StyleBoxFlat.new()
+	fondo_normal.bg_color = Color(0.2, 0.2, 0.2)
+	boton.add_theme_stylebox_override("normal", fondo_normal)
+	
+	#-- Estado hover
+	var fondo_hover := StyleBoxFlat.new()
+	fondo_hover.bg_color = Color(0.3, 0.3, 0.3)
+	boton.add_theme_stylebox_override("hover", fondo_hover)
+	
+	#-- estado pressed
+	var fondo_pressed := StyleBoxFlat.new()
+	fondo_pressed.bg_color = Color(0.4, 0.1, 0.1)
+	boton.add_theme_stylebox_override("pressed", fondo_pressed)
