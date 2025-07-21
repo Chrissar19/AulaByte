@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxrv3sueon08"
-path="res://.godot/imported/taclaEnter.png-5bdad18fdf47d4ba871411b72898f4ac.ctex"
+uid="uid://bopnw7llq8iqo"
+path="res://.godot/imported/Puerta.png-5a98d4b4a13433f083fb5cd1d8eade7b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/imagenes/objetos/taclaEnter.png"
-dest_files=["res://.godot/imported/taclaEnter.png-5bdad18fdf47d4ba871411b72898f4ac.ctex"]
+source_file="res://recursos/imagenes/objetos/Puerta.png"
+dest_files=["res://.godot/imported/Puerta.png-5a98d4b4a13433f083fb5cd1d8eade7b.ctex"]
 
 [params]
 

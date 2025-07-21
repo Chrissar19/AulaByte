@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bk4p6hke41s0k"]
 
-[ext_resource type="Script" uid="uid://y78h04b46o4c" path="res://escenas/menu/menu_principal.gd" id="1_8qhkl"]
+[ext_resource type="Script" uid="uid://y78h04b46o4c" path="res://scripts/niveles/menu_principal.gd" id="1_8qhkl"]
 [ext_resource type="Texture2D" uid="uid://brytj307nefg0" path="res://recursos/logos/Cielo.png" id="2_msw0b"]
 [ext_resource type="Texture2D" uid="uid://b75utru5tlqdy" path="res://recursos/logos/FondoMernu.png" id="3_aemwv"]
 [ext_resource type="Texture2D" uid="uid://qik4t041dbum" path="res://recursos/logos/LogoFinaleSFs.png" id="4_e7qrj"]

@@ -1,19 +1,18 @@
-[gd_scene load_steps=27 format=4 uid="uid://hbsg7hd3yrnt"]
+[gd_scene load_steps=26 format=4 uid="uid://hbsg7hd3yrnt"]
 
 [ext_resource type="Script" uid="uid://dcpdjyh6hwpi0" path="res://scripts/game_manager.gd" id="1_t8awx"]
 [ext_resource type="FontFile" uid="uid://bbow2nrr858wg" path="res://recursos/fuentes/Ayuda.TTF" id="2_f5kba"]
-[ext_resource type="Texture2D" uid="uid://dr3bkmou477j5" path="res://recursos/imagenes/TileSets/FondoSheet.png" id="3_6lk43"]
-[ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="4_gu41u"]
-[ext_resource type="Texture2D" uid="uid://cxyafbo3ck6fg" path="res://recursos/imagenes/TileSets/Pisos.png" id="5_870s8"]
-[ext_resource type="Texture2D" uid="uid://dwol4vs2hvfno" path="res://recursos/imagenes/TileSets/Tilesets Decoracion.png" id="6_iw8xk"]
-[ext_resource type="PackedScene" uid="uid://bms0pstsaou5r" path="res://escenas/enemigo_slime_blue.tscn" id="7_58txc"]
-[ext_resource type="PackedScene" uid="uid://clkfnjqcilagi" path="res://escenas/player.tscn" id="8_3yna7"]
-[ext_resource type="PackedScene" uid="uid://bm8vysgbk4wkp" path="res://escenas/zona_muerta.tscn" id="9_dgd20"]
+[ext_resource type="Texture2D" uid="uid://dr3bkmou477j5" path="res://recursos/imagenes/tileSets/FondoSheet.png" id="3_6lk43"]
+[ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/tileSets/pared ladrillo.png" id="4_gu41u"]
+[ext_resource type="Texture2D" uid="uid://cxyafbo3ck6fg" path="res://recursos/imagenes/tileSets/Pisos.png" id="5_870s8"]
+[ext_resource type="Texture2D" uid="uid://dwol4vs2hvfno" path="res://recursos/imagenes/tileSets/Tilesets Decoracion.png" id="6_iw8xk"]
+[ext_resource type="PackedScene" uid="uid://bms0pstsaou5r" path="res://escenas/personajes/enemigos/enemigo_slime_blue.tscn" id="7_58txc"]
+[ext_resource type="PackedScene" uid="uid://bm8vysgbk4wkp" path="res://escenas/ui/zona_muerta.tscn" id="9_dgd20"]
 [ext_resource type="PackedScene" uid="uid://cydd1023br6iv" path="res://recursos/objetos_interacciones/bits_moneda.tscn" id="10_ueave"]
 [ext_resource type="PackedScene" uid="uid://dkm0atk4qawk3" path="res://recursos/objetos_interacciones/plataforma.tscn" id="11_vyccs"]
 [ext_resource type="PackedScene" uid="uid://1eeeqekb3ych" path="res://recursos/objetos_interacciones/caja.tscn" id="12_ocrpn"]
-[ext_resource type="PackedScene" uid="uid://c2ayu8gvwd1id" path="res://escenas/interfaz_grafica.tscn" id="13_fv1pf"]
-[ext_resource type="PackedScene" uid="uid://davoghcp26fty" path="res://escenas/barra_vida.tscn" id="14_akuvc"]
+[ext_resource type="PackedScene" uid="uid://c2ayu8gvwd1id" path="res://escenas/ui/interfaz_grafica.tscn" id="13_fv1pf"]
+[ext_resource type="PackedScene" uid="uid://davoghcp26fty" path="res://escenas/ui/barra_vida.tscn" id="14_akuvc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_npubw"]
 texture = ExtResource("3_6lk43")
@@ -338,16 +337,6 @@ tile_set = SubResource("TileSet_btqwt")
 
 [node name="EnemigoSlimeBlue" parent="TileMap" instance=ExtResource("7_58txc")]
 position = Vector2(232, 232)
-
-[node name="Player" parent="." instance=ExtResource("8_3yna7")]
-position = Vector2(-416, -50)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(1, -19)
-zoom = Vector2(2, 2)
-limit_bottom = 305
-limit_smoothed = true
-position_smoothing_enabled = true
 
 [node name="ZonaMuerta" parent="." instance=ExtResource("9_dgd20")]
 position = Vector2(-470, 347)

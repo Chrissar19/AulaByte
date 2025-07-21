@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=4 uid="uid://cqk82ixbb1sb0"]
+[gd_scene load_steps=10 format=4 uid="uid://cqk82ixbb1sb0"]
 
 [ext_resource type="Script" uid="uid://bl84y62aosyrq" path="res://scripts/niveles/nivel_tuto.gd" id="1_wwpym"]
 [ext_resource type="PackedScene" uid="uid://dkm0atk4qawk3" path="res://recursos/objetos_interacciones/plataforma.tscn" id="1_y272t"]
-[ext_resource type="Texture2D" uid="uid://cxyafbo3ck6fg" path="res://recursos/imagenes/TileSets/Pisos.png" id="3_mx0r8"]
+[ext_resource type="Texture2D" uid="uid://cxyafbo3ck6fg" path="res://recursos/imagenes/tileSets/Pisos.png" id="3_mx0r8"]
+[ext_resource type="PackedScene" uid="uid://t8ur3tgfe14n" path="res://escenas/ui/puntos_inicio.tscn" id="4_ougkj"]
 
 [sub_resource type="Animation" id="Animation_mx0r8"]
 length = 0.001
@@ -137,3 +138,9 @@ offset_bottom = 23.0
 [node name="lblTiempo" type="Label" parent="ui"]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="PuntoInicioJugador" type="Marker2D" parent="."]
+position = Vector2(360, 104)
+
+[node name="PuntosInicio" parent="." instance=ExtResource("4_ougkj")]
+position = Vector2(-512, 72)

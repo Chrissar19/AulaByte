@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bwcilsi2eal00" path="res://recursos/imagenes/personajes/enemigos/Slime.png" id="1_g3lbq"]
 [ext_resource type="Script" uid="uid://b0boun4nl82le" path="res://scripts/enemigo_slime_blue.gd" id="1_i7f8o"]
-[ext_resource type="PackedScene" uid="uid://bm8vysgbk4wkp" path="res://escenas/zona_muerta.tscn" id="2_i7f8o"]
+[ext_resource type="PackedScene" uid="uid://bm8vysgbk4wkp" path="res://escenas/ui/zona_muerta.tscn" id="2_i7f8o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b36vx"]
 atlas = ExtResource("1_g3lbq")
