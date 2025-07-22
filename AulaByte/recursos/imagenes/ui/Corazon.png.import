@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8i33ah3s8h7"
-path="res://.godot/imported/world_tileset.png-c2688b0f5f9ffae393a07f541f986f07.ctex"
+uid="uid://dsrby76w3lf3w"
+path="res://.godot/imported/Corazon.png-2df3c39d78fdc96df12c91433fd7626e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/imagenes/TileSets/world_tileset.png"
-dest_files=["res://.godot/imported/world_tileset.png-c2688b0f5f9ffae393a07f541f986f07.ctex"]
+source_file="res://recursos/imagenes/ui/Corazon.png"
+dest_files=["res://.godot/imported/Corazon.png-2df3c39d78fdc96df12c91433fd7626e.ctex"]
 
 [params]
 

@@ -24,3 +24,5 @@ shape = SubResource("RectangleShape2D_7f4g6")
 stream = ExtResource("3_lfuxg")
 
 [node name="EmpujeRay" type="RayCast2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]

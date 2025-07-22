@@ -2,18 +2,18 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://b321fk5stcr52"
-path="res://.godot/imported/Normal.ttf-bf214db79e53d43a6ee9bd830c60e8a9.fontdata"
+uid="uid://61t7afss7gsj"
+path="res://.godot/imported/normal.ttf-6a14fe4fa3dd98ff06e83a936ca18ca1.fontdata"
 
 [deps]
 
-source_file="res://recursos/fuentes/Normal.ttf"
-dest_files=["res://.godot/imported/Normal.ttf-bf214db79e53d43a6ee9bd830c60e8a9.fontdata"]
+source_file="res://recursos/fuentes/normal.ttf"
+dest_files=["res://.godot/imported/normal.ttf-6a14fe4fa3dd98ff06e83a936ca18ca1.fontdata"]
 
 [params]
 
 Rendering=null
-antialiasing=0
+antialiasing=1
 generate_mipmaps=false
 disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
@@ -29,13 +29,7 @@ Fallbacks=null
 fallbacks=[]
 Compress=null
 compress=true
-preload=[{
-"chars": [],
-"glyphs": [],
-"name": "Nueva Configuración",
-"size": Vector2i(16, 0),
-&"variation_embolden": 0.0
-}]
+preload=[]
 language_support={}
 script_support={}
 opentype_features={}

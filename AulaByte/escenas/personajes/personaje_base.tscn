@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rojlo"]
 size = Vector2(21, 45)
 
-[node name="Delgado" type="CharacterBody2D"]
+[node name="Jugador" type="CharacterBody2D"]
 script = ExtResource("1_ki677")
 nombre = "Delgado"
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxfofh26uty1p"]
+[gd_scene load_steps=10 format=3 uid="uid://bxfofh26uty1p"]
 
 [ext_resource type="Script" uid="uid://bde1215wojdor" path="res://scripts/niveles/intro.gd" id="1_a1g7d"]
 [ext_resource type="Texture2D" uid="uid://dj0xfga1wnt2k" path="res://recursos/imagenes/intro/Intro1.png" id="2_ixy36"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://biyvnkp6g7k8y" path="res://recursos/audio/narraciones/intro1.wav" id="5_hd364"]
 [ext_resource type="AudioStream" uid="uid://dhuf6ny74je2f" path="res://recursos/audio/narraciones/intro2.wav" id="6_ftjmw"]
 [ext_resource type="AudioStream" uid="uid://jg4ob6v7dql3" path="res://recursos/audio/narraciones/intro3.wav" id="7_iwusb"]
+[ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/fuentes/normal.ttf" id="8_ftjmw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hd364"]
 content_margin_left = 10.0
@@ -21,9 +22,11 @@ corner_radius_bottom_left = 8
 
 [node name="intro" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_a1g7d")
 imagenes = Array[Texture2D]([ExtResource("2_ixy36"), ExtResource("3_ptr6o"), ExtResource("4_g86wm")])
 textos = Array[String](["En la hermosa ciudad de San Juan de Pasto, en la Universidad de Nariño, conviven cuatro grandes profesores, Delgado, Romo, Jojoa e Insuasty, que dedicaban su vida a enseñar.", "Un día, explorando los rincones olvidados del antiguo laboratorio de informática, buscando componentes viejos, descubrieron un antiguo libro, acompañado de un extraño computador, que al encender cobro vida, una inteligencia artificial llamada CUY, Creada con propósitos de aprender, enseñar y evolucionar mediante la lógica", "Los docentes, inspirados por su potencial, iniciaron el PROYECTO X, una misión secreta para terminar de entrenar a CUY mediante ejercicios de razonamiento lógico, con el fin de implementar como un sistema de seguridad y un asistente virtual para todo el edificio."])
@@ -39,27 +42,28 @@ expand_mode = 1
 [node name="PanelTexto" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = -0.5
-anchor_bottom = -0.3
-offset_left = 60.0
-offset_top = 250.0
-offset_right = 580.0
-offset_bottom = 360.0
+anchor_left = 0.05
+anchor_top = 0.6
+anchor_right = 0.9
+anchor_bottom = 1.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_hd364")
+metadata/_edit_use_anchors_ = true
 
 [node name="texto_narrativo" type="RichTextLabel" parent="PanelTexto"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 4.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("8_ftjmw")
 text = "Hola, aqui comieza la historia"
-autowrap_mode = 2
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="btn_siguiente" type="Button" parent="."]
 layout_mode = 0

@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=3 uid="uid://brfxoes3nrqbr"]
+
+[ext_resource type="Script" uid="uid://cva06k4uqrnqp" path="res://scripts/hud.gd" id="1_gwluo"]
+[ext_resource type="Texture2D" uid="uid://dj5bir4rmc6rq" path="res://recursos/imagenes/objetos/BitInfo.png" id="2_n8i4h"]
+[ext_resource type="Texture2D" uid="uid://dsrby76w3lf3w" path="res://recursos/imagenes/ui/Corazon.png" id="3_1dl12"]
+[ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/fuentes/Titulos.ttf" id="3_6jpwg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dl12"]
+atlas = ExtResource("2_n8i4h")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6jpwg"]
+atlas = ExtResource("3_1dl12")
+region = Rect2(0, 0, 17, 17)
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_gwluo")
+
+[node name="HBoxPuntos" type="HBoxContainer" parent="."]
+anchors_preset = -1
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 192.0
+offset_bottom = 32.0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxPuntos"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_1dl12")
+
+[node name="lblPuntos" type="Label" parent="HBoxPuntos"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6jpwg")
+text = "Puntos: "
+
+[node name="HBoxVidas" type="HBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -192.0
+offset_top = 8.0
+offset_right = -7.0
+offset_bottom = 31.0
+grow_horizontal = 0
+
+[node name="lblVidas" type="Label" parent="HBoxVidas"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6jpwg")
+text = "Vidas: "
+
+[node name="Corazon3" type="TextureRect" parent="HBoxVidas"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_6jpwg")
+stretch_mode = 5
+
+[node name="Corazon2" type="TextureRect" parent="HBoxVidas"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_6jpwg")
+stretch_mode = 5
+
+[node name="Corazon1" type="TextureRect" parent="HBoxVidas"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_6jpwg")
+stretch_mode = 5
+
+[node name="HBoxTiempo" type="HBoxContainer" parent="."]
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 192.0
+offset_top = 8.0
+offset_right = -192.0
+offset_bottom = 31.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="lblTiempo" type="Label" parent="HBoxTiempo"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6jpwg")
+
+[node name="lblTiempoRestante" type="Label" parent="HBoxTiempo"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6jpwg")
+text = "Tiempo"

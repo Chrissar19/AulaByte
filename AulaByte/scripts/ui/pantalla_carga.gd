@@ -4,9 +4,12 @@ extends Control
 @onready var lbl_nombre: Label = $VBoxContainer/NombrePersonaje
 @onready var lbl_vidas: Label = $VBoxContainer/Vidas
 @onready var lbl_puntos: Label = $VBoxContainer/Puntos
+@onready var lbl_tiempo_nivel: Label = $VBoxContainer/TiempoNivel
 
 func _ready() -> void:
 	var info: personajeInfo = JugadorSeleccionado.get_info()
+	var tiempo = JugadorSeleccionado.get_tiempo()
+	lbl_tiempo_nivel.text = "Tiempo: " + str(tiempo as int) + "s"
 	
 	if info:
 		img_personaje.texture = info.sprite

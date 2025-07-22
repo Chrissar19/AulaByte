@@ -5,6 +5,9 @@ const FUERZA_SALTO = -400.0
 const FUERZA_EMPUJE = 500.0 # Fuerza que aplica a las cajas
 const TIEMPO_DE_EMPUJE := 0.15 #-- Tiempo que se mantiene en el estado de empujar
 var tiempo_empujando := 0.0 
+var hud: CanvasLayer = null
+var vidas: int = 3
+var puntos: int = 0
 
 @export var nombre = ""
 const acciones: Array[String] = [
@@ -141,3 +144,40 @@ func salto():
 func nombre_animacion(accion: String) -> String:
 	#--nombre es el prefijo del personaje
 	return nombre + accion + equipo
+	
+#---------------------------------------------------------------------------------------------------
+#-- CONEXION ON EL HUD Y LAS VIDAS
+#---------------------------------------------------------------------------------------------------
+func set_hud(h: Node) -> void:
+	hud = h
+	hud.connect("tiempo_terminado", Callable(self, "_cuando_se_acabe_tiempo"))
+	hud.actualizar_vidas(vidas)
+	hud.actualizar_puntos(puntos)
+	
+#-- Perder Vidas
+func perder_vida() -> void:
+	vidas -= 1
+	if hud:
+		hud.actualizar_vidas(vidas)
+		
+#-- ganar puntos
+func ganar_puntos(cantidad: int) -> void:
+	puntos += cantidad
+	if hud:
+		hud.actualizar_puntos(puntos)
+		
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		ganar_puntos(3)
+	if event.is_action_pressed("ui_cancel"):
+		perder_vida()
+		
+func _cuando_se_acabe_tiempo() -> void:
+	vidas -= 1
+	hud.actualizar_vidas(vidas)
+	
+	#if vidas <= 0:
+	#	morir()
+	#else:
+	#	print("Se acabo el tiempo, perdiste una vida")
+		#Reiniciar nivel desde aqui 
