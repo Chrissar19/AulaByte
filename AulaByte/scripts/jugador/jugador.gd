@@ -8,6 +8,7 @@ var tiempo_empujando := 0.0
 var hud: CanvasLayer = null
 var vidas: int = 3
 var puntos: int = 0
+var intocable: bool = false
 
 @export var nombre = ""
 const acciones: Array[String] = [
@@ -18,7 +19,7 @@ const acciones: Array[String] = [
 	"Down" #[4]
 	]
 var equipo = "No"
-
+@onready var timer_intocable: Timer = $TimerIntocable
 @onready var animated_sprite_player: AnimatedSprite2D = $AnimatedSprite2D
 @onready var empuje_ray: RayCast2D = $EmpujeRay
 @onready var sonido_salto: AudioStreamPlayer = $SonidoSalto
@@ -38,9 +39,13 @@ enum Estado {
 var estado_actual: Estado = Estado.IDLE
 
 func _ready():
+	add_to_group("Jugador")
 	# Configurar el raycast inicialmente
 	empuje_ray.enabled = true
 	empuje_ray.target_position = Vector2.ZERO
+	
+	#--Asegurar que las vidas inicien correctamente
+	JugadorSeleccionado.reiniciar_vidas()
 	
 func _physics_process(delta: float) -> void:
 	# guardar estado anterior de empuje
@@ -151,14 +156,8 @@ func nombre_animacion(accion: String) -> String:
 func set_hud(h: Node) -> void:
 	hud = h
 	hud.connect("tiempo_terminado", Callable(self, "_cuando_se_acabe_tiempo"))
-	hud.actualizar_vidas(vidas)
+	hud.actualizar_vidas()
 	hud.actualizar_puntos(puntos)
-	
-#-- Perder Vidas
-func perder_vida() -> void:
-	vidas -= 1
-	if hud:
-		hud.actualizar_vidas(vidas)
 		
 #-- ganar puntos
 func ganar_puntos(cantidad: int) -> void:
@@ -169,8 +168,6 @@ func ganar_puntos(cantidad: int) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
 		ganar_puntos(3)
-	if event.is_action_pressed("ui_cancel"):
-		perder_vida()
 		
 func _cuando_se_acabe_tiempo() -> void:
 	vidas -= 1
@@ -181,3 +178,27 @@ func _cuando_se_acabe_tiempo() -> void:
 	#else:
 	#	print("Se acabo el tiempo, perdiste una vida")
 		#Reiniciar nivel desde aqui 
+func recibir_dmg() -> void:
+	if intocable:
+		return
+	JugadorSeleccionado.perder_vida()
+	hud.actualizar_vidas() #-- referencia a HUD
+	
+	intocable = true
+	modulate.a = 0.5
+	timer_intocable.start()
+	
+	retroceso()
+		
+func ganar_vidas() -> void:
+	JugadorSeleccionado.ganar_vida()
+	hud.actualizar_vidas()
+	
+func retroceso():
+	var fuerza_retroceso = Vector2(200, -200)
+	velocity = fuerza_retroceso if not animated_sprite_player.flip_h else Vector2(-200, -200)
+	
+func _on_timer_intocable_timeout() -> void:
+	intocable = false
+	modulate.a = 1.0
+#---------------------------------------------------------------------------------------------------

@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bms0pstsaou5r"]
+[gd_scene load_steps=9 format=3 uid="uid://bms0pstsaou5r"]
 
+[ext_resource type="Script" uid="uid://ctk6ttynjw68j" path="res://scripts/enemigos/enemigo_slime.gd" id="1_cymty"]
 [ext_resource type="Texture2D" uid="uid://bwcilsi2eal00" path="res://recursos/imagenes/personajes/enemigos/Slime.png" id="1_g3lbq"]
-[ext_resource type="Script" uid="uid://b0boun4nl82le" path="res://scripts/enemigo_slime_blue.gd" id="1_i7f8o"]
-[ext_resource type="PackedScene" uid="uid://bm8vysgbk4wkp" path="res://escenas/ui/zona_muerta.tscn" id="2_i7f8o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b36vx"]
 atlas = ExtResource("1_g3lbq")
@@ -40,24 +39,18 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i7f8o"]
-radius = 12.0
-height = 24.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ivgsn"]
+radius = 9.82143
+height = 19.6429
 
-[node name="EnemigoSlimeBlue" type="Node2D"]
-script = ExtResource("1_i7f8o")
+[node name="EnemigoSlimeBlue" type="Node2D" groups=["Enemigos"]]
+script = ExtResource("1_cymty")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_rnbrt")
 autoplay = "default"
 frame_progress = 0.753112
-
-[node name="ZonaMuerta" parent="." instance=ExtResource("2_i7f8o")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaMuerta"]
-position = Vector2(0, -12)
-shape = SubResource("CapsuleShape2D_i7f8o")
 
 [node name="RayCastDerecha" type="RayCast2D" parent="."]
 position = Vector2(0, -10)
@@ -66,3 +59,10 @@ target_position = Vector2(17, 0)
 [node name="RayCastIzquierda" type="RayCast2D" parent="."]
 position = Vector2(0, -10)
 target_position = Vector2(-16, 0)
+
+[node name="SensorDaño" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SensorDaño"]
+position = Vector2(0, -11)
+scale = Vector2(1.4, 1.12)
+shape = SubResource("CapsuleShape2D_ivgsn")

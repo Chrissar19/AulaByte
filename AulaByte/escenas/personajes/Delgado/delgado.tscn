@@ -1,28 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8aimj0tc8iwx"]
+[gd_scene load_steps=3 format=3 uid="uid://57wg0kv8rcf6"]
 
-[ext_resource type="SpriteFrames" uid="uid://g345vwq0s2w4" path="res://escenas/personajes/Delgado/animation_delgado.tres" id="1_ft0hi"]
-[ext_resource type="Script" uid="uid://c2tlsxq8nl3jt" path="res://scripts/jugador/jugador.gd" id="1_rojlo"]
-[ext_resource type="AudioStream" uid="uid://cq2m6678f6s85" path="res://recursos/audio/efectos/jump.wav" id="3_x5il1"]
+[ext_resource type="PackedScene" uid="uid://ckai8femo32e4" path="res://escenas/personajes/personaje_base.tscn" id="1_ft0hi"]
+[ext_resource type="SpriteFrames" uid="uid://g345vwq0s2w4" path="res://escenas/personajes/Delgado/animation_delgado.tres" id="2_rojlo"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rojlo"]
-size = Vector2(21, 45)
-
-[node name="Delgado" type="CharacterBody2D"]
-script = ExtResource("1_rojlo")
+[node name="Delgado" instance=ExtResource("1_ft0hi")]
 nombre = "Delgado"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("1_ft0hi")
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = ExtResource("2_rojlo")
 animation = &"DelgadoDownNo"
-autoplay = "DelgadoIdleNo"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 9.5)
-shape = SubResource("RectangleShape2D_rojlo")
-
-[node name="SonidoSalto" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_x5il1")
-
-[node name="EmpujeRay" type="RayCast2D" parent="."]
-
-[node name="Camera2D" type="Camera2D" parent="."]

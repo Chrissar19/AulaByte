@@ -8,9 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://dwol4vs2hvfno" path="res://recursos/imagenes/TileSets/Tilesets Decoracion.png" id="6_iw8xk"]
 [ext_resource type="PackedScene" uid="uid://bms0pstsaou5r" path="res://escenas/personajes/enemigos/enemigo_slime_blue.tscn" id="7_58txc"]
 [ext_resource type="PackedScene" uid="uid://bm8vysgbk4wkp" path="res://escenas/ui/zona_muerta.tscn" id="9_dgd20"]
-[ext_resource type="PackedScene" uid="uid://cydd1023br6iv" path="res://recursos/objetos_interacciones/bits_moneda.tscn" id="10_ueave"]
-[ext_resource type="PackedScene" uid="uid://dkm0atk4qawk3" path="res://recursos/objetos_interacciones/plataforma.tscn" id="11_vyccs"]
-[ext_resource type="PackedScene" uid="uid://1eeeqekb3ych" path="res://recursos/objetos_interacciones/caja.tscn" id="12_ocrpn"]
+[ext_resource type="PackedScene" uid="uid://cydd1023br6iv" path="res://escenas/objetos_interacciones/bits_moneda.tscn" id="10_ueave"]
+[ext_resource type="PackedScene" uid="uid://dkm0atk4qawk3" path="res://escenas/objetos_interacciones/plataforma.tscn" id="11_vyccs"]
+[ext_resource type="PackedScene" uid="uid://1eeeqekb3ych" path="res://escenas/objetos_interacciones/caja.tscn" id="12_ocrpn"]
 [ext_resource type="PackedScene" uid="uid://c2ayu8gvwd1id" path="res://escenas/ui/interfaz_grafica.tscn" id="13_fv1pf"]
 [ext_resource type="PackedScene" uid="uid://davoghcp26fty" path="res://escenas/ui/barra_vida.tscn" id="14_akuvc"]
 

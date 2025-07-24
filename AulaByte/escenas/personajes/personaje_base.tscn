@@ -1,20 +1,18 @@
 [gd_scene load_steps=5 format=3 uid="uid://ckai8femo32e4"]
 
 [ext_resource type="Script" uid="uid://c2tlsxq8nl3jt" path="res://scripts/jugador/jugador.gd" id="1_ki677"]
-[ext_resource type="SpriteFrames" uid="uid://g345vwq0s2w4" path="res://escenas/personajes/Delgado/animation_delgado.tres" id="2_mjbiv"]
 [ext_resource type="AudioStream" uid="uid://cq2m6678f6s85" path="res://recursos/audio/efectos/jump.wav" id="3_i0x0m"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_317ox"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rojlo"]
 size = Vector2(21, 45)
 
-[node name="Jugador" type="CharacterBody2D"]
+[node name="Jugador" type="CharacterBody2D" groups=["Jugador"]]
 script = ExtResource("1_ki677")
-nombre = "Delgado"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("2_mjbiv")
-animation = &"DelgadoDownNo"
-autoplay = "DelgadoIdleNo"
+sprite_frames = SubResource("SpriteFrames_317ox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 9.5)
@@ -26,3 +24,9 @@ stream = ExtResource("3_i0x0m")
 [node name="EmpujeRay" type="RayCast2D" parent="."]
 
 [node name="Camara" type="Camera2D" parent="."]
+
+[node name="TimerIntocable" type="Timer" parent="."]
+wait_time = 1.2
+one_shot = true
+
+[connection signal="timeout" from="TimerIntocable" to="." method="_on_timer_intocable_timeout"]

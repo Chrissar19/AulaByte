@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://chp6ps2g85u81"]
+[gd_scene load_steps=3 format=3 uid="uid://chp6ps2g85u81"]
 
 [ext_resource type="Script" uid="uid://dpmhkl2mk2dl4" path="res://scripts/ui/pantalla_carga.gd" id="1_bw60y"]
+[ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/fuentes/normal.ttf" id="2_cfep1"]
 
 [node name="PantallaCarga" type="Control"]
 layout_mode = 3
@@ -12,17 +13,25 @@ grow_vertical = 2
 script = ExtResource("1_bw60y")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_right = 640.0
-offset_bottom = 360.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0.203922, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 304.0
-offset_top = 144.0
-offset_right = 344.0
-offset_bottom = 225.0
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -0.5
+offset_right = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
 
 [node name="ImagenPersonaje" type="TextureRect" parent="VBoxContainer"]
 layout_mode = 2
@@ -33,12 +42,16 @@ layout_mode = 2
 
 [node name="NombrePersonaje" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_cfep1")
 
 [node name="Vidas" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_cfep1")
 
 [node name="Puntos" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_cfep1")
 
 [node name="TiempoNivel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_cfep1")
