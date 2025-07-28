@@ -8,7 +8,7 @@
 atlas = ExtResource("2_n8i4h")
 region = Rect2(24, 0, 24, 24)
 
-[node name="HUD" type="CanvasLayer"]
+[node name="HUD" type="CanvasLayer" groups=["HUD"]]
 script = ExtResource("1_gwluo")
 
 [node name="HBoxPuntos" type="HBoxContainer" parent="."]
@@ -21,10 +21,9 @@ offset_bottom = 32.0
 layout_mode = 2
 texture = SubResource("AtlasTexture_1dl12")
 
-[node name="lblPuntos" type="Label" parent="HBoxPuntos"]
+[node name="lblPuntos" type="Label" parent="HBoxPuntos" groups=["HUD"]]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_6jpwg")
-text = "Puntos: "
 
 [node name="lblVidas" type="Label" parent="."]
 offset_left = 416.0

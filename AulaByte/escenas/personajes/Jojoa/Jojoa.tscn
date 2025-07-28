@@ -1,11 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7n32avjc7w4l"]
+[gd_scene load_steps=4 format=3 uid="uid://b7n32avjc7w4l"]
 
 [ext_resource type="PackedScene" uid="uid://ckai8femo32e4" path="res://escenas/personajes/personaje_base.tscn" id="1_e6i7t"]
 [ext_resource type="SpriteFrames" uid="uid://ujqjpsusbxw0" path="res://escenas/personajes/Jojoa/animacion_jojoa.tres" id="2_nox4m"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nox4m"]
+size = Vector2(26, 49)
+
 [node name="Jojoa" instance=ExtResource("1_e6i7t")]
+collision_layer = 2049
 nombre = "Jojoa"
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = ExtResource("2_nox4m")
 animation = &"JojoaDownNo"
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(1, 7.5)
+shape = SubResource("RectangleShape2D_nox4m")

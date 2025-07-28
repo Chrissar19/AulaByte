@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const VEL_HORIZONTAL = 150.0
-const FUERZA_SALTO = -400.0
+const FUERZA_SALTO = -420.0
 const FUERZA_EMPUJE = 500.0 # Fuerza que aplica a las cajas
 const TIEMPO_DE_EMPUJE := 0.15 #-- Tiempo que se mantiene en el estado de empujar
 var tiempo_empujando := 0.0 
@@ -9,6 +9,8 @@ var hud: CanvasLayer = null
 var vidas: int = 3
 var puntos: int = 0
 var intocable: bool = false
+
+@onready var camara: Camera2D = $Camara
 
 @export var nombre = ""
 const acciones: Array[String] = [
@@ -43,9 +45,16 @@ func _ready():
 	# Configurar el raycast inicialmente
 	empuje_ray.enabled = true
 	empuje_ray.target_position = Vector2.ZERO
-	
 	#--Asegurar que las vidas inicien correctamente
 	JugadorSeleccionado.reiniciar_vidas()
+	
+	#-- Busca el HUD en la escena
+	if hud == null:
+		hud = get_tree().get_root().get_node("NivelTuto/HUD")
+		if hud:
+			hud.connect("tiempo_terminado", Callable(self, "_cuando_se_acabe_tiempo"))
+			hud.actualizar_vidas()
+			hud.actualizar_puntos(puntos)
 	
 func _physics_process(delta: float) -> void:
 	# guardar estado anterior de empuje
@@ -60,7 +69,6 @@ func _physics_process(delta: float) -> void:
 	# Accion de salto
 	if Input.is_action_just_pressed("saltar") and is_on_floor(): # Si se presiona la barra espacio y se esta tocando el suelo
 		salto()
-
 	var dir := Input.get_axis("izquierda", "derecha") # Recibe el dato entre izq o deer que envia el jugador
 	
 	#--Direccion del sprite y RayCast
@@ -100,7 +108,7 @@ func reproducir_animacion() -> void:
 		Estado.CAYENDO:
 			animated_sprite_player.play(nombre_animacion(acciones[4]))
 		Estado.EMPUJANDO:
-			if animated_sprite_player.animation != nombre_animacion(acciones[2]):
+			if animated_sprite_player.animation != nombre_animacion(acciones[2]) and velocity.x != 0:
 				animated_sprite_player.play(nombre_animacion(acciones[2]))
 				
 func actualizar_direccion(dir: float) -> void:
@@ -170,14 +178,8 @@ func _input(event: InputEvent) -> void:
 		ganar_puntos(3)
 		
 func _cuando_se_acabe_tiempo() -> void:
-	vidas -= 1
-	hud.actualizar_vidas(vidas)
+	JugadorSeleccionado.morir()
 	
-	#if vidas <= 0:
-	#	morir()
-	#else:
-	#	print("Se acabo el tiempo, perdiste una vida")
-		#Reiniciar nivel desde aqui 
 func recibir_dmg() -> void:
 	if intocable:
 		return
@@ -202,3 +204,11 @@ func _on_timer_intocable_timeout() -> void:
 	intocable = false
 	modulate.a = 1.0
 #---------------------------------------------------------------------------------------------------
+#-- CONFIGURACION DE CAMARA
+#---------------------------------------------------------------------------------------------------
+func establecer_limites_camara(arr: int, izq: int, der: int, aba: int) -> void:
+	if camara:
+		camara.limit_top = arr
+		camara.limit_left = izq
+		camara.limit_right = der
+		camara.limit_bottom = aba

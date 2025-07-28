@@ -8,13 +8,14 @@ signal tiempo_terminado
 @onready var lbl_tiempo_restante: Label = $HBoxTiempo/lblTiempoRestante
 @onready var contenedor_corazones: HBoxContainer = $HBoxVidas
 
-@export var tiempo_restante: float = 90.0 #-- Segundos
+var tiempo_restante: float = 90.0 #-- Segundos
 var tiempo_total: float = 0.0
 
 const CORAZON_TEX := preload("res://recursos/imagenes/ui/Corazon.png")
 
 func _ready() -> void:
 	actualizar_vidas()
+	actualizar_puntos(JugadorSeleccionado.get_puntos())
 	JugadorSeleccionado.connect("vida_perdida", actualizar_vidas)
 	JugadorSeleccionado.connect("vida_ganada", actualizar_vidas)
 

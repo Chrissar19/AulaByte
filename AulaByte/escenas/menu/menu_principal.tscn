@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://y78h04b46o4c" path="res://scripts/niveles/menu_principal.gd" id="1_8qhkl"]
 [ext_resource type="Texture2D" uid="uid://brytj307nefg0" path="res://recursos/logos/Cielo.png" id="2_msw0b"]
-[ext_resource type="Texture2D" uid="uid://b75utru5tlqdy" path="res://recursos/logos/FondoMernu.png" id="3_aemwv"]
+[ext_resource type="Texture2D" uid="uid://b75utru5tlqdy" path="res://recursos/logos/FondoMenu.png" id="3_aemwv"]
 [ext_resource type="Texture2D" uid="uid://qik4t041dbum" path="res://recursos/logos/LogoFinaleSFs.png" id="4_e7qrj"]
 [ext_resource type="Texture2D" uid="uid://c32w8mojgthif" path="res://recursos/logos/Logo6.png" id="5_sk0a6"]
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/fuentes/Titulos.ttf" id="6_msw0b"]
@@ -35,14 +35,15 @@ scale = Vector2(1.02, 1.02)
 texture = ExtResource("3_aemwv")
 
 [node name="LogoFinaleSFs" type="Sprite2D" parent="Panel"]
+visible = false
 z_index = 2
 position = Vector2(-11, 128)
 texture = ExtResource("4_e7qrj")
 
 [node name="Logo6" type="Sprite2D" parent="Panel"]
-visible = false
 z_index = 2
-position = Vector2(-6, 142)
+position = Vector2(-15, 162)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("5_sk0a6")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]

@@ -1,0 +1,79 @@
+[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://b4ualtviupkrg"]
+
+[ext_resource type="Texture2D" uid="uid://bwcilsi2eal00" path="res://recursos/imagenes/personajes/enemigos/Slime.png" id="1_smuks"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5phv"]
+atlas = ExtResource("1_smuks")
+region = Rect2(0, 32, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxyqk"]
+atlas = ExtResource("1_smuks")
+region = Rect2(40, 32, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sc7w8"]
+atlas = ExtResource("1_smuks")
+region = Rect2(80, 32, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tk5mq"]
+atlas = ExtResource("1_smuks")
+region = Rect2(0, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uloto"]
+atlas = ExtResource("1_smuks")
+region = Rect2(40, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0lfhx"]
+atlas = ExtResource("1_smuks")
+region = Rect2(80, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmbqy"]
+atlas = ExtResource("1_smuks")
+region = Rect2(120, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fi4dc"]
+atlas = ExtResource("1_smuks")
+region = Rect2(160, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yk2hi"]
+atlas = ExtResource("1_smuks")
+region = Rect2(200, 0, 40, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5phv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxyqk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sc7w8")
+}],
+"loop": true,
+"name": &"slime_death_blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tk5mq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uloto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0lfhx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmbqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fi4dc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yk2hi")
+}],
+"loop": true,
+"name": &"slime_walk_blue",
+"speed": 8.0
+}]

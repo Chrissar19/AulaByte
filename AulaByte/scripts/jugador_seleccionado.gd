@@ -7,6 +7,7 @@ var id_personaje: int = -1 #--Aun ningún personaje seleccionado
 var info_personaje: personajeInfo = null
 var vidas: int = 3
 const VIDAS_MAX := 5
+var puntos: int = 0
 var tiempo_nivel_actual: float = 0.0
 
 func seleccionar(id: int) -> void:
@@ -31,6 +32,17 @@ func get_tiempo() -> float:
 	return tiempo_nivel_actual
 	
 #---------------------------------------------------------------------------------------------------
+#-- Puntos
+#---------------------------------------------------------------------------------------------------
+func agregar_puntos(cantidad: int) -> void:
+	puntos += cantidad
+
+func reiniciar_puntos() -> void:
+	puntos = 0
+	
+func get_puntos() -> int:
+	return puntos
+#---------------------------------------------------------------------------------------------------
 #-- MANEJO DE VIDAS
 #---------------------------------------------------------------------------------------------------
 func perder_vida() -> void:
@@ -53,4 +65,4 @@ func get_vidas() -> int:
 	return vidas
 	
 func morir():
-	get_tree().change_scene_to_file("res://escenas/menu/Seleccion_personaje/seleccion_personaje.tscn")
+	get_tree().change_scene_to_file("res://escenas/menu/menu_perder.tscn")
