@@ -50,9 +50,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_sc7w8")
 }],
-"loop": true,
+"loop": false,
 "name": &"slime_death_blue",
-"speed": 5.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,

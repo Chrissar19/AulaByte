@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://57wg0kv8rcf6"]
+[gd_scene load_steps=4 format=3 uid="uid://57wg0kv8rcf6"]
 
 [ext_resource type="PackedScene" uid="uid://ckai8femo32e4" path="res://escenas/personajes/personaje_base.tscn" id="1_ft0hi"]
 [ext_resource type="SpriteFrames" uid="uid://g345vwq0s2w4" path="res://escenas/personajes/Delgado/animation_delgado.tres" id="2_rojlo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rojlo"]
+size = Vector2(22, 43)
 
 [node name="Delgado" instance=ExtResource("1_ft0hi")]
 nombre = "Delgado"
@@ -9,3 +12,7 @@ nombre = "Delgado"
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = ExtResource("2_rojlo")
 animation = &"DelgadoDownNo"
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(1, 10.5)
+shape = SubResource("RectangleShape2D_rojlo")
