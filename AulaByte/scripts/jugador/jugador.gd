@@ -192,10 +192,6 @@ func ganar_puntos(cantidad: int) -> void:
 	if hud:
 		hud.actualizar_puntos(puntos)
 		
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
-		ganar_puntos(3)
-		
 func _cuando_se_acabe_tiempo() -> void:
 	JugadorSeleccionado.morir()
 	

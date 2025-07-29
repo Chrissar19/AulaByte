@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://biyvnkp6g7k8y" path="res://recursos/audio/narraciones/intro1.wav" id="5_hd364"]
 [ext_resource type="AudioStream" uid="uid://dhuf6ny74je2f" path="res://recursos/audio/narraciones/intro2.wav" id="6_ftjmw"]
 [ext_resource type="AudioStream" uid="uid://jg4ob6v7dql3" path="res://recursos/audio/narraciones/intro3.wav" id="7_iwusb"]
-[ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/fuentes/normal.ttf" id="8_ftjmw"]
+[ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/fuentes/Normal.ttf" id="8_ftjmw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hd364"]
 content_margin_left = 10.0
