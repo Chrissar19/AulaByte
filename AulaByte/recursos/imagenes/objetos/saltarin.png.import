@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxyafbo3ck6fg"
-path="res://.godot/imported/Pisos.png-1298d18065558e09ed049e25b32e4d5f.ctex"
+uid="uid://dppekgh3lmhv2"
+path="res://.godot/imported/saltarin.png-b37a5b076daf3ce175f41d9e98be1686.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/imagenes/TileSets/Pisos.png"
-dest_files=["res://.godot/imported/Pisos.png-1298d18065558e09ed049e25b32e4d5f.ctex"]
+source_file="res://recursos/imagenes/objetos/saltarin.png"
+dest_files=["res://.godot/imported/saltarin.png-b37a5b076daf3ce175f41d9e98be1686.ctex"]
 
 [params]
 

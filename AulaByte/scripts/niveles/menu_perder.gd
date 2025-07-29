@@ -11,6 +11,7 @@ var lista_info : Array[Resource] =[] # <- PersonaInfo
 var indice_seleccionado : int = -1 # <- Ningun personaje seleccionado
 
 func _ready() -> void:
+	lbl_causa_muerte.text = " "
 	if JugadorSeleccionado and JugadorSeleccionado.get_puntos() != null:
 		lbl_puntos.text = "Puntos: " + str(JugadorSeleccionado.get_puntos())
 	else:

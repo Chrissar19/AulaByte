@@ -39,7 +39,8 @@ height = 24.0
 
 [node name="BitsMoneda" type="Area2D"]
 scale = Vector2(0.8, 0.8)
-collision_mask = 2
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_t74wm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

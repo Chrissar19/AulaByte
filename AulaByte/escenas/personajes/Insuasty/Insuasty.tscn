@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://o7nxc8ggkh43"]
+[gd_scene load_steps=4 format=3 uid="uid://o7nxc8ggkh43"]
 
 [ext_resource type="PackedScene" uid="uid://ckai8femo32e4" path="res://escenas/personajes/personaje_base.tscn" id="1_4oukd"]
 [ext_resource type="SpriteFrames" uid="uid://cwwwywaw1vrm8" path="res://escenas/personajes/Insuasty/animacion_Isuasty.tres" id="2_mu3es"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7f4g6"]
+size = Vector2(26, 56)
 
 [node name="Insuasty" instance=ExtResource("1_4oukd")]
 nombre = "Insuasty"
@@ -11,4 +14,5 @@ sprite_frames = ExtResource("2_mu3es")
 animation = &"InsuastyWalkNo"
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(0.5, 4)
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_7f4g6")

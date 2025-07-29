@@ -61,9 +61,12 @@ Correr={
 
 [layer_names]
 
-2d_physics/layer_2="Capa2"
-2d_physics/layer_8="Enemigos"
-2d_physics/layer_12="Jugador"
+2d_physics/layer_1="Mundo"
+2d_physics/layer_2="monedas"
+2d_physics/layer_3="Personajes"
+2d_physics/layer_4="Enemigos"
+2d_physics/layer_5="Objetos"
+2d_physics/layer_6="Pisos"
 
 [rendering]
 

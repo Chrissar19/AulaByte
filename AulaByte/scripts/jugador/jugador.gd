@@ -1,14 +1,20 @@
 extends CharacterBody2D
 
-const VEL_HORIZONTAL = 150.0
-const FUERZA_SALTO = -420.0
-const FUERZA_EMPUJE = 500.0 # Fuerza que aplica a las cajas
+const RETROCESO_X := 300.0
+const RRETROCESO_Y := -200.0
+const VEL_HORIZONTAL := 150.0
+const FUERZA_SALTO := -420.0
+const FUERZA_EMPUJE := 500.0 # Fuerza que aplica a las cajas
 const TIEMPO_DE_EMPUJE := 0.15 #-- Tiempo que se mantiene en el estado de empujar
 var tiempo_empujando := 0.0 
 var hud: CanvasLayer = null
 var vidas: int = 3
 var puntos: int = 0
 var intocable: bool = false
+var esta_en_retroceso := false
+var tiempo_retroceso := 0.2
+var contador_retroceso := 0.0
+var dir_retroceso := 0.0
 
 @onready var camara: Camera2D = $Camara
 
@@ -45,6 +51,7 @@ func _ready():
 	# Configurar el raycast inicialmente
 	empuje_ray.enabled = true
 	empuje_ray.target_position = Vector2.ZERO
+	empuje_ray.position.y = 15
 	#--Asegurar que las vidas inicien correctamente
 	JugadorSeleccionado.reiniciar_vidas()
 	
@@ -57,30 +64,42 @@ func _ready():
 			hud.actualizar_puntos(puntos)
 	
 func _physics_process(delta: float) -> void:
-	# guardar estado anterior de empuje
-	estaba_empujando = esta_empujando
-	#--Disminuir el tiempo
-	tiempo_empujando = max(0, tiempo_empujando - delta)
-	#Reiniciar estado de empuje
-	esta_empujando = tiempo_empujando > 0
+	#-- Manejo del retroceso
+	if esta_en_retroceso:
+		contador_retroceso -= delta
+		if contador_retroceso <= 0:
+			esta_en_retroceso = false
+			modulate.a = 0.5 #-- Transparencia
+		
+		#-- Aplicar retroceso
+		velocity.x = dir_retroceso * RETROCESO_X
+		velocity.y = RRETROCESO_Y
+	else:
 	
-	# Añadir gravedad
-	gravedad(delta)
-	# Accion de salto
-	if Input.is_action_just_pressed("saltar") and is_on_floor(): # Si se presiona la barra espacio y se esta tocando el suelo
-		salto()
-	var dir := Input.get_axis("izquierda", "derecha") # Recibe el dato entre izq o deer que envia el jugador
+		# guardar estado anterior de empuje
+		estaba_empujando = esta_empujando
+		#--Disminuir el tiempo
+		tiempo_empujando = max(0, tiempo_empujando - delta)
+		#Reiniciar estado de empuje
+		esta_empujando = tiempo_empujando > 0
 	
-	#--Direccion del sprite y RayCast
-	actualizar_direccion(dir)
-	#--detectar caja
-	detectar_empuje(delta)
-	#--Actualizar estado 
-	actualizar_estado(dir)
-	#--Actualizar animacion
-	reproducir_animacion()
-	# Movimiento Horizontal
-	mov_horizontal(dir)
+		# Añadir gravedad
+		gravedad(delta)
+		# Accion de salto
+		if Input.is_action_just_pressed("saltar") and is_on_floor(): # Si se presiona la barra espacio y se esta tocando el suelo
+			salto()
+		var dir := Input.get_axis("izquierda", "derecha") # Recibe el dato entre izq o deer que envia el jugador
+	
+		#--Direccion del sprite y RayCast
+		actualizar_direccion(dir)
+		#--detectar caja
+		detectar_empuje(delta)
+		#--Actualizar estado 
+		actualizar_estado(dir)
+		#--Actualizar animacion
+		reproducir_animacion()
+		# Movimiento Horizontal
+		mov_horizontal(dir)
 
 	move_and_slide() #Aplica la velocidad y movimiento
 	
@@ -180,29 +199,25 @@ func _input(event: InputEvent) -> void:
 func _cuando_se_acabe_tiempo() -> void:
 	JugadorSeleccionado.morir()
 	
-func recibir_dmg() -> void:
+func recibir_dmg(dir: float = 0.0) -> void:
 	if intocable:
 		return
 	JugadorSeleccionado.perder_vida()
 	hud.actualizar_vidas() #-- referencia a HUD
 	
+	iniciar_retroceso(dir)
 	intocable = true
 	modulate.a = 0.5
 	timer_intocable.start()
-	
-	retroceso()
 		
 func ganar_vidas() -> void:
 	JugadorSeleccionado.ganar_vida()
 	hud.actualizar_vidas()
 	
-func retroceso():
-	var fuerza_retroceso = Vector2(200, -200)
-	velocity = fuerza_retroceso if not animated_sprite_player.flip_h else Vector2(-200, -200)
-	
 func _on_timer_intocable_timeout() -> void:
 	intocable = false
 	modulate.a = 1.0
+	modulate = Color(1, 1, 1)
 #---------------------------------------------------------------------------------------------------
 #-- CONFIGURACION DE CAMARA
 #---------------------------------------------------------------------------------------------------
@@ -212,3 +227,15 @@ func establecer_limites_camara(arr: int, izq: int, der: int, aba: int) -> void:
 		camara.limit_left = izq
 		camara.limit_right = der
 		camara.limit_bottom = aba
+		
+#----------------------------------------------------------------------------------------------------
+#-- RETROCESO AL RECIBIR DAÑO
+#--------------------------------------------------------------------------------------------------
+func iniciar_retroceso(direccion: float) -> void:
+	esta_en_retroceso = true
+	contador_retroceso = tiempo_retroceso
+	dir_retroceso = direccion
+	estaba_empujando = false
+	
+	#-- Efectos visuales
+	modulate = Color(1, 0.5, 0.5)

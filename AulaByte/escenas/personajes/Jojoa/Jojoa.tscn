@@ -7,7 +7,7 @@
 size = Vector2(26, 49)
 
 [node name="Jojoa" instance=ExtResource("1_e6i7t")]
-collision_layer = 2049
+collision_layer = 2052
 nombre = "Jojoa"
 
 [node name="AnimatedSprite2D" parent="." index="0"]

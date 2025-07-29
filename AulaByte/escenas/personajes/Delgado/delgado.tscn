@@ -11,7 +11,8 @@ nombre = "Delgado"
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = ExtResource("2_rojlo")
-animation = &"DelgadoDownNo"
+animation = &"DelgadoIdleNo"
+autoplay = "DelgadoIdleNo"
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(1, 10.5)

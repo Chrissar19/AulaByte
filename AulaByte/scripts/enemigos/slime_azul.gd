@@ -3,6 +3,8 @@ extends CharacterBody2D
 @export var vel := 30.0
 @export var grav := 400.0
 @export var daño := 1
+@export var impulso := -250.0
+@export var impulso_daño := 900.0
 
 var dir := 1
 
@@ -40,19 +42,20 @@ func _actualizar_raycast():
 # Si el jugador cae encima del slime, muere. Si no, hace daño.
 func _on_sensor_pisoton_body_entered(body):
 	if body.is_in_group("Jugador"):
-		if body.global_position.y < global_position.y - 10:
+		if body.global_position.y < global_position.y:
 			body.ganar_puntos(3)
+			body.velocity.y += impulso
 			#-- Detener movimiento y reproducir animacion muerte
 			set_physics_process(false)
 			sprite.play("slime_death_blue")
 			timer_muerte.start(0.4)
-		else:
-			body.recibir_dmg()
 			
 func _on_detector_jugador_body_entered(body):
 	if body.is_in_group("Jugador"):
-		if body.global_position.y >= global_position.y - 12:
-			body.recibir_dmg()
+		#-- calcular direccion del retroceso (opuesta a la posicion del slime)
+		var dir_retroceso = sign(body.global_position.x - global_position.x)
+		
+		body.recibir_dmg()
 			
 func _on_timer_muerte_timeout():
 	queue_free()
