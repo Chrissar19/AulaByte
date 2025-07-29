@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://14pnjoo6241b"
-path="res://.godot/imported/DecoracionesFondo.png-d9c578adba3abe013e8c577ad359c74b.ctex"
+path="res://.godot/imported/DecoracionesFondo.png-f4291c5cdf1e997b15069cfbaacbd43c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/imagenes/tileSets/DecoracionesFondo.png"
-dest_files=["res://.godot/imported/DecoracionesFondo.png-d9c578adba3abe013e8c577ad359c74b.ctex"]
+source_file="res://recursos/imagenes/TileSets/DecoracionesFondo.png"
+dest_files=["res://.godot/imported/DecoracionesFondo.png-f4291c5cdf1e997b15069cfbaacbd43c.ctex"]
 
 [params]
 
