@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://bms0pstsaou5r"]
 
 [ext_resource type="SpriteFrames" uid="uid://b4ualtviupkrg" path="res://recursos/imagenes/enemigo_slime_blue.tres" id="2_cymty"]
-[ext_resource type="AudioStream" uid="uid://cig2ux21q5jgg" path="res://recursos/audio/efectos/slimeWalk.wav" id="3_3t1lx"]
-[ext_resource type="AudioStream" uid="uid://dix4e4onit5a4" path="res://recursos/audio/efectos/muerteSlime.wav" id="4_j0g1j"]
+[ext_resource type="AudioStream" uid="uid://cig2ux21q5jgg" path="res://recursos/Audio/Efectos/slimeWalk.wav" id="3_3t1lx"]
+[ext_resource type="AudioStream" uid="uid://dix4e4onit5a4" path="res://recursos/Audio/Efectos/muerteSlime.wav" id="4_j0g1j"]
 
 [sub_resource type="GDScript" id="GDScript_ivgsn"]
 script/source = "extends CharacterBody2D

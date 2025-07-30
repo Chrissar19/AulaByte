@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dfr8bmdn5actv" path="res://escenas/personajes/enemigos/slime_azul.tscn" id="13_snr6v"]
 [ext_resource type="PackedScene" uid="uid://57wg0kv8rcf6" path="res://escenas/personajes/Delgado/delgado.tscn" id="14_vv2vj"]
 [ext_resource type="Texture2D" uid="uid://d3vh0l5545dux" path="res://recursos/imagenes/objetos/TeclasPC.png" id="15_7svhg"]
-[ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/fuentes/normal.ttf" id="16_6d66m"]
+[ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/Fuentes/Normal.ttf" id="16_6d66m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5rite"]
 texture = ExtResource("2_1g06v")
@@ -427,7 +427,6 @@ camara_alto = -528
 camara_izquierda = -850
 camara_derecha = 720
 camara_abajo = 176
-cuenta_regresiva = 90.0
 
 [node name="Fondos" type="Node" parent="."]
 

@@ -14,7 +14,7 @@ config/name="AulaByte"
 config/version="1.0.2"
 run/main_scene="uid://hbsg7hd3yrnt"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="uid://dmoqu2apkie6"
+config/icon="uid://bqo3mn7qrv1re"
 
 [autoload]
 
