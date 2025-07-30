@@ -9,8 +9,8 @@ var autodestruir : bool = true
 signal reproducir_animacion_destruccion
 
 func _on_body_entered(_body: Node2D) -> void:
-	JugadorSeleccionado.agregar_puntos(valor) #-- Suma puntos al jugador
 	
+	JugadorSeleccionado.agregar_puntos(valor) #-- Suma puntos al jugador
 	#-- Actualizar el HUD
 	var hud = get_tree().get_first_node_in_group("HUD")
 	if hud:

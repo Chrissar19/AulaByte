@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://smlda04d7351"
-path="res://.godot/imported/cambio_personaje.wav-adc023bea47bc65483e80c252ffce137.sample"
+path="res://.godot/imported/cambio_personaje.wav-da7e097e3220579d36d6dae5351d6286.sample"
 
 [deps]
 
-source_file="res://recursos/audio/efectos/cambio_personaje.wav"
-dest_files=["res://.godot/imported/cambio_personaje.wav-adc023bea47bc65483e80c252ffce137.sample"]
+source_file="res://recursos/Audio/Efectos/cambio_personaje.wav"
+dest_files=["res://.godot/imported/cambio_personaje.wav-da7e097e3220579d36d6dae5351d6286.sample"]
 
 [params]
 

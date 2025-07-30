@@ -1,14 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfr8bmdn5actv"]
+[gd_scene load_steps=8 format=3 uid="uid://dfr8bmdn5actv"]
 
 [ext_resource type="Script" uid="uid://7kbhq3oc7ris" path="res://scripts/enemigos/slime_azul.gd" id="1_gxtbd"]
 [ext_resource type="SpriteFrames" uid="uid://b4ualtviupkrg" path="res://recursos/imagenes/enemigo_slime_blue.tres" id="2_t3s4k"]
+[ext_resource type="AudioStream" uid="uid://dix4e4onit5a4" path="res://recursos/Audio/Efectos/muerteSlime.wav" id="3_8vshj"]
+[ext_resource type="AudioStream" uid="uid://cig2ux21q5jgg" path="res://recursos/Audio/Efectos/slimeWalk.wav" id="4_adcx4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8vshj"]
 size = Vector2(12, 24)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_adcx4"]
 radius = 4.0
-height = 20.0
+height = 22.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gxtbd"]
 size = Vector2(13, 30)
@@ -18,7 +20,7 @@ script = ExtResource("1_gxtbd")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_t3s4k")
-animation = &"slime_walk_blue"
+animation = &"new_animation"
 autoplay = "slime_walk_blue"
 
 [node name="ColisionSlime" type="CollisionShape2D" parent="."]
@@ -41,6 +43,11 @@ position = Vector2(0, -4)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_adcx4")
 
+[node name="AudioMuerte" type="AudioStreamPlayer2D" parent="SensorPisoton"]
+stream = ExtResource("3_8vshj")
+max_distance = 100.0
+bus = &"Efectos sonido"
+
 [node name="DetectarJugador" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 4
@@ -50,6 +57,16 @@ position = Vector2(-3.52264e-06, 9.5)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_gxtbd")
 
+[node name="AudioCaminar" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_adcx4")
+autoplay = true
+max_distance = 400.0
+bus = &"Efectos sonido"
+
+[node name="TimerCaminar" type="Timer" parent="."]
+autostart = true
+
 [connection signal="timeout" from="TimerMuerte" to="." method="_on_timer_muerte_timeout"]
 [connection signal="body_entered" from="SensorPisoton" to="." method="_on_sensor_pisoton_body_entered"]
 [connection signal="body_entered" from="DetectarJugador" to="." method="_on_detector_jugador_body_entered"]
+[connection signal="timeout" from="TimerCaminar" to="." method="_on_timer_caminar_timeout"]

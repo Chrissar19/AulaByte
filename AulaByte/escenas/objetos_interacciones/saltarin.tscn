@@ -1,11 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://jgf3xqgo0gm5"]
+[gd_scene load_steps=11 format=3 uid="uid://jgf3xqgo0gm5"]
 
 [ext_resource type="Script" uid="uid://cr74q71aqver3" path="res://scripts/objetos/saltarin.gd" id="1_l3ecv"]
 [ext_resource type="Texture2D" uid="uid://dppekgh3lmhv2" path="res://recursos/imagenes/objetos/saltarin.png" id="2_cwrbs"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6nikp"]
-atlas = ExtResource("2_cwrbs")
-region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_60pan"]
 atlas = ExtResource("2_cwrbs")
@@ -31,16 +27,9 @@ region = Rect2(64, 0, 64, 64)
 atlas = ExtResource("2_cwrbs")
 region = Rect2(128, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iph7g"]
-atlas = ExtResource("2_cwrbs")
-region = Rect2(192, 0, 64, 64)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_105oy"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6nikp")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_60pan")
 }, {
@@ -52,7 +41,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"encoger",
-"speed": 10.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -63,13 +52,10 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gdaqv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iph7g")
 }],
 "loop": false,
 "name": &"salto",
-"speed": 12.0
+"speed": 15.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wjy8a"]
@@ -82,7 +68,7 @@ script = ExtResource("1_l3ecv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_105oy")
-animation = &"salto"
+animation = &"encoger"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 21.5)

@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var daño := 1
 @export var impulso := -250.0
 @export var impulso_daño := 900.0
+@export var monedas := 3
 
 var dir := 1
 
@@ -12,6 +13,9 @@ var dir := 1
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var timer_muerte: Timer = $TimerMuerte
 @onready var colision_slime: CollisionShape2D = $ColisionSlime
+@onready var audio_muerte: AudioStreamPlayer2D = $SensorPisoton/AudioMuerte
+@onready var audio_caminar: AudioStreamPlayer2D = $AudioCaminar
+@onready var timer_caminar: Timer = $TimerCaminar
 
 func _ready() -> void:
 	add_to_group("Enemigos")
@@ -43,19 +47,23 @@ func _actualizar_raycast():
 func _on_sensor_pisoton_body_entered(body):
 	if body.is_in_group("Jugador"):
 		if body.global_position.y < global_position.y:
-			body.ganar_puntos(3)
+			body.ganar_puntos(monedas)
 			body.velocity.y += impulso
 			#-- Detener movimiento y reproducir animacion muerte
 			set_physics_process(false)
 			sprite.play("slime_death_blue")
+			audio_caminar.stop()
+			audio_muerte.play()
 			timer_muerte.start(0.4)
 			
 func _on_detector_jugador_body_entered(body):
 	if body.is_in_group("Jugador"):
 		#-- calcular direccion del retroceso (opuesta a la posicion del slime)
 		var dir_retroceso = sign(body.global_position.x - global_position.x)
-		
 		body.recibir_dmg()
 			
 func _on_timer_muerte_timeout():
 	queue_free()
+	
+func _on_timer_caminar_timeout():
+	audio_caminar.play()

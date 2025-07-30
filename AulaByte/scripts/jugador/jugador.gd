@@ -188,9 +188,9 @@ func set_hud(h: Node) -> void:
 		
 #-- ganar puntos
 func ganar_puntos(cantidad: int) -> void:
-	puntos += cantidad
+	JugadorSeleccionado.agregar_puntos(cantidad)
 	if hud:
-		hud.actualizar_puntos(puntos)
+		hud.actualizar_puntos(JugadorSeleccionado.get_puntos())
 		
 func _cuando_se_acabe_tiempo() -> void:
 	JugadorSeleccionado.morir()
