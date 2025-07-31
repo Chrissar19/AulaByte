@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://7kbhq3oc7ris" path="res://scripts/enemigos/slime_azul.gd" id="1_gxtbd"]
 [ext_resource type="SpriteFrames" uid="uid://b4ualtviupkrg" path="res://recursos/imagenes/enemigo_slime_blue.tres" id="2_t3s4k"]
-[ext_resource type="AudioStream" uid="uid://dix4e4onit5a4" path="res://recursos/Audio/Efectos/muerteSlime.wav" id="3_8vshj"]
-[ext_resource type="AudioStream" uid="uid://cig2ux21q5jgg" path="res://recursos/Audio/Efectos/slimeWalk.wav" id="4_adcx4"]
+[ext_resource type="AudioStream" uid="uid://dix4e4onit5a4" path="res://recursos/audio/efectos/muerteSlime.wav" id="3_8vshj"]
+[ext_resource type="AudioStream" uid="uid://cig2ux21q5jgg" path="res://recursos/audio/efectos/slimeWalk.wav" id="4_adcx4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8vshj"]
 size = Vector2(12, 24)

@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=4 uid="uid://cj8vcwm8nhfu7"]
 
 [ext_resource type="Script" uid="uid://dooupabinrph4" path="res://scripts/niveles/seleccion_personaje.gd" id="1_1yhaj"]
-[ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_8tjb6"]
-[ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/Fuentes/Normal.ttf" id="3_40f4r"]
-[ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="4_s5o1y"]
-[ext_resource type="AudioStream" uid="uid://rv3tqp8mrdwm" path="res://recursos/Audio/Efectos/click.wav" id="5_3oyyv"]
-[ext_resource type="AudioStream" uid="uid://smlda04d7351" path="res://recursos/Audio/Efectos/cambio_personaje.wav" id="6_l5nic"]
+[ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/tileSets/pared ladrillo.png" id="2_8tjb6"]
+[ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/fuentes/Normal.ttf" id="3_40f4r"]
+[ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/fuentes/Titulos.ttf" id="4_s5o1y"]
+[ext_resource type="AudioStream" uid="uid://rv3tqp8mrdwm" path="res://recursos/audio/efectos/click.wav" id="5_3oyyv"]
+[ext_resource type="AudioStream" uid="uid://smlda04d7351" path="res://recursos/audio/efectos/cambio_personaje.wav" id="6_l5nic"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e7txn"]
 texture = ExtResource("2_8tjb6")

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cig2ux21q5jgg"
-path="res://.godot/imported/slimeWalk.wav-5f8e5c5899118313099108a58531d662.sample"
+path="res://.godot/imported/slimeWalk.wav-aa8f3c6922becb94c7bccd834f0cf5c9.sample"
 
 [deps]
 
-source_file="res://recursos/Audio/Efectos/slimeWalk.wav"
-dest_files=["res://.godot/imported/slimeWalk.wav-5f8e5c5899118313099108a58531d662.sample"]
+source_file="res://recursos/audio/efectos/slimeWalk.wav"
+dest_files=["res://.godot/imported/slimeWalk.wav-aa8f3c6922becb94c7bccd834f0cf5c9.sample"]
 
 [params]
 
