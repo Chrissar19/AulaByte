@@ -23,4 +23,4 @@ func _ready() -> void:
 	
 	#-- Esperar un momento y luego ir a nivel
 	await get_tree().create_timer(2.5).timeout
-	get_tree().change_scene_to_file("res://escenas/niveles/nivel_tuto.tscn")
+	get_tree().change_scene_to_file("res://escenas/Niveles/nivel_2.tscn")

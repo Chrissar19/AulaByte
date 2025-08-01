@@ -67,6 +67,7 @@ Correr={
 2d_physics/layer_4="Enemigos"
 2d_physics/layer_5="Objetos"
 2d_physics/layer_6="Pisos"
+2d_physics/layer_7="Zona muerte"
 
 [rendering]
 

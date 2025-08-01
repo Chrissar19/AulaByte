@@ -11,6 +11,7 @@ script = ExtResource("1_pvs3y")
 shape = SubResource("WorldBoundaryShape2D_tvoxf")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
 
 [node name="SonidoMuerte" type="AudioStreamPlayer" parent="." groups=["ZonaMortal"]]
 
