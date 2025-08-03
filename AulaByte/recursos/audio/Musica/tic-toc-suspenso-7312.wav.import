@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dodva0y13jtgw"
-path="res://.godot/imported/tic-toc-suspenso-7312.wav-0a4e2fc39f1600f7fb8697f2ac311f05.sample"
+path="res://.godot/imported/tic-toc-suspenso-7312.wav-edb4820d58b3976490954ce66d067fca.sample"
 
 [deps]
 
-source_file="res://recursos/audio/musica/tic-toc-suspenso-7312.wav"
-dest_files=["res://.godot/imported/tic-toc-suspenso-7312.wav-0a4e2fc39f1600f7fb8697f2ac311f05.sample"]
+source_file="res://recursos/Audio/Musica/tic-toc-suspenso-7312.wav"
+dest_files=["res://.godot/imported/tic-toc-suspenso-7312.wav-edb4820d58b3976490954ce66d067fca.sample"]
 
 [params]
 

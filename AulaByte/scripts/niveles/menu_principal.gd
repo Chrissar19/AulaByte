@@ -1,70 +1,100 @@
 extends Control
 
+# ───────────────────────────────────────────────────────────────
+# Referencias UI
+# ───────────────────────────────────────────────────────────────
 @onready var btn_jugar: Button = $VBoxContainer/Jugar
 @onready var btn_opciones: Button = $VBoxContainer/Opciones
 @onready var btn_salir: Button = $VBoxContainer/Salir
-@onready var tem_nubes: Timer = $temNubes
-@onready var tem_espera: Timer = $temEspera
-@onready var escena_nubes:= preload("res://escenas/menu/nubes.tscn")
 
-var jugador_activo = false
+# ───────────────────────────────────────────────────────────────
+# Temporizadores
+# ───────────────────────────────────────────────────────────────
+@onready var temporizador_nubes: Timer = $temNubes
+@onready var temporizador_espera: Timer = $temEspera
 
+# ───────────────────────────────────────────────────────────────
+# Recursos
+# ───────────────────────────────────────────────────────────────
+@onready var escena_nube: PackedScene = preload("res://escenas/menu/nubes.tscn")
+
+# ───────────────────────────────────────────────────────────────
+# Estado
+# ───────────────────────────────────────────────────────────────
+var jugador_activo: bool = false
+
+# ───────────────────────────────────────────────────────────────
+# Ready
+# ───────────────────────────────────────────────────────────────
 func _ready() -> void:
 	randomize()
-	tem_nubes.timeout.connect(_crear_nube) #--Reproduce las nubes
-	tem_nubes.timeout.connect(_crear_nube_fondo) #--Reproduce las nubes
+	
+	# Conexiones
+	temporizador_nubes.timeout.connect(_crear_nube_normal)
+	temporizador_espera.timeout.connect(_on_tem_espera_timeout)
 	btn_jugar.pressed.connect(_on_jugar)
 	btn_opciones.pressed.connect(_on_opciones)
 	btn_salir.pressed.connect(_on_salir)
+	
 	btn_jugar.grab_focus()
 	
-	var musica_menu = preload("res://recursos/audio/Musica/neon-pulse-30s-307999.wav")
-	MusicaGlobal.reproducir(musica_menu, true)
+	_crear_nube_normal()
+	_crear_nube_fondo()
+	
+	var musica_menu := preload("res://recursos/audio/Musica/neon-pulse-30s-307999.wav")
+	if Engine.has_singleton("MusicaGlobal"):
+		MusicaGlobal.reproducir(musica_menu, true)
 
+# ───────────────────────────────────────────────────────────────
+# Botones
+# ───────────────────────────────────────────────────────────────
 func _on_jugar() -> void:
 	jugador_activo = true
-	MusicaGlobal.detener()
-	get_tree().change_scene_to_file("res://escenas/menu/Seleccion_personaje/seleccion_personaje.tscn")
-	
+	cambiar_escena("res://escenas/menu/Seleccion_personaje/seleccion_personaje.tscn")
+
 func _on_opciones() -> void:
 	jugador_activo = true
-	print("Opcion aún no implementada")
-	
+	print("Opción aún no implementada.")
+
 func _on_salir() -> void:
 	jugador_activo = true
 	MusicaGlobal.detener()
 	get_tree().quit()
-	
-func _crear_nube() -> void:
-	var nube: Node2D = escena_nubes.instantiate()
-	var alto_min := 5
-	var alto_max := 120
+
+# ───────────────────────────────────────────────────────────────
+# Transición de escena
+# ───────────────────────────────────────────────────────────────
+func cambiar_escena(ruta: String) -> void:
+	MusicaGlobal.detener()
+	get_tree().change_scene_to_file(ruta)
+
+# ───────────────────────────────────────────────────────────────
+# Nubes decorativas
+# ───────────────────────────────────────────────────────────────
+func _crear_nube(z: int, alto_min: int, alto_max: int, tam_min: float, tam_max: float, vel_min: float, vel_max: float) -> void:
+	var nube: Node2D = escena_nube.instantiate()
 	var altura := randi_range(alto_min, alto_max)
-	var posicion_x: float = -450.0
-	nube.position = Vector2(posicion_x, altura) #-- Genera la nube completa fuera de pantalla
-	nube.velocidad = randf_range(0.8, 40.0)
-	#-- Profundidad aleatoria entre -1 y 1 para las nubes
-	nube.z_index = [-1, 0, 1].pick_random()
-	nube.scale = Vector2(randf_range(1.5,0.5), randf_range(1.7, 0.5))
-	#--Se agrega la nube como hijo del fondo para mantener el orden
+	
+	nube.position = Vector2(-450.0, altura)
+	nube.velocidad = randf_range(vel_min, vel_max)
+	nube.z_index = z
+	nube.scale = Vector2(randf_range(tam_min, tam_max), randf_range(tam_min, tam_max))
+	
 	$Panel.add_child(nube)
-	
-	
+
+func _crear_nube_normal() -> void:
+	var z_index: int = [-1, 0, 1].pick_random()
+	_crear_nube(z_index, 5, 120, 0.5, 1.5, 0.8, 40.0)
+
 func _crear_nube_fondo() -> void:
-	var nube_fondo: Node2D = escena_nubes.instantiate()
-	var alto_fondo := 280
-	var alto_min_fondo := 4
-	var posicion_x: float = -450.0
-	var altura_fondo := randi_range(alto_min_fondo, alto_fondo)
-	nube_fondo.position = Vector2(posicion_x, altura_fondo)
-	nube_fondo.velocidad = randf_range(0.15, 10.0)
-	nube_fondo.z_index = -1
-	nube_fondo.scale = Vector2(randf_range(0.7,0.2), randf_range(0.7, 0.2))
-	$Panel.add_child(nube_fondo)
-		
+	_crear_nube(-1, 4, 280, 0.2, 0.7, 0.15, 10.0)
+
+# ───────────────────────────────────────────────────────────────
+# Inactividad (volver a intro)
+# ───────────────────────────────────────────────────────────────
 func _input(event: InputEvent) -> void:
 	if event.is_pressed():
-		$temEspera.start() #-- Reinicia el tiempo de espera
+		temporizador_espera.start()
 
 func _on_tem_espera_timeout() -> void:
 	if not jugador_activo:

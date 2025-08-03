@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://ckai8femo32e4"]
 
 [ext_resource type="Script" uid="uid://c2tlsxq8nl3jt" path="res://scripts/jugador/jugador.gd" id="1_ki677"]
-[ext_resource type="AudioStream" uid="uid://cq2m6678f6s85" path="res://recursos/audio/efectos/jump.wav" id="3_i0x0m"]
+[ext_resource type="AudioStream" uid="uid://cq2m6678f6s85" path="res://recursos/Audio/Efectos/jump.wav" id="3_i0x0m"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_317ox"]
 
 [node name="Jugador" type="CharacterBody2D" groups=["Jugador"]]
 z_index = 2
 collision_layer = 4
-collision_mask = 123
+collision_mask = 51
 script = ExtResource("1_ki677")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -31,4 +31,17 @@ position_smoothing_speed = 10.0
 wait_time = 1.2
 one_shot = true
 
+[node name="TimerCoyoteTime" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[node name="AreaDaño" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 72
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaDaño"]
+
 [connection signal="timeout" from="TimerIntocable" to="." method="_on_timer_intocable_timeout"]
+[connection signal="timeout" from="TimerCoyoteTime" to="." method="_on_timer_coyote_time_timeout"]
+[connection signal="area_shape_entered" from="AreaDaño" to="." method="_on_area_daño_area_shape_entered"]
+[connection signal="body_entered" from="AreaDaño" to="." method="_on_area_daño_body_entered"]

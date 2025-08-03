@@ -1,31 +1,49 @@
 extends Area2D
 
-@onready var sound_moneda: AudioStreamPlayer2D = $SoundMoneda
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var collision_shape: CollisionShape2D = $CollisionShape2D
+# ============================================================================
+# EXPORTS
+# ============================================================================
+@export var valor: int = 1       # Valor en puntos que otorga la moneda
+var autodestruir: bool = true    # Si es verdadera, la moneda se destruye tras recolectarla
 
-@export var valor: int = 1 #-- valor que otorga la moneda
-var autodestruir : bool = true
+# ============================================================================
+# SEÑALES
+# ============================================================================
 signal reproducir_animacion_destruccion
 
-func _on_body_entered(_body: Node2D) -> void:
-	
-	JugadorSeleccionado.agregar_puntos(valor) #-- Suma puntos al jugador
-	#-- Actualizar el HUD
-	var hud = get_tree().get_first_node_in_group("HUD")
+# ============================================================================
+# NODOS
+# ============================================================================
+@onready var sonido_moneda: AudioStreamPlayer2D = $SoundMoneda
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var colision: CollisionShape2D = $CollisionShape2D
+
+# ============================================================================
+# FUNCIONES
+# ============================================================================
+func _on_body_entered(body: Node2D) -> void:
+	if not body.is_in_group("Jugador"):
+		return
+
+	# Sumar puntos al jugador
+	JugadorSeleccionado.agregar_puntos(valor)
+
+	# Actualizar el HUD si existe
+	var hud := get_tree().get_first_node_in_group("HUD")
 	if hud:
 		hud.actualizar_puntos(JugadorSeleccionado.get_puntos())
-		
-	#-- Reproducir sonido y animacion
-	sound_moneda.play()
-	collision_shape.call_deferred("set", "disabled", true) # Elimina la colision del objeto
-	
+
+	# Reproducir sonido y desactivar colisión
+	sonido_moneda.play()
+	colision.call_deferred("set", "disabled", true)
+
 	if autodestruir:
-		animated_sprite.visible = false
-		sound_moneda.finished.connect(_on_finished)
+		sprite.visible = false
+		# Conectar para eliminar después del sonido
+		sonido_moneda.finished.connect(_on_sonido_terminado)
 	else:
-		# Activa la señal moneda "Emitiendo" su señal
+		# Emitir señal para animación personalizada
 		reproducir_animacion_destruccion.emit()
-		
-func _on_finished() -> void:
+
+func _on_sonido_terminado() -> void:
 	queue_free()

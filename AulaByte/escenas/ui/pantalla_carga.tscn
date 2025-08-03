@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://chp6ps2g85u81"]
 
 [ext_resource type="Script" uid="uid://dpmhkl2mk2dl4" path="res://scripts/ui/pantalla_carga.gd" id="1_bw60y"]
-[ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/fuentes/normal.ttf" id="2_cfep1"]
+[ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/Fuentes/Normal.ttf" id="2_cfep1"]
 
 [node name="PantallaCarga" type="Control"]
 layout_mode = 3

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dr3bkmou477j5"
-path="res://.godot/imported/FondoSheet.png-ebe398c16c4f400393e70016de3ea96f.ctex"
+path="res://.godot/imported/FondoSheet.png-cd255ba90eefb38e9b32c4a677343495.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/imagenes/tileSets/FondoSheet.png"
-dest_files=["res://.godot/imported/FondoSheet.png-ebe398c16c4f400393e70016de3ea96f.ctex"]
+source_file="res://recursos/imagenes/TileSets/FondoSheet.png"
+dest_files=["res://.godot/imported/FondoSheet.png-cd255ba90eefb38e9b32c4a677343495.ctex"]
 
 [params]
 

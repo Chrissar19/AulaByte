@@ -1,34 +1,52 @@
-extends Area2D
+extends Node2D
 
-@export var fuerza_rebote := -400.0
+# =============================================================================
+# TRAMPOLÍN - Rebota al jugador cuando cae sobre él
+# =============================================================================
 
-var jugador: CharacterBody2D = null
-var verificar_salto := false
+# ============================================================================
+# VARIABLES
+# ============================================================================
+@export var fuerza_rebote: float = -400.0        # Fuerza de impulso vertical
+
+var jugador: CharacterBody2D = null              # Referencia al jugador
+var verificar_salto: bool = false                # Estado de rebote activo
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer: Timer = $Timer
 
+# ============================================================================
+# READY - Inicializa animación y conecta señales
+# ============================================================================
 func _ready() -> void:
-	sprite.stop()
 	sprite.animation = "salto"
-	body_entered.connect(_on_body_entered)
-	body_entered.connect(_on_body_exited)
+	sprite.stop()
+	timer.timeout.connect(_on_timer_timeout)
 
-func _on_body_entered(body) -> void:
+# ============================================================================
+# REBOTE - Al entrar el jugador en contacto
+# ============================================================================
+func _on_activacion_salto_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Jugador") and not body.is_on_floor():
-		sprite.play("salto")
 		jugador = body
 		verificar_salto = true
-		timer.start(1.5)
 		
-		#-- Rebote automatico
+		# Rebote solo si el jugador está cayendo
 		if jugador.velocity.y >= 0:
 			jugador.velocity.y = fuerza_rebote
+			sprite.play("salto")
+			timer.start(1.5)
 
-func _on_body_exited(body):
+# ============================================================================
+# SALIDA - Se detiene el rebote al salir del trampolín
+# ============================================================================
+func _on_body_exited(body: Node2D) -> void:
 	if body == jugador:
 		jugador = null
 		verificar_salto = false
-		
-func _on_timer_timeout():
+
+# ============================================================================
+# TIMER - Después de 1.5 seg cambia la animación
+# ============================================================================
+func _on_timer_timeout() -> void:
 	sprite.play("encoger")

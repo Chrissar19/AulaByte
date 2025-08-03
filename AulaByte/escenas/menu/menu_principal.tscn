@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b75utru5tlqdy" path="res://recursos/logos/FondoMenu.png" id="3_aemwv"]
 [ext_resource type="Texture2D" uid="uid://qik4t041dbum" path="res://recursos/logos/LogoFinaleSFs.png" id="4_e7qrj"]
 [ext_resource type="Texture2D" uid="uid://c32w8mojgthif" path="res://recursos/logos/Logo6.png" id="5_sk0a6"]
-[ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/fuentes/Titulos.ttf" id="6_msw0b"]
+[ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="6_msw0b"]
 
 [node name="Menu principal" type="Control"]
 layout_mode = 3

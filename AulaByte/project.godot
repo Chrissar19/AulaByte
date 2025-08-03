@@ -12,7 +12,6 @@ config_version=5
 
 config/name="AulaByte"
 config/version="1.0.2"
-run/main_scene="uid://hbsg7hd3yrnt"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="uid://dmoqu2apkie6"
 
@@ -34,6 +33,7 @@ Jugador=""
 Enemigos=""
 ZonaMortal="Una altura dondel el jugador muere automaticamente al caer o cruzar"
 HUD=""
+DMG="El daño que se causara al jugador"
 
 [input]
 

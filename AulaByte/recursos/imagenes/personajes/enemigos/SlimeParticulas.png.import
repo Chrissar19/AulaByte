@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxyafbo3ck6fg"
-path="res://.godot/imported/Pisos.png-1298d18065558e09ed049e25b32e4d5f.ctex"
+uid="uid://bboltcoka3qu0"
+path="res://.godot/imported/SlimeParticulas.png-8a6fab63d798d0449cb5fccdf69e2613.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/imagenes/TileSets/Pisos.png"
-dest_files=["res://.godot/imported/Pisos.png-1298d18065558e09ed049e25b32e4d5f.ctex"]
+source_file="res://recursos/imagenes/personajes/enemigos/SlimeParticulas.png"
+dest_files=["res://.godot/imported/SlimeParticulas.png-8a6fab63d798d0449cb5fccdf69e2613.ctex"]
 
 [params]
 

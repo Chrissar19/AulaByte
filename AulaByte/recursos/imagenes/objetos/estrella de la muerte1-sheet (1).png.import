@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxyafbo3ck6fg"
-path="res://.godot/imported/Pisos.png-1298d18065558e09ed049e25b32e4d5f.ctex"
+uid="uid://dikehn5kvgw3f"
+path="res://.godot/imported/estrella de la muerte1-sheet (1).png-bfaa8bf8a5b19d2891ad210a67fbb2c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/imagenes/TileSets/Pisos.png"
-dest_files=["res://.godot/imported/Pisos.png-1298d18065558e09ed049e25b32e4d5f.ctex"]
+source_file="res://recursos/imagenes/objetos/estrella de la muerte1-sheet (1).png"
+dest_files=["res://.godot/imported/estrella de la muerte1-sheet (1).png-bfaa8bf8a5b19d2891ad210a67fbb2c7.ctex"]
 
 [params]
 

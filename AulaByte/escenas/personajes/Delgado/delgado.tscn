@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://g345vwq0s2w4" path="res://escenas/personajes/Delgado/animation_delgado.tres" id="2_rojlo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rojlo"]
-size = Vector2(22, 43)
+size = Vector2(20, 42)
 
 [node name="Delgado" instance=ExtResource("1_ft0hi")]
 nombre = "Delgado"
@@ -15,5 +15,12 @@ animation = &"DelgadoIdleNo"
 autoplay = "DelgadoIdleNo"
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(1, 10.5)
+position = Vector2(0, 11)
 shape = SubResource("RectangleShape2D_rojlo")
+
+[node name="AreaDaño" parent="." index="7" groups=["Jugador"]]
+
+[node name="CollisionPolygon2D" parent="AreaDaño" index="0"]
+position = Vector2(0, -5.58274)
+scale = Vector2(1, 0.752976)
+polygon = PackedVector2Array(-10, 49.9122, 10, 49.9122, 10, 10, 12, 7, 12, -10, -10, -10, -10, 10)

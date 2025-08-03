@@ -1,8 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2ayu8gvwd1id"]
+[gd_scene load_steps=5 format=3 uid="uid://6g5nk8p7wrse"]
 
-[ext_resource type="Script" uid="uid://cinrd8kao0smx" path="res://scripts/interfaz_grafica.gd" id="1_8rc5k"]
 [ext_resource type="Texture2D" uid="uid://dj5bir4rmc6rq" path="res://recursos/imagenes/objetos/BitInfo.png" id="1_pgbe7"]
-[ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/fuentes/Titulos.ttf" id="2_nnwru"]
+[ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="2_nnwru"]
+
+[sub_resource type="GDScript" id="GDScript_dp65e"]
+script/source = "extends CanvasLayer
+
+@onready var lb_bits: Label = $lbBits
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	visible = true
+	var game_manager = get_node(\"%GameManager\")
+	game_manager.puntuacion_actualizada.connect(_on_puntuacion_actualizada)
+
+func _on_puntuacion_actualizada(puntuacion_actual: int) -> void:
+	lb_bits.text = str(puntuacion_actual)
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nnwru"]
 atlas = ExtResource("1_pgbe7")
@@ -11,7 +25,7 @@ region = Rect2(0, 0, 24, 24)
 [node name="InterfazGrafica" type="CanvasLayer"]
 scale = Vector2(0.8, 0.8)
 transform = Transform2D(0.8, 0, 0, 0.8, 0, 0)
-script = ExtResource("1_8rc5k")
+script = SubResource("GDScript_dp65e")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = 25.0
