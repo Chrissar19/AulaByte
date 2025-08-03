@@ -622,6 +622,22 @@ texture = ExtResource("3_hc13m")
 sources/0 = SubResource("TileSetAtlasSource_5rite")
 sources/2 = SubResource("TileSetAtlasSource_ds2q0")
 
+[sub_resource type="Animation" id="Animation_1f5dj"]
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1773, -527), Vector2(1966, -527)]
+}
+
 [sub_resource type="Animation" id="Animation_4bpf4"]
 resource_name = "new_animation"
 length = 3.0
@@ -639,26 +655,25 @@ tracks/0/keys = {
 "values": [Vector2(2673, 419), Vector2(3048, 419)]
 }
 
-[sub_resource type="Animation" id="Animation_1f5dj"]
-length = 2.0
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.96667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1773, -527), Vector2(1966, -527)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6ru7k"]
 _data = {
 &"RESET": SubResource("Animation_1f5dj"),
 &"new_animation": SubResource("Animation_4bpf4")
+}
+
+[sub_resource type="Animation" id="Animation_b6k6u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3147, 519)]
 }
 
 [sub_resource type="Animation" id="Animation_8wtce"]
@@ -678,7 +693,13 @@ tracks/0/keys = {
 "values": [Vector2(3318, 513), Vector2(3318, 288)]
 }
 
-[sub_resource type="Animation" id="Animation_b6k6u"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hc13m"]
+_data = {
+&"RESET": SubResource("Animation_b6k6u"),
+&"new_animation": SubResource("Animation_8wtce")
+}
+
+[sub_resource type="Animation" id="Animation_hc13m"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -690,13 +711,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(3147, 519)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_hc13m"]
-_data = {
-&"RESET": SubResource("Animation_b6k6u"),
-&"new_animation": SubResource("Animation_8wtce")
+"values": [Vector2(2041, -527)]
 }
 
 [sub_resource type="Animation" id="Animation_6ru7k"]
@@ -714,21 +729,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(2041, -527), Vector2(1746, -527)]
-}
-
-[sub_resource type="Animation" id="Animation_hc13m"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2041, -527)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hwv7d"]
@@ -847,5 +847,6 @@ position = Vector2(-229, 101)
 
 [node name="Delgado" parent="." instance=ExtResource("14_31m0w")]
 position = Vector2(3319, 246)
+collision_mask = 51
 
 [node name="Avisos" type="Node" parent="."]

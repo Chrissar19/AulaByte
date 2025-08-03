@@ -58,12 +58,14 @@ func get_puntos() -> int:
 # Manejo de vidas
 #--------------------------------------------------------------------------------
 func perder_vida() -> void:
-	if vidas > 0:
-		vidas -= 1
-		emit_signal("vida_perdida")
-		vidas = max(vidas, 0)
-		if vidas == 0:
-			_morir()
+	if vidas <= 0:
+		return
+		
+	vidas -= 1
+	emit_signal("vida_perdida")
+	
+	if vidas <= 0:
+		_morir()
 
 func ganar_vida() -> void:
 	if vidas < VIDAS_MAX:

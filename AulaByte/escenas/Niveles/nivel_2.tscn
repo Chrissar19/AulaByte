@@ -375,9 +375,7 @@ position = Vector2(2, 409)
 [node name="Vidas" type="Node" parent="."]
 
 [node name="ItemVida" parent="Vidas" instance=ExtResource("10_q1qsa")]
-position = Vector2(1851, -395)
-collision_layer = 16
-collision_mask = 4
+position = Vector2(1824, -400)
 
 [node name="Puntos" type="Node" parent="."]
 
@@ -499,6 +497,7 @@ autoplay = "new_animation"
 
 [node name="Delgado" parent="." instance=ExtResource("14_yts3p")]
 position = Vector2(1769, -248)
+collision_mask = 51
 
 [node name="Avisos" type="Node" parent="."]
 

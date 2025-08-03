@@ -1,13 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://cl1bwd6mofchq"]
 
-[ext_resource type="Script" uid="uid://cyrb7lds5o0yx" path="res://scripts/item_vida.gd" id="1_hp4rs"]
+[ext_resource type="Script" uid="uid://bygsln0mry0tw" path="res://scripts/item_vida.gd" id="1_hp4rs"]
 [ext_resource type="Texture2D" uid="uid://bpuareatn51ox" path="res://recursos/imagenes/objetos/salvavidas.png" id="1_pp8tw"]
-[ext_resource type="AudioStream" uid="uid://d3aipnrp7bahb" path="res://recursos/audio/efectos/Vida.wav" id="3_2fedu"]
+[ext_resource type="AudioStream" uid="uid://d3aipnrp7bahb" path="res://recursos/Audio/Efectos/Vida.wav" id="3_2fedu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hp4rs"]
 radius = 16.0
 
-[node name="ItemVida" type="Area2D"]
+[node name="ItemVida" type="Area2D" groups=["Vida"]]
+collision_layer = 128
+collision_mask = 4
 script = ExtResource("1_hp4rs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -19,3 +21,5 @@ shape = SubResource("CircleShape2D_hp4rs")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_2fedu")
 bus = &"Efectos sonido"
+
+[connection signal="body_entered" from="." to="." method="_on_nodo_vida"]
