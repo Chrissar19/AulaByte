@@ -16,7 +16,9 @@ height = 24.0
 size = Vector2(14, 30)
 
 [node name="SlimeAzul" type="CharacterBody2D" groups=["Enemigos"]]
+collision_mask = 48
 script = ExtResource("1_gxtbd")
+dmg = 3
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_t3s4k")
@@ -62,5 +64,6 @@ shape = SubResource("RectangleShape2D_gxtbd")
 [node name="Node" type="Node" parent="."]
 
 [connection signal="timeout" from="TimerMuerte" to="." method="_on_timer_muerte_timeout"]
+[connection signal="area_shape_entered" from="SensorPisoton" to="." method="_on_sensor_pisoton_area_shape_entered"]
 [connection signal="body_entered" from="SensorPisoton" to="." method="_on_sensor_pisoton_body_entered"]
 [connection signal="body_entered" from="AreaDaño" to="." method="_on_detector_jugador_body_entered"]

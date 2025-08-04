@@ -3,7 +3,7 @@ extends CharacterBody2D
 # ============================================================================
 # CONSTANTES
 # ============================================================================
-const RETROCESO_X := 300.0
+const RETROCESO_X := 200.0
 const RETROCESO_Y := -200.0
 const VEL_HORIZONTAL := 150.0
 const FUERZA_SALTO := -420.0
@@ -198,7 +198,7 @@ func recibir_dmg(dmg) -> void:
 	
 func _on_area_daño_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	if area.is_in_group("DMG") and not intocable:
-		recibir_dmg(2.0)
+		recibir_dmg(1)
 
 func _on_timer_intocable_timeout() -> void:
 	intocable = false
