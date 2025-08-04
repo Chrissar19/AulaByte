@@ -1,18 +1,15 @@
-[gd_scene load_steps=26 format=4 uid="uid://hbsg7hd3yrnt"]
+[gd_scene load_steps=23 format=4 uid="uid://hbsg7hd3yrnt"]
 
-[ext_resource type="Script" uid="uid://dcpdjyh6hwpi0" path="res://scripts/game_manager.gd" id="1_t8awx"]
 [ext_resource type="FontFile" uid="uid://bbow2nrr858wg" path="res://recursos/Fuentes/Ayuda.TTF" id="2_f5kba"]
 [ext_resource type="Texture2D" uid="uid://dr3bkmou477j5" path="res://recursos/imagenes/TileSets/FondoSheet.png" id="3_6lk43"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="4_gu41u"]
 [ext_resource type="Texture2D" uid="uid://cxyafbo3ck6fg" path="res://recursos/imagenes/TileSets/Pisos.png" id="5_870s8"]
 [ext_resource type="Texture2D" uid="uid://dwol4vs2hvfno" path="res://recursos/imagenes/TileSets/Tilesets Decoracion.png" id="6_iw8xk"]
-[ext_resource type="PackedScene" uid="uid://bms0pstsaou5r" path="res://escenas/personajes/enemigos/enemigo_slime_blue.tscn" id="7_58txc"]
-[ext_resource type="PackedScene" uid="uid://bm8vysgbk4wkp" path="res://escenas/ui/zona_muerta.tscn" id="9_dgd20"]
+[ext_resource type="PackedScene" uid="uid://nn10y6priex2" path="res://escenas/ui/zona_muerta.tscn" id="9_dgd20"]
 [ext_resource type="PackedScene" uid="uid://cydd1023br6iv" path="res://escenas/objetos_interacciones/bits_moneda.tscn" id="10_ueave"]
 [ext_resource type="PackedScene" uid="uid://dkm0atk4qawk3" path="res://escenas/objetos_interacciones/plataforma.tscn" id="11_vyccs"]
 [ext_resource type="PackedScene" uid="uid://1eeeqekb3ych" path="res://escenas/objetos_interacciones/caja.tscn" id="12_ocrpn"]
-[ext_resource type="PackedScene" uid="uid://c2ayu8gvwd1id" path="res://escenas/ui/interfaz_grafica.tscn" id="13_fv1pf"]
-[ext_resource type="PackedScene" uid="uid://davoghcp26fty" path="res://escenas/ui/barra_vida.tscn" id="14_akuvc"]
+[ext_resource type="PackedScene" uid="uid://6g5nk8p7wrse" path="res://escenas/ui/interfaz_grafica.tscn" id="13_fv1pf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_npubw"]
 texture = ExtResource("3_6lk43")
@@ -305,7 +302,6 @@ _data = {
 
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("1_t8awx")
 
 [node name="txtPuntuacion" type="Label" parent="GameManager"]
 offset_left = -128.0
@@ -335,8 +331,18 @@ tile_set = SubResource("TileSet_0ix22")
 tile_map_data = PackedByteArray("AADn/wgAAAAIAAMAAADn/wkAAAAIAAQAAADn/woAAAAIAAUAAADn/wsAAAAIAAYAAADo/wgAAAAJAAMAAADo/wkAAAAJAAQAAADo/woAAAAJAAUAAADo/wsAAAAJAAYAAAAFAAcAAAAIAAMAAAAFAAgAAAAIAAQAAAAFAAkAAAAIAAUAAAAFAAoAAAAIAAYAAAAGAAcAAAAJAAMAAAAGAAgAAAAJAAQAAAAGAAkAAAAJAAUAAAAGAAoAAAAJAAYAAADx/wUAAAAAAAQAAADx/wYAAAAAAAUAAADx/wcAAAAAAAYAAADy/wUAAAABAAQAAADy/wYAAAABAAUAAADy/wcAAAABAAYAAADz/wUAAAACAAQAAADz/wYAAAACAAUAAADz/wcAAAACAAYAAAD0/wUAAAADAAQAAAD0/wYAAAADAAUAAAD0/wcAAAADAAYAAAD1/wUAAAABAAQAAAD1/wYAAAABAAUAAAD1/wcAAAABAAYAAAD2/wUAAAACAAQAAAD2/wYAAAACAAUAAAD2/wcAAAACAAYAAAD3/wUAAAADAAQAAAD3/wYAAAADAAUAAAD3/wcAAAADAAYAAAD4/wUAAAABAAQAAAD4/wYAAAABAAUAAAD4/wcAAAABAAYAAAD5/wUAAAACAAQAAAD5/wYAAAACAAUAAAD5/wcAAAACAAYAAAD6/wUAAAADAAQAAAD6/wYAAAADAAUAAAD6/wcAAAADAAYAAAD7/wUAAAABAAQAAAD7/wYAAAABAAUAAAD7/wcAAAABAAYAAAD8/wUAAAACAAQAAAD8/wYAAAACAAUAAAD8/wcAAAACAAYAAAD9/wUAAAADAAQAAAD9/wYAAAADAAUAAAD9/wcAAAADAAYAAAD+/wUAAAABAAQAAAD+/wYAAAABAAUAAAD+/wcAAAABAAYAAAD//wUAAAACAAQAAAD//wYAAAACAAUAAAD//wcAAAACAAYAAAAAAAUAAAADAAQAAAAAAAYAAAADAAUAAAAAAAcAAAADAAYAAAACAAUAAAAEAAQAAAACAAYAAAAEAAUAAAACAAcAAAAEAAYAAAABAAUAAAAEAAQAAAABAAYAAAAEAAUAAAABAAcAAAAEAAYAAAA=")
 tile_set = SubResource("TileSet_btqwt")
 
-[node name="EnemigoSlimeBlue" parent="TileMap" instance=ExtResource("7_58txc")]
+[node name="EnemigoSlimeBlue" parent="TileMap"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 position = Vector2(232, 232)
+script = null
 
 [node name="ZonaMuerta" parent="." instance=ExtResource("9_dgd20")]
 position = Vector2(-470, 347)
@@ -375,8 +381,18 @@ autoplay = "MovimientoPlataforma"
 [node name="Plataforma" parent="Plataformas" instance=ExtResource("11_vyccs")]
 position = Vector2(-59, 110)
 
-[node name="EnemigoSlimeBlue" parent="." instance=ExtResource("7_58txc")]
+[node name="EnemigoSlimeBlue" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 position = Vector2(33, 265)
+script = null
 
 [node name="Label" type="Label" parent="."]
 offset_left = -194.0
@@ -403,4 +419,14 @@ position = Vector2(-122, 213)
 
 [node name="InterfazGrafica" parent="." instance=ExtResource("13_fv1pf")]
 
-[node name="BarraVida" parent="." instance=ExtResource("14_akuvc")]
+[node name="BarraVida" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+script = null
