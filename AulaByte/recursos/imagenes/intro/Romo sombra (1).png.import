@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxroesonpqyk7"
-path="res://.godot/imported/Intro1.png-4a36e44497bc9e94164c3ff86a61ef79.ctex"
+uid="uid://3cg5k1nvl8m8"
+path="res://.godot/imported/Romo sombra (1).png-4add2fabdcefb5617f1d715cb9097692.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/imagenes/intro/Intro1.png"
-dest_files=["res://.godot/imported/Intro1.png-4a36e44497bc9e94164c3ff86a61ef79.ctex"]
+source_file="res://recursos/imagenes/intro/Romo sombra (1).png"
+dest_files=["res://.godot/imported/Romo sombra (1).png-4add2fabdcefb5617f1d715cb9097692.ctex"]
 
 [params]
 

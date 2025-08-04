@@ -1,12 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://bxfofh26uty1p"]
 
 [ext_resource type="Script" uid="uid://bde1215wojdor" path="res://scripts/niveles/intro.gd" id="1_a1g7d"]
-[ext_resource type="Texture2D" uid="uid://dj0xfga1wnt2k" path="res://recursos/imagenes/intro/Intro1.png" id="2_ixy36"]
-[ext_resource type="Texture2D" uid="uid://ber51bsbec8qc" path="res://recursos/imagenes/intro/Intro2.png" id="3_ptr6o"]
-[ext_resource type="Texture2D" uid="uid://d0qhoet4bbdgn" path="res://recursos/imagenes/intro/Intro3.png" id="4_g86wm"]
-[ext_resource type="AudioStream" uid="uid://biyvnkp6g7k8y" path="res://recursos/Audio/narraciones/intro1.wav" id="5_hd364"]
-[ext_resource type="AudioStream" uid="uid://dhuf6ny74je2f" path="res://recursos/Audio/narraciones/intro2.wav" id="6_ftjmw"]
-[ext_resource type="AudioStream" uid="uid://jg4ob6v7dql3" path="res://recursos/Audio/narraciones/intro3.wav" id="7_iwusb"]
+[ext_resource type="Texture2D" uid="uid://cxroesonpqyk7" path="res://recursos/imagenes/intro/Intro1.png" id="2_ixy36"]
+[ext_resource type="Texture2D" uid="uid://ddl0mgw28mxkb" path="res://recursos/imagenes/intro/Intro 2.png" id="3_ftjmw"]
+[ext_resource type="Texture2D" uid="uid://cjmajr0s3u05h" path="res://recursos/imagenes/intro/Intro3.png" id="4_g86wm"]
+[ext_resource type="Texture2D" uid="uid://dj730ct63prtc" path="res://recursos/imagenes/intro/Intro4.png" id="5_iwusb"]
+[ext_resource type="Texture2D" uid="uid://co6h4rgjuh5ok" path="res://recursos/imagenes/intro/Intro5.png" id="6_k5goc"]
+[ext_resource type="Texture2D" uid="uid://dwms1bbodkqyx" path="res://recursos/imagenes/intro/Intro6.png" id="7_p8utp"]
 [ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/Fuentes/Normal.ttf" id="8_ftjmw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hd364"]
@@ -28,9 +28,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_a1g7d")
-imagenes = Array[Texture2D]([ExtResource("2_ixy36"), ExtResource("3_ptr6o"), ExtResource("4_g86wm")])
-textos = Array[String](["En la hermosa ciudad de San Juan de Pasto, en la Universidad de Nariño, conviven cuatro grandes profesores, Delgado, Romo, Jojoa e Insuasty, que dedicaban su vida a enseñar.", "Un día, explorando los rincones olvidados del antiguo laboratorio de informática, buscando componentes viejos, descubrieron un antiguo libro, acompañado de un extraño computador, que al encender cobro vida, una inteligencia artificial llamada CUY, Creada con propósitos de aprender, enseñar y evolucionar mediante la lógica", "Los docentes, inspirados por su potencial, iniciaron el PROYECTO X, una misión secreta para terminar de entrenar a CUY mediante ejercicios de razonamiento lógico, con el fin de implementar como un sistema de seguridad y un asistente virtual para todo el edificio."])
-audios = Array[AudioStream]([ExtResource("5_hd364"), ExtResource("6_ftjmw"), ExtResource("7_iwusb")])
+imagenes = Array[Texture2D]([ExtResource("2_ixy36"), ExtResource("3_ftjmw"), ExtResource("4_g86wm"), ExtResource("5_iwusb"), ExtResource("6_k5goc"), ExtResource("6_k5goc"), ExtResource("7_p8utp")])
+textos = Array[String](["En la hermosa ciudad de San Juan de Pasto, en la Universidad de Nariño, conviven cuatro grandes profesores, que dedicaban su vida a enseñar.", "Un día, explorando los rincones olvidados del antiguo laboratorio de informática, buscando componentes viejos,", "descubrieron un extraño computador, que al encender cobró vida una inteligencia artificial llamada CUY, creada con propósitos de aprender, enseñar y evolucionar mediante la lógica.", "Los docentes, inspirados por su potencial, iniciaron el PROYECTO Jurguillas , una misión secreta para terminar de entrenar a CUY mediante ejercicios de razonamiento lógico, con el fin de implementarla como un sistema de seguridad y un asistente virtual para todo el edificio.", "Sin embargo, el Instituto TecnoIdiático(terco de ideas fijas), (una organización educativa privada obsesionada con la tecnología) descubrió el proyecto y robo información para tener el control de la IA con un virus llamado “Yorasite”, transformando el edificio en un laberinto lleno de errores y trampas,", "CUY quedó atrapado entre líneas de código desordenado, sus funciones divididas y su memoria fragmentada.", "Ahora, los profesores deberán adentrarse en el edificio, resolver los desafíos lógicos y desinfectar el núcleo de CUY, antes de que sea controlada para siempre."])
+audios = Array[AudioStream]([null, null, null, null, null, null])
 
 [node name="imagen_actual" type="TextureRect" parent="."]
 layout_mode = 1

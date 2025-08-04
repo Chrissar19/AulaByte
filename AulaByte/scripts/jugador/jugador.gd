@@ -63,17 +63,11 @@ enum Estado {
 func _ready() -> void:
 	add_to_group("Jugador")
 	JugadorSeleccionado.reiniciar_vidas()
+	asignar_hud()
 
 	empuje_ray.enabled = true
 	empuje_ray.target_position = Vector2.ZERO
 	empuje_ray.position.y = 15
-
-	if hud == null:
-		hud = get_tree().get_root().get_node("NivelTuto/HUD")
-		if hud:
-			hud.connect("tiempo_terminado", Callable(self, "_cuando_se_acabe_tiempo"))
-			hud.actualizar_vidas()
-			hud.actualizar_puntos(puntos)
 
 # ============================================================================
 # PHYSICS PROCESS
@@ -180,16 +174,18 @@ func nombre_animacion(accion: String) -> String:
 	return nombre + accion + equipo
 
 # ============================================================================
-# VIDAS Y PUNTOS
+# VIDAS, PUNTOS Y HUD
 # ============================================================================
 func recibir_dmg(dmg) -> void:
 	var dir: float = 0.0
 	if intocable:
 		return
 
-	for i in range(int(dmg)):
-		JugadorSeleccionado.perder_vida()
-	hud.actualizar_vidas()
+	if not hud:
+		asignar_hud()
+	JugadorSeleccionado.perder_vida()
+	if hud:
+		hud.actualizar_vidas()
 
 	iniciar_retroceso(dir)
 	intocable = true
@@ -221,6 +217,16 @@ func set_hud(h: Node) -> void:
 	hud.connect("tiempo_terminado", Callable(self, "_cuando_se_acabe_tiempo"))
 	hud.actualizar_vidas()
 	hud.actualizar_puntos(puntos)
+	
+func asignar_hud():
+	#-- Busca automaticamente el nodo HUD desde la escena actual
+	if not hud == null:
+		var actualizar_hud = get_tree().get_current_scene().get_node_or_null("HUD")
+		if actualizar_hud:
+			hud = actualizar_hud
+			hud.connect("tiempo_terminado", Callable(self, "_cuando_se_acabe_tiempo"))
+			hud.actualizar_vidas()
+			hud.actualizar_puntos(puntos)
 
 # ============================================================================
 # CÁMARA Y RETROCESO

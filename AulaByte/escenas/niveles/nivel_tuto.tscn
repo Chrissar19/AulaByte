@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://cqk82ixbb1sb0"]
+[gd_scene load_steps=34 format=4 uid="uid://cqk82ixbb1sb0"]
 
 [ext_resource type="Script" uid="uid://bl84y62aosyrq" path="res://scripts/niveles/nivel_tuto.gd" id="1_wwpym"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_1g06v"]
@@ -18,6 +18,7 @@
 [ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/Fuentes/Normal.ttf" id="16_6d66m"]
 [ext_resource type="PackedScene" uid="uid://bnj0srep62yxe" path="res://escenas/personajes/enemigos/bola_muerte.tscn" id="17_1agg2"]
 [ext_resource type="PackedScene" uid="uid://cl1bwd6mofchq" path="res://escenas/objetos_interacciones/item_vida.tscn" id="18_128oc"]
+[ext_resource type="PackedScene" uid="uid://fva12xfahbpb" path="res://escenas/objetos_interacciones/puerta_nivel.tscn" id="19_e0mik"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5rite"]
 texture = ExtResource("2_1g06v")
@@ -620,8 +621,12 @@ collision_mask = 59
 [node name="BolaMuerte" parent="." instance=ExtResource("17_1agg2")]
 z_index = 1
 position = Vector2(-232, -40)
-tamano_bola = 2.0
+dmg = 1
 
 [node name="ItemVida" parent="." instance=ExtResource("18_128oc")]
 z_index = 1
 position = Vector2(-104, 120)
+
+[node name="PuertaNivel" parent="." instance=ExtResource("19_e0mik")]
+z_index = 1
+position = Vector2(-544, 136)
