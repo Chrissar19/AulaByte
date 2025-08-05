@@ -495,8 +495,13 @@ libraries = {
 }
 autoplay = "new_animation"
 
+[node name="ZonaMuerte" parent="Plataformas" instance=ExtResource("8_d7uev")]
+position = Vector2(-5, 515)
+collision_layer = 64
+collision_mask = 12
+
 [node name="Delgado" parent="." instance=ExtResource("14_yts3p")]
-position = Vector2(923, -69)
+position = Vector2(284, 287)
 collision_mask = 51
 
 [node name="Avisos" type="Node" parent="."]

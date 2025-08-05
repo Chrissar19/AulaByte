@@ -48,7 +48,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_26b0p")
 }],
-"loop": true,
+"loop": false,
 "name": &"Abriendo",
 "speed": 8.0
 }]
@@ -57,6 +57,8 @@ animations = [{
 size = Vector2(42, 64)
 
 [node name="PuertaNivel" type="Area2D"]
+collision_layer = 256
+collision_mask = 4
 script = ExtResource("1_o3bfo")
 
 [node name="AnimacionPuerta" type="AnimatedSprite2D" parent="."]

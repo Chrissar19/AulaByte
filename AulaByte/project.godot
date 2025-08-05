@@ -76,6 +76,7 @@ Accion={
 2d_physics/layer_6="Pisos"
 2d_physics/layer_7="ZonaMuerte"
 2d_physics/layer_8="vidas"
+2d_physics/layer_9="Interacciones"
 
 [rendering]
 
