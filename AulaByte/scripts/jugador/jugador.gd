@@ -245,3 +245,4 @@ func iniciar_retroceso(direccion: float) -> void:
 	velocity = Vector2(dir_retroceso * RETROCESO_X, RETROCESO_Y)
 	estaba_empujando = false
 	modulate = Color(1, 0.5, 0.5)
+	
