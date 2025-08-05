@@ -35,6 +35,7 @@ ZonaMortal="Una altura dondel el jugador muere automaticamente al caer o cruzar"
 HUD=""
 DMG="El daño que se causara al jugador"
 Vida=""
+Pisos="Marca todos los objetos fisicos de piso"
 
 [input]
 

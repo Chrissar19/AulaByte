@@ -88,3 +88,12 @@ func _on_detector_jugador_body_entered(body: Node2D) -> void:
 # ============================================================================
 func _on_timer_muerte_timeout() -> void:
 	queue_free()
+
+
+func _on_sensor_pisoton_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	if is_in_group("Cajas") and is_in_group("Pisos"):
+		set_physics_process(false)
+		sprite.play("slime_death_blue")
+		audio_muerte.play()
+		particulas.emitting = true
+		queue_free()

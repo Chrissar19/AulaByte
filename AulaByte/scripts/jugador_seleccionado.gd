@@ -58,14 +58,12 @@ func get_puntos() -> int:
 # Manejo de vidas
 #--------------------------------------------------------------------------------
 func perder_vida() -> void:
-	if vidas <= 0:
-		return
-		
-	vidas -= 1
-	emit_signal("vida_perdida")
-	
-	if vidas <= 0:
-		_morir()
+	if vidas > 0:
+		vidas -= 1
+		emit_signal("vida_perdida")
+		vidas = max(vidas, 0)
+		if vidas == 0:
+			_morir()
 
 func ganar_vida() -> void:
 	if vidas < VIDAS_MAX:
@@ -81,9 +79,3 @@ func get_vidas() -> int:
 func _morir() -> void:
 	get_tree().change_scene_to_file("res://escenas/menu/menu_perder.tscn")
 	
-#--------------------------------------------------------------------------------
-# Recibir daño desde enemigos u otras fuentes
-#--------------------------------------------------------------------------------
-func recibir_dmg(danio: float = 1.0) -> void:
-	for i in range(int(danio)):
-		perder_vida()
