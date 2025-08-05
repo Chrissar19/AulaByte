@@ -1,6 +1,7 @@
 extends Area2D
 
 @onready var animacion_puerta: AnimatedSprite2D = $AnimacionPuerta
+@onready var label: Label = $Label
 
 var jugador_en_rango := false
 var puerta_abierta := false

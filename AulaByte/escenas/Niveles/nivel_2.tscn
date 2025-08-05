@@ -495,7 +495,7 @@ libraries = {
 autoplay = "new_animation"
 
 [node name="Delgado" parent="." instance=ExtResource("14_yts3p")]
-position = Vector2(1472, -496)
+position = Vector2(422, -697)
 collision_mask = 243
 
 [node name="Avisos" type="Node" parent="."]

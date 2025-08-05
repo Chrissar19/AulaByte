@@ -3,33 +3,39 @@
 [ext_resource type="Script" uid="uid://c5fqgpwvnxkjw" path="res://scripts/objetos/puerta_nivel.gd" id="1_o3bfo"]
 [ext_resource type="Texture2D" uid="uid://c0edkeqwhip1q" path="res://recursos/imagenes/objetos/PuertaAuto.png" id="2_yxvyc"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3bfo"]
+atlas = ExtResource("2_yxvyc")
+region = Rect2(0, 0, 42, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxvyc"]
+atlas = ExtResource("2_yxvyc")
+region = Rect2(42, 0, 42, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_6snj7"]
 atlas = ExtResource("2_yxvyc")
-region = Rect2(0, 0, 32, 48)
+region = Rect2(84, 0, 42, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c8pr2"]
 atlas = ExtResource("2_yxvyc")
-region = Rect2(32, 0, 32, 48)
+region = Rect2(126, 0, 42, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r51lu"]
 atlas = ExtResource("2_yxvyc")
-region = Rect2(64, 0, 32, 48)
+region = Rect2(168, 0, 42, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_26b0p"]
 atlas = ExtResource("2_yxvyc")
-region = Rect2(96, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ngupe"]
-atlas = ExtResource("2_yxvyc")
-region = Rect2(128, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_584ls"]
-atlas = ExtResource("2_yxvyc")
-region = Rect2(160, 0, 32, 48)
+region = Rect2(210, 0, 42, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5ihpb"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3bfo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxvyc")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6snj7")
 }, {
@@ -41,20 +47,14 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_26b0p")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ngupe")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_584ls")
 }],
 "loop": true,
 "name": &"Abriendo",
-"speed": 5.0
+"speed": 8.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o3bfo"]
-size = Vector2(32, 48)
+size = Vector2(42, 64)
 
 [node name="PuertaNivel" type="Area2D"]
 script = ExtResource("1_o3bfo")
@@ -62,8 +62,11 @@ script = ExtResource("1_o3bfo")
 [node name="AnimacionPuerta" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5ihpb")
 animation = &"Abriendo"
+frame = 2
+frame_progress = 0.756231
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_o3bfo")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
