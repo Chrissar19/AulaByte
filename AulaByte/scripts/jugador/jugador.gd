@@ -15,6 +15,7 @@ const VIDAS_INICIALES := 3
 # NODOS HIJO Y VARIABLES
 # ============================================================================
 @export var nombre: String = ""
+@export var punto_reaparicion: Vector2
 @onready var camara: Camera2D = $Camara
 @onready var timer_intocable: Timer = $TimerIntocable
 @onready var animated_sprite_player: AnimatedSprite2D = $AnimatedSprite2D
@@ -64,6 +65,7 @@ func _ready() -> void:
 	add_to_group("Jugador")
 	JugadorSeleccionado.reiniciar_vidas()
 	asignar_hud()
+	punto_reaparicion = global_position
 
 	empuje_ray.enabled = true
 	empuje_ray.target_position = Vector2.ZERO
@@ -246,3 +248,13 @@ func iniciar_retroceso(direccion: float) -> void:
 	estaba_empujando = false
 	modulate = Color(1, 0.5, 0.5)
 	
+func reaparecer() -> void:
+	global_position = punto_reaparicion
+	velocity = Vector2.ZERO
+	modulate = Color(1, 1, 1)
+	intocable = true
+	timer_intocable.start()
+	
+	var colision = get_node_or_null("CollisionShape2D")
+	if colision:
+		colision.disabled = false
