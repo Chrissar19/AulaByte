@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_1g06v"]
 [ext_resource type="Texture2D" uid="uid://dr3bkmou477j5" path="res://recursos/imagenes/TileSets/FondoSheet.png" id="3_wsaak"]
 [ext_resource type="Texture2D" uid="uid://14pnjoo6241b" path="res://recursos/imagenes/TileSets/DecoracionesFondo.png" id="4_5rite"]
-[ext_resource type="PackedScene" uid="uid://t8ur3tgfe14n" path="res://escenas/ui/puntos_inicio.tscn" id="4_ougkj"]
+[ext_resource type="PackedScene" uid="uid://t8ur3tgfe14n" path="res://escenas/ui/punto_control.tscn" id="4_ougkj"]
 [ext_resource type="Texture2D" uid="uid://b1n8qlwfa0q0x" path="res://recursos/imagenes/TileSets/IMG Salon de clases.png" id="5_1agg2"]
 [ext_resource type="Texture2D" uid="uid://cxyafbo3ck6fg" path="res://recursos/imagenes/TileSets/Pisos.png" id="5_5vv37"]
 [ext_resource type="PackedScene" uid="uid://brfxoes3nrqbr" path="res://escenas/ui/hud.tscn" id="5_auyua"]
@@ -1217,7 +1217,9 @@ tile_map_data = PackedByteArray("AADv/xkAAAACAAMAAADw/xkAAAAAAAEAAADx/xkAAAAAAAE
 tile_set = SubResource("TileSet_6d66m")
 
 [node name="PuntosInicio" parent="." instance=ExtResource("4_ougkj")]
-position = Vector2(-112, 80)
+z_index = 1
+position = Vector2(-34, 134)
+scale = Vector2(0.15, 0.15)
 
 [node name="HUD" parent="." instance=ExtResource("5_auyua")]
 visible = false
@@ -1355,7 +1357,7 @@ text = "No parece muy pesada"
 horizontal_alignment = 1
 
 [node name="Delgado" parent="." instance=ExtResource("14_vv2vj")]
-position = Vector2(608, 24)
+position = Vector2(161, 107)
 collision_mask = 59
 
 [node name="ItemVida" parent="." instance=ExtResource("18_128oc")]
