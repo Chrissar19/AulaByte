@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://bdp4vuaodlgyi"]
+[gd_scene load_steps=37 format=4 uid="uid://bdp4vuaodlgyi"]
 
 [ext_resource type="Script" uid="uid://bl84y62aosyrq" path="res://scripts/niveles/nivel_tuto.gd" id="1_0t8in"]
 [ext_resource type="Texture2D" uid="uid://cxyafbo3ck6fg" path="res://recursos/imagenes/TileSets/Pisos.png" id="1_lv0ag"]
@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://brfxoes3nrqbr" path="res://escenas/ui/hud.tscn" id="11_oo3vv"]
 [ext_resource type="PackedScene" uid="uid://cydd1023br6iv" path="res://escenas/objetos_interacciones/bits_moneda.tscn" id="11_sac71"]
 [ext_resource type="PackedScene" uid="uid://dfr8bmdn5actv" path="res://escenas/personajes/enemigos/slime_azul.tscn" id="16_yy4w5"]
-[ext_resource type="PackedScene" uid="uid://b7n32avjc7w4l" path="res://escenas/personajes/Jojoa/Jojoa.tscn" id="17_ekcxq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3so63"]
 texture = ExtResource("2_yf17g")
@@ -1783,10 +1782,6 @@ visible = false
 z_index = 1
 position = Vector2(595, 159)
 collision_mask = 49
-
-[node name="Jojoa" parent="." instance=ExtResource("17_ekcxq")]
-position = Vector2(481, 564)
-collision_mask = 435
 
 [node name="PuntosInicio" parent="." instance=ExtResource("10_65h0f")]
 z_index = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://cqk82ixbb1sb0"]
+[gd_scene load_steps=38 format=4 uid="uid://cqk82ixbb1sb0"]
 
 [ext_resource type="Script" uid="uid://bl84y62aosyrq" path="res://scripts/niveles/nivel_tuto.gd" id="1_wwpym"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_1g06v"]
@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://cydd1023br6iv" path="res://escenas/objetos_interacciones/bits_moneda.tscn" id="10_wsaak"]
 [ext_resource type="PackedScene" uid="uid://dkm0atk4qawk3" path="res://escenas/objetos_interacciones/plataforma.tscn" id="11_cn7c0"]
 [ext_resource type="PackedScene" uid="uid://dfr8bmdn5actv" path="res://escenas/personajes/enemigos/slime_azul.tscn" id="13_snr6v"]
-[ext_resource type="PackedScene" uid="uid://57wg0kv8rcf6" path="res://escenas/personajes/Delgado/delgado.tscn" id="14_vv2vj"]
 [ext_resource type="Texture2D" uid="uid://d3vh0l5545dux" path="res://recursos/imagenes/objetos/TeclasPC.png" id="15_7svhg"]
 [ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/Fuentes/Normal.ttf" id="16_6d66m"]
 [ext_resource type="PackedScene" uid="uid://cl1bwd6mofchq" path="res://escenas/objetos_interacciones/item_vida.tscn" id="18_128oc"]
@@ -1217,9 +1216,12 @@ tile_map_data = PackedByteArray("AADv/xkAAAACAAMAAADw/xkAAAAAAAEAAADx/xkAAAAAAAE
 tile_set = SubResource("TileSet_6d66m")
 
 [node name="PuntosInicio" parent="." instance=ExtResource("4_ougkj")]
+z_index = 2
+position = Vector2(-34, 139)
+
+[node name="PuntosInicio2" parent="." instance=ExtResource("4_ougkj")]
 z_index = 1
-position = Vector2(-34, 134)
-scale = Vector2(0.15, 0.15)
+position = Vector2(-303, -115)
 
 [node name="HUD" parent="." instance=ExtResource("5_auyua")]
 visible = false
@@ -1250,7 +1252,8 @@ position = Vector2(639, -520)
 position = Vector2(-494, -212)
 
 [node name="BitsMoneda8" parent="Puntos" instance=ExtResource("10_wsaak")]
-position = Vector2(-286, -119)
+z_index = 1
+position = Vector2(-237, -125)
 
 [node name="BitsMoneda9" parent="Puntos" instance=ExtResource("10_wsaak")]
 position = Vector2(-41, -349)
@@ -1355,10 +1358,6 @@ offset_bottom = -537.0
 theme_override_fonts/font = ExtResource("16_6d66m")
 text = "No parece muy pesada"
 horizontal_alignment = 1
-
-[node name="Delgado" parent="." instance=ExtResource("14_vv2vj")]
-position = Vector2(161, 107)
-collision_mask = 59
 
 [node name="ItemVida" parent="." instance=ExtResource("18_128oc")]
 z_index = 1

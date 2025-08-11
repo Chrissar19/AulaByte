@@ -6,6 +6,7 @@ extends Area2D
 var activado := false
 
 func _ready() -> void:
+	
 	add_to_group("Checkpoint")
 	sprite.play("Idle")
 	
