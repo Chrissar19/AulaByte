@@ -1,8 +1,8 @@
 extends Node2D
 
 @onready var contenedor: Node2D = self
-@onready var puntos_inicio: Marker2D = $PuntosInicio/InicioPrincipal
 @onready var hud: CanvasLayer = $HUD
+@onready var puntos_inicio: Area2D = $PuntosInicio
 
 #---------------------------------------------------------------------------------------------------
 #-- Variables para los limites de la camara
@@ -35,7 +35,6 @@ func _ready() -> void:
 				camara_derecha,
 				camara_abajo
 			)
-		
 	else:
 		print("No se cargo el personaje")
 	

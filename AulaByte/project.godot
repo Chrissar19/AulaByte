@@ -36,6 +36,7 @@ HUD=""
 DMG="El daño que se causara al jugador"
 Vida=""
 Pisos="Marca todos los objetos fisicos de piso"
+Checkpoint="Punto de inicio y de control de los niveles"
 
 [input]
 
@@ -77,6 +78,7 @@ Accion={
 2d_physics/layer_7="ZonaMuerte"
 2d_physics/layer_8="vidas"
 2d_physics/layer_9="Interacciones"
+2d_physics/layer_10="Checkpoint"
 
 [rendering]
 

@@ -27,13 +27,16 @@ func _on_body_entered(body: Node2D) -> void:
 
 		var colision = body.get_node_or_null("CollisionShape2D")
 		if colision:
-			colision.queue_free()
+			colision.disabled = true
 
-		timer.start()
+		await get_tree().create_timer(0.5).timeout
+		Engine.time_scale = 1
+		
+		body.reaparecer()
 
 # ============================================================================
 # REINICIAR ESCENA
 # ============================================================================
 func _on_timer_timeout() -> void:
 	Engine.time_scale = 1
-	get_tree().reload_current_scene()
+	

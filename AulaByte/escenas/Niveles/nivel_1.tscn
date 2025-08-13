@@ -1,18 +1,17 @@
-[gd_scene load_steps=29 format=4 uid="uid://ce4psiq5ll2ou"]
+[gd_scene load_steps=28 format=4 uid="uid://ce4psiq5ll2ou"]
 
 [ext_resource type="Script" uid="uid://bl84y62aosyrq" path="res://scripts/niveles/nivel_tuto.gd" id="1_1lge7"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_q4rug"]
 [ext_resource type="Texture2D" uid="uid://dr3bkmou477j5" path="res://recursos/imagenes/TileSets/FondoSheet.png" id="3_4dly0"]
 [ext_resource type="Texture2D" uid="uid://14pnjoo6241b" path="res://recursos/imagenes/TileSets/DecoracionesFondo.png" id="4_4pfxj"]
 [ext_resource type="Texture2D" uid="uid://cxyafbo3ck6fg" path="res://recursos/imagenes/TileSets/Pisos.png" id="5_x8ajn"]
-[ext_resource type="PackedScene" uid="uid://t8ur3tgfe14n" path="res://escenas/ui/puntos_inicio.tscn" id="6_nlh1x"]
+[ext_resource type="PackedScene" uid="uid://t8ur3tgfe14n" path="res://escenas/ui/punto_control.tscn" id="6_nlh1x"]
 [ext_resource type="PackedScene" uid="uid://brfxoes3nrqbr" path="res://escenas/ui/hud.tscn" id="7_wl3qq"]
 [ext_resource type="PackedScene" uid="uid://mher13w4mave" path="res://escenas/trampas/zona_muerte.tscn" id="8_coawe"]
 [ext_resource type="PackedScene" uid="uid://cydd1023br6iv" path="res://escenas/objetos_interacciones/bits_moneda.tscn" id="9_hutyb"]
 [ext_resource type="PackedScene" uid="uid://dkm0atk4qawk3" path="res://escenas/objetos_interacciones/plataforma.tscn" id="10_1jmp3"]
 [ext_resource type="PackedScene" uid="uid://dfr8bmdn5actv" path="res://escenas/personajes/enemigos/slime_azul.tscn" id="12_4be78"]
 [ext_resource type="PackedScene" uid="uid://jgf3xqgo0gm5" path="res://escenas/objetos_interacciones/saltarin.tscn" id="13_qw6dd"]
-[ext_resource type="PackedScene" uid="uid://57wg0kv8rcf6" path="res://escenas/personajes/Delgado/delgado.tscn" id="16_kdyw2"]
 [ext_resource type="PackedScene" uid="uid://bnj0srep62yxe" path="res://escenas/personajes/enemigos/bola_muerte.tscn" id="17_5bg0a"]
 [ext_resource type="PackedScene" uid="uid://cl1bwd6mofchq" path="res://escenas/objetos_interacciones/item_vida.tscn" id="18_s863u"]
 
@@ -402,6 +401,21 @@ separation = Vector2i(1, 1)
 physics_layer_0/collision_layer = 33
 sources/0 = SubResource("TileSetAtlasSource_7svhg")
 
+[sub_resource type="Animation" id="Animation_q4rug"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(88, -7)]
+}
+
 [sub_resource type="Animation" id="Animation_1lge7"]
 resource_name = "horizontal"
 loop_mode = 2
@@ -418,7 +432,13 @@ tracks/0/keys = {
 "values": [Vector2(88, -7), Vector2(307, -7)]
 }
 
-[sub_resource type="Animation" id="Animation_q4rug"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q4rug"]
+_data = {
+&"RESET": SubResource("Animation_q4rug"),
+&"horizontal": SubResource("Animation_1lge7")
+}
+
+[sub_resource type="Animation" id="Animation_4pfxj"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -430,13 +450,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(88, -7)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_q4rug"]
-_data = {
-&"RESET": SubResource("Animation_q4rug"),
-&"horizontal": SubResource("Animation_1lge7")
+"values": [Vector2(-47, -395)]
 }
 
 [sub_resource type="Animation" id="Animation_4dly0"]
@@ -454,21 +468,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-47, -395), Vector2(-515, -395)]
-}
-
-[sub_resource type="Animation" id="Animation_4pfxj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-47, -395)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x8ajn"]
@@ -592,10 +591,6 @@ position = Vector2(379, -116)
 z_index = 1
 position = Vector2(-108, -190)
 fuerza_rebote = -600.0
-
-[node name="Delgado" parent="." instance=ExtResource("16_kdyw2")]
-position = Vector2(157, -529)
-collision_mask = 59
 
 [node name="BolaMuerte" parent="." instance=ExtResource("17_5bg0a")]
 z_index = 1

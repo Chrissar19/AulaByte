@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://eeffx2i0jisl"]
+[gd_scene load_steps=26 format=4 uid="uid://eeffx2i0jisl"]
 
 [ext_resource type="Script" uid="uid://bl84y62aosyrq" path="res://scripts/niveles/nivel_tuto.gd" id="1_0t8in"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_ekcxq"]
@@ -6,7 +6,7 @@
 [ext_resource type="TileSet" uid="uid://bnfbycv7excbw" path="res://recursos/imagenes/objetos/decoraciones_fondo.tres" id="4_q1qsa"]
 [ext_resource type="Texture2D" uid="uid://cxyafbo3ck6fg" path="res://recursos/imagenes/TileSets/Pisos.png" id="5_b7rwu"]
 [ext_resource type="PackedScene" uid="uid://1eeeqekb3ych" path="res://escenas/objetos_interacciones/caja.tscn" id="6_4jw1k"]
-[ext_resource type="PackedScene" uid="uid://t8ur3tgfe14n" path="res://escenas/ui/puntos_inicio.tscn" id="6_7dovc"]
+[ext_resource type="PackedScene" uid="uid://t8ur3tgfe14n" path="res://escenas/ui/punto_control.tscn" id="6_7dovc"]
 [ext_resource type="PackedScene" uid="uid://brfxoes3nrqbr" path="res://escenas/ui/hud.tscn" id="7_lkf4l"]
 [ext_resource type="PackedScene" uid="uid://mher13w4mave" path="res://escenas/trampas/zona_muerte.tscn" id="8_d7uev"]
 [ext_resource type="PackedScene" uid="uid://dkm0atk4qawk3" path="res://escenas/objetos_interacciones/plataforma.tscn" id="10_8ob0r"]
@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://cydd1023br6iv" path="res://escenas/objetos_interacciones/bits_moneda.tscn" id="11_0t8in"]
 [ext_resource type="PackedScene" uid="uid://jgf3xqgo0gm5" path="res://escenas/objetos_interacciones/saltarin.tscn" id="12_3ful4"]
 [ext_resource type="PackedScene" uid="uid://dfr8bmdn5actv" path="res://escenas/personajes/enemigos/slime_azul.tscn" id="12_aa8u6"]
-[ext_resource type="PackedScene" uid="uid://57wg0kv8rcf6" path="res://escenas/personajes/Delgado/delgado.tscn" id="14_yts3p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5rite"]
 texture = ExtResource("2_ekcxq")
@@ -499,10 +498,6 @@ autoplay = "new_animation"
 position = Vector2(-5, 515)
 collision_layer = 64
 collision_mask = 12
-
-[node name="Delgado" parent="." instance=ExtResource("14_yts3p")]
-position = Vector2(284, 287)
-collision_mask = 51
 
 [node name="Avisos" type="Node" parent="."]
 
