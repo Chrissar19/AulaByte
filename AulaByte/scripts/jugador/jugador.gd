@@ -57,6 +57,18 @@ enum Estado {
 	EMPUJANDO # -- 4
 }
 
+const StateClasses := {
+	"idle": preload("res://scripts/jugador/estados/idle.gd"),
+	"caminar": preload("res://scripts/jugador/estados/caminar.gd"),
+	"saltar": preload("res://scripts/jugador/estados/saltar.gd"),
+	"caer": preload("res://scripts/jugador/estados/caer.gd"),
+	"empujar": preload("res://scripts/jugador/estados/empujar.gd"),
+}
+
+var states := {}
+var current_state = null
+var input_dir: float = 0.0
+
 # ============================================================================
 # READY
 # ============================================================================
@@ -68,6 +80,13 @@ func _ready() -> void:
 	empuje_ray.enabled = true
 	empuje_ray.target_position = Vector2.ZERO
 	empuje_ray.position.y = 15
+	
+	for name in StateClasses.keys():
+		var s = StateClasses[name].new()
+		add_child(s)
+		s.name = name
+		states[name] = s
+		cambiar_estado("idle")
 
 # ============================================================================
 # PHYSICS PROCESS
@@ -96,16 +115,23 @@ func _physics_process(delta: float) -> void:
 	gravedad(delta)
 
 	if Input.is_action_just_pressed("saltar") and sartar_ahora():
-		salto()
+		cambiar_estado("saltar")
 
-	var dir := Input.get_axis("izquierda", "derecha")
-	actualizar_direccion(dir)
+	input_dir = Input.get_axis("izquierda", "derecha")
+	actualizar_direccion(input_dir)
 	detectar_empuje()
-	actualizar_estado(dir)
+	
+	if current_state:
+		current_state.actualizar_fisicas(delta)
+		
 	reproducir_animacion()
-	mov_horizontal(dir)
-
 	move_and_slide()
+	
+	if is_on_floor() and current_state and current_state.name == "saltar":
+		if abs(velocity.x) > 0.1:
+			cambiar_estado("caminar")
+		else:
+			cambiar_estado("idle")
 
 # ============================================================================
 # MOVIMIENTO Y SALTO
@@ -130,6 +156,7 @@ func sartar_ahora():
 	elif not timer_coyote_time.is_stopped():
 		ha_saltado = true
 		return true
+		
 func _on_timer_coyote_time_timeout() -> void:
 	pass
 
@@ -155,15 +182,14 @@ func detectar_empuje() -> void:
 # ============================================================================
 # ESTADOS Y ANIMACIÓN
 # ============================================================================
-func actualizar_estado(dir: float) -> void:
-	if not is_on_floor():
-		estado_actual = Estado.SALTANDO if velocity.y < 0 else Estado.CAYENDO
-	elif esta_empujando:
-		estado_actual = Estado.EMPUJANDO
-	elif dir != 0:
-		estado_actual = Estado.CAMINANDO
-	else:
-		estado_actual = Estado.IDLE
+func cambiar_estado(nom_estado: String) -> void:
+	if current_state and current_state.name == nom_estado:
+		return
+	if current_state:
+		current_state.exit()
+	current_state = states.get(nom_estado, null)
+	if current_state:
+		current_state.enter(self)
 
 func reproducir_animacion() -> void:
 	var accion: String = acciones[estado_actual]
@@ -244,5 +270,4 @@ func iniciar_retroceso(direccion: float) -> void:
 	dir_retroceso = - ultima_dir
 	velocity = Vector2(dir_retroceso * RETROCESO_X, RETROCESO_Y)
 	estaba_empujando = false
-	modulate = Color(1, 0.5, 0.5)
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxfofh26uty1p"]
+[gd_scene load_steps=19 format=3 uid="uid://bxfofh26uty1p"]
 
 [ext_resource type="Script" uid="uid://bde1215wojdor" path="res://scripts/niveles/intro.gd" id="1_a1g7d"]
 [ext_resource type="Texture2D" uid="uid://cxroesonpqyk7" path="res://recursos/imagenes/intro/Intro1.png" id="2_ixy36"]
@@ -8,6 +8,15 @@
 [ext_resource type="Texture2D" uid="uid://co6h4rgjuh5ok" path="res://recursos/imagenes/intro/Intro5.png" id="6_k5goc"]
 [ext_resource type="Texture2D" uid="uid://dwms1bbodkqyx" path="res://recursos/imagenes/intro/Intro6.png" id="7_p8utp"]
 [ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/Fuentes/Normal.ttf" id="8_ftjmw"]
+[ext_resource type="AudioStream" uid="uid://biyvnkp6g7k8y" path="res://recursos/Audio/narraciones/intro1.wav" id="8_scrrw"]
+[ext_resource type="AudioStream" uid="uid://dhuf6ny74je2f" path="res://recursos/Audio/narraciones/intro2.wav" id="9_njy6h"]
+[ext_resource type="AudioStream" uid="uid://jg4ob6v7dql3" path="res://recursos/Audio/narraciones/intro3.wav" id="10_h7dml"]
+[ext_resource type="AudioStream" uid="uid://cg0cetv1ljw7x" path="res://recursos/Audio/narraciones/intro4.wav" id="11_7jwf3"]
+[ext_resource type="AudioStream" uid="uid://bixgkwqoxlgvm" path="res://recursos/Audio/narraciones/intro5.wav" id="12_qsk8r"]
+[ext_resource type="Texture2D" uid="uid://dbgbucujlvbm7" path="res://recursos/imagenes/intro/Delgado sombra (1).png" id="13_njy6h"]
+[ext_resource type="Texture2D" uid="uid://diml04sdng5xg" path="res://recursos/imagenes/intro/Insuasty sombra (1).png" id="14_qsk8r"]
+[ext_resource type="Texture2D" uid="uid://c2s83tuwcu07i" path="res://recursos/imagenes/intro/Jojoa sombra (1).png" id="15_desih"]
+[ext_resource type="Texture2D" uid="uid://3cg5k1nvl8m8" path="res://recursos/imagenes/intro/Romo sombra (1).png" id="16_bddhn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hd364"]
 content_margin_left = 10.0
@@ -30,7 +39,7 @@ grow_vertical = 2
 script = ExtResource("1_a1g7d")
 imagenes = Array[Texture2D]([ExtResource("2_ixy36"), ExtResource("3_ftjmw"), ExtResource("4_g86wm"), ExtResource("5_iwusb"), ExtResource("6_k5goc"), ExtResource("6_k5goc"), ExtResource("7_p8utp")])
 textos = Array[String](["En la hermosa ciudad de San Juan de Pasto, en la Universidad de Nariño, conviven cuatro grandes profesores, que dedicaban su vida a enseñar.", "Un día, explorando los rincones olvidados del antiguo laboratorio de informática, buscando componentes viejos,", "descubrieron un extraño computador, que al encender cobró vida una inteligencia artificial llamada CUY, creada con propósitos de aprender, enseñar y evolucionar mediante la lógica.", "Los docentes, inspirados por su potencial, iniciaron el PROYECTO Jurguillas , una misión secreta para terminar de entrenar a CUY mediante ejercicios de razonamiento lógico, con el fin de implementarla como un sistema de seguridad y un asistente virtual para todo el edificio.", "Sin embargo, el Instituto TecnoIdiático(terco de ideas fijas), (una organización educativa privada obsesionada con la tecnología) descubrió el proyecto y robo información para tener el control de la IA con un virus llamado “Yorasite”, transformando el edificio en un laberinto lleno de errores y trampas,", "CUY quedó atrapado entre líneas de código desordenado, sus funciones divididas y su memoria fragmentada.", "Ahora, los profesores deberán adentrarse en el edificio, resolver los desafíos lógicos y desinfectar el núcleo de CUY, antes de que sea controlada para siempre."])
-audios = Array[AudioStream]([null, null, null, null, null, null])
+audios = Array[AudioStream]([ExtResource("8_scrrw"), ExtResource("9_njy6h"), ExtResource("10_h7dml"), ExtResource("11_7jwf3"), ExtResource("12_qsk8r"), null])
 
 [node name="imagen_actual" type="TextureRect" parent="."]
 layout_mode = 1
@@ -38,6 +47,26 @@ anchors_preset = -1
 offset_right = 640.0
 offset_bottom = 360.0
 expand_mode = 1
+
+[node name="DelgadoSombra" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(76, 117)
+texture = ExtResource("13_njy6h")
+
+[node name="InsuastySombra" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(549, 114)
+texture = ExtResource("14_qsk8r")
+
+[node name="JojoaSombra" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(218, 189)
+texture = ExtResource("15_desih")
+
+[node name="RomoSombra" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(398, 183)
+texture = ExtResource("16_bddhn")
 
 [node name="PanelTexto" type="Panel" parent="."]
 layout_mode = 1
@@ -57,9 +86,9 @@ anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
-offset_top = 2.0
+offset_top = 24.0
 offset_right = 4.0
-offset_bottom = -2.0
+offset_bottom = -1.99998
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("8_ftjmw")

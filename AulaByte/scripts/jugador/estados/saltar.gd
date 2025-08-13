@@ -1,0 +1,17 @@
+extends EstadoBase
+
+class_name estadoSaltar
+
+func enter(_estado: Node) -> void:
+	estado = _estado
+	estado.estado_actual = estado.Estado.SALTANDO
+	estado.velocity.y = estado.FUERZA_SALTO
+	if estado.sonido_salto:
+		estado.sonido_salto.play()
+		
+func actualizar_fisicas(delta: float) -> void:
+	var dir = estado.input_dir
+	estado.velocity.x = lerp(estado.velocity.x, dir * estado.VEL_HORIZONTAL, 0.08)
+	if estado.velocity.y > 0:
+		estado.cambiar_estado("caer")
+		return

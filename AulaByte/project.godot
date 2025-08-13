@@ -18,7 +18,7 @@ config/icon="uid://dmoqu2apkie6"
 [autoload]
 
 MusicaGlobal="*res://scripts/musica_global.gd"
-JugadorSeleccionado="*res://scripts/jugador_seleccionado.gd"
+JugadorSeleccionado="*res://scripts/jugador/jugador_seleccionado.gd"
 
 [display]
 
