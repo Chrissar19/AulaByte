@@ -2,8 +2,6 @@ extends Area2D
 
 @onready var animacion_puerta: AnimatedSprite2D = $AnimacionPuerta
 
-@export var siguiente_escena: String = "res://escenas/Niveles/nivel_2.tscn"
-
 var jugador_en_puerta := false
 
 func _ready() -> void:
@@ -23,9 +21,11 @@ func _on_body_exited(body: Node2D) -> void:
 func _process(delta: float) -> void:
 	if jugador_en_puerta and Input.is_action_just_pressed("Accion"):
 		print("Presionó E en la puerta")
-		siguiente_nivel()
+		abrir_puerta()
 		
-func siguiente_nivel():
+func abrir_puerta():
 	animacion_puerta.play("Abriendo") 
 	await get_tree().create_timer(1.5).timeout
-	get_tree().change_scene_to_file(siguiente_escena)
+	if GameManager:
+		GameManager.siguiente_nivel()
+		GameManager.pantalla_de_carga()

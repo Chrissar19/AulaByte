@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Niveles" load_steps=7 format=3 uid="uid://bbwne8qhl8yj2"]
+
+[ext_resource type="Script" uid="uid://b51y87ysvl54g" path="res://scripts/niveles/niveles.gd" id="1_b2vrk"]
+[ext_resource type="PackedScene" uid="uid://cqk82ixbb1sb0" path="res://escenas/Niveles/nivel_tuto.tscn" id="1_qafu8"]
+[ext_resource type="PackedScene" uid="uid://ce4psiq5ll2ou" path="res://escenas/Niveles/nivel_1.tscn" id="2_rha8x"]
+[ext_resource type="PackedScene" uid="uid://eeffx2i0jisl" path="res://escenas/Niveles/nivel_2.tscn" id="3_384g5"]
+[ext_resource type="PackedScene" uid="uid://bdp4vuaodlgyi" path="res://escenas/Niveles/nivel_4.tscn" id="4_r0tcd"]
+[ext_resource type="PackedScene" uid="uid://cdwofmeuk46tn" path="res://escenas/Niveles/nivel_5.tscn" id="5_ewe3a"]
+
+[resource]
+script = ExtResource("1_b2vrk")
+nivel = Array[PackedScene]([ExtResource("1_qafu8"), ExtResource("2_rha8x"), ExtResource("3_384g5"), ExtResource("4_r0tcd"), ExtResource("5_ewe3a")])
+metadata/_custom_type_script = "uid://b51y87ysvl54g"

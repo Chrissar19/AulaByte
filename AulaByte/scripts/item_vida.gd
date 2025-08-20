@@ -8,8 +8,8 @@ func _ready() -> void:
 
 func _on_nodo_vida(nodo: Node2D) -> void:
 	if nodo.is_in_group("Jugador"):
-		if JugadorSeleccionado.get_vidas() < JugadorSeleccionado.VIDAS_MAX:
-			JugadorSeleccionado.ganar_vida()
+		if GameManager.get_vidas() < GameManager.VIDAS_MAX:
+			GameManager.ganar_vida()
 			audio_stream_player.play()
 			sprite_2d.hide()
 			$CollisionShape2D.set_deferred("disabled", true)

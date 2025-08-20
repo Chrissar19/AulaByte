@@ -2,9 +2,8 @@ extends EstadoBase
 
 class_name estadoSaltar
 
-func enter(_estado: Node) -> void:
-	estado = _estado
-	estado.estado_actual = estado.Estado.SALTANDO
+func enter(jugador: Node) -> void:
+	estado = jugador
 	estado.velocity.y = estado.FUERZA_SALTO
 	if estado.sonido_salto:
 		estado.sonido_salto.play()

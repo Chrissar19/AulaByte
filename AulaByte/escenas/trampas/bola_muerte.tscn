@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://bnj0srep62yxe"]
 
-[ext_resource type="Script" uid="uid://d0ptdlpln41il" path="res://scripts/enemigos/bola_muerte.gd" id="1_2n5i8"]
-[ext_resource type="Texture2D" uid="uid://dikehn5kvgw3f" path="res://recursos/imagenes/objetos/estrella de la muerte1-sheet (1).png" id="2_x6b7q"]
-[ext_resource type="PackedScene" uid="uid://dss8043rmoq0a" path="res://escenas/personajes/enemigos/cadena.tscn" id="3_x6b7q"]
+[ext_resource type="Script" uid="uid://d0ptdlpln41il" path="res://scripts/enemigos/bola_muerte.gd" id="1_krn8g"]
+[ext_resource type="Texture2D" uid="uid://dikehn5kvgw3f" path="res://recursos/imagenes/objetos/estrella de la muerte1-sheet (1).png" id="2_thsoy"]
+[ext_resource type="PackedScene" uid="uid://dss8043rmoq0a" path="res://escenas/trampas/cadena.tscn" id="3_mtm31"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x6b7q"]
 radius = 13.0
@@ -49,20 +49,20 @@ _data = {
 }
 
 [node name="BolaMuerte" type="Node2D" groups=["Enemigos"]]
-script = ExtResource("1_2n5i8")
+script = ExtResource("1_krn8g")
 
 [node name="ganchoCadena" type="Sprite2D" parent="."]
 position = Vector2(0, 3)
-texture = ExtResource("2_x6b7q")
+texture = ExtResource("2_thsoy")
 region_enabled = true
 region_rect = Rect2(8, 0, 16, 14)
 
-[node name="Cadena2" parent="." instance=ExtResource("3_x6b7q")]
+[node name="Cadena2" parent="." instance=ExtResource("3_mtm31")]
 position = Vector2(0, 13)
 
 [node name="Bola" type="Sprite2D" parent="."]
 position = Vector2(0, 16)
-texture = ExtResource("2_x6b7q")
+texture = ExtResource("2_thsoy")
 offset = Vector2(0, 20)
 region_enabled = true
 region_rect = Rect2(0, 88, 32, 40)

@@ -20,19 +20,8 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Jugador"):
 		sonido_muerte.play()
-		body.recibir_dmg(dmg)
 		print("⚠️ El jugador cayó en zona mortal.")
-		
-		Engine.time_scale = 0.5
-
-		var colision = body.get_node_or_null("CollisionShape2D")
-		if colision:
-			colision.disabled = true
-
-		await get_tree().create_timer(0.5).timeout
-		Engine.time_scale = 1
-		
-		body.reaparecer()
+		body.caer_al_vacio()
 
 # ============================================================================
 # REINICIAR ESCENA

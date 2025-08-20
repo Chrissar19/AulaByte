@@ -1,9 +1,8 @@
 extends EstadoBase
 class_name EstadoCaer
 
-func enter(_estado: Node) -> void:
-	estado = _estado
-	estado.estado_actual = estado.Estado.CAYENDO
+func enter(jugador: Node) -> void:
+	estado = jugador
 
 func actualizar_fisicas(delta: float) -> void:
 	var dir = estado.input_dir

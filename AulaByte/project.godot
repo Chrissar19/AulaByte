@@ -18,7 +18,7 @@ config/icon="uid://dmoqu2apkie6"
 [autoload]
 
 MusicaGlobal="*res://scripts/musica_global.gd"
-JugadorSeleccionado="*res://scripts/jugador/jugador_seleccionado.gd"
+GameManager="*res://scripts/jugador/game_manager.gd"
 
 [display]
 
@@ -79,6 +79,8 @@ Accion={
 2d_physics/layer_8="vidas"
 2d_physics/layer_9="Interacciones"
 2d_physics/layer_10="Checkpoint"
+2d_physics/layer_11="Trampas"
+2d_physics/layer_12="Sensores"
 
 [rendering]
 

@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://jgf3xqgo0gm5" path="res://escenas/objetos_interacciones/saltarin.tscn" id="7_0dqod"]
 [ext_resource type="Texture2D" uid="uid://b1n8qlwfa0q0x" path="res://recursos/imagenes/TileSets/IMG Salon de clases.png" id="7_e2ewe"]
 [ext_resource type="PackedScene" uid="uid://mher13w4mave" path="res://escenas/trampas/zona_muerte.tscn" id="7_iyvrh"]
-[ext_resource type="PackedScene" uid="uid://bnj0srep62yxe" path="res://escenas/personajes/enemigos/bola_muerte.tscn" id="9_ekcxq"]
+[ext_resource type="PackedScene" uid="uid://bnj0srep62yxe" path="res://escenas/trampas/bola_muerte.tscn" id="9_ekcxq"]
 [ext_resource type="PackedScene" uid="uid://t8ur3tgfe14n" path="res://escenas/ui/punto_control.tscn" id="10_65h0f"]
 [ext_resource type="PackedScene" uid="uid://brfxoes3nrqbr" path="res://escenas/ui/hud.tscn" id="11_oo3vv"]
 [ext_resource type="PackedScene" uid="uid://cydd1023br6iv" path="res://escenas/objetos_interacciones/bits_moneda.tscn" id="11_sac71"]
