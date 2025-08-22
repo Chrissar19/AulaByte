@@ -1,22 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://dkm0atk4qawk3"]
+[gd_scene load_steps=9 format=3 uid="uid://cexx3vxssodab"]
 
-[ext_resource type="Texture2D" uid="uid://dclm53qe2idn1" path="res://recursos/imagenes/objetos/Plataforma.png" id="1_b5bdj"]
-[ext_resource type="Script" uid="uid://cm1f8af2ko7b2" path="res://scripts/objetos/plataforma_movil.gd" id="1_ulhy3"]
+[ext_resource type="Script" uid="uid://cm1f8af2ko7b2" path="res://scripts/objetos/plataforma_movil.gd" id="1_4lqk7"]
+[ext_resource type="Texture2D" uid="uid://dclm53qe2idn1" path="res://recursos/imagenes/objetos/Plataforma.png" id="1_cs6o6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6eams"]
-atlas = ExtResource("1_b5bdj")
+atlas = ExtResource("1_cs6o6")
 region = Rect2(0, 0, 64, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c7hrw"]
-atlas = ExtResource("1_b5bdj")
+atlas = ExtResource("1_cs6o6")
 region = Rect2(64, 0, 64, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lwxgc"]
-atlas = ExtResource("1_b5bdj")
+atlas = ExtResource("1_cs6o6")
 region = Rect2(128, 0, 64, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vb7ce"]
-atlas = ExtResource("1_b5bdj")
+atlas = ExtResource("1_cs6o6")
 region = Rect2(192, 0, 64, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_grm37"]
@@ -40,12 +40,12 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gp8j2"]
-size = Vector2(62, 13)
+size = Vector2(62, 13.5)
 
 [node name="Plataforma" type="CharacterBody2D"]
 collision_layer = 4097
-collision_mask = 4
-script = ExtResource("1_ulhy3")
+collision_mask = 5
+script = ExtResource("1_4lqk7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_grm37")
@@ -53,6 +53,6 @@ autoplay = "default"
 frame_progress = 0.0480068
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -0.5)
+position = Vector2(0, -0.25)
 shape = SubResource("RectangleShape2D_gp8j2")
 one_way_collision = true

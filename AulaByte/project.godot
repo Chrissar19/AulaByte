@@ -81,6 +81,7 @@ Accion={
 2d_physics/layer_10="Checkpoint"
 2d_physics/layer_11="Trampas"
 2d_physics/layer_12="Sensores"
+2d_physics/layer_13="Plataformas"
 
 [rendering]
 

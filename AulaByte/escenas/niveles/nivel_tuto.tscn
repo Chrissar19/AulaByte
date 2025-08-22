@@ -1219,7 +1219,7 @@ tile_set = SubResource("TileSet_6d66m")
 
 [node name="Insuasty" parent="Fondos" instance=ExtResource("8_e0mik")]
 z_index = 2
-position = Vector2(-13, 89)
+position = Vector2(357, -549)
 collision_mask = 947
 
 [node name="PuntosInicio" parent="." instance=ExtResource("4_ougkj")]
@@ -1382,5 +1382,5 @@ collision_layer = 64
 collision_mask = 12
 
 [node name="Pico" parent="." instance=ExtResource("20_rkb6m")]
-position = Vector2(152, -7)
-altura_colision = 75.0
+position = Vector2(-45, -47)
+altura_colision = 200.0

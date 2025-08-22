@@ -7,7 +7,7 @@
 size = Vector2(16, 59)
 
 [node name="Romo" instance=ExtResource("1_w6nqi")]
-collision_mask = 59
+collision_mask = 8187
 nombre = "Romo"
 
 [node name="AnimatedSprite2D" parent="." index="0"]
