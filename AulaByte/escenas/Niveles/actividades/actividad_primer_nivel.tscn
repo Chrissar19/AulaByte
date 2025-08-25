@@ -1,9 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://c8f486kolklgt"]
+[gd_scene load_steps=14 format=3 uid="uid://c8f486kolklgt"]
 
 [ext_resource type="Script" uid="uid://c5co0tb6l3hqk" path="res://scripts/niveles/actividad_primer_nivel.gd" id="1_twqsm"]
 [ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="2_pu1qq"]
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="3_mbatl"]
 [ext_resource type="Texture2D" uid="uid://d3vh0l5545dux" path="res://recursos/imagenes/objetos/TeclasPC.png" id="4_a3ce4"]
+[ext_resource type="Texture2D" uid="uid://dp6ddal4ebclo" path="res://recursos/imagenes/objetos/Flecha abajo.png" id="5_lvkxs"]
+[ext_resource type="Texture2D" uid="uid://74vyfbcn6a8j" path="res://recursos/imagenes/objetos/Flecha dere.png" id="6_0j8xr"]
+[ext_resource type="Texture2D" uid="uid://c3ry3fuq64sve" path="res://recursos/imagenes/objetos/Flecha izq.png" id="7_r6bqd"]
+[ext_resource type="Texture2D" uid="uid://dd1vohe585sjg" path="res://recursos/imagenes/objetos/Flecha arriba.png" id="8_r8uex"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lvkxs"]
 atlas = ExtResource("4_a3ce4")
@@ -33,71 +37,83 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_twqsm")
 
-[node name="Fondo" type="TextureRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.72549, 0.72549, 0.72549, 0.470588)
+
+[node name="Fondo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 43.0
+offset_top = 24.0
+offset_right = -42.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_pu1qq")
 
-[node name="ContenedorFlechas" type="GridContainer" parent="."]
+[node name="ContenedorFlechas" type="GridContainer" parent="Fondo"]
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = -1
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 48.0
-offset_top = -84.0
-offset_right = 152.0
-offset_bottom = -16.0
+offset_left = 53.0
+offset_top = -68.0
+offset_right = 157.0
 grow_vertical = 2
-scale = Vector2(2, 2)
+scale = Vector2(1.5, 1.5)
 columns = 3
 
-[node name="Espacio" type="Label" parent="ContenedorFlechas"]
+[node name="Espacio" type="Label" parent="Fondo/ContenedorFlechas"]
 layout_mode = 2
 
-[node name="BtnArriba" type="TextureButton" parent="ContenedorFlechas"]
+[node name="BtnArriba" type="TextureButton" parent="Fondo/ContenedorFlechas"]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_lvkxs")
 stretch_mode = 5
 
-[node name="Espacio2" type="Label" parent="ContenedorFlechas"]
+[node name="Espacio2" type="Label" parent="Fondo/ContenedorFlechas"]
 layout_mode = 2
 
-[node name="BtnIzquierda" type="TextureButton" parent="ContenedorFlechas"]
+[node name="BtnIzquierda" type="TextureButton" parent="Fondo/ContenedorFlechas"]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_0j8xr")
 stretch_mode = 5
 
-[node name="BtnAbajo" type="TextureButton" parent="ContenedorFlechas"]
+[node name="BtnAbajo" type="TextureButton" parent="Fondo/ContenedorFlechas"]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_r6bqd")
 stretch_mode = 5
 
-[node name="BtnDerecha" type="TextureButton" parent="ContenedorFlechas"]
+[node name="BtnDerecha" type="TextureButton" parent="Fondo/ContenedorFlechas"]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_r8uex")
 stretch_mode = 5
 
-[node name="BtnSalir" type="Button" parent="."]
+[node name="BtnSalir" type="Button" parent="Fondo"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 176.0
-offset_top = 116.0
-offset_right = 260.0
-offset_bottom = 140.0
+offset_left = 159.5
+offset_top = 100.0
+offset_right = 243.5
+offset_bottom = 124.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_mbatl")
 text = "SALIR"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="Fondo"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -113,7 +129,7 @@ grow_vertical = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Salidatexto" type="Label" parent="VBoxContainer"]
+[node name="Salidatexto" type="Label" parent="Fondo/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0117647, 0.627451, 0.384314, 1)
 theme_override_fonts/font = ExtResource("3_mbatl")
@@ -121,41 +137,74 @@ text = "INGRESE LA CLAVE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxClaves" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxClaves" type="HBoxContainer" parent="Fondo/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Dato1" type="Label" parent="VBoxContainer/HBoxClaves"]
+[node name="Dato1" type="Label" parent="Fondo/VBoxContainer/HBoxClaves"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_twqsm")
 
-[node name="Dato2" type="Label" parent="VBoxContainer/HBoxClaves"]
+[node name="Dato2" type="Label" parent="Fondo/VBoxContainer/HBoxClaves"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_twqsm")
 
-[node name="Dato3" type="Label" parent="VBoxContainer/HBoxClaves"]
+[node name="Dato3" type="Label" parent="Fondo/VBoxContainer/HBoxClaves"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_twqsm")
 
-[node name="Dato4" type="Label" parent="VBoxContainer/HBoxClaves"]
+[node name="Dato4" type="Label" parent="Fondo/VBoxContainer/HBoxClaves"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_twqsm")
 
-[node name="BtnBorrar" type="Button" parent="."]
+[node name="BtnBorrar" type="Button" parent="Fondo"]
 layout_mode = 0
-offset_left = 64.0
-offset_top = 296.0
-offset_right = 168.0
-offset_bottom = 320.0
+offset_left = 301.0
+offset_top = 208.0
+offset_right = 405.0
+offset_bottom = 232.0
 theme_override_fonts/font = ExtResource("3_mbatl")
 text = "Borrar"
 
-[connection signal="pressed" from="ContenedorFlechas/BtnArriba" to="." method="_on_btn_arriba_pressed"]
-[connection signal="pressed" from="ContenedorFlechas/BtnIzquierda" to="." method="_on_btn_izquierda_pressed"]
-[connection signal="pressed" from="ContenedorFlechas/BtnAbajo" to="." method="_on_btn_abajo_pressed"]
-[connection signal="pressed" from="ContenedorFlechas/BtnDerecha" to="." method="_on_btn_derecha_pressed"]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 48.0
+offset_right = 536.0
+offset_bottom = 112.0
+
+[node name="Flecha1" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_lvkxs")
+
+[node name="Flecha2" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_0j8xr")
+
+[node name="Flecha3" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_r6bqd")
+
+[node name="Flecha4" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("8_r8uex")
+
+[node name="BtnConfirmar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 240.0
+offset_right = 252.0
+offset_bottom = 264.0
+theme_override_fonts/font = ExtResource("3_mbatl")
+text = "Confirmar"
+
+[connection signal="pressed" from="Fondo/ContenedorFlechas/BtnArriba" to="." method="_on_btn_arriba_pressed"]
+[connection signal="pressed" from="Fondo/ContenedorFlechas/BtnIzquierda" to="." method="_on_btn_izquierda_pressed"]
+[connection signal="pressed" from="Fondo/ContenedorFlechas/BtnAbajo" to="." method="_on_btn_abajo_pressed"]
+[connection signal="pressed" from="Fondo/ContenedorFlechas/BtnDerecha" to="." method="_on_btn_derecha_pressed"]
+[connection signal="pressed" from="BtnConfirmar" to="." method="_on_btn_confirmar_pressed"]

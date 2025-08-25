@@ -3,7 +3,7 @@ extends Node2D
 class_name NivelBase
 
 @onready var hud: CanvasLayer = $HUD
-@onready var puntos_inicio: Area2D = $PuntosInicio
+@onready var punto_control: Area2D = $PuntoControl
 
 #---------------------------------------------------------------------------------------------------
 #-- Variables para los limites de la camara
@@ -36,7 +36,7 @@ func _cargar_personaje() -> void:
 	
 	if info_personaje and info_personaje.archivo_escena:
 		var jugador = info_personaje.archivo_escena.instantiate()
-		jugador.global_position = puntos_inicio.global_position
+		jugador.global_position = punto_control.global_position
 		add_child(jugador)
 		
 		# Registrar en GameManager

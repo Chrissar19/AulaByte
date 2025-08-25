@@ -1,37 +1,62 @@
 extends Control
 
-class_name ActividadN1
-
 # ===========================
 # Ajustes
 # ===========================
-@export var codigo_correcto: PackedStringArray = []
-@export var intentos := 3
-@export var validar := false #-- validar cuando la longitud coincide
-@export var asteriscos := true #-- Muestran *** por las flechas
+signal resuelto(exito: bool)
 
-@onready var btn_arriba: TextureButton = $ContenedorFlechas/BtnArriba
-@onready var btn_izquierda: TextureButton = $ContenedorFlechas/BtnIzquierda
-@onready var btn_abajo: TextureButton = $ContenedorFlechas/BtnAbajo
-@onready var btn_derecha: TextureButton = $ContenedorFlechas/BtnDerecha
-@onready var btn_salir: Button = $BtnSalir
-@onready var dato_1: Label = $VBoxContainer/HBoxClaves/Dato1
-@onready var dato_2: Label = $VBoxContainer/HBoxClaves/Dato2
-@onready var dato_3: Label = $VBoxContainer/HBoxClaves/Dato3
-@onready var dato_4: Label = $VBoxContainer/HBoxClaves/Dato4
+const DIRECCIONES := [
+	{"dir": "abajo", "icon": preload("res://recursos/imagenes/objetos/Flecha abajo.png")},
+	{"dir": "arriba", "icon": preload("res://recursos/imagenes/objetos/Flecha arriba.png")},
+	{"dir": "izquierda", "icon": preload("res://recursos/imagenes/objetos/Flecha izq.png")},
+	{"dir": "derecha", "icon": preload("res://recursos/imagenes/objetos/Flecha dere.png")},
+]
+
+@onready var nodo_flechas := [
+	$HBoxContainer/Flecha1,
+	$HBoxContainer/Flecha2,
+	$HBoxContainer/Flecha3,
+	$HBoxContainer/Flecha4,
+]
+
+var clave_correcta: Array[String] = []
+var clave_ingresada: Array[String] = [] #-- Lo que ingresa el jugador
+
+func generar_clave() -> void:
+	clave_correcta.clear()
+	var random = DIRECCIONES.duplicate()
+	random.shuffle()
+	
+	for i in range(4):
+		nodo_flechas[i].texture = random[i]["icon"]
+		clave_correcta.append(random[i]["dir"])
+		
+
+func _on_boton_direccion_pressed(direccion: String) -> void:
+	clave_ingresada.append(direccion)
+	if clave_ingresada.size() > 4:
+		clave_ingresada.clear()
+		
+
+func _on_btn_confirmar_pressed() -> void:
+	var exito = (clave_ingresada == clave_correcta)
+	print("Clave correcta: ", clave_correcta)
+	print("Clave ingresada: ", clave_ingresada)
+	emit_signal("resuelto", exito)
+	queue_free()
 
 
 func _on_btn_arriba_pressed() -> void:
-	pass # Replace with function body.
+	_on_boton_direccion_pressed("arriba")
 
 
 func _on_btn_izquierda_pressed() -> void:
-	pass # Replace with function body.
+	_on_boton_direccion_pressed("izquierda")
 
 
 func _on_btn_abajo_pressed() -> void:
-	pass # Replace with function body.
+	_on_boton_direccion_pressed("abajo")
 
 
 func _on_btn_derecha_pressed() -> void:
-	pass # Replace with function body.
+	_on_boton_direccion_pressed("derecha")
