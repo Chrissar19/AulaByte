@@ -627,4 +627,4 @@ position = Vector2(797, 127)
 position = Vector2(-505, 139)
 
 [node name="Insuasty" parent="." instance=ExtResource("17_wf7ch")]
-position = Vector2(685, 96)
+position = Vector2(685, -159)

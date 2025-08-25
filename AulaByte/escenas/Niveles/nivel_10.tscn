@@ -1,6 +1,6 @@
 [gd_scene load_steps=26 format=4 uid="uid://dcrxsoxpi4gwj"]
 
-[ext_resource type="Script" uid="uid://bl84y62aosyrq" path="res://scripts/niveles/nivel_tuto.gd" id="1_bonas"]
+[ext_resource type="Script" uid="uid://wpxeklo0qb7c" path="res://scripts/niveles/nivel_10.gd" id="1_2mcb4"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_t5ix2"]
 [ext_resource type="Texture2D" uid="uid://dr3bkmou477j5" path="res://recursos/imagenes/TileSets/FondoSheet.png" id="3_ihbbq"]
 [ext_resource type="Texture2D" uid="uid://14pnjoo6241b" path="res://recursos/imagenes/TileSets/DecoracionesFondo.png" id="4_x7274"]
@@ -1098,12 +1098,10 @@ physics_layer_0/collision_layer = 33
 sources/0 = SubResource("TileSetAtlasSource_7svhg")
 
 [node name="NivelTuto" type="Node2D"]
-script = ExtResource("1_bonas")
-camara_alto = -528
-camara_izquierda = -850
-camara_derecha = 720
-camara_abajo = 176
-cuenta_regresiva = 500.0
+script = ExtResource("1_2mcb4")
+
+[node name="HUD" parent="." instance=ExtResource("9_nnd1k")]
+visible = false
 
 [node name="Delgado" parent="." instance=ExtResource("17_et4ew")]
 position = Vector2(372, -541)
@@ -1133,10 +1131,6 @@ position = Vector2(1583, -369)
 [node name="PuntosInicio" parent="." instance=ExtResource("8_21x4d")]
 z_index = 2
 position = Vector2(2122, -31)
-
-[node name="HUD" parent="." instance=ExtResource("9_nnd1k")]
-visible = false
-script = null
 
 [node name="ZonaMuerte" parent="." instance=ExtResource("10_5y6kh")]
 position = Vector2(0, 256)

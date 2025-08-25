@@ -9,6 +9,7 @@ signal nivel_completado
 signal personaje_seleccionado(id: int)
 signal tiempo_actualizado(segundos: int)
 signal tiempo_terminado
+signal jugador_gana_puntos(puntos: int)
 
 # ============================================================================
 # Variables globales
