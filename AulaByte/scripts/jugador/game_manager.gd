@@ -35,6 +35,18 @@ var tiempo_activo := false
 enum EstadoJuego { MENU, JUGANDO, PAUSA, GAME_OVER }
 var estado_actual: EstadoJuego = EstadoJuego.MENU
 
+
+# =====================================================================
+# DICCIONARIO DE ACTIVIDADES
+# =====================================================================
+var actividades_por_nivel := {
+	#-- Empieza en 1 ya que el niveltuto no tiene minijuego 0 es para testear
+	0: preload("res://escenas/Niveles/actividades/actividad_primer_nivel.tscn"),
+}
+
+var puerta_actual: Node = null
+@export var modo_tester_actividad := false
+
 #--------------------------------------------------------------------------------
 # NIVELES
 #--------------------------------------------------------------------------------
@@ -200,3 +212,35 @@ func cambiar_estado(nuevo_estado: EstadoJuego) -> void:
 		EstadoJuego.GAME_OVER:
 			print("ESTADO GAME OVER")
 			get_tree().change_scene_to_file("res://escenas/menu/menu_perder.tscn")
+
+
+# =====================================================================
+# ACTIVIDAD POR NIVEL
+# =====================================================================
+func solicitar_minijuego(puerta: Node) -> void:
+	puerta_actual = puerta
+	var nivel := nivel_actual
+	print("Nivel actual: ", nivel_actual)
+	if modo_tester_actividad:
+		nivel = 0
+		
+	var escena_actividad: PackedScene = actividades_por_nivel.get(nivel, null)
+	if not escena_actividad:
+		print("No hay actividad para este nivel, ABRIENDO PUERTA")
+		puerta.abrir_puerta()
+		return
+		
+	var actividad = escena_actividad.instantiate()
+	actividad.pause_mode = Node.PROCESS_MODE_PAUSABLE
+	get_tree().paused = true
+	get_tree().current_scene.add_child(actividad)
+	
+	#-- Conectar las señales
+	actividad.resuelto.connect(func(exito: bool):
+		get_tree().paused = false
+		if exito:
+			print("Minijuego resuelto, ABRIENDO PUERTA")
+			puerta_actual.abrir_puerta()
+		puerta_actual = null
+		actividad.queue_free()
+	)

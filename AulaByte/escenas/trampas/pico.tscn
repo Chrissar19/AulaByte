@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://civngk5ol1h1a" path="res://recursos/imagenes/objetos/Pico.png" id="2_ny6lf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8h6di"]
-size = Vector2(66, 72.125)
+size = Vector2(66, 104.063)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_or3xy"]
 size = Vector2(24, 37.5)
@@ -25,7 +25,7 @@ collision_layer = 2048
 collision_mask = 4
 
 [node name="ColisionDetector" type="CollisionShape2D" parent="Detector"]
-position = Vector2(0, 36)
+position = Vector2(0, 51.9688)
 shape = SubResource("RectangleShape2D_8h6di")
 
 [node name="DMG" type="Area2D" parent="." groups=["DMG"]]

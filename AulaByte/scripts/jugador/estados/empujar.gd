@@ -3,7 +3,6 @@ class_name EstadoEmpujar
 
 func enter(_estado: Node) -> void:
 	estado = _estado
-	estado.estado_actual = estado.Estado.EMPUJANDO
 
 func actualizar_fisicas(delta: float) -> void:
 	var dir = estado.input_dir
