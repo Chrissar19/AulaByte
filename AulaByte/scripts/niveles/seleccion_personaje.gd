@@ -5,7 +5,7 @@ extends Control
 #==============================================================================
 
 #-- Constantes
-const RUTA_INFO: String = "res://escenas/personajes/info/" # Carpeta con archivos .tres
+const RUTA_INFO: String = "res://datos/info/" # Carpeta con archivos .tres
 
 #-- Referencias a nodos UI
 @onready var hbox_personajes: HBoxContainer = $VBoxContainer/hboxPersonajes
@@ -130,8 +130,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_confirmar() -> void:
 	var info := _get_info(indice_seleccionado)
-	JugadorSeleccionado.seleccionar(info.id)
-	JugadorSeleccionado.set_info(info)
+	#-- Se guarda el personaje elegido en el GameManager
+	GameManager.seleccionar_personaje(info.id, info)
+	GameManager.reiniciar_nivel()
 	get_tree().change_scene_to_file("res://escenas/ui/pantalla_carga.tscn")
 
 func _on_volver() -> void:

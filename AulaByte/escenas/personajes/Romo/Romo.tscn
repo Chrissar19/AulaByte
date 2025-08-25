@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bn26h8nuu10nr"]
 
 [ext_resource type="PackedScene" uid="uid://ckai8femo32e4" path="res://escenas/personajes/personaje_base.tscn" id="1_w6nqi"]
-[ext_resource type="SpriteFrames" uid="uid://j40x2ec8nhi3" path="res://escenas/personajes/Romo/animacion_romo.tres" id="2_2lmna"]
+[ext_resource type="SpriteFrames" uid="uid://j40x2ec8nhi3" path="res://datos/animacion_romo.tres" id="2_2lmna"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bj2re"]
 size = Vector2(16, 59)

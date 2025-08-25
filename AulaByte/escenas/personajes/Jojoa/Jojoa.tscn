@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b7n32avjc7w4l"]
 
 [ext_resource type="PackedScene" uid="uid://ckai8femo32e4" path="res://escenas/personajes/personaje_base.tscn" id="1_e6i7t"]
-[ext_resource type="SpriteFrames" uid="uid://ujqjpsusbxw0" path="res://escenas/personajes/Jojoa/animacion_jojoa.tres" id="2_nox4m"]
+[ext_resource type="SpriteFrames" uid="uid://ujqjpsusbxw0" path="res://datos/animacion_jojoa.tres" id="2_nox4m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_12nyi"]
 size = Vector2(24, 50)

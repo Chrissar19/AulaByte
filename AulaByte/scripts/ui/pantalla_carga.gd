@@ -13,10 +13,12 @@ extends Control
 # Al iniciar la pantalla de carga, mostrar datos del personaje y cargar nivel
 #--------------------------------------------------------------------------------
 func _ready() -> void:
-	var info: personajeInfo = JugadorSeleccionado.get_info()
-	var tiempo: float = JugadorSeleccionado.get_tiempo()
+	var info: personajeInfo = GameManager.get_personaje()
+	var tiempo: float = GameManager.get_tiempo()
+	var vidas: int = GameManager.get_vidas()
+	var puntos: int = GameManager.get_puntos()
 	
-	_mostrar_datos(info, tiempo)
+	_mostrar_datos(info, tiempo, vidas, puntos)
 	
 	await get_tree().create_timer(2.5).timeout
 	_cargar_nivel()
@@ -24,7 +26,7 @@ func _ready() -> void:
 #--------------------------------------------------------------------------------
 # Muestra los datos en pantalla
 #--------------------------------------------------------------------------------
-func _mostrar_datos(info: personajeInfo, tiempo: float) -> void:
+func _mostrar_datos(info: personajeInfo, tiempo: float, vidas: int, puntos: int) -> void:
 	lbl_tiempo_nivel.text = "Tiempo: %ds" % int(tiempo)
 	
 	if info:
@@ -33,11 +35,16 @@ func _mostrar_datos(info: personajeInfo, tiempo: float) -> void:
 	else:
 		lbl_nombre.text = "Sin personaje"
 	
-	lbl_vidas.text = "Vidas: 3"  # <- Puedes actualizar luego con un sistema real
-	lbl_puntos.text = "Puntos: 0"
+	lbl_vidas.text = "Vidas: %d" % vidas
+	lbl_puntos.text = "Puntos: %d" % puntos
 
 #--------------------------------------------------------------------------------
 # Cambia a la escena del primer nivel
 #--------------------------------------------------------------------------------
 func _cargar_nivel() -> void:
-	get_tree().change_scene_to_file("res://escenas/niveles/nivel_tuto.tscn")
+	var siguiente_nivel := GameManager.get_nivel_actual()
+	if siguiente_nivel:
+		get_tree().change_scene_to_packed(siguiente_nivel)
+	else:
+		print("No hay mas niveles")
+		get_tree().change_scene_to_file("res://escenas/menu/menu_principal.tscn")

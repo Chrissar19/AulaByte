@@ -12,8 +12,8 @@ var indice_seleccionado : int = -1 # <- Ningun personaje seleccionado
 
 func _ready() -> void:
 	lbl_causa_muerte.text = " "
-	if JugadorSeleccionado and JugadorSeleccionado.get_puntos() != null:
-		lbl_puntos.text = "Puntos: " + str(JugadorSeleccionado.get_puntos())
+	if GameManager and GameManager.get_puntos() != null:
+		lbl_puntos.text = "Puntos: " + str(GameManager.get_puntos())
 	else:
 		lbl_puntos.text = "Puntos: 0"
 	
@@ -24,7 +24,7 @@ func _reintentar():
 	get_tree().change_scene_to_file("res://escenas/menu/Seleccion_personaje/seleccion_personaje.tscn")
 	
 func _volver_al_menu():
-	JugadorSeleccionado.reiniciar_vidas()
-	JugadorSeleccionado.set_tiempo(0.0)
-	JugadorSeleccionado.reiniciar_puntos()
+	GameManager.reiniciar_vidas()
+	GameManager.set_tiempo(0.0)
+	GameManager.reiniciar_puntos()
 	get_tree().change_scene_to_file("res://escenas/menu/menu_principal.tscn")

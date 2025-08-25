@@ -1,19 +1,18 @@
-[gd_scene load_steps=29 format=4 uid="uid://ce4psiq5ll2ou"]
+[gd_scene load_steps=28 format=4 uid="uid://ce4psiq5ll2ou"]
 
-[ext_resource type="Script" uid="uid://bl84y62aosyrq" path="res://scripts/niveles/nivel_tuto.gd" id="1_1lge7"]
+[ext_resource type="Script" uid="uid://coe5412e75vcn" path="res://escenas/Niveles/nivel_1.gd" id="1_68m43"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_q4rug"]
 [ext_resource type="Texture2D" uid="uid://dr3bkmou477j5" path="res://recursos/imagenes/TileSets/FondoSheet.png" id="3_4dly0"]
 [ext_resource type="Texture2D" uid="uid://14pnjoo6241b" path="res://recursos/imagenes/TileSets/DecoracionesFondo.png" id="4_4pfxj"]
 [ext_resource type="Texture2D" uid="uid://cxyafbo3ck6fg" path="res://recursos/imagenes/TileSets/Pisos.png" id="5_x8ajn"]
-[ext_resource type="PackedScene" uid="uid://t8ur3tgfe14n" path="res://escenas/ui/puntos_inicio.tscn" id="6_nlh1x"]
+[ext_resource type="PackedScene" uid="uid://t8ur3tgfe14n" path="res://escenas/ui/punto_control.tscn" id="6_nlh1x"]
 [ext_resource type="PackedScene" uid="uid://brfxoes3nrqbr" path="res://escenas/ui/hud.tscn" id="7_wl3qq"]
 [ext_resource type="PackedScene" uid="uid://mher13w4mave" path="res://escenas/trampas/zona_muerte.tscn" id="8_coawe"]
 [ext_resource type="PackedScene" uid="uid://cydd1023br6iv" path="res://escenas/objetos_interacciones/bits_moneda.tscn" id="9_hutyb"]
 [ext_resource type="PackedScene" uid="uid://dkm0atk4qawk3" path="res://escenas/objetos_interacciones/plataforma.tscn" id="10_1jmp3"]
 [ext_resource type="PackedScene" uid="uid://dfr8bmdn5actv" path="res://escenas/personajes/enemigos/slime_azul.tscn" id="12_4be78"]
 [ext_resource type="PackedScene" uid="uid://jgf3xqgo0gm5" path="res://escenas/objetos_interacciones/saltarin.tscn" id="13_qw6dd"]
-[ext_resource type="PackedScene" uid="uid://57wg0kv8rcf6" path="res://escenas/personajes/Delgado/delgado.tscn" id="16_kdyw2"]
-[ext_resource type="PackedScene" uid="uid://bnj0srep62yxe" path="res://escenas/personajes/enemigos/bola_muerte.tscn" id="17_5bg0a"]
+[ext_resource type="PackedScene" uid="uid://bnj0srep62yxe" path="res://escenas/trampas/bola_muerte.tscn" id="17_5bg0a"]
 [ext_resource type="PackedScene" uid="uid://cl1bwd6mofchq" path="res://escenas/objetos_interacciones/item_vida.tscn" id="18_s863u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5rite"]
@@ -478,13 +477,7 @@ _data = {
 }
 
 [node name="Nivel_1" type="Node2D"]
-position = Vector2(10, -63)
-script = ExtResource("1_1lge7")
-camara_alto = -528
-camara_izquierda = -850
-camara_derecha = 720
-camara_abajo = 176
-cuenta_regresiva = 500.0
+script = ExtResource("1_68m43")
 
 [node name="Fondos" type="Node" parent="."]
 
@@ -504,7 +497,8 @@ tile_map_data = PackedByteArray("AAD//xkAAAAJAAEAAAAAABkAAAAJAAEAAAABABkAAAAJAAE
 tile_set = SubResource("TileSet_6d66m")
 
 [node name="PuntosInicio" parent="." instance=ExtResource("6_nlh1x")]
-position = Vector2(-112, 80)
+z_index = 1
+position = Vector2(-478, 139)
 
 [node name="HUD" parent="." instance=ExtResource("7_wl3qq")]
 visible = false
@@ -586,17 +580,12 @@ autoplay = "horizontal"
 speed_scale = 0.6
 
 [node name="SlimeAzul" parent="." instance=ExtResource("12_4be78")]
-z_index = 1
 position = Vector2(379, -116)
 
 [node name="Saltarin" parent="." instance=ExtResource("13_qw6dd")]
 z_index = 1
 position = Vector2(-108, -190)
 fuerza_rebote = -600.0
-
-[node name="Delgado" parent="." instance=ExtResource("16_kdyw2")]
-position = Vector2(-65, -149)
-collision_mask = 59
 
 [node name="BolaMuerte" parent="." instance=ExtResource("17_5bg0a")]
 z_index = 1

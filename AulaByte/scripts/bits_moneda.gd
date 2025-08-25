@@ -26,12 +26,12 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 
 	# Sumar puntos al jugador
-	JugadorSeleccionado.agregar_puntos(valor)
+	GameManager.agregar_puntos(valor)
 
 	# Actualizar el HUD si existe
 	var hud := get_tree().get_first_node_in_group("HUD")
 	if hud:
-		hud.actualizar_puntos(JugadorSeleccionado.get_puntos())
+		hud.actualizar_puntos(GameManager.get_puntos())
 
 	# Reproducir sonido y desactivar colisión
 	sonido_moneda.play()

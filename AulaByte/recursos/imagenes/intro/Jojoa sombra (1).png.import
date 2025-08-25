@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ber51bsbec8qc"
-path="res://.godot/imported/Intro2.png-82119323ed0a7f4081d2cedeef8622c9.ctex"
+uid="uid://c2s83tuwcu07i"
+path="res://.godot/imported/Jojoa sombra (1).png-13f031161b3fd6ac76e289610290f798.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/imagenes/intro/Intro2.png"
-dest_files=["res://.godot/imported/Intro2.png-82119323ed0a7f4081d2cedeef8622c9.ctex"]
+source_file="res://recursos/imagenes/intro/Jojoa sombra (1).png"
+dest_files=["res://.godot/imported/Jojoa sombra (1).png-13f031161b3fd6ac76e289610290f798.ctex"]
 
 [params]
 

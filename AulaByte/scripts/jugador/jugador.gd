@@ -1,7 +1,14 @@
 extends CharacterBody2D
 
+#-------------------------------------------------------------------------------------
+#-- SEÑALES
+#---------------------------------------------------------------------------------------
+signal jugador_pierde_vida(dmg: int)
+signal jugador_gana_vida(vidas: int)
+signal jugador_gana_puntos(puntos: int)
+
 # ============================================================================
-# CONSTANTES
+# CONSTANTES Y VARIABLES
 # ============================================================================
 const RETROCESO_X := 200.0
 const RETROCESO_Y := -200.0
@@ -9,26 +16,12 @@ const VEL_HORIZONTAL := 150.0
 const FUERZA_SALTO := -420.0
 const FUERZA_EMPUJE := 500.0
 const TIEMPO_DE_EMPUJE := 0.15
-const VIDAS_INICIALES := 3
 
-# ============================================================================
-# NODOS HIJO Y VARIABLES
-# ============================================================================
 @export var nombre: String = ""
-@onready var camara: Camera2D = $Camara
-@onready var timer_intocable: Timer = $TimerIntocable
-@onready var animated_sprite_player: AnimatedSprite2D = $AnimatedSprite2D
-@onready var empuje_ray: RayCast2D = $EmpujeRay
-@onready var sonido_salto: AudioStreamPlayer = $SonidoSalto
-@onready var timer_coyote_time: Timer = $TimerCoyoteTime
-@onready var area_daño: Area2D = $AreaDaño
+@export var punto_reaparicion: Vector2
 
 var equipo := "No"
-var hud: CanvasLayer = null
-var vidas := VIDAS_INICIALES
-var puntos := 0
 var intocable := false
-var estado_actual: Estado = Estado.IDLE
 var tocando_suelo := false
 var ha_saltado := false
 
@@ -44,39 +37,60 @@ var esta_empujando := false
 var estaba_empujando := false
 var tiempo_empujando := 0.0
 
-const acciones := ["Idle", "Walk" ,"Up", "Down", "Push"]
+# ============================================================================
+# NODOS HIJO
+# ============================================================================
+@onready var camara: Camera2D = $Camara
+@onready var timer_intocable: Timer = $TimerIntocable
+@onready var animated_sprite_player: AnimatedSprite2D = $AnimatedSprite2D
+@onready var empuje_ray: RayCast2D = $EmpujeRay
+@onready var sonido_salto: AudioStreamPlayer = $SonidoSalto
+@onready var timer_coyote_time: Timer = $TimerCoyoteTime
+@onready var area_daño: Area2D = $AreaDaño
 
-# ============================================================================
-# ENUMERACIONES
-# ============================================================================
-enum Estado {
-	IDLE, #-- 0
-	CAMINANDO, #-- 1
-	SALTANDO, #-- 2
-	CAYENDO, #-- 3
-	EMPUJANDO # -- 4
+const StateClasses := {
+	"idle": preload("res://scripts/jugador/estados/idle.gd"),
+	"caminar": preload("res://scripts/jugador/estados/caminar.gd"),
+	"saltar": preload("res://scripts/jugador/estados/saltar.gd"),
+	"caer": preload("res://scripts/jugador/estados/caer.gd"),
+	"empujar": preload("res://scripts/jugador/estados/empujar.gd"),
 }
+
+var states := {}
+var current_state = null
+var input_dir: float = 0.0
 
 # ============================================================================
 # READY
 # ============================================================================
 func _ready() -> void:
 	add_to_group("Jugador")
-	JugadorSeleccionado.reiniciar_vidas()
-	asignar_hud()
-
+	punto_reaparicion = global_position
+	GameManager.set_jugador(self)
+	
+	# Configurar raycast de empuje
 	empuje_ray.enabled = true
 	empuje_ray.target_position = Vector2.ZERO
 	empuje_ray.position.y = 15
+	
+	# Instanciar clases de estado
+	for name in StateClasses.keys():
+		var s = StateClasses[name].new()
+		add_child(s)
+		s.name = name
+		states[name] = s
+		
+	cambiar_estado("idle")
 
 # ============================================================================
 # PHYSICS PROCESS
 # ============================================================================
 func _physics_process(delta: float) -> void:
 	if is_on_floor():
-		tocando_suelo = false
+		tocando_suelo = true
 		ha_saltado = false
 		
+	# --- Retroceso (cuando recibe daño) ---
 	if esta_en_retroceso:
 		contador_retroceso -= delta
 		if contador_retroceso <= 0:
@@ -95,17 +109,25 @@ func _physics_process(delta: float) -> void:
 		tocando_suelo = true
 	gravedad(delta)
 
-	if Input.is_action_just_pressed("saltar") and sartar_ahora():
-		salto()
+	if Input.is_action_just_pressed("saltar") and saltar_ahora():
+		cambiar_estado("saltar")
 
-	var dir := Input.get_axis("izquierda", "derecha")
-	actualizar_direccion(dir)
+	input_dir = Input.get_axis("izquierda", "derecha")
+	actualizar_direccion(input_dir)
 	detectar_empuje()
-	actualizar_estado(dir)
+	
+	if current_state:
+		current_state.actualizar_fisicas(delta)
+		
 	reproducir_animacion()
-	mov_horizontal(dir)
-
 	move_and_slide()
+	
+	# Detectar transición de salto a idle/caminar
+	if is_on_floor() and current_state and current_state.name == "saltar":
+		if abs(velocity.x) > 0.1:
+			cambiar_estado("caminar")
+		else:
+			cambiar_estado("idle")
 
 # ============================================================================
 # MOVIMIENTO Y SALTO
@@ -122,14 +144,16 @@ func salto() -> void:
 	velocity.y = FUERZA_SALTO
 	sonido_salto.play()
 	
-func sartar_ahora():
+func saltar_ahora():
 	if is_on_floor():
-		if ha_saltado: return false
+		if ha_saltado: 
+			return false
 		ha_saltado = true
 		return true
 	elif not timer_coyote_time.is_stopped():
 		ha_saltado = true
 		return true
+		
 func _on_timer_coyote_time_timeout() -> void:
 	pass
 
@@ -155,42 +179,59 @@ func detectar_empuje() -> void:
 # ============================================================================
 # ESTADOS Y ANIMACIÓN
 # ============================================================================
-func actualizar_estado(dir: float) -> void:
-	if not is_on_floor():
-		estado_actual = Estado.SALTANDO if velocity.y < 0 else Estado.CAYENDO
-	elif esta_empujando:
-		estado_actual = Estado.EMPUJANDO
-	elif dir != 0:
-		estado_actual = Estado.CAMINANDO
-	else:
-		estado_actual = Estado.IDLE
+func cambiar_estado(nom_estado: String) -> void:
+	if current_state and current_state.name == nom_estado:
+		return
+	if current_state:
+		current_state.exit()
+	current_state = states.get(nom_estado, null)
+	if current_state:
+		current_state.enter(self)
 
 func reproducir_animacion() -> void:
-	var accion: String = acciones[estado_actual]
-	if estado_actual != Estado.EMPUJANDO or velocity.x != 0:
-		animated_sprite_player.play(nombre_animacion(accion))
+	if not current_state:
+		return
+		
+	#--Nombre del estado actual
+	var estado = current_state.name
+	
+	#-- Mapeo de animacion
+	match estado:
+		"idle":
+			animated_sprite_player.play(nombre_animacion("Idle"))
+		"caminar":
+			animated_sprite_player.play(nombre_animacion("Walk"))
+		"saltar":
+			animated_sprite_player.play(nombre_animacion("Up"))
+		"caer":
+			animated_sprite_player.play(nombre_animacion("Down"))
+		"empujar":
+			if velocity.x != 0:
+				animated_sprite_player.play(nombre_animacion("Push"))
 
 func nombre_animacion(accion: String) -> String:
 	return nombre + accion + equipo
 
 # ============================================================================
-# VIDAS, PUNTOS Y HUD
+# DAÑO
 # ============================================================================
-func recibir_dmg(dmg) -> void:
-	var dir: float = 0.0
+func recibir_dmg(dmg: int) -> void:
 	if intocable:
 		return
-
-	if not hud:
-		asignar_hud()
-	JugadorSeleccionado.perder_vida()
-	if hud:
-		hud.actualizar_vidas()
-
-	iniciar_retroceso(dir)
+	print("Jugador: colisión detectada, dmg =", dmg)
+	emit_signal("jugador_pierde_vida", dmg)
+	
+	#-- retroceso visual y animacion
+	iniciar_retroceso(-ultima_dir)
 	intocable = true
 	modulate.a = 0.5
 	timer_intocable.start()
+	
+func caer_al_vacio() -> void:
+	if intocable:
+		return
+	recibir_dmg(1)
+	reaparecer()
 	
 func _on_area_daño_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	if area.is_in_group("DMG") and not intocable:
@@ -199,35 +240,31 @@ func _on_area_daño_area_shape_entered(area_rid: RID, area: Area2D, area_shape_i
 func _on_timer_intocable_timeout() -> void:
 	intocable = false
 	modulate = Color(1, 1, 1)
+	
+# ============================================================================
+# VIDAS Y PUNTOS
+# ============================================================================
 
 func ganar_puntos(cantidad: int) -> void:
-	JugadorSeleccionado.agregar_puntos(cantidad)
-	if hud:
-		hud.actualizar_puntos(JugadorSeleccionado.get_puntos())
+	emit_signal("jugador_gana_puntos", cantidad)
 
-func ganar_vidas() -> void:
-	JugadorSeleccionado.ganar_vida()
-	hud.actualizar_vidas()
+func ganar_vidas(cantidad: int) -> void:
+	emit_signal("jugador_gana_vida", cantidad)
 
-func _cuando_se_acabe_tiempo() -> void:
-	JugadorSeleccionado.morir()
-
-func set_hud(h: Node) -> void:
-	hud = h
-	hud.connect("tiempo_terminado", Callable(self, "_cuando_se_acabe_tiempo"))
-	hud.actualizar_vidas()
-	hud.actualizar_puntos(puntos)
+# ============================================================================
+# REAPARICION
+# ============================================================================
+func reaparecer() -> void:
+	global_position = punto_reaparicion
+	velocity = Vector2.ZERO
+	modulate = Color(1, 1, 1)
+	intocable = true
+	timer_intocable.start()
 	
-func asignar_hud():
-	#-- Busca automaticamente el nodo HUD desde la escena actual
-	if not hud == null:
-		var actualizar_hud = get_tree().get_current_scene().get_node_or_null("HUD")
-		if actualizar_hud:
-			hud = actualizar_hud
-			hud.connect("tiempo_terminado", Callable(self, "_cuando_se_acabe_tiempo"))
-			hud.actualizar_vidas()
-			hud.actualizar_puntos(puntos)
-
+	var colision = get_node_or_null("CollisionShape2D")
+	if colision:
+		colision.disabled = false
+	
 # ============================================================================
 # CÁMARA Y RETROCESO
 # ============================================================================
@@ -244,5 +281,3 @@ func iniciar_retroceso(direccion: float) -> void:
 	dir_retroceso = - ultima_dir
 	velocity = Vector2(dir_retroceso * RETROCESO_X, RETROCESO_Y)
 	estaba_empujando = false
-	modulate = Color(1, 0.5, 0.5)
-	
