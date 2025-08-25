@@ -1787,5 +1787,5 @@ z_index = 1
 position = Vector2(529, 138)
 
 [node name="Delgado" parent="." instance=ExtResource("4_iyvrh")]
-position = Vector2(232, -517)
+position = Vector2(1165, 574)
 nombre = ""

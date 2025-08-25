@@ -1398,7 +1398,7 @@ libraries = {
 autoplay = "RESET"
 
 [node name="Delgado" parent="." instance=ExtResource("14_31m0w")]
-position = Vector2(1847, -173)
+position = Vector2(1848, -173)
 collision_mask = 51
 nombre = ""
 
