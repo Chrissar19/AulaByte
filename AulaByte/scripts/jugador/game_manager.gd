@@ -47,6 +47,7 @@ var actividades_por_nivel := {
 
 var puerta_actual: Node = null
 @export var modo_tester_actividad := false
+var ui_actividad: CanvasLayer
 
 #--------------------------------------------------------------------------------
 # NIVELES
@@ -218,30 +219,50 @@ func cambiar_estado(nuevo_estado: EstadoJuego) -> void:
 # =====================================================================
 # ACTIVIDAD POR NIVEL
 # =====================================================================
-func solicitar_minijuego(puerta: Node) -> void:
-	puerta_actual = puerta
+func solicitar_minijuego() -> void:
+	print("Solicitando actividad para nivel: ", nivel_actual)
 	var nivel := nivel_actual
-	print("Nivel actual: ", nivel_actual)
-	if modo_tester_actividad:
-		nivel = 0
+	if actividades_por_nivel.has(nivel):
+		var escena_actividad = actividades_por_nivel[nivel]
+		if escena_actividad:
+			#-- Crea un CanvasLayer para la actividad
+			ui_actividad = CanvasLayer.new()
+			ui_actividad.layer = 15 #-- Capa para que la actividad este encima
+			get_tree().root.add_child(ui_actividad)
+			
+			var actividad = escena_actividad.instantiate()
+			
+			#-- Ajustar pantalla si es UI
+			if actividad is Control:
+				actividad.set_anchors_preset(Control.PRESET_FULL_RECT)
+				actividad.mouse_filter = Control.MOUSE_FILTER_STOP
+				actividad.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+				
+			#-- Añadir la actividad a Canvas
+			ui_actividad.add_child(actividad)
+			
+			#-- Conectar señal
+			if actividad.has_signal("resuelto"):
+				actividad.connect("resuelto", Callable(self, "_on_minijuego_resuelto"))
+			else:
+				push_error("La actividad no tiene señal resuelto")
+				
+		else:
+			push_error("Escena de actividad no válida para el nivel " + str(nivel))
+	else:
+		push_error("No hay actividad definida para el nivel " + str(nivel))
 		
-	var escena_actividad: PackedScene = actividades_por_nivel.get(nivel, null)
-	if not escena_actividad:
-		print("No hay actividad para este nivel, ABRIENDO PUERTA")
-		puerta.abrir_puerta()
-		return
+
+func __on_minijuego_resuelto(exito: bool) -> void:
+	if ui_actividad:
+		ui_actividad.queue_free()
+		ui_actividad = null
 		
-	var actividad = escena_actividad.instantiate()
-	actividad.pause_mode = Node.PROCESS_MODE_PAUSABLE
-	get_tree().paused = true
-	get_tree().current_scene.add_child(actividad)
-	
-	#-- Conectar las señales
-	actividad.resuelto.connect(func(exito: bool):
+		#-- Reanuda el juego
 		get_tree().paused = false
+		
 		if exito:
-			print("Minijuego resuelto, ABRIENDO PUERTA")
-			puerta_actual.abrir_puerta()
-		puerta_actual = null
-		actividad.queue_free()
-	)
+			print("prueba superada, ABRIENDO PUERTA")
+		emit_signal("actividad_superada")
+	else:
+		print("Prueba fallida, INTENTALO DE NUEVO")
