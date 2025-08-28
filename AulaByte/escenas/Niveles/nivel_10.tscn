@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://dcrxsoxpi4gwj"]
+[gd_scene load_steps=31 format=4 uid="uid://dcrxsoxpi4gwj"]
 
 [ext_resource type="Script" uid="uid://wpxeklo0qb7c" path="res://scripts/niveles/nivel_10.gd" id="1_2mcb4"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_t5ix2"]
@@ -1102,18 +1102,48 @@ separation = Vector2i(1, 1)
 physics_layer_0/collision_layer = 33
 sources/0 = SubResource("TileSetAtlasSource_7svhg")
 
-[sub_resource type="Animation" id="Animation_ys3pd"]
-length = 0.001
-
-[sub_resource type="Animation" id="Animation_2mcb4"]
-resource_name = "new_animation"
-length = 2.5
-loop_mode = 2
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_bonas"]
+[sub_resource type="Curve2D" id="Curve2D_ys3pd"]
 _data = {
-&"RESET": SubResource("Animation_ys3pd"),
-&"new_animation": SubResource("Animation_2mcb4")
+"points": PackedVector2Array(0, 0, 0, 0, 601, 5, 0, 0, 0, 0, 1265, 4)
+}
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_bonas"]
+resource_name = "new_animation"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_t5ix2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ihbbq"]
+_data = {
+&"RESET": SubResource("Animation_t5ix2"),
+&"new_animation": SubResource("Animation_bonas")
 }
 
 [node name="NivelTuto" type="Node2D"]
@@ -1305,16 +1335,6 @@ position = Vector2(2782, -495)
 z_index = 2
 position = Vector2(3266, -900)
 
-[node name="Plataforma" parent="Plataformas" instance=ExtResource("12_6seny")]
-z_index = 2
-position = Vector2(671, 9)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Plataformas/Plataforma"]
-libraries = {
-&"": SubResource("AnimationLibrary_bonas")
-}
-autoplay = "new_animation"
-
 [node name="PlataformaCae" parent="Plataformas" instance=ExtResource("16_ys3pd")]
 position = Vector2(2551, -158)
 
@@ -1341,6 +1361,24 @@ position = Vector2(2933, -156)
 
 [node name="Plataforma4" parent="Plataformas" instance=ExtResource("12_6seny")]
 position = Vector2(1848, -1167)
+
+[node name="Path2D" type="Path2D" parent="Plataformas"]
+z_index = 5
+curve = SubResource("Curve2D_ys3pd")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Plataformas/Path2D"]
+position = Vector2(601, 5)
+rotation = -0.00150602
+
+[node name="Plataforma" parent="Plataformas/Path2D/PathFollow2D" instance=ExtResource("12_6seny")]
+z_index = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Plataformas/Path2D/PathFollow2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_ihbbq")
+}
+autoplay = "new_animation"
+speed_scale = 0.5
 
 [node name="Avisos" type="Node" parent="."]
 
