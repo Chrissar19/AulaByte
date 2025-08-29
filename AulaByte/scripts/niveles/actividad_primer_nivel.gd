@@ -5,58 +5,102 @@ extends Control
 # ===========================
 signal resuelto(exito: bool)
 
-const DIRECCIONES := [
-	{"dir": "abajo", "icon": preload("res://recursos/imagenes/objetos/Flecha abajo.png")},
-	{"dir": "arriba", "icon": preload("res://recursos/imagenes/objetos/Flecha arriba.png")},
-	{"dir": "izquierda", "icon": preload("res://recursos/imagenes/objetos/Flecha izq.png")},
-	{"dir": "derecha", "icon": preload("res://recursos/imagenes/objetos/Flecha dere.png")},
-]
+#-- Referencias a los nodos de la interfaz
+@onready var lbl_intentos: Label = $LblIntentos
+@onready var salida_texto: Label = $SalidaTexto
+@onready var dato_1: Label = $HBoxClaves/Dato1
+@onready var dato_2: Label = $HBoxClaves/Dato2
+@onready var dato_3: Label = $HBoxClaves/Dato3
+@onready var dato_4: Label = $HBoxClaves/Dato4
+@onready var btn_derecha: TextureButton = $BtnDerecha
+@onready var btn_izquierda: TextureButton = $BtnIzquierda
+@onready var btn_arriba: TextureButton = $BtnArriba
+@onready var btn_abajo: TextureButton = $BtnAbajo
+@onready var btn_confirmar: Button = $BtnConfirmar
+@onready var btn_salir: Button = $BtnSalir
+@onready var btn_borrar: Button = $BtnBorrar
 
-@onready var nodo_flechas := [
-	$HBoxContainer/Flecha1,
-	$HBoxContainer/Flecha2,
-	$HBoxContainer/Flecha3,
-	$HBoxContainer/Flecha4,
-]
 
-var clave_correcta: Array[String] = []
-var clave_ingresada: Array[String] = [] #-- Lo que ingresa el jugador
+
+#-- Variables
+var contrasenna_correcta: Array[int] = []
+var contrasenna_ingresada: Array[int] = []
+var intentos: int = 3
+
+func _ready() -> void:
+	generar_clave()
+	
+	btn_arriba.pressed.connect(_on_boton_numero_pressed.bind(1))
+	btn_izquierda.pressed.connect(_on_boton_numero_pressed.bind(2))
+	btn_abajo.pressed.connect(_on_boton_numero_pressed.bind(3))
+	btn_derecha.pressed.connect(_on_boton_numero_pressed.bind(4))
+	
+	btn_borrar.pressed.connect(_on_btn_borrar_pressed)
+	btn_confirmar.pressed.connect(_on_btn_confirmar_pressed)
+	btn_salir.pressed.connect(_on_btn_salir_pressed)
+	
+	actualizar_pantalla()
+	salida_texto.text = "Ingresa la contraseña"
 
 func generar_clave() -> void:
-	clave_correcta.clear()
-	var random = DIRECCIONES.duplicate()
-	random.shuffle()
+	var num_aleatrorio = RandomNumberGenerator.new()
+	contrasenna_correcta.clear()
 	
 	for i in range(4):
-		nodo_flechas[i].texture = random[i]["icon"]
-		clave_correcta.append(random[i]["dir"])
+		contrasenna_correcta.append(num_aleatrorio.randi_range(1, 4))
+		
+	print("Código correcto: ", contrasenna_correcta)
 		
 
-func _on_boton_direccion_pressed(direccion: String) -> void:
-	clave_ingresada.append(direccion)
-	if clave_ingresada.size() > 4:
-		clave_ingresada.clear()
+func _on_boton_numero_pressed(numero: int) -> void:
+	if contrasenna_ingresada.size() < 4:
+		contrasenna_ingresada.append(numero)
+		actualizar_pantalla()
 		
 
 func _on_btn_confirmar_pressed() -> void:
-	var exito = (clave_ingresada == clave_correcta)
-	print("Clave correcta: ", clave_correcta)
-	print("Clave ingresada: ", clave_ingresada)
-	emit_signal("resuelto", exito)
+	if contrasenna_ingresada.size() < 4:
+		salida_texto.text = "Contraseña incompleto"
+		return
+		
+	var acierto = contrasenna_ingresada == contrasenna_correcta
+	
+	if acierto:
+		salida_texto.text = "¡Contraseña correcta!"
+		#-- pausa pequeña
+		await get_tree().create_timer(1.0).timeout
+		emit_signal("resuelto", true)
+		queue_free()
+	else:
+		intentos -= 1
+		if intentos <= 0:
+			lbl_intentos.text = "Se agotaron los intentos."
+			salida_texto.text = "Contraseña incorrecta."
+			await get_tree().create_timer(1.5).timeout
+			emit_signal("resuelto", false)
+			queue_free()
+		else:
+			salida_texto.text = "Contraseña incorrecta"
+			lbl_intentos.text = "Intentos restantes: %d" % intentos
+			
+			contrasenna_ingresada.clear()
+			actualizar_pantalla()
+
+func actualizar_pantalla() -> void:
+	var datos = [dato_1, dato_2, dato_3, dato_4]
+	
+	for i in range(datos.size()):
+		if i < contrasenna_ingresada.size():
+			datos[i].text = str(contrasenna_ingresada[i])
+		else:
+			datos[i].text = "*"
+
+func _on_btn_borrar_pressed() -> void:
+	contrasenna_ingresada.clear()
+	actualizar_pantalla()
+	salida_texto.text = "Ingrese la contraseña"
+
+
+func _on_btn_salir_pressed() -> void:
+	emit_signal("resuelto", false)
 	queue_free()
-
-
-func _on_btn_arriba_pressed() -> void:
-	_on_boton_direccion_pressed("arriba")
-
-
-func _on_btn_izquierda_pressed() -> void:
-	_on_boton_direccion_pressed("izquierda")
-
-
-func _on_btn_abajo_pressed() -> void:
-	_on_boton_direccion_pressed("abajo")
-
-
-func _on_btn_derecha_pressed() -> void:
-	_on_boton_direccion_pressed("derecha")

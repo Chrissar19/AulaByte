@@ -46,8 +46,8 @@ var actividades_por_nivel := {
 }
 
 var puerta_actual: Node = null
-@export var modo_tester_actividad := false
 var ui_actividad: CanvasLayer
+var Codigo_actividad_actual: Array[int] = []
 
 #--------------------------------------------------------------------------------
 # NIVELES
@@ -237,15 +237,33 @@ func solicitar_minijuego() -> void:
 				actividad.set_anchors_preset(Control.PRESET_FULL_RECT)
 				actividad.mouse_filter = Control.MOUSE_FILTER_STOP
 				actividad.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+				ui_actividad.add_child(actividad)
+			elif actividad is Node2D:
+				actividad.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+				#-- Añadir la actividad a Canvas
+				ui_actividad.add_child(actividad)
 				
-			#-- Añadir la actividad a Canvas
-			ui_actividad.add_child(actividad)
-			
+				#-- Obtenemos la camara actual
+				var pantalla = get_tree().root.get_viewport()
+				var camara = pantalla.get_camera_2d()
+				
+				if camara:
+					#-- posicionamos la actividad en el entro de la camara
+					var camara_centrada = camara.global_position
+					actividad.global_position = camara_centrada
+				else:
+					var tam_pantalla = pantalla.get_visible_rect().size
+					actividad.global_position = tam_pantalla / 2
+				
 			#-- Conectar señal
 			if actividad.has_signal("resuelto"):
 				actividad.connect("resuelto", Callable(self, "_on_minijuego_resuelto"))
 			else:
 				push_error("La actividad no tiene señal resuelto")
+				
+			#-- Pausa el nivel del juego
+			await get_tree().process_frame
+			get_tree().paused = true
 				
 		else:
 			push_error("Escena de actividad no válida para el nivel " + str(nivel))
@@ -266,3 +284,6 @@ func __on_minijuego_resuelto(exito: bool) -> void:
 		emit_signal("actividad_superada")
 	else:
 		print("Prueba fallida, INTENTALO DE NUEVO")
+		
+func codigo_actividad(codigo: Array[int]) -> void:
+	Codigo_actividad_actual = codigo
