@@ -1,4 +1,4 @@
-extends Control
+extends ActividadBase
 
 # ===========================
 # Ajustes
@@ -43,12 +43,14 @@ func _ready() -> void:
 	salida_texto.text = "Ingresa la contraseña"
 
 func generar_clave() -> void:
+	if not contrasenna_correcta.is_empty():
+		return
+		
 	var num_aleatrorio = RandomNumberGenerator.new()
 	contrasenna_correcta.clear()
 	
 	for i in range(4):
 		contrasenna_correcta.append(num_aleatrorio.randi_range(1, 4))
-		
 	print("Código correcto: ", contrasenna_correcta)
 		
 
@@ -104,3 +106,19 @@ func _on_btn_borrar_pressed() -> void:
 func _on_btn_salir_pressed() -> void:
 	emit_signal("resuelto", false)
 	queue_free()
+
+#-- Implementa el método para recibir parámetros
+func configurar_con_parametros(parametros: Dictionary) -> void:
+	if parametros.has("codigo"):
+		#-- validad y convertir en entero
+		contrasenna_correcta = []
+		for elemento in parametros["codigo"]:
+			contrasenna_correcta.append(int(elemento))
+		print("Código correcto establecido desde parámetros: ", contrasenna_correcta)
+	
+	if parametros.has("intentos"):
+		intentos = int(parametros["intentos"])
+		if lbl_intentos != null:
+			lbl_intentos.text = "Intentos: %d" % intentos
+		else:
+			push_error("El parámetro 'intentos' debe ser un número entero")

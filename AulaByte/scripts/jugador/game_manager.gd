@@ -45,9 +45,11 @@ var actividades_por_nivel := {
 	0: preload("res://escenas/Niveles/actividades/actividad_primer_nivel.tscn"),
 }
 
+var parametros_actividad: Dictionary = {}
+var codigo_actividad_actual: Array[int] = []
+var codigo_generado: bool = false
 var puerta_actual: Node = null
 var ui_actividad: CanvasLayer
-var Codigo_actividad_actual: Array[int] = []
 
 #--------------------------------------------------------------------------------
 # NIVELES
@@ -200,6 +202,7 @@ func pantalla_de_carga() -> void:
 func reiniciar_nivel() -> void:
 	reiniciar_puntos()
 	reiniciar_vidas()
+	
 	tiempo_nivel_actual = 0.0
 	estado_actual = EstadoJuego.JUGANDO
 	
@@ -231,6 +234,10 @@ func solicitar_minijuego() -> void:
 			get_tree().root.add_child(ui_actividad)
 			
 			var actividad = escena_actividad.instantiate()
+			
+			#-- Pasar los parametros de cada actividad si esta definido
+			if not parametros_actividad.is_empty() and actividad.has_method("configurar_con_parametros"):
+				actividad.configurar_con_parametros(parametros_actividad)
 			
 			#-- Ajustar pantalla si es UI
 			if actividad is Control:
@@ -264,6 +271,9 @@ func solicitar_minijuego() -> void:
 			#-- Pausa el nivel del juego
 			await get_tree().process_frame
 			get_tree().paused = true
+			
+			#-- Limpiar parametros
+			parametros_actividad = {}
 				
 		else:
 			push_error("Escena de actividad no válida para el nivel " + str(nivel))
@@ -271,7 +281,7 @@ func solicitar_minijuego() -> void:
 		push_error("No hay actividad definida para el nivel " + str(nivel))
 		
 
-func __on_minijuego_resuelto(exito: bool) -> void:
+func _on_minijuego_resuelto(exito: bool) -> void:
 	if ui_actividad:
 		ui_actividad.queue_free()
 		ui_actividad = null
@@ -285,5 +295,21 @@ func __on_minijuego_resuelto(exito: bool) -> void:
 	else:
 		print("Prueba fallida, INTENTALO DE NUEVO")
 		
-func codigo_actividad(codigo: Array[int]) -> void:
-	Codigo_actividad_actual = codigo
+func establecer_parametros_actividad(parametros: Dictionary) -> void:
+	var codigo = generar_codigo()
+	
+	parametros["codigo"] = codigo
+	parametros_actividad = parametros
+	
+func generar_codigo() -> Array[int]:
+	if not codigo_generado or codigo_actividad_actual.is_empty():
+		var num_random = RandomNumberGenerator.new()
+		num_random.randomize()
+		
+		codigo_actividad_actual = []
+		for i in range(4):
+			codigo_actividad_actual.append(num_random.randf_range(1, 4))
+		codigo_generado = true
+		print("Codigo generado para el nivel: ", codigo_actividad_actual)
+		
+	return codigo_actividad_actual
