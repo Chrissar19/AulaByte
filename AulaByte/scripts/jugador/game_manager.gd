@@ -206,6 +206,9 @@ func reiniciar_nivel() -> void:
 	tiempo_nivel_actual = 0.0
 	estado_actual = EstadoJuego.JUGANDO
 	
+	codigo_generado = false
+	codigo_actividad_actual.clear()
+	
 # ============================================================================
 # Control del estado global
 # ============================================================================
@@ -256,8 +259,7 @@ func solicitar_minijuego() -> void:
 				
 				if camara:
 					#-- posicionamos la actividad en el entro de la camara
-					var camara_centrada = camara.global_position
-					actividad.global_position = camara_centrada
+					actividad.global_position = camara
 				else:
 					var tam_pantalla = pantalla.get_visible_rect().size
 					actividad.global_position = tam_pantalla / 2
@@ -271,9 +273,6 @@ func solicitar_minijuego() -> void:
 			#-- Pausa el nivel del juego
 			await get_tree().process_frame
 			get_tree().paused = true
-			
-			#-- Limpiar parametros
-			parametros_actividad = {}
 				
 		else:
 			push_error("Escena de actividad no válida para el nivel " + str(nivel))
@@ -296,9 +295,11 @@ func _on_minijuego_resuelto(exito: bool) -> void:
 		print("Prueba fallida, INTENTALO DE NUEVO")
 		
 func establecer_parametros_actividad(parametros: Dictionary) -> void:
-	var codigo = generar_codigo()
-	
-	parametros["codigo"] = codigo
+	if codigo_actividad_actual.is_empty():
+		var codigo = generar_codigo()
+		parametros["codigo"] = codigo
+	else:
+		parametros["codigo"] = codigo_actividad_actual
 	parametros_actividad = parametros
 	
 func generar_codigo() -> Array[int]:
@@ -308,7 +309,7 @@ func generar_codigo() -> Array[int]:
 		
 		codigo_actividad_actual = []
 		for i in range(4):
-			codigo_actividad_actual.append(num_random.randf_range(1, 4))
+			codigo_actividad_actual.append(num_random.randi_range(1, 4))
 		codigo_generado = true
 		print("Codigo generado para el nivel: ", codigo_actividad_actual)
 		

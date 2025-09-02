@@ -28,8 +28,6 @@ var contrasenna_ingresada: Array[int] = []
 var intentos: int = 3
 
 func _ready() -> void:
-	generar_clave()
-	
 	btn_arriba.pressed.connect(_on_boton_numero_pressed.bind(1))
 	btn_izquierda.pressed.connect(_on_boton_numero_pressed.bind(2))
 	btn_abajo.pressed.connect(_on_boton_numero_pressed.bind(3))
@@ -42,18 +40,6 @@ func _ready() -> void:
 	actualizar_pantalla()
 	salida_texto.text = "Ingresa la contraseña"
 
-func generar_clave() -> void:
-	if not contrasenna_correcta.is_empty():
-		return
-		
-	var num_aleatrorio = RandomNumberGenerator.new()
-	contrasenna_correcta.clear()
-	
-	for i in range(4):
-		contrasenna_correcta.append(num_aleatrorio.randi_range(1, 4))
-	print("Código correcto: ", contrasenna_correcta)
-		
-
 func _on_boton_numero_pressed(numero: int) -> void:
 	if contrasenna_ingresada.size() < 4:
 		contrasenna_ingresada.append(numero)
@@ -62,7 +48,7 @@ func _on_boton_numero_pressed(numero: int) -> void:
 
 func _on_btn_confirmar_pressed() -> void:
 	if contrasenna_ingresada.size() < 4:
-		salida_texto.text = "Contraseña incompleto"
+		salida_texto.text = "Contraseña incompleta"
 		return
 		
 	var acierto = contrasenna_ingresada == contrasenna_correcta
@@ -93,7 +79,16 @@ func actualizar_pantalla() -> void:
 	
 	for i in range(datos.size()):
 		if i < contrasenna_ingresada.size():
-			datos[i].text = str(contrasenna_ingresada[i])
+			var valor = contrasenna_ingresada[i]  # ← Aquí está el número (1,2,3,4)
+			
+			if valor == 1:
+				datos[i].text = "↑"
+			elif valor == 2:
+				datos[i].text = "←"
+			elif valor == 3:
+				datos[i].text = "↓"
+			elif valor == 4:
+				datos[i].text = "→"
 		else:
 			datos[i].text = "*"
 
