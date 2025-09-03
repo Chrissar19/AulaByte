@@ -1195,6 +1195,21 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="Animation" id="Animation_rnrjm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_sosw3"]
 resource_name = "new_animation"
 loop_mode = 2
@@ -1211,7 +1226,19 @@ tracks/0/keys = {
 "values": [0.0, 1.0]
 }
 
-[sub_resource type="Animation" id="Animation_rnrjm"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yscj8"]
+_data = {
+&"RESET": SubResource("Animation_rnrjm"),
+&"new_animation": SubResource("Animation_sosw3")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_ihbbq"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1896, -1165, 0, 0, 0, 0, 1604, -1170, 0, 0, 0, 0, 1597, -1247)
+}
+point_count = 3
+
+[sub_resource type="Animation" id="Animation_21x4d"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1225,18 +1252,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0]
 }
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_yscj8"]
-_data = {
-&"RESET": SubResource("Animation_rnrjm"),
-&"new_animation": SubResource("Animation_sosw3")
-}
-
-[sub_resource type="Curve2D" id="Curve2D_ihbbq"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1896, -1165, 0, 0, 0, 0, 1604, -1170, 0, 0, 0, 0, 1597, -1247)
-}
-point_count = 3
 
 [sub_resource type="Animation" id="Animation_yscj8"]
 resource_name = "new_animation"
@@ -1252,21 +1267,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 1.0]
-}
-
-[sub_resource type="Animation" id="Animation_21x4d"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:progress_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nnd1k"]
@@ -1548,7 +1548,6 @@ rotates = false
 [node name="Plataforma4" parent="Plataformas/Path2D4/PathFollow2D" instance=ExtResource("12_6seny")]
 position = Vector2(8.93982, -3.17468)
 rotation = 3.12211
-scale = Vector2(1, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Plataformas/Path2D4/PathFollow2D"]
 libraries = {
