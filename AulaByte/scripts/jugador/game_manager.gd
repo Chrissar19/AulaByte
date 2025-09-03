@@ -42,7 +42,7 @@ var estado_actual: EstadoJuego = EstadoJuego.MENU
 # =====================================================================
 var actividades_por_nivel := {
 	#-- Empieza en 1 ya que el niveltuto no tiene minijuego 0 es para testear
-	0: preload("res://escenas/Niveles/actividades/actividad_primer_nivel.tscn"),
+	1: preload("res://escenas/Niveles/actividades/actividad_primer_nivel.tscn"),
 }
 
 var parametros_actividad: Dictionary = {}
@@ -228,6 +228,7 @@ func cambiar_estado(nuevo_estado: EstadoJuego) -> void:
 func solicitar_minijuego() -> void:
 	print("Solicitando actividad para nivel: ", nivel_actual)
 	var nivel := nivel_actual
+	
 	if actividades_por_nivel.has(nivel):
 		var escena_actividad = actividades_por_nivel[nivel]
 		if escena_actividad:
@@ -277,7 +278,8 @@ func solicitar_minijuego() -> void:
 		else:
 			push_error("Escena de actividad no válida para el nivel " + str(nivel))
 	else:
-		push_error("No hay actividad definida para el nivel " + str(nivel))
+		print("No hay actividad definida para este nivel, puerta se abre directo")
+		emit_signal("actividad_superada")
 		
 
 func _on_minijuego_resuelto(exito: bool) -> void:

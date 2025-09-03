@@ -18,7 +18,7 @@
 [ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/Fuentes/Normal.ttf" id="16_6d66m"]
 [ext_resource type="PackedScene" uid="uid://cl1bwd6mofchq" path="res://escenas/objetos_interacciones/item_vida.tscn" id="18_128oc"]
 [ext_resource type="PackedScene" uid="uid://fva12xfahbpb" path="res://escenas/objetos_interacciones/puerta_nivel.tscn" id="19_e0mik"]
-[ext_resource type="PackedScene" uid="uid://nsgxxilg71vc" path="res://escenas/trampas/pico.tscn" id="20_rkb6m"]
+[ext_resource type="PackedScene" uid="uid://57wg0kv8rcf6" path="res://escenas/personajes/Delgado/delgado.tscn" id="19_rkb6m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5rite"]
 texture = ExtResource("2_1g06v")
@@ -1364,11 +1364,11 @@ position = Vector2(0, 256)
 collision_layer = 64
 collision_mask = 12
 
-[node name="Pico" parent="." instance=ExtResource("20_rkb6m")]
-position = Vector2(-45, -47)
-altura_colision = 200.0
-
 [node name="PuntoControl" parent="." instance=ExtResource("4_ougkj")]
-position = Vector2(-304, -116)
+z_index = 1
+position = Vector2(165, 141)
 
 [node name="HUD" parent="." instance=ExtResource("5_auyua")]
+
+[node name="Delgado" parent="." instance=ExtResource("19_rkb6m")]
+position = Vector2(598, 61)
