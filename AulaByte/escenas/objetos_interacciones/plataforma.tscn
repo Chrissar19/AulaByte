@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dkm0atk4qawk3"]
+[gd_scene load_steps=9 format=3 uid="uid://dkm0atk4qawk3"]
 
 [ext_resource type="Texture2D" uid="uid://dclm53qe2idn1" path="res://recursos/imagenes/objetos/Plataforma.png" id="1_b5bdj"]
+[ext_resource type="Script" uid="uid://cm1f8af2ko7b2" path="res://scripts/objetos/plataforma_movil.gd" id="1_ulhy3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6eams"]
 atlas = ExtResource("1_b5bdj")
@@ -41,7 +42,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gp8j2"]
 size = Vector2(62, 13)
 
-[node name="Plataforma" type="AnimatableBody2D"]
+[node name="Plataforma" type="CharacterBody2D"]
+collision_layer = 4097
+collision_mask = 4
+script = ExtResource("1_ulhy3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_grm37")

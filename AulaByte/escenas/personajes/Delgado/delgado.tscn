@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://57wg0kv8rcf6"]
 
 [ext_resource type="PackedScene" uid="uid://ckai8femo32e4" path="res://escenas/personajes/personaje_base.tscn" id="1_ft0hi"]
-[ext_resource type="SpriteFrames" uid="uid://g345vwq0s2w4" path="res://escenas/personajes/Delgado/animation_delgado.tres" id="2_rojlo"]
+[ext_resource type="SpriteFrames" uid="uid://g345vwq0s2w4" path="res://datos/animation_delgado.tres" id="2_rojlo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rojlo"]
 size = Vector2(20, 42)

@@ -1,10 +1,14 @@
 extends Control
 
-# --- Constantes ---
+# ============================================================================
+# CONSTANTES
+# ============================================================================
 const ESPERA_POST_AUDIO := 3.0
 const VELOCIDAD_ESCRITURA := 0.06
 
+# ============================================================================
 # --- Variables exportadas ---
+# ============================================================================
 @export var imagenes: Array[Texture2D] = []
 @export var textos: Array[String] = []
 @export var audios: Array[AudioStream] = []

@@ -9,8 +9,6 @@ signal tiempo_terminado
 # NODOS
 # ============================================================================
 @onready var lbl_puntos: Label = $HBoxPuntos/lblPuntos
-@onready var lbl_tiempo: Label = $lblTiempo
-@onready var lbl_vidas: Label = $HBoxVidas/lblVidas
 @onready var lbl_tiempo_restante: Label = $HBoxTiempo/lblTiempoRestante
 @onready var contenedor_corazones: HBoxContainer = $HBoxVidas
 
@@ -18,46 +16,36 @@ signal tiempo_terminado
 # VARIABLES
 # ============================================================================
 var tiempo_restante: float = 90.0
-var tiempo_total: float = 0.0
-
 const CORAZON_TEX := preload("res://recursos/imagenes/ui/Corazon.png")
 
 # ============================================================================
 # READY
 # ============================================================================
 func _ready() -> void:
-	actualizar_vidas()
-	actualizar_puntos(JugadorSeleccionado.get_puntos())
-
-	JugadorSeleccionado.connect("vida_perdida", actualizar_vidas)
-	JugadorSeleccionado.connect("vida_ganada", actualizar_vidas)
-
-# ============================================================================
-# PROCESO DEL TIEMPO
-# ============================================================================
-func _process(delta: float) -> void:
-	tiempo_total += delta
-	
-	if tiempo_restante > 0:
-		tiempo_restante -= delta
-		tiempo_restante = max(tiempo_restante, 0)
-
-		lbl_tiempo_restante.text = "Tiempo: %d" % int(tiempo_restante)
+	#-- Busca al jugador inicial
+	if not GameManager.is_connected("vida_actualizada", Callable(self, "actualizar_vidas")):
+		GameManager.connect("vida_actualizada", Callable(self, "actualizar_vidas"))
+	if not GameManager.is_connected("jugador_gana_puntos", Callable(self, "actualizar_puntos")):
+		GameManager.connect("jugador_gana_puntos", Callable(self, "actualizar_puntos"))
+	if not GameManager.is_connected("tiempo_actualizado", Callable(self, "_on_tiempo_actualizado")):
+		GameManager.connect("tiempo_actualizado", Callable(self, "_on_tiempo_actualizado"))
+	if not GameManager.is_connected("tiempo_terminado", Callable(self, "_on_tiempo_terminado")):
+		GameManager.connect("tiempo_terminado", Callable(self, "_on_tiempo_terminado"))
+	if not GameManager.is_connected("jugador_muerto", Callable(self, "_on_jugador_muerto")):
+		GameManager.connect("jugador_muerto", Callable(self, "_on_jugador_muerto"))
 		
-		if tiempo_restante == 0:
-			emit_signal("tiempo_terminado")
+	# Estado inicial
+	actualizar_vidas(GameManager.vidas)
+	actualizar_puntos(GameManager.puntos)
+	_on_tiempo_actualizado(int(GameManager.tiempo_restante))
 
 # ============================================================================
-# ACTUALIZAR VIDAS EN UI
+# CALLBACK DE LAS SEÑALES DEL JUGADOR
 # ============================================================================
-func actualizar_vidas() -> void:
-	var vidas := JugadorSeleccionado.get_vidas()
-
+func actualizar_vidas(vidas: int) -> void:
 	# Limpiar corazones anteriores
 	for hijo in contenedor_corazones.get_children():
-		contenedor_corazones.remove_child(hijo)
 		hijo.queue_free()
-		
 	# Añadir corazones nuevos
 	for i in range(vidas):
 		var corazon := TextureRect.new()
@@ -66,8 +54,14 @@ func actualizar_vidas() -> void:
 		corazon.custom_minimum_size = Vector2(17, 17)
 		contenedor_corazones.add_child(corazon)
 
-# ============================================================================
-# ACTUALIZAR PUNTOS EN UI
-# ============================================================================
 func actualizar_puntos(puntos: int) -> void:
-	lbl_puntos.text = "Puntos: %d" % puntos
+	lbl_puntos.text = str(puntos)
+	
+# ============================================================================	
+# TIEMPO
+# ============================================================================	
+func _on_tiempo_actualizado(segundos: int) -> void:
+	lbl_tiempo_restante.text = "Tiempo: %d" % segundos
+
+func _on_tiempo_terminado() -> void:
+	emit_signal("tiempo_terminado")

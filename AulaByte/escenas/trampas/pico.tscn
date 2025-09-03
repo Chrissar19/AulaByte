@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://nsgxxilg71vc"]
+
+[ext_resource type="Script" uid="uid://cropxjmvhnetc" path="res://pico.gd" id="1_7fuak"]
+[ext_resource type="Texture2D" uid="uid://civngk5ol1h1a" path="res://recursos/imagenes/objetos/Pico.png" id="2_ny6lf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8h6di"]
+size = Vector2(66, 104.063)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_or3xy"]
+size = Vector2(24, 37.5)
+
+[node name="Pico" type="CharacterBody2D" groups=["DMG"]]
+z_index = 8
+collision_layer = 1024
+collision_mask = 36
+script = ExtResource("1_7fuak")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 18)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ny6lf")
+
+[node name="Detector" type="Area2D" parent="."]
+collision_layer = 2048
+collision_mask = 4
+
+[node name="ColisionDetector" type="CollisionShape2D" parent="Detector"]
+position = Vector2(0, 51.9688)
+shape = SubResource("RectangleShape2D_8h6di")
+
+[node name="DMG" type="Area2D" parent="." groups=["DMG"]]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DMG" groups=["DMG"]]
+position = Vector2(0, 18.25)
+shape = SubResource("RectangleShape2D_or3xy")
+
+[connection signal="body_entered" from="DMG" to="." method="_on_dmg_body_entered"]

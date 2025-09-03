@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://t8ur3tgfe14n"]
-
-[node name="PuntosInicio" type="Node2D"]
-
-[node name="InicioPrincipal" type="Marker2D" parent="."]
-
-[node name="Checkpont" type="Marker2D" parent="."]

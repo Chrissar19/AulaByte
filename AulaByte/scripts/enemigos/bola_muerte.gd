@@ -57,7 +57,7 @@ func longitud_cadena():
 		cantidad_cadena = int(distancia_cadena / 6)
 	bola.position.y += (cantidad_cadena * 6) - TAM_GANCHO
 	for i in range(cantidad_cadena):
-		var cadenas = preload("res://escenas/personajes/enemigos/cadena.tscn").instantiate()
+		var cadenas = preload("res://escenas/trampas/cadena.tscn").instantiate()
 		if i == 0:
 			cadenas.position = Vector2(0, TAM_GANCHO)
 		cadenas.position += Vector2(0, (6*(i+1)))

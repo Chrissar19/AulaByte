@@ -5,7 +5,6 @@ extends CharacterBody2D
 # ============================================================================
 @export var velocidad: float = 30.0
 @export var gravedad: float = 400.0
-@export var dmg: int = 1
 @export var impulso_salto: float = -250.0
 @export var impulso_impacto: float = 900.0
 @export var monedas: int = 3
@@ -24,13 +23,14 @@ var direccion: int = 1
 @onready var colision_slime: CollisionShape2D = $ColisionSlime
 @onready var audio_muerte: AudioStreamPlayer2D = $SensorPisoton/AudioMuerte
 @onready var particulas: CPUParticles2D = $ParticulasSlime
+@onready var area_daño: Area2D = $AreaDaño
 
 # ============================================================================
 # READY
 # ============================================================================
 func _ready() -> void:
 	add_to_group("Enemigos")
-	add_to_group("DMG")
+	area_daño.add_to_group("DMG")
 	sprite.play("slime_walk_blue")
 
 # ============================================================================
@@ -77,14 +77,16 @@ func _on_sensor_pisoton_body_entered(body: Node2D) -> void:
 			timer_muerte.start(0.4)
 
 # ============================================================================
-# DETECTOR DE COLISIÓN (DAÑO AL JUGADOR)
-# ============================================================================
-func _on_detector_jugador_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Jugador"):
-		body.recibir_dmg(dmg)
-
-# ============================================================================
 # DESAPARECER AL MORIR
 # ============================================================================
 func _on_timer_muerte_timeout() -> void:
 	queue_free()
+
+
+func _on_sensor_pisoton_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	if is_in_group("Cajas") and is_in_group("Pisos"):
+		set_physics_process(false)
+		sprite.play("slime_death_blue")
+		audio_muerte.play()
+		particulas.emitting = true
+		queue_free()
