@@ -367,6 +367,7 @@ position = Vector2(182, 319)
 
 [node name="HUD" parent="." instance=ExtResource("7_lkf4l")]
 visible = false
+script = null
 
 [node name="ZonaMuerte" parent="." instance=ExtResource("8_d7uev")]
 position = Vector2(2, 409)
@@ -506,7 +507,6 @@ collision_mask = 12
 [node name="Enemigos" type="Node" parent="."]
 
 [node name="SlimeAzul" parent="Enemigos" instance=ExtResource("12_aa8u6")]
-z_index = 1
 position = Vector2(225, 112)
 
 [node name="SlimeAzul2" parent="Enemigos" instance=ExtResource("12_aa8u6")]

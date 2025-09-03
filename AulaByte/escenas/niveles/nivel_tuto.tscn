@@ -1218,6 +1218,7 @@ tile_set = SubResource("TileSet_6d66m")
 
 [node name="HUD" parent="." instance=ExtResource("5_auyua")]
 visible = false
+script = null
 
 [node name="Vidas" type="Node" parent="."]
 
