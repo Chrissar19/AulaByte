@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ev07t2ua6sqb" path="res://recursos/imagenes/objetos/pinturas famosas.png" id="7_73hpg"]
 [ext_resource type="Texture2D" uid="uid://cxyafbo3ck6fg" path="res://recursos/imagenes/TileSets/Pisos.png" id="7_n6m8y"]
 [ext_resource type="PackedScene" uid="uid://jgf3xqgo0gm5" path="res://escenas/objetos_interacciones/saltarin.tscn" id="8_6guud"]
-[ext_resource type="PackedScene" uid="uid://t8ur3tgfe14n" path="res://escenas/ui/puntos_inicio.tscn" id="8_33t8k"]
+[ext_resource type="PackedScene" uid="uid://t8ur3tgfe14n" path="res://escenas/ui/punto_control.tscn" id="8_33t8k"]
 [ext_resource type="PackedScene" uid="uid://brfxoes3nrqbr" path="res://escenas/ui/hud.tscn" id="9_8ml5x"]
 [ext_resource type="PackedScene" uid="uid://mher13w4mave" path="res://escenas/trampas/zona_muerte.tscn" id="10_pvklx"]
 [ext_resource type="PackedScene" uid="uid://cydd1023br6iv" path="res://escenas/objetos_interacciones/bits_moneda.tscn" id="11_ew55n"]
@@ -1350,7 +1350,6 @@ position = Vector2(464, -99)
 [node name="enemigos" type="Node" parent="."]
 
 [node name="SlimeAzul" parent="enemigos" instance=ExtResource("14_qi2e3")]
-z_index = 1
 position = Vector2(225, 112)
 
 [node name="SlimeAzul2" parent="enemigos" instance=ExtResource("14_qi2e3")]
