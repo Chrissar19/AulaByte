@@ -280,6 +280,7 @@ func solicitar_minijuego() -> void:
 	else:
 		print("No hay actividad definida para este nivel, puerta se abre directo")
 		emit_signal("actividad_superada")
+		await get_tree().process_frame
 		
 
 func _on_minijuego_resuelto(exito: bool) -> void:
@@ -292,9 +293,10 @@ func _on_minijuego_resuelto(exito: bool) -> void:
 		
 		if exito:
 			print("prueba superada, ABRIENDO PUERTA")
-		emit_signal("actividad_superada")
-	else:
-		print("Prueba fallida, INTENTALO DE NUEVO")
+			emit_signal("actividad_superada")
+		else:
+			print("Prueba fallida, INTENTALO DE NUEVO")
+			perder_vida()
 		
 func establecer_parametros_actividad(parametros: Dictionary) -> void:
 	if codigo_actividad_actual.is_empty():
