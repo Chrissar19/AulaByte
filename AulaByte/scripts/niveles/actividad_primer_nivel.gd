@@ -3,7 +3,6 @@ extends ActividadBase
 # ===========================
 # Ajustes
 # ===========================
-signal resuelto(exito: bool)
 
 #-- Referencias a los nodos de la interfaz
 @onready var lbl_intentos: Label = $LblIntentos

@@ -10,21 +10,42 @@ signal personaje_seleccionado(id: int)
 signal tiempo_actualizado(segundos: int)
 signal tiempo_terminado
 signal jugador_gana_puntos(puntos: int)
+signal estado_cambiado(nuevo_estado: String)
+signal actividad_superada
+signal actividad_fallida
+
+# ============================================================================
+# Enumeraciones y constantes
+# ============================================================================
+enum EstadoJuego {
+	MENU_PRINCIPAL,
+	SELECCION_PERSONAJE,
+	CARGANDO,
+	JUGANDO,
+	PAUSA,
+	MINIJUEGO,
+	TRANSICION_NIVEL,
+	GAME_OVER,
+	CREDITOS
+}
+
+const VIDAS_INICIALES: int = 3
+const VIDAS_MAX: int = 5
+const TIEMPO_POR_NIVEL: float = 90.0
 
 # ============================================================================
 # Variables globales
 # ============================================================================
+var estado_actual: EstadoJuego = EstadoJuego.MENU_PRINCIPAL
+var estado_anterior: EstadoJuego
+
 # Personaje
 var id_personaje: int = -1
 var info_personaje: personajeInfo = null
 var jugador_ref: Node = null
 
-# Vidas
+# Vidas y puntos
 var vidas: int = 3
-const VIDAS_INICIALES: int = 3
-const VIDAS_MAX: int = 5
-
-# Puntos
 var puntos: int = 0
 
 # Tiempo
@@ -32,16 +53,9 @@ var tiempo_nivel_actual := 0.0
 var tiempo_restante := 90.0
 var tiempo_activo := false
 
-# Estado del juego
-enum EstadoJuego { MENU, JUGANDO, PAUSA, GAME_OVER }
-var estado_actual: EstadoJuego = EstadoJuego.MENU
-
-
-# =====================================================================
-# DICCIONARIO DE ACTIVIDADES
-# =====================================================================
+#-- Actividades
 var actividades_por_nivel := {
-	#-- Empieza en 1 ya que el niveltuto no tiene minijuego 0 es para testear
+	0: preload("res://escenas/Niveles/actividades/actividad_cero.tscn"),
 	1: preload("res://escenas/Niveles/actividades/actividad_primer_nivel.tscn"),
 }
 
@@ -51,11 +65,10 @@ var codigo_generado: bool = false
 var puerta_actual: Node = null
 var ui_actividad: CanvasLayer
 
-#--------------------------------------------------------------------------------
-# NIVELES
-#--------------------------------------------------------------------------------
+#-- Niveles
 @export var niveles: Niveles = preload("res://datos/niveles.tres")
 var nivel_actual: int = 0
+var nivel_precargado: PackedScene
 
 #--------------------------------------------------------------------------------
 # PROCESS
@@ -63,15 +76,70 @@ var nivel_actual: int = 0
 func _process(delta: float) -> void:
 	#-- El tiempo contara solo si es juego esta corriendo
 	if estado_actual == EstadoJuego.JUGANDO:
-		tiempo_nivel_actual += delta
-		if tiempo_restante > 0:
-			tiempo_restante -= delta
-			tiempo_restante = max(tiempo_restante, 0)
-			emit_signal("tiempo_actualizado", int(tiempo_restante))
+		_actualizar_tiempo(delta)
 		
-			if tiempo_restante == 0:
-				tiempo_activo = false
-				emit_signal("tiempo_terminado")
+func _actualizar_tiempo(delta: float) -> void:
+	tiempo_nivel_actual += delta
+	if tiempo_restante > 0:
+		tiempo_restante -= delta
+		tiempo_restante = max(tiempo_restante, 0)
+		emit_signal("tiempo_actualizado", int(tiempo_restante))
+		
+		if tiempo_restante == 0 and tiempo_activo:
+			tiempo_activo = false
+			emit_signal("tiempo_terminado")
+			cambiar_estado(EstadoJuego.GAME_OVER)
+				
+#--------------------------------------------------------------------------------
+# MAQUINA DE ESTADOS DE NIVELES
+#--------------------------------------------------------------------------------
+func cambiar_estado(nuevo_estado: EstadoJuego) -> void:
+	#-- Salir del estado actual
+	if nuevo_estado == estado_actual:
+		return
+	_salir_estado(estado_actual)
+	estado_anterior = estado_actual
+	estado_actual = nuevo_estado
+	
+	#-- Entrar al nuevo estado
+	_entrar_estado(estado_actual)
+	emit_signal("estado_cambiado", EstadoJuego.keys()[estado_actual])
+	
+func _entrar_estado(estado: EstadoJuego) -> void:
+	match estado:
+		EstadoJuego.JUGANDO:
+			print("Entrando a estado JUGANDO")
+			get_tree().paused = false
+			tiempo_activo = true
+			
+		EstadoJuego.PAUSA:
+			print("Entrando a estado PAUSA")
+			get_tree().paused = true
+			
+		EstadoJuego.MINIJUEGO:
+			print("Entrando a estado MINIJUEGO")
+			get_tree().paused = true
+			_mostrar_minijuego()
+			
+		EstadoJuego.CARGANDO:
+			print("Entrando a estado CARGANDO")
+			precargar_nivel()
+			pantalla_de_carga()
+			
+		EstadoJuego.TRANSICION_NIVEL:
+			print("Entrando a estado TRANSICION_NIVEL")
+			transicion_siguiente_nivel()
+			
+		EstadoJuego.GAME_OVER:
+			print("Entrando a estado GAME_OVER")
+			get_tree().change_scene_to_file("res://escenas/menu/menu_perder.tscn")
+			
+func _salir_estado(estado: EstadoJuego) -> void:
+	match estado:
+		EstadoJuego.MINIJUEGO:
+			print("Saliendo de estado MINIJUEGO")
+			_limpiar_minijuego()
+	
 
 #--------------------------------------------------------------------------------
 # CONEXION CON EL JUGADOR
@@ -79,16 +147,13 @@ func _process(delta: float) -> void:
 func set_jugador(jugador: Node) -> void:
 	jugador_ref = jugador
 	
-	#-- recibe la señal para cambios de vida
 	if jugador_ref.has_signal("jugador_gana_vida"):
 		jugador_ref.jugador_gana_vida.connect(_on_jugador_gana_vida)
 		
-	#-- recibe la señal cuando recibe daño
 	if jugador_ref.has_signal("jugador_pierde_vida"):
-		print("Conectando señal jugador_dmg de:", jugador_ref.name)
 		jugador_ref.jugador_pierde_vida.connect(_on_jugador_pierde_vida)
 	else:
-		print("El jugador no tiene señal jugador_dmg")
+		print("El jugador no tiene señal jugador_pierde_vida")
 		
 #--------------------------------------------------------------------------------
 # CALLBACKS DE SEÑALES DEL JUGADOR
@@ -98,7 +163,6 @@ func _on_jugador_gana_vida(vidas_actuales: int) -> void:
 	emit_signal("jugador_gana_vida", vidas)
 	
 func _on_jugador_pierde_vida(dmg: int) -> void:
-	print("GameManager: señal recibida, daño =", dmg)
 	perder_vida()
 
 #--------------------------------------------------------------------------------
@@ -116,8 +180,9 @@ func get_personaje() -> personajeInfo:
 # Manejo de puntos
 #--------------------------------------------------------------------------------
 func agregar_puntos(cantidad: int) -> void:
-	puntos += cantidad
-	emit_signal("jugador_gana_puntos", puntos)
+	if cantidad > 0:
+		puntos += cantidad
+		emit_signal("jugador_gana_puntos", puntos)
 
 func reiniciar_puntos() -> void:
 	puntos = 0
@@ -140,9 +205,6 @@ func perder_vida() -> void:
 			print("HAS MUERTO (GameManager)")
 			emit_signal("jugador_muerto")
 			cambiar_estado(EstadoJuego.GAME_OVER)
-			
-func _on_jugador_cayo_vacio() -> void:
-	perder_vida()
 	
 
 func ganar_vida() -> void:
@@ -164,10 +226,9 @@ func get_vidas() -> int:
 func get_tiempo() -> float:
 	return tiempo_nivel_actual
 	
-func iniciar_tiempo(segundos: float) -> void:
+func iniciar_tiempo(segundos: float = TIEMPO_POR_NIVEL) -> void:
 	tiempo_restante = segundos
 	tiempo_activo = true
-	estado_actual = EstadoJuego.JUGANDO
 	emit_signal("tiempo_actualizado", int(tiempo_restante))
 	
 # ============================================================================
@@ -178,20 +239,33 @@ func get_nivel_actual() -> PackedScene:
 		return niveles.nivel[nivel_actual]
 	return null
 	
+func precargar_nivel() -> void:
+	var siguiente_indice = nivel_actual + 1
+	if niveles and siguiente_indice < niveles.nivel.size():
+		nivel_precargado = niveles.nivel[siguiente_indice]
+		#-- Precargar recursos del nivel
+		if nivel_precargado:
+			ResourceLoader.load_threaded_request(nivel_precargado.resource_path)
+	
 func cargar_nivel_actual() -> void:
 	tiempo_nivel_actual = 0.0
-	estado_actual = EstadoJuego.JUGANDO
-	iniciar_tiempo(90.0)
+	iniciar_tiempo(TIEMPO_POR_NIVEL)
 	var nivel: PackedScene = get_nivel_actual()
 	if nivel:
 		get_tree().change_scene_to_packed(nivel)
 	else:
-		#-- AQUI VA LA ESCENA DE CREDITOS
-		print("AQUI VAN LOS CREDITOS")
+		cambiar_estado(EstadoJuego.CREDITOS)
+		
+func transicion_siguiente_nivel() -> void:
+	if not niveles or nivel_actual + 1 >= niveles.nivel.size():
+		#-- Ir a creditos
+		cambiar_estado(EstadoJuego.CREDITOS)
+	else:
+		nivel_actual += 1
+		cambiar_estado(EstadoJuego.CARGANDO)
 	
 func siguiente_nivel() -> void:
-	nivel_actual += 1
-	cargar_nivel_actual()
+	cambiar_estado(EstadoJuego.TRANSICION_NIVEL)
 
 func completar_nivel() -> void:
 	emit_signal("nivel_completado")
@@ -202,31 +276,19 @@ func pantalla_de_carga() -> void:
 func reiniciar_nivel() -> void:
 	reiniciar_puntos()
 	reiniciar_vidas()
-	
 	tiempo_nivel_actual = 0.0
-	estado_actual = EstadoJuego.JUGANDO
-	
 	codigo_generado = false
 	codigo_actividad_actual.clear()
-	
-# ============================================================================
-# Control del estado global
-# ============================================================================
-func cambiar_estado(nuevo_estado: EstadoJuego) -> void:
-	estado_actual = nuevo_estado
-	match estado_actual:
-		EstadoJuego.JUGANDO:
-			print("ESTADO JUGANDO")
-		EstadoJuego.GAME_OVER:
-			print("ESTADO GAME OVER")
-			get_tree().change_scene_to_file("res://escenas/menu/menu_perder.tscn")
-
+	cambiar_estado(EstadoJuego.JUGANDO)
 
 # =====================================================================
 # ACTIVIDAD POR NIVEL
 # =====================================================================
 func solicitar_minijuego() -> void:
 	print("Solicitando actividad para nivel: ", nivel_actual)
+	cambiar_estado(EstadoJuego.MINIJUEGO)
+	
+func _mostrar_minijuego() -> void:
 	var nivel := nivel_actual
 	
 	if actividades_por_nivel.has(nivel):
@@ -271,32 +333,27 @@ func solicitar_minijuego() -> void:
 			else:
 				push_error("La actividad no tiene señal resuelto")
 				
-			#-- Pausa el nivel del juego
-			await get_tree().process_frame
-			get_tree().paused = true
-				
 		else:
 			push_error("Escena de actividad no válida para el nivel " + str(nivel))
 	else:
 		print("No hay actividad definida para este nivel, puerta se abre directo")
 		emit_signal("actividad_superada")
-		await get_tree().process_frame
-		
 
-func _on_minijuego_resuelto(exito: bool) -> void:
+func _limpiar_minijuego() -> void:
 	if ui_actividad:
 		ui_actividad.queue_free()
 		ui_actividad = null
+
+func _on_minijuego_resuelto(exito: bool) -> void:
+	_limpiar_minijuego()
 		
-		#-- Reanuda el juego
-		get_tree().paused = false
-		
-		if exito:
-			print("prueba superada, ABRIENDO PUERTA")
-			emit_signal("actividad_superada")
-		else:
-			print("Prueba fallida, INTENTALO DE NUEVO")
-			perder_vida()
+	if exito:
+		print("prueba superada, ABRIENDO PUERTA")
+		emit_signal("actividad_superada")
+	else:
+		print("Prueba fallida, INTENTALO DE NUEVO")
+		perder_vida()
+		cambiar_estado(EstadoJuego.JUGANDO)
 		
 func establecer_parametros_actividad(parametros: Dictionary) -> void:
 	if codigo_actividad_actual.is_empty():
