@@ -195,7 +195,7 @@ offset_bottom = 217.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_ym4xr")
-text = "SALIR"
+text = "Salir"
 
 [node name="descripcion act" type="Label" parent="pantalla"]
 layout_mode = 2
@@ -205,7 +205,7 @@ offset_right = 663.0
 offset_bottom = 69.0
 theme_override_colors/font_color = Color(0.141176, 0.623529, 0.396078, 1)
 theme_override_fonts/font = ExtResource("4_ym4xr")
-text = "Organiza los elementos en la carpeta 
+text = "Organiza los eleméntos en la carpeta 
 que corresponda "
 horizontal_alignment = 1
 vertical_alignment = 1
