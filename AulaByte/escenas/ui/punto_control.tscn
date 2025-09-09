@@ -48,6 +48,7 @@ animations = [{
 }]
 
 [node name="PuntoControl" type="Area2D" groups=["Checkpoint"]]
+z_index = 2
 scale = Vector2(0.8, 0.8)
 collision_layer = 512
 collision_mask = 4

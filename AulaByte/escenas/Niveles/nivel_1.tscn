@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://ce4psiq5ll2ou"]
+[gd_scene load_steps=34 format=4 uid="uid://ce4psiq5ll2ou"]
 
 [ext_resource type="Script" uid="uid://coe5412e75vcn" path="res://scripts/niveles/nivel_1.gd" id="1_68m43"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_q4rug"]
@@ -15,7 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://jgf3xqgo0gm5" path="res://escenas/objetos_interacciones/saltarin.tscn" id="13_qw6dd"]
 [ext_resource type="PackedScene" uid="uid://fva12xfahbpb" path="res://escenas/objetos_interacciones/puerta_nivel.tscn" id="16_xcw0p"]
 [ext_resource type="PackedScene" uid="uid://bnj0srep62yxe" path="res://escenas/trampas/bola_muerte.tscn" id="17_5bg0a"]
-[ext_resource type="PackedScene" uid="uid://o7nxc8ggkh43" path="res://escenas/personajes/Insuasty/Insuasty.tscn" id="17_wf7ch"]
+[ext_resource type="Texture2D" uid="uid://dp6ddal4ebclo" path="res://recursos/imagenes/objetos/Flecha abajo.png" id="18_1lge7"]
+[ext_resource type="PackedScene" uid="uid://o7nxc8ggkh43" path="res://escenas/personajes/Insuasty/Insuasty.tscn" id="18_q4rug"]
 [ext_resource type="PackedScene" uid="uid://cl1bwd6mofchq" path="res://escenas/objetos_interacciones/item_vida.tscn" id="18_s863u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5rite"]
@@ -626,5 +627,39 @@ position = Vector2(797, 127)
 [node name="PuntoControl" parent="." instance=ExtResource("6_nlh1x")]
 position = Vector2(-505, 139)
 
-[node name="Insuasty" parent="." instance=ExtResource("17_wf7ch")]
-position = Vector2(685, -159)
+[node name="Cuadros" type="Node" parent="."]
+
+[node name="Cuadro1" type="TextureRect" parent="Cuadros"]
+z_index = 2
+offset_left = 169.0
+offset_top = -48.0
+offset_right = 233.0
+offset_bottom = 16.0
+texture = ExtResource("18_1lge7")
+
+[node name="Cuadro2" type="TextureRect" parent="Cuadros"]
+z_index = 2
+offset_left = -141.0
+offset_top = -298.0
+offset_right = -77.0
+offset_bottom = -234.0
+texture = ExtResource("18_1lge7")
+
+[node name="Cuadro3" type="TextureRect" parent="Cuadros"]
+z_index = 2
+offset_left = 423.0
+offset_top = -600.0
+offset_right = 487.0
+offset_bottom = -536.0
+texture = ExtResource("18_1lge7")
+
+[node name="Cuadro4" type="TextureRect" parent="Cuadros"]
+z_index = 2
+offset_left = 711.0
+offset_top = -58.0
+offset_right = 775.0
+offset_bottom = 6.0
+texture = ExtResource("18_1lge7")
+
+[node name="Insuasty" parent="." instance=ExtResource("18_q4rug")]
+position = Vector2(121, 31)
