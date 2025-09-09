@@ -10,7 +10,7 @@ size = Vector2(62, 12)
 size = Vector2(62, 1.5)
 
 [node name="PlataformaCae" type="Node2D"]
-z_index = 5
+z_index = 3
 script = ExtResource("2_iyhjf")
 vel_bajada = 50.0
 

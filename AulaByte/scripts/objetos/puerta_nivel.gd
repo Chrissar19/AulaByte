@@ -1,51 +1,37 @@
 extends Area2D
 
 @onready var animacion_puerta: AnimatedSprite2D = $AnimacionPuerta
-
 var jugador_en_puerta := false
-var interactuar := true
 
 func _ready() -> void:
 	animacion_puerta.play("Cerrada")
-	body_entered.connect(_on_body_entered)
-	body_exited.connect(_on_body_exited)
-	
-	if GameManager:
-		GameManager.actividad_superada.connect(abrir_puerta)
-	else:
-		call_deferred("_conectar_game_manager")
-	
+	connect("body_entered", Callable(self, "_on_body_entered"))
+	connect("body_exited", Callable(self, "_on_body_exited"))
+	call_deferred("_connect_game_manager_signals")
+
 func _process(delta: float) -> void:
-	if jugador_en_puerta and Input.is_action_just_pressed("Accion") and interactuar:
+	if jugador_en_puerta and Input.is_action_just_pressed("Accion"):
 		print("Presionó E en la puerta")
-		if GameManager and GameManager.estado_actual == GameManager.EstadoJuego.JUGANDO:
-			GameManager.solicitar_minijuego() #-- Pide el minijuego
+		if Engine.has_singleton("GameManager") or (typeof(GameManager) != TYPE_NIL and GameManager):
+			if GameManager.estado_actual == GameManager.EstadoJuego.JUGANDO:
+				GameManager.solicitar_minijuego()
 
-func _conectar_game_manager() -> void:
-	if GameManager:
-		GameManager.actividad_superada.connect(abrir_puerta)
-	else:
-		push_error("GameManager no encontrado para conectar señales")
-	
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("Jugador"):
+		print("Jugador entró en la puerta")
 		jugador_en_puerta = true
-		
 
-func _on_body_exited(body: Node2D) -> void:
+func _on_body_exited(body: Node) -> void:
 	if body.is_in_group("Jugador"):
 		jugador_en_puerta = false
-		
-func abrir_puerta():
-	interactuar = false
-	animacion_puerta.play("Abriendo") 
+
+func abrir_puerta() -> void:
+	animacion_puerta.play("Abriendo")
+	# esperar a que termine la animación
 	await animacion_puerta.animation_finished
-	if GameManager:
-		GameManager.siguiente_nivel()
-		
+
 func _connect_game_manager_signals() -> void:
-	if GameManager:
-		if GameManager.has_signal("actividad_superada"):
-			GameManager.actividad_superada.connect(Callable(self, "abrir_puerta"))
-		else:
-			push_error("GameManager no tiene señal 'actividad_superada'")
+	if GameManager and GameManager.has_signal("actividad_superada"):
+		GameManager.connect("actividad_superada", Callable(self, "abrir_puerta"))
+	else:
+		push_error("GameManager no tiene señal 'actividad_superada'")

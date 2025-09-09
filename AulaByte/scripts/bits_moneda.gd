@@ -4,12 +4,9 @@ extends Area2D
 # EXPORTS
 # ============================================================================
 @export var valor: int = 1       # Valor en puntos que otorga la moneda
-var autodestruir: bool = true    # Si es verdadera, la moneda se destruye tras recolectarla
-
-# ============================================================================
-# SEÑALES
-# ============================================================================
-signal reproducir_animacion_destruccion
+@export var animacion: bool = true    # Si es verdadera, la moneda se destruye tras recolectarla
+@export var distancia_moneda: float = 60 #-- Distancia que recorerra al desaparecer
+@export var duracion_moneda: float = 0.75
 
 # ============================================================================
 # NODOS
@@ -28,22 +25,25 @@ func _on_body_entered(body: Node2D) -> void:
 	# Sumar puntos al jugador
 	GameManager.agregar_puntos(valor)
 
-	# Actualizar el HUD si existe
-	var hud := get_tree().get_first_node_in_group("HUD")
-	if hud:
-		hud.actualizar_puntos(GameManager.get_puntos())
-
-	# Reproducir sonido y desactivar colisión
-	sonido_moneda.play()
+	#-- Desactivar colisioes
 	colision.call_deferred("set", "disabled", true)
-
-	if autodestruir:
-		sprite.visible = false
-		# Conectar para eliminar después del sonido
-		sonido_moneda.finished.connect(_on_sonido_terminado)
+	
+	# Reproducir sonido
+	sonido_moneda.play()
+	
+	#-- Efectos visuales
+	if animacion:
+		_animacion_destruccion()
 	else:
-		# Emitir señal para animación personalizada
-		reproducir_animacion_destruccion.emit()
+		sprite.visible = false
+		sonido_moneda.finished.connect(_on_sonido_terminado)
+		
+func _animacion_destruccion() -> void:
+	var tween = get_tree().create_tween().bind_node(self).set_parallel(true)
+	tween.tween_property(self, "position", position + Vector2.UP * distancia_moneda, duracion_moneda).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(sprite, "self_modulate", Color(Color.WHITE, 0), duracion_moneda)
+	await tween.finished
+	queue_free()
 
 func _on_sonido_terminado() -> void:
 	queue_free()

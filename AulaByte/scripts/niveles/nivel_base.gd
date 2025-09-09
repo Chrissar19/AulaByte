@@ -32,7 +32,7 @@ func _ready() -> void:
 	_cargar_personaje()
 	
 func _cargar_personaje() -> void:
-	var info_personaje := GameManager.get_personaje()
+	var info_personaje: personajeInfo = GameManager.get_personaje()
 	
 	if info_personaje and info_personaje.archivo_escena:
 		var jugador = info_personaje.archivo_escena.instantiate()
