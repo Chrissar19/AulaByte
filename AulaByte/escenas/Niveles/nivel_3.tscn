@@ -1172,11 +1172,6 @@ position = Vector2(-12, -907)
 visible = false
 script = null
 
-[node name="ZonaMuerte" parent="." instance=ExtResource("8_wv8ov")]
-position = Vector2(37, 335)
-collision_layer = 64
-collision_mask = 12
-
 [node name="Vidas" type="Node" parent="."]
 
 [node name="ItemVida" parent="Vidas" instance=ExtResource("18_6py4c")]
@@ -1310,3 +1305,8 @@ fuerza_rebote = -600.0
 position = Vector2(-259, 209)
 
 [node name="texto" type="Node" parent="."]
+
+[node name="ZonaMuerte" parent="." instance=ExtResource("8_wv8ov")]
+position = Vector2(-201, 457)
+collision_layer = 64
+collision_mask = 12

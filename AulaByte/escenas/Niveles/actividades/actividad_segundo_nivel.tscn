@@ -1,6 +1,6 @@
 [gd_scene load_steps=31 format=3 uid="uid://5adm1btnnvdu"]
 
-[ext_resource type="Script" uid="uid://c5co0tb6l3hqk" path="res://scripts/niveles/actividad_primer_nivel.gd" id="1_q8kuc"]
+[ext_resource type="Script" uid="uid://chxgio31ft7ts" path="res://scripts/niveles/actividad_2.gd" id="1_smdmc"]
 [ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="2_y7trj"]
 [ext_resource type="Texture2D" uid="uid://c4mntav8qaw5x" path="res://recursos/imagenes/TileSets/niveles/nivel 2.png" id="4_smdmc"]
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="4_ym4xr"]
@@ -134,14 +134,14 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f7e0o"]
 size = Vector2(111, 81)
 
-[node name="ActividadPrimerNivel" type="Control"]
+[node name="Actividad2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_q8kuc")
+script = ExtResource("1_smdmc")
 metadata/_edit_horizontal_guides_ = [528.0]
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -384,5 +384,10 @@ offset_right = 210.0
 offset_bottom = 472.0
 theme_override_fonts/font = ExtResource("4_ym4xr")
 text = "Confirmar"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(0.939044, 0.670268)
+anchor_mode = 0
+zoom = Vector2(0.78, 0.68)
 
 [connection signal="pressed" from="BtnConfirmar" to="." method="_on_btn_confirmar_pressed"]
