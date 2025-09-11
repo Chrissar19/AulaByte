@@ -76,7 +76,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.0117647, 0.627451, 0.384314, 1)
 theme_override_fonts/font = ExtResource("2_ph0vt")
-text = "INGRESAR"
+text = "INICIANDO SISTEMA"
 horizontal_alignment = 1
 vertical_alignment = 1
 
