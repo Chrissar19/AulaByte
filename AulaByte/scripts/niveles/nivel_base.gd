@@ -1,5 +1,4 @@
 extends Node2D
-
 class_name NivelBase
 
 @onready var hud: CanvasLayer = $HUD
@@ -15,7 +14,13 @@ class_name NivelBase
 #-- Tiempo en el nivel
 @export var cuenta_regresiva := 120.0
 
+@export var id_nivel: int = -1
+@export var actividad: PackedScene
+
 func _ready() -> void:
+	#-- ejecuta el nivel, para testeo
+	if id_nivel >= 0:
+		GameManager.nivel_actual = id_nivel
 	#-- estado global del juego
 	GameManager.cambiar_estado(GameManager.EstadoJuego.JUGANDO)
 	
@@ -30,6 +35,9 @@ func _ready() -> void:
 	
 	#-- cargar el personaje
 	_cargar_personaje()
+	
+func get_actividad() -> PackedScene:
+	return actividad
 	
 func _cargar_personaje() -> void:
 	var info_personaje: personajeInfo = GameManager.get_personaje()
@@ -51,5 +59,5 @@ func _cargar_personaje() -> void:
 				camara_abajo
 			)
 	else:
-		push_warning("⚠️ No se cargó el personaje: revisa la selección en el menú")
+		push_warning("No se cargó el personaje: revisa la selección en el menú")
 		

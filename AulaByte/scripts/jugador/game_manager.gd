@@ -69,10 +69,7 @@ var _ultimo_segundos: int = -1
 # =====================================================================
 # Actividades por nivel (PackedScene)
 # =====================================================================
-var actividades_por_nivel := {
-	0: preload("res://escenas/Niveles/actividades/actividad_cero.tscn"),
-	1: preload("res://escenas/Niveles/actividades/actividad_primer_nivel.tscn"),
-}
+
 
 var parametros_actividad: Dictionary = {}
 var codigo_actividad_actual: Array[int] = []
@@ -309,55 +306,43 @@ func reiniciar_nivel() -> void:
 # ACTIVIDAD / MINIJUEGO
 # =====================================================================
 func solicitar_minijuego() -> void:
-	print("Solicitando actividad para nivel: ", nivel_actual)
 	# Cambiamos estado (pausa el juego)
 	cambiar_estado(EstadoJuego.MINIJUEGO)
+	
+	var escena := get_tree().current_scene
+	var actividad_escena: PackedScene = null
 
-	var nivel := nivel_actual
-	if actividades_por_nivel.has(nivel):
-		var escena_actividad: PackedScene = actividades_por_nivel[nivel]
-		if escena_actividad:
-			# Crea un CanvasLayer para contener la UI
-			ui_actividad = CanvasLayer.new()
-			ui_actividad.layer = 15
-			get_tree().root.add_child(ui_actividad)
-
-			var actividad = escena_actividad.instantiate()
-
-			# Pasar parámetros si la actividad acepta
-			if not parametros_actividad.is_empty() and actividad.has_method("configurar_con_parametros"):
-				actividad.configurar_con_parametros(parametros_actividad)
-
-			# Si es UI -> full rect, si es Node2D -> posicionar en centro de cámara/viewport
-			if actividad is Control:
-				actividad.set_anchors_preset(Control.PRESET_FULL_RECT)
-				actividad.mouse_filter = Control.MOUSE_FILTER_STOP
-				actividad.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
-				ui_actividad.add_child(actividad)
-			elif actividad is Node2D:
-				actividad.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
-				ui_actividad.add_child(actividad)
-
-				var pantalla = get_tree().root.get_viewport()
-				var camara = pantalla.get_camera_2d()
-				if camara:
-					# FIX: usar la posición global de la cámara
-					actividad.global_position = camara.global_position
-				else:
-					var tam_pantalla = pantalla.get_visible_rect()
-					actividad.global_position = tam_pantalla.position + tam_pantalla.size / 2
-
-			# Conectar señal resuelto
-			if actividad.has_signal("resuelto"):
-				actividad.connect("resuelto", Callable(self, "_on_minijuego_resuelto"))
-			else:
-				push_error("La actividad no tiene señal 'resuelto'")
-
-		else:
-			push_error("Escena de actividad no válida para el nivel " + str(nivel))
-	else:
+	if escena:
+		if escena.has_method("get_actividad"):
+			actividad_escena = escena.get_actividad()
+		elif "actividad" in escena:
+			actividad_escena = escena.actividad
+			
+	if not actividad_escena:
 		print("No hay actividad definida para este nivel, puerta se abre directo")
-		emit_signal("actividad_superada") # FIX: ahora la señal existe
+		emit_signal("actividad_superada")
+		return
+		
+	#-- Crear contenedor y cargar la actividad
+	ui_actividad = CanvasLayer.new()
+	ui_actividad.layer = 15
+	get_tree().root.add_child(ui_actividad)
+	
+	var actividad = actividad_escena.instantiate()
+
+	if not parametros_actividad.is_empty() and actividad.has_method("configurar_con_parametros"):
+		actividad.configurar_con_parametros(parametros_actividad)
+
+	if actividad is Control:
+		actividad.set_anchors_preset(Control.PRESET_FULL_RECT)
+		actividad.mouse_filter = Control.MOUSE_FILTER_STOP
+	actividad.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+	ui_actividad.add_child(actividad)
+
+	if actividad.has_signal("resuelto"):
+		actividad.connect("resuelto", Callable(self, "_on_minijuego_resuelto"))
+	else:
+		push_error("La actividad no tiene señal 'resuelto'")
 
 func _on_minijuego_resuelto(exito: bool) -> void:
 	# Elimina el CanvasLayer que contenía la actividad (si existe)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=40 format=4 uid="uid://cqk82ixbb1sb0"]
+[gd_scene load_steps=41 format=4 uid="uid://cqk82ixbb1sb0"]
 
 [ext_resource type="Script" uid="uid://bl84y62aosyrq" path="res://scripts/niveles/nivel_tuto.gd" id="1_wwpym"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_1g06v"]
+[ext_resource type="PackedScene" uid="uid://bf5jdpfiuhivo" path="res://escenas/Niveles/actividades/actividad_cero.tscn" id="2_rkb6m"]
 [ext_resource type="Texture2D" uid="uid://dr3bkmou477j5" path="res://recursos/imagenes/TileSets/FondoSheet.png" id="3_wsaak"]
 [ext_resource type="Texture2D" uid="uid://14pnjoo6241b" path="res://recursos/imagenes/TileSets/DecoracionesFondo.png" id="4_5rite"]
 [ext_resource type="PackedScene" uid="uid://t8ur3tgfe14n" path="res://escenas/ui/punto_control.tscn" id="4_ougkj"]
@@ -1202,6 +1203,8 @@ camara_izquierda = -850
 camara_derecha = 950
 camara_abajo = 176
 cuenta_regresiva = 500.0
+id_nivel = 0
+actividad = ExtResource("2_rkb6m")
 
 [node name="Fondos" type="Node" parent="."]
 
