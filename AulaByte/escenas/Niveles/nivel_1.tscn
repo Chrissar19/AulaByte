@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://ce4psiq5ll2ou"]
+[gd_scene load_steps=33 format=4 uid="uid://ce4psiq5ll2ou"]
 
 [ext_resource type="Script" uid="uid://coe5412e75vcn" path="res://scripts/niveles/nivel_1.gd" id="1_68m43"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_q4rug"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://mher13w4mave" path="res://escenas/trampas/zona_muerte.tscn" id="8_coawe"]
 [ext_resource type="PackedScene" uid="uid://cydd1023br6iv" path="res://escenas/objetos_interacciones/bits_moneda.tscn" id="9_hutyb"]
 [ext_resource type="PackedScene" uid="uid://dkm0atk4qawk3" path="res://escenas/objetos_interacciones/plataforma.tscn" id="10_1jmp3"]
-[ext_resource type="PackedScene" uid="uid://cexx3vxssodab" path="res://escenas/objetos_interacciones/plataforma_movil.tscn" id="10_xcw0p"]
 [ext_resource type="PackedScene" uid="uid://dfr8bmdn5actv" path="res://escenas/personajes/enemigos/slime_azul.tscn" id="12_4be78"]
 [ext_resource type="PackedScene" uid="uid://jgf3xqgo0gm5" path="res://escenas/objetos_interacciones/saltarin.tscn" id="13_qw6dd"]
 [ext_resource type="PackedScene" uid="uid://fva12xfahbpb" path="res://escenas/objetos_interacciones/puerta_nivel.tscn" id="16_xcw0p"]
@@ -596,13 +595,13 @@ curve = SubResource("Curve2D_wf7ch")
 [node name="PathFollow2D" type="PathFollow2D" parent="Plataformas/Path2D2"]
 position = Vector2(-520, -392)
 
-[node name="Plataforma" parent="Plataformas/Path2D2/PathFollow2D" instance=ExtResource("10_xcw0p")]
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Plataformas/Path2D2/PathFollow2D"]
 libraries = {
 &"": SubResource("AnimationLibrary_4dly0")
 }
 autoplay = "movimiento_plataforma"
+
+[node name="Plataforma2" parent="Plataformas/Path2D2/PathFollow2D" instance=ExtResource("10_1jmp3")]
 
 [node name="SlimeAzul" parent="." instance=ExtResource("12_4be78")]
 position = Vector2(464, -125)

@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends AnimatableBody2D
 
 func _process(delta: float) -> void:
 	var nodo_padre := get_parent()
