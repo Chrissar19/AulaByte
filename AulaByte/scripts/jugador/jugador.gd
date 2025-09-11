@@ -215,17 +215,34 @@ func nombre_animacion(accion: String) -> String:
 # ============================================================================
 # DAÑO
 # ============================================================================
+func recibir_golpe_desde(origen: Vector2, dmg: int = 1) -> void:
+	if intocable:
+		return
+
+	#-- vida
+	emit_signal("jugador_pierde_vida", dmg)
+
+	#-- dirección del empuje (hacia atrás y un poco hacia arriba)
+	var dx := global_position.x - origen.x
+	var dirx := float(sign(dx))
+	if dirx == 0.0:
+		dirx = 1.0 if ultima_dir >= 0.0 else -1.0
+
+	#-- retroceso (≈45°): usa tus mismas constantes
+	esta_en_retroceso = true
+	contador_retroceso = tiempo_retroceso
+	velocity = Vector2(dirx * RETROCESO_X, RETROCESO_Y)
+
+	#-- invulnerable + feedback visual
+	intocable = true
+	modulate = Color(1, 1, 1, 0.5)
+	timer_intocable.start()
+
 func recibir_dmg(dmg: int) -> void:
 	if intocable:
 		return
-	print("Jugador: colisión detectada, dmg =", dmg)
-	emit_signal("jugador_pierde_vida", dmg)
-	
-	#-- retroceso visual y animacion
-	iniciar_retroceso(-ultima_dir)
-	intocable = true
-	modulate.a = 0.5
-	timer_intocable.start()
+	var origen := global_position - Vector2(ultima_dir * 8.0, 0.0)
+	recibir_golpe_desde(origen, dmg)
 	
 func caer_al_vacio() -> void:
 	if intocable:
@@ -234,8 +251,10 @@ func caer_al_vacio() -> void:
 	reaparecer()
 	
 func _on_area_daño_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	if area.is_in_group("DMG") and not intocable:
-		recibir_dmg(1)
+	if intocable:
+		return
+	if area.is_in_group("DMG"):
+		recibir_golpe_desde(area.global_position, 1)
 
 func _on_timer_intocable_timeout() -> void:
 	intocable = false

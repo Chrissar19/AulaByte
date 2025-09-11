@@ -66,7 +66,7 @@ func _actualizar_raycast() -> void:
 # ============================================================================
 func _on_sensor_pisoton_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Jugador"):
-		if body.global_position.y < global_position.y:
+		if body.global_position.y < global_position.y - 6.0:
 			body.ganar_puntos(monedas)
 			body.velocity.y += impulso_salto
 

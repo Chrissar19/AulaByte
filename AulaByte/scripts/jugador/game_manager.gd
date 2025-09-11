@@ -64,6 +64,7 @@ var puntos: int = 0
 var tiempo_nivel_actual: float = 0.0
 var tiempo_restante: float = 90.0
 var tiempo_activo: bool = false
+var _ultimo_segundos: int = -1
 
 # =====================================================================
 # Actividades por nivel (PackedScene)
@@ -93,16 +94,18 @@ func _process(delta: float) -> void:
 	if estado_actual == EstadoJuego.JUGANDO and tiempo_activo:
 		tiempo_nivel_actual += delta
 		if tiempo_restante > 0.0:
-			tiempo_restante -= delta
-			if tiempo_restante < 0.0:
-				tiempo_restante = 0.0
-			emit_signal("tiempo_actualizado", int(tiempo_restante))
-			# Si se agotó el tiempo:
-			if tiempo_restante <= 0.0:
-				tiempo_activo = false
-				emit_signal("tiempo_terminado")
-				cambiar_estado(EstadoJuego.GAME_OVER)
-
+			tiempo_restante = max(tiempo_restante - delta, 0.0)
+		
+		var seg := int(tiempo_restante)
+		if seg != _ultimo_segundos:
+			_ultimo_segundos = seg
+			emit_signal("tiempo_actualizado", seg)
+			
+		# Si se agotó el tiempo:
+		if tiempo_restante <= 0.0 and tiempo_activo:
+			tiempo_activo = false
+			emit_signal("tiempo_terminado")
+			cambiar_estado(EstadoJuego.GAME_OVER)
 # -----------------------------------------------------------------------
 # Máquina de estados
 # -----------------------------------------------------------------------
@@ -162,6 +165,8 @@ func set_jugador(jugador: Node) -> void:
 	if jugador_ref.has_signal("jugador_pierde_vida"):
 		print("Conectando señal jugador_dmg de:", jugador_ref.name)
 		jugador_ref.connect("jugador_pierde_vida", Callable(self, "_on_jugador_pierde_vida"))
+	if jugador_ref.has_signal("jugador_gana_puntos"):
+		jugador_ref.connect("jugador_gana_puntos", Callable(self, "_on_jugador_gana_puntos"))
 	else:
 		print("El jugador no tiene señal jugador_pierde_vida")
 
@@ -175,6 +180,9 @@ func _on_jugador_gana_vida(vidas_actuales: int) -> void:
 func _on_jugador_pierde_vida(dmg: int) -> void:
 	print("GameManager: señal recibida, daño =", dmg)
 	perder_vida()
+
+func _on_jugador_gana_puntos(cantidad: int) -> void:
+	agregar_puntos(cantidad)
 
 # -----------------------------------------------------------------------
 # Selección de personaje
@@ -238,10 +246,11 @@ func get_tiempo() -> float:
 	return tiempo_nivel_actual
 
 func iniciar_tiempo(segundos: float) -> void:
-	tiempo_restante = segundos
+	tiempo_restante = max(segundos, 0.0)
 	tiempo_activo = true
+	_ultimo_segundos = int(tiempo_restante)
+	emit_signal("tiempo_actualizado", _ultimo_segundos)
 	cambiar_estado(EstadoJuego.JUGANDO)
-	emit_signal("tiempo_actualizado", int(tiempo_restante))
 
 # -----------------------------------------------------------------------
 # Manejo de niveles

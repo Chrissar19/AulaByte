@@ -61,7 +61,12 @@ func actualizar_puntos(puntos: int) -> void:
 # TIEMPO
 # ============================================================================	
 func _on_tiempo_actualizado(segundos: int) -> void:
-	lbl_tiempo_restante.text = "Tiempo: %d" % segundos
+	lbl_tiempo_restante.text = "Tiempo: %s" % _mm_ss(segundos)
 
 func _on_tiempo_terminado() -> void:
 	emit_signal("tiempo_terminado")
+	
+func _mm_ss(seg: int) -> String:
+	var m := seg / 60
+	var s := seg % 60
+	return "%02d:%02d" % [m, s]

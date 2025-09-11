@@ -1290,9 +1290,8 @@ autoplay = "new_animation"
 curve = SubResource("Curve2D_e0mik")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Plataformas/Path2D"]
-position = Vector2(-467, 92.6656)
+position = Vector2(-467, 123)
 rotation = -1.59134
-progress = 30.3507
 rotates = false
 
 [node name="Plataforma" parent="Plataformas/Path2D/PathFollow2D" instance=ExtResource("11_cn7c0")]
@@ -1390,4 +1389,4 @@ position = Vector2(165, 141)
 [node name="HUD" parent="." instance=ExtResource("5_auyua")]
 
 [node name="Delgado" parent="." instance=ExtResource("19_rkb6m")]
-position = Vector2(614, 97)
+position = Vector2(47, 93)
