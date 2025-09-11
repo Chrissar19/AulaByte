@@ -1,5 +1,6 @@
-[gd_scene load_steps=30 format=4 uid="uid://bfh1cti7h62ot"]
+[gd_scene load_steps=31 format=4 uid="uid://bfh1cti7h62ot"]
 
+[ext_resource type="Script" uid="uid://cgrxbfui28s7n" path="res://scripts/niveles/nivel_3.gd" id="1_mhvy5"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_ubjym"]
 [ext_resource type="Texture2D" uid="uid://dr3bkmou477j5" path="res://recursos/imagenes/TileSets/FondoSheet.png" id="3_u4isy"]
 [ext_resource type="Texture2D" uid="uid://14pnjoo6241b" path="res://recursos/imagenes/TileSets/DecoracionesFondo.png" id="4_ch7eb"]
@@ -499,6 +500,7 @@ _data = {
 
 [node name="Nivel_3" type="Node2D"]
 position = Vector2(208, 8)
+script = ExtResource("1_mhvy5")
 
 [node name="Fondos" type="Node" parent="."]
 
