@@ -1,7 +1,7 @@
 [gd_scene load_steps=39 format=4 uid="uid://ce4psiq5ll2ou"]
 
 [ext_resource type="Script" uid="uid://coe5412e75vcn" path="res://scripts/niveles/nivel_1.gd" id="1_68m43"]
-[ext_resource type="PackedScene" uid="uid://c8f486kolklgt" path="res://escenas/Niveles/actividades/actividad_primer_nivel.tscn" id="2_4pfxj"]
+[ext_resource type="PackedScene" uid="uid://c8f486kolklgt" path="res://escenas/Niveles/0_5/actividad_primer_nivel.tscn" id="2_4pfxj"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_q4rug"]
 [ext_resource type="Texture2D" uid="uid://dr3bkmou477j5" path="res://recursos/imagenes/TileSets/FondoSheet.png" id="3_4dly0"]
 [ext_resource type="Texture2D" uid="uid://14pnjoo6241b" path="res://recursos/imagenes/TileSets/DecoracionesFondo.png" id="4_4pfxj"]
@@ -1157,13 +1157,13 @@ position = Vector2(-162, 140)
 [node name="monedas" type="Node" parent="."]
 
 [node name="BitsMoneda" parent="monedas" instance=ExtResource("9_hutyb")]
-position = Vector2(793, -15)
+position = Vector2(808, -16)
 
 [node name="BitsMoneda2" parent="monedas" instance=ExtResource("9_hutyb")]
-position = Vector2(793, -41)
+position = Vector2(808, -43)
 
 [node name="BitsMoneda3" parent="monedas" instance=ExtResource("9_hutyb")]
-position = Vector2(793, -67)
+position = Vector2(809, -72)
 
 [node name="BitsMoneda4" parent="monedas" instance=ExtResource("9_hutyb")]
 position = Vector2(797, -309)
@@ -1281,11 +1281,11 @@ position = Vector2(464, -125)
 [node name="puertas" type="Node" parent="."]
 
 [node name="PuertaEntrada" parent="puertas" instance=ExtResource("16_xcw0p")]
-position = Vector2(-393, 124)
+position = Vector2(-392, 123)
 
 [node name="PuertaSalida" parent="puertas" instance=ExtResource("16_xcw0p")]
 z_index = 1
-position = Vector2(797, 127)
+position = Vector2(802, 123)
 
 [node name="trampas" type="Node" parent="."]
 
@@ -1303,3 +1303,28 @@ position = Vector2(111, 88)
 
 [node name="PlataformaCae2" parent="trampas" instance=ExtResource("21_nlh1x")]
 position = Vector2(290, 86)
+
+[node name="Saltarin2" parent="trampas" instance=ExtResource("13_qw6dd")]
+position = Vector2(641, -455)
+scale = Vector2(0.6, 1)
+fuerza_rebote = -500.0
+
+[node name="Saltarin3" parent="trampas" instance=ExtResource("13_qw6dd")]
+position = Vector2(822, -327)
+scale = Vector2(0.6, 1)
+fuerza_rebote = -500.0
+
+[node name="Saltarin4" parent="trampas" instance=ExtResource("13_qw6dd")]
+position = Vector2(662, -155)
+scale = Vector2(0.6, 1)
+fuerza_rebote = -500.0
+
+[node name="Saltarin5" parent="trampas" instance=ExtResource("13_qw6dd")]
+position = Vector2(809, -13)
+scale = Vector2(0.6, 1)
+fuerza_rebote = -500.0
+
+[node name="Saltarin6" parent="trampas" instance=ExtResource("13_qw6dd")]
+position = Vector2(651, 113)
+scale = Vector2(0.6, 1)
+fuerza_rebote = -500.0

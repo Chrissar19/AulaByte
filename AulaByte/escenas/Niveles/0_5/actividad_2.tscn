@@ -1,85 +1,85 @@
 [gd_scene load_steps=31 format=3 uid="uid://5adm1btnnvdu"]
 
-[ext_resource type="Script" uid="uid://chxgio31ft7ts" path="res://scripts/niveles/actividad_2.gd" id="1_smdmc"]
-[ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="2_y7trj"]
-[ext_resource type="Texture2D" uid="uid://c4mntav8qaw5x" path="res://recursos/imagenes/TileSets/niveles/nivel 2.png" id="4_smdmc"]
-[ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="4_ym4xr"]
-[ext_resource type="Texture2D" uid="uid://donmjcvkqhnhh" path="res://recursos/imagenes/TileSets/niveles/carpetas n2.png" id="5_tyn6a"]
+[ext_resource type="Script" uid="uid://chxgio31ft7ts" path="res://scripts/niveles/actividad_2.gd" id="1_skhp3"]
+[ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="2_yhvou"]
+[ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="3_8uy1t"]
+[ext_resource type="Texture2D" uid="uid://c4mntav8qaw5x" path="res://recursos/imagenes/TileSets/niveles/nivel 2.png" id="4_b1jyn"]
+[ext_resource type="Texture2D" uid="uid://donmjcvkqhnhh" path="res://recursos/imagenes/TileSets/niveles/carpetas n2.png" id="5_0nh87"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sy83c"]
-atlas = ExtResource("4_smdmc")
+atlas = ExtResource("4_b1jyn")
 region = Rect2(0, 0, 48, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q8kuc"]
-atlas = ExtResource("4_smdmc")
+atlas = ExtResource("4_b1jyn")
 region = Rect2(48, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y7trj"]
-atlas = ExtResource("4_smdmc")
+atlas = ExtResource("4_b1jyn")
 region = Rect2(112, 0, 80, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lyrn8"]
-atlas = ExtResource("4_smdmc")
+atlas = ExtResource("4_b1jyn")
 region = Rect2(192, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ym4xr"]
-atlas = ExtResource("4_smdmc")
+atlas = ExtResource("4_b1jyn")
 region = Rect2(224, 0, 80, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_br540"]
-atlas = ExtResource("4_smdmc")
+atlas = ExtResource("4_b1jyn")
 region = Rect2(312, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ep3jn"]
-atlas = ExtResource("4_smdmc")
+atlas = ExtResource("4_b1jyn")
 region = Rect2(352, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ymtot"]
-atlas = ExtResource("4_smdmc")
+atlas = ExtResource("4_b1jyn")
 region = Rect2(0, 80, 80, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_odfn1"]
-atlas = ExtResource("4_smdmc")
+atlas = ExtResource("4_b1jyn")
 region = Rect2(80, 64, 32, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n0riq"]
-atlas = ExtResource("4_smdmc")
+atlas = ExtResource("4_b1jyn")
 region = Rect2(112, 64, 48, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d1kaq"]
-atlas = ExtResource("4_smdmc")
+atlas = ExtResource("4_b1jyn")
 region = Rect2(160, 64, 80, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ot0m"]
-atlas = ExtResource("4_smdmc")
+atlas = ExtResource("4_b1jyn")
 region = Rect2(240, 64, 80, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cubrb"]
-atlas = ExtResource("4_smdmc")
+atlas = ExtResource("4_b1jyn")
 region = Rect2(320, 48, 32, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7da56"]
-atlas = ExtResource("4_smdmc")
+atlas = ExtResource("4_b1jyn")
 region = Rect2(352, 48, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bkjis"]
-atlas = ExtResource("4_smdmc")
+atlas = ExtResource("4_b1jyn")
 region = Rect2(240, 112, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p6vn4"]
-atlas = ExtResource("4_smdmc")
+atlas = ExtResource("4_b1jyn")
 region = Rect2(304, 120, 48, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ij7u5"]
-atlas = ExtResource("4_smdmc")
+atlas = ExtResource("4_b1jyn")
 region = Rect2(352, 96, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ey3r"]
-atlas = ExtResource("5_tyn6a")
+atlas = ExtResource("5_0nh87")
 region = Rect2(108, 0, 108, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3o0u5"]
-atlas = ExtResource("5_tyn6a")
+atlas = ExtResource("5_0nh87")
 region = Rect2(0, 0, 104, 80)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6nwri"]
@@ -105,11 +105,11 @@ animations = [{
 size = Vector2(159, 106)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_udyox"]
-atlas = ExtResource("5_tyn6a")
+atlas = ExtResource("5_0nh87")
 region = Rect2(324, 0, 108, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h1d47"]
-atlas = ExtResource("5_tyn6a")
+atlas = ExtResource("5_0nh87")
 region = Rect2(216, 0, 108, 80)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_37n11"]
@@ -141,7 +141,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_smdmc")
+script = ExtResource("1_skhp3")
 metadata/_edit_horizontal_guides_ = [528.0]
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -166,7 +166,7 @@ offset_right = 83.08
 offset_bottom = 70.8
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_y7trj")
+texture = ExtResource("2_yhvou")
 
 [node name="fondo" type="ColorRect" parent="pantalla"]
 layout_mode = 1
@@ -194,7 +194,7 @@ offset_right = 351.0
 offset_bottom = 217.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("4_ym4xr")
+theme_override_fonts/font = ExtResource("3_8uy1t")
 text = "Salir"
 
 [node name="descripcion act" type="Label" parent="pantalla"]
@@ -204,7 +204,7 @@ offset_top = 34.0
 offset_right = 663.0
 offset_bottom = 69.0
 theme_override_colors/font_color = Color(0.141176, 0.623529, 0.396078, 1)
-theme_override_fonts/font = ExtResource("4_ym4xr")
+theme_override_fonts/font = ExtResource("3_8uy1t")
 text = "Organiza los eleméntos en la carpeta 
 que corresponda "
 horizontal_alignment = 1
@@ -216,7 +216,7 @@ offset_left = 352.0
 offset_top = 437.0
 offset_right = 492.0
 offset_bottom = 461.0
-theme_override_fonts/font = ExtResource("4_ym4xr")
+theme_override_fonts/font = ExtResource("3_8uy1t")
 text = "Reiniciar"
 
 [node name="objetos" type="Node" parent="pantalla"]
@@ -382,7 +382,7 @@ offset_left = 62.0
 offset_top = 448.0
 offset_right = 210.0
 offset_bottom = 472.0
-theme_override_fonts/font = ExtResource("4_ym4xr")
+theme_override_fonts/font = ExtResource("3_8uy1t")
 text = "Confirmar"
 
 [node name="Camera2D" type="Camera2D" parent="."]
