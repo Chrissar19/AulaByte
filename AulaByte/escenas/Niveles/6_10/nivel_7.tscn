@@ -1,11 +1,11 @@
 [gd_scene load_steps=27 format=4 uid="uid://sh3ta4dsapqi"]
 
-[ext_resource type="Script" uid="uid://bl84y62aosyrq" path="res://scripts/niveles/nivel_tuto.gd" id="1_phs6x"]
+[ext_resource type="Script" uid="uid://brmd5eakk7mu8" path="res://scripts/niveles/6-10/nivel_7.gd" id="1_g4muj"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_8y7cr"]
 [ext_resource type="Texture2D" uid="uid://dr3bkmou477j5" path="res://recursos/imagenes/TileSets/FondoSheet.png" id="3_k74v7"]
 [ext_resource type="Texture2D" uid="uid://14pnjoo6241b" path="res://recursos/imagenes/TileSets/DecoracionesFondo.png" id="4_tauj1"]
 [ext_resource type="Texture2D" uid="uid://cxyafbo3ck6fg" path="res://recursos/imagenes/TileSets/Pisos.png" id="5_segqw"]
-[ext_resource type="PackedScene" uid="uid://t8ur3tgfe14n" path="res://escenas/ui/puntos_inicio.tscn" id="6_13chv"]
+[ext_resource type="PackedScene" uid="uid://t8ur3tgfe14n" path="res://escenas/ui/punto_control.tscn" id="6_13chv"]
 [ext_resource type="PackedScene" uid="uid://brfxoes3nrqbr" path="res://escenas/ui/hud.tscn" id="7_vc87i"]
 [ext_resource type="PackedScene" uid="uid://mher13w4mave" path="res://escenas/trampas/zona_muerte.tscn" id="8_3kns5"]
 [ext_resource type="PackedScene" uid="uid://cydd1023br6iv" path="res://escenas/objetos_interacciones/bits_moneda.tscn" id="9_04v0x"]
@@ -459,13 +459,8 @@ _data = {
 &"vertical": SubResource("Animation_xageu")
 }
 
-[node name="NivelTuto" type="Node2D"]
-script = ExtResource("1_phs6x")
-camara_alto = -528
-camara_izquierda = -850
-camara_derecha = 720
-camara_abajo = 176
-cuenta_regresiva = 500.0
+[node name="Nivel7" type="Node2D"]
+script = ExtResource("1_g4muj")
 
 [node name="Fondos" type="Node" parent="."]
 
@@ -575,7 +570,6 @@ position = Vector2(-175, -249)
 collision_layer = 17
 
 [node name="SlimeAzul" parent="." instance=ExtResource("12_3dts0")]
-z_index = 1
 position = Vector2(525, 171)
 
 [node name="Saltarin" parent="." instance=ExtResource("13_mjgca")]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=32 format=4 uid="uid://cl561n5x8dihd"]
 
-[ext_resource type="Script" uid="uid://bl84y62aosyrq" path="res://scripts/niveles/nivel_tuto.gd" id="1_73hpg"]
+[ext_resource type="Script" uid="uid://cuwa330v3etug" path="res://scripts/niveles/6-10/nivel_6.gd" id="1_x0uxo"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_3hut5"]
 [ext_resource type="Texture2D" uid="uid://dr3bkmou477j5" path="res://recursos/imagenes/TileSets/FondoSheet.png" id="3_7cspd"]
 [ext_resource type="Texture2D" uid="uid://14pnjoo6241b" path="res://recursos/imagenes/TileSets/DecoracionesFondo.png" id="4_ff1em"]
@@ -1232,13 +1232,8 @@ _data = {
 &"new_animation": SubResource("Animation_slady")
 }
 
-[node name="NivelTuto" type="Node2D"]
-script = ExtResource("1_73hpg")
-camara_alto = -528
-camara_izquierda = -850
-camara_derecha = 720
-camara_abajo = 176
-cuenta_regresiva = 500.0
+[node name="Nivel6" type="Node2D"]
+script = ExtResource("1_x0uxo")
 
 [node name="Fondos" type="Node" parent="."]
 

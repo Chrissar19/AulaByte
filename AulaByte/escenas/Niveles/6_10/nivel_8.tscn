@@ -1,11 +1,11 @@
 [gd_scene load_steps=28 format=4 uid="uid://c820bpkqmqupo"]
 
-[ext_resource type="Script" uid="uid://bl84y62aosyrq" path="res://scripts/niveles/nivel_tuto.gd" id="1_mba44"]
+[ext_resource type="Script" uid="uid://bpahbgueed3gx" path="res://scripts/niveles/6-10/nivel_8.gd" id="1_41fp5"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_ixpke"]
 [ext_resource type="Texture2D" uid="uid://dr3bkmou477j5" path="res://recursos/imagenes/TileSets/FondoSheet.png" id="3_y4rii"]
 [ext_resource type="Texture2D" uid="uid://14pnjoo6241b" path="res://recursos/imagenes/TileSets/DecoracionesFondo.png" id="4_5swcc"]
 [ext_resource type="Texture2D" uid="uid://cxyafbo3ck6fg" path="res://recursos/imagenes/TileSets/Pisos.png" id="5_3jcjs"]
-[ext_resource type="PackedScene" uid="uid://t8ur3tgfe14n" path="res://escenas/ui/puntos_inicio.tscn" id="6_i3h1u"]
+[ext_resource type="PackedScene" uid="uid://t8ur3tgfe14n" path="res://escenas/ui/punto_control.tscn" id="6_i3h1u"]
 [ext_resource type="PackedScene" uid="uid://brfxoes3nrqbr" path="res://escenas/ui/hud.tscn" id="7_83odg"]
 [ext_resource type="PackedScene" uid="uid://mher13w4mave" path="res://escenas/trampas/zona_muerte.tscn" id="8_flh77"]
 [ext_resource type="PackedScene" uid="uid://cydd1023br6iv" path="res://escenas/objetos_interacciones/bits_moneda.tscn" id="9_ok6l4"]
@@ -429,6 +429,21 @@ _data = {
 &"vertical": SubResource("Animation_wmhw6")
 }
 
+[sub_resource type="Animation" id="Animation_mba44"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(275, -505)]
+}
+
 [sub_resource type="Animation" id="Animation_ubcfo"]
 resource_name = "vertical_2"
 length = 2.0
@@ -446,34 +461,14 @@ tracks/0/keys = {
 "values": [Vector2(275, -505), Vector2(275, -377), Vector2(435, -377)]
 }
 
-[sub_resource type="Animation" id="Animation_mba44"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(275, -505)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ixpke"]
 _data = {
 &"RESET": SubResource("Animation_mba44"),
 &"vertical_2": SubResource("Animation_ubcfo")
 }
 
-[node name="NivelTuto" type="Node2D"]
-script = ExtResource("1_mba44")
-camara_alto = -528
-camara_izquierda = -850
-camara_derecha = 720
-camara_abajo = 176
-cuenta_regresiva = 500.0
+[node name="Nivel8" type="Node2D"]
+script = ExtResource("1_41fp5")
 
 [node name="Fondos" type="Node" parent="."]
 
@@ -569,7 +564,6 @@ autoplay = "vertical_2"
 speed_scale = 0.9
 
 [node name="SlimeAzul" parent="." instance=ExtResource("12_fpiep")]
-z_index = 1
 position = Vector2(927, -325)
 
 [node name="Saltarin" parent="." instance=ExtResource("13_yuanl")]
