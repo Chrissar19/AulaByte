@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c483243gjjprn"]
+
+[ext_resource type="Script" uid="uid://dd1j33r8us6rs" path="res://scripts/niveles/panel_objetivo.gd" id="1_krkry"]
+
+[node name="Carpetas" type="Panel"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_krkry")
