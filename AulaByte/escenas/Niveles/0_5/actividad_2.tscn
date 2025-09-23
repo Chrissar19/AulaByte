@@ -1,6 +1,7 @@
-[gd_scene load_steps=33 format=3 uid="uid://5adm1btnnvdu"]
+[gd_scene load_steps=34 format=3 uid="uid://5adm1btnnvdu"]
 
 [ext_resource type="Script" uid="uid://chxgio31ft7ts" path="res://scripts/niveles/actividad_2.gd" id="1_skhp3"]
+[ext_resource type="Script" uid="uid://cous5gxnwfke" path="res://scripts/niveles/1_5/drop_catcher.gd" id="2_250pk"]
 [ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="2_yhvou"]
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="3_8uy1t"]
 [ext_resource type="Texture2D" uid="uid://c4mntav8qaw5x" path="res://recursos/imagenes/TileSets/niveles/nivel 2.png" id="4_b1jyn"]
@@ -16,7 +17,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_limqq"]
 atlas = ExtResource("4_b1jyn")
-region = Rect2(0, 0, 80, 80)
+region = Rect2(16, 0, 48, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o6ie0"]
 atlas = ExtResource("4_b1jyn")
@@ -82,13 +83,13 @@ region = Rect2(400, 0, 80, 80)
 atlas = ExtResource("4_b1jyn")
 region = Rect2(400, 80, 80, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8uy1t"]
-atlas = ExtResource("5_0nh87")
-region = Rect2(0, 0, 112, 80)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_b1jyn"]
 atlas = ExtResource("5_0nh87")
 region = Rect2(224, 0, 112, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8uy1t"]
+atlas = ExtResource("5_0nh87")
+region = Rect2(0, 0, 112, 80)
 
 [node name="Actividad2" type="Control"]
 layout_mode = 3
@@ -102,6 +103,12 @@ grow_vertical = 2
 scale = Vector2(0.786238, 0.68594)
 script = ExtResource("1_skhp3")
 metadata/_edit_horizontal_guides_ = [528.0]
+
+[node name="DropCatcher" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 814.0028
+offset_bottom = 524.8272
+script = ExtResource("2_250pk")
 
 [node name="fondo" type="ColorRect" parent="."]
 layout_mode = 1
@@ -136,6 +143,14 @@ que corresponda "
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="LblIntentos" type="Label" parent="."]
+layout_mode = 0
+offset_left = 335.77618
+offset_top = 431.52463
+offset_right = 400.77618
+offset_bottom = 454.52463
+text = "Intentos"
+
 [node name="objetos" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -150,11 +165,12 @@ grow_vertical = 2
 
 [node name="CPU" parent="objetos" instance=ExtResource("5_x5j6v")]
 layout_mode = 0
-offset_left = 61.4003
-offset_top = 34.9654
-offset_right = 141.4
-offset_bottom = 114.965
+offset_left = 71.57532
+offset_top = 34.965446
+offset_right = 121.04991
+offset_bottom = 114.96545
 texture = SubResource("AtlasTexture_limqq")
+stretch_mode = 5
 
 [node name="Parlante" parent="objetos" instance=ExtResource("5_x5j6v")]
 layout_mode = 0
@@ -308,33 +324,6 @@ offset_bottom = 289.908
 texture = SubResource("AtlasTexture_6hpg5")
 nombre_item = "impresora"
 
-[node name="hardware" type="Panel" parent="." node_paths=PackedStringArray("imagen")]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.2
-anchor_top = 0.733
-anchor_right = 0.338
-anchor_bottom = 0.867
-offset_left = 0.199997
-offset_top = 0.174988
-offset_right = -0.132019
-offset_bottom = 11.825
-script = ExtResource("6_b1jyn")
-imagen = NodePath("TextureRect")
-img_abierta = ExtResource("7_o6ie0")
-img_cerrada = ExtResource("8_5q7e6")
-
-[node name="TextureRect" type="TextureRect" parent="hardware"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_8uy1t")
-expand_mode = 5
-stretch_mode = 5
-
 [node name="No_hardware" type="Panel" parent="." node_paths=PackedStringArray("imagen")]
 layout_mode = 1
 anchors_preset = -1
@@ -342,10 +331,10 @@ anchor_left = 0.6
 anchor_top = 0.733
 anchor_right = 0.738
 anchor_bottom = 0.889
-offset_left = -0.400024
-offset_top = 0.174988
-offset_right = -26.7321
-offset_bottom = -18.725
+offset_left = 0.0017089844
+offset_top = -11.614532
+offset_right = -18.40686
+offset_bottom = -21.543121
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.3, 1.3)
@@ -354,6 +343,7 @@ tipo_objetivo = "otros"
 imagen = NodePath("TextureRect")
 img_abierta = ExtResource("10_250pk")
 img_cerrada = ExtResource("11_w3ylt")
+actividad = NodePath("..")
 
 [node name="TextureRect" type="TextureRect" parent="No_hardware"]
 layout_mode = 1
@@ -385,17 +375,18 @@ text = "Salir"
 [node name="Gestor" type="Node" parent="."]
 script = ExtResource("8_b1jyn")
 
-[node name="Carpetas" parent="." node_paths=PackedStringArray("imagen") instance=ExtResource("13_5q7e6")]
+[node name="Hardware" parent="." node_paths=PackedStringArray("imagen") instance=ExtResource("13_5q7e6")]
 layout_mode = 0
-offset_left = 41.0
-offset_top = 385.0
-offset_right = 153.0
-offset_bottom = 467.0
+offset_left = 81.40028
+offset_top = 373.21048
+offset_right = 213.67574
+offset_bottom = 466.51312
 imagen = NodePath("TextureRect")
 img_abierta = ExtResource("7_o6ie0")
 img_cerrada = ExtResource("8_5q7e6")
+actividad = NodePath("..")
 
-[node name="TextureRect" type="TextureRect" parent="Carpetas"]
+[node name="TextureRect" type="TextureRect" parent="Hardware"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -409,3 +400,8 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_8uy1t")
 expand_mode = 5
 stretch_mode = 5
+
+[node name="LblFeedback" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
