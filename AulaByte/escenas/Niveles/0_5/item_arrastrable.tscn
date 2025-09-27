@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqjgs4r3gschg"]
-
-[ext_resource type="Script" uid="uid://bujafuoevl712" path="res://scripts/niveles/item_arrastrable.gd" id="1_fh4b0"]
-
-[node name="ItemArrastrable" type="TextureRect" groups=["ItemArrastrable"]]
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("1_fh4b0")

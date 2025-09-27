@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c24u4nrmigkg8"]
+[gd_scene load_steps=31 format=3 uid="uid://c24u4nrmigkg8"]
 
 [ext_resource type="Script" uid="uid://cqk0q45ielk7s" path="res://scripts/niveles/1_5/minijuego_2.gd" id="1_l1fb1"]
 [ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="2_dgdkx"]
@@ -6,7 +6,6 @@
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="3_qmrdb"]
 [ext_resource type="Texture2D" uid="uid://donmjcvkqhnhh" path="res://recursos/imagenes/TileSets/niveles/carpetas n2.png" id="4_l1fb1"]
 [ext_resource type="Texture2D" uid="uid://c4mntav8qaw5x" path="res://recursos/imagenes/TileSets/niveles/nivel 2.png" id="5_0pxnm"]
-[ext_resource type="FontFile" uid="uid://bbow2nrr858wg" path="res://recursos/Fuentes/Ayuda.TTF" id="5_rqcxl"]
 [ext_resource type="Script" uid="uid://b1bhshd481td2" path="res://scripts/niveles/1_5/draggable_object.gd" id="6_3ulx7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rqcxl"]
@@ -156,18 +155,19 @@ texture = ExtResource("2_dgdkx")
 
 [node name="UI" type="Control" parent="."]
 anchors_preset = 0
-offset_right = 640.0
-offset_bottom = 40.0
+offset_left = 200.0
+offset_top = 264.0
+offset_right = 440.0
+offset_bottom = 304.0
 
 [node name="AttemptsLabel" type="Label" parent="UI"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -248.0
-offset_top = 24.0
-offset_right = -188.0
-offset_bottom = 47.0
+offset_left = -30.0
+offset_right = 30.0
+offset_bottom = 23.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("3_qmrdb")
 text = "text"
@@ -175,14 +175,16 @@ vertical_alignment = 1
 
 [node name="WinLabel" type="Label" parent="UI"]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 7
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-offset_left = -20.0
-offset_top = 24.0
-offset_right = 20.0
-offset_bottom = 47.0
+anchor_bottom = 1.0
+offset_left = -38.0
+offset_top = -23.0
+offset_right = 38.0
 grow_horizontal = 2
+grow_vertical = 0
 theme_override_fonts/font = ExtResource("3_qmrdb")
 text = "text2"
 horizontal_alignment = 1
@@ -198,72 +200,48 @@ grow_vertical = 2
 
 [node name="FolderHardware" type="Panel" parent="Folders"]
 layout_mode = 0
-offset_left = 112.0
-offset_top = 264.0
+offset_left = 80.0
+offset_top = 248.0
 offset_right = 192.0
 offset_bottom = 328.0
 script = ExtResource("2_rqcxl")
 
 [node name="TextureRect" type="AnimatedSprite2D" parent="Folders/FolderHardware"]
-position = Vector2(40.000004, 32.00001)
-scale = Vector2(0.71428573, 0.80000013)
+position = Vector2(56.000004, 40.00001)
 sprite_frames = SubResource("SpriteFrames_7m1i0")
 animation = &"HardwareCerrada"
-
-[node name="lbHardware" type="Label" parent="Folders/FolderHardware"]
-layout_mode = 0
-offset_left = -24.0
-offset_top = 48.0
-offset_right = 104.0
-offset_bottom = 71.0
-theme_override_colors/font_color = Color(0.55302674, 0.11636337, 0.717674, 1)
-theme_override_fonts/font = ExtResource("5_rqcxl")
-text = "HARDWARE"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="FolderNoHardware" type="Panel" parent="Folders"]
 layout_mode = 0
 offset_left = 448.0
-offset_top = 264.0
-offset_right = 528.0
+offset_top = 248.0
+offset_right = 544.0
 offset_bottom = 328.0
 script = ExtResource("2_rqcxl")
 category = "no-hardware"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Folders/FolderNoHardware"]
-position = Vector2(39.999992, 32.00001)
-scale = Vector2(0.7142859, 0.80000013)
+position = Vector2(55.999992, 40.00001)
 sprite_frames = SubResource("SpriteFrames_7d7en")
 animation = &"NoHardwareCerrada"
 
-[node name="lbHardware2" type="Label" parent="Folders/FolderNoHardware"]
-layout_mode = 0
-offset_left = -24.0
-offset_top = 48.0
-offset_right = 104.0
-offset_bottom = 71.0
-theme_override_colors/font_color = Color(0.8272173, 0.23388326, 0.18785003, 1)
-theme_override_fonts/font = ExtResource("5_rqcxl")
-text = "OTROS"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Objects" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchor_left = 0.025
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -104.0
+anchor_bottom = 0.53300005
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 24.11998
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Obj_CPU" type="TextureRect" parent="Objects"]
 layout_mode = 0
-offset_left = 152.0
-offset_top = 192.0
-offset_right = 220.57141
-offset_bottom = 283.4286
+offset_left = 88.0
+offset_top = 128.00002
+offset_right = 156.57141
+offset_bottom = 219.4286
 scale = Vector2(0.7, 0.7)
 mouse_default_cursor_shape = 2
 texture = SubResource("AtlasTexture_58nmi")
@@ -272,10 +250,10 @@ script = ExtResource("6_3ulx7")
 
 [node name="Obj_Perro" type="TextureRect" parent="Objects"]
 layout_mode = 0
-offset_left = 520.0
-offset_top = 72.0
-offset_right = 600.0
-offset_bottom = 152.0
+offset_left = 456.0
+offset_top = 8.0
+offset_right = 536.0
+offset_bottom = 88.0
 scale = Vector2(0.6, 0.6)
 mouse_default_cursor_shape = 2
 texture = SubResource("AtlasTexture_m46fc")
@@ -285,10 +263,10 @@ correct_category = "no-hardware"
 
 [node name="Obj_Monitor" type="TextureRect" parent="Objects"]
 layout_mode = 0
-offset_left = 192.0
-offset_top = 136.0
-offset_right = 272.0
-offset_bottom = 204.0
+offset_left = 128.0
+offset_top = 72.0
+offset_right = 208.0
+offset_bottom = 140.0
 scale = Vector2(0.8, 0.8)
 mouse_default_cursor_shape = 2
 texture = SubResource("AtlasTexture_l1fb1")
@@ -297,10 +275,10 @@ script = ExtResource("6_3ulx7")
 
 [node name="Obj_Mause" type="TextureRect" parent="Objects"]
 layout_mode = 0
-offset_left = 352.0
-offset_top = 72.0
-offset_right = 400.0
-offset_bottom = 120.0
+offset_left = 280.0
+offset_top = 16.0
+offset_right = 328.0
+offset_bottom = 64.0
 mouse_default_cursor_shape = 2
 texture = SubResource("AtlasTexture_7m1i0")
 stretch_mode = 5
@@ -308,10 +286,10 @@ script = ExtResource("6_3ulx7")
 
 [node name="Obj_Raton" type="TextureRect" parent="Objects"]
 layout_mode = 0
-offset_left = 152.0
-offset_top = 72.0
-offset_right = 200.0
-offset_bottom = 120.0
+offset_left = 136.0
+offset_top = 8.0
+offset_right = 184.0
+offset_bottom = 56.0
 mouse_default_cursor_shape = 2
 texture = SubResource("AtlasTexture_7d7en")
 stretch_mode = 5
@@ -319,10 +297,10 @@ script = ExtResource("6_3ulx7")
 
 [node name="Obj_teclado1" type="TextureRect" parent="Objects"]
 layout_mode = 0
-offset_left = 512.0
-offset_top = 200.0
-offset_right = 592.0
-offset_bottom = 260.0
+offset_left = 328.0
+offset_top = 136.0
+offset_right = 408.0
+offset_bottom = 196.0
 scale = Vector2(0.8, 0.8)
 mouse_default_cursor_shape = 2
 texture = SubResource("AtlasTexture_6uefw")
@@ -331,10 +309,10 @@ script = ExtResource("6_3ulx7")
 
 [node name="Obj_Parlante" type="TextureRect" parent="Objects"]
 layout_mode = 0
-offset_left = 288.0
-offset_top = 128.0
-offset_right = 367.99997
-offset_bottom = 208.0
+offset_left = 232.0
+offset_top = 88.0
+offset_right = 311.99997
+offset_bottom = 168.0
 scale = Vector2(0.8, 0.8)
 mouse_default_cursor_shape = 2
 texture = SubResource("AtlasTexture_gpqq8")
@@ -343,10 +321,10 @@ script = ExtResource("6_3ulx7")
 
 [node name="Obj_martillo" type="TextureRect" parent="Objects"]
 layout_mode = 0
-offset_left = 240.00003
-offset_top = 64.0
-offset_right = 293.33337
-offset_bottom = 135.11111
+offset_left = 208.00003
+offset_top = 8.0
+offset_right = 261.33337
+offset_bottom = 79.111115
 scale = Vector2(0.9, 0.9)
 mouse_default_cursor_shape = 2
 texture = SubResource("AtlasTexture_gffj7")
@@ -356,10 +334,10 @@ correct_category = "no-hardware"
 
 [node name="Obj_Teclado2" type="TextureRect" parent="Objects"]
 layout_mode = 0
-offset_left = 384.0
-offset_top = 136.0
-offset_right = 464.0
-offset_bottom = 196.0
+offset_left = 312.0
+offset_top = 72.0
+offset_right = 392.0
+offset_bottom = 132.0
 scale = Vector2(0.8, 0.8)
 mouse_default_cursor_shape = 2
 texture = SubResource("AtlasTexture_gvvog")
@@ -368,10 +346,10 @@ script = ExtResource("6_3ulx7")
 
 [node name="Obj_Cuaderno" type="TextureRect" parent="Objects"]
 layout_mode = 0
-offset_left = 431.99997
-offset_top = 72.0
-offset_right = 501.5652
-offset_bottom = 120.0
+offset_left = 360.0
+offset_top = 16.0
+offset_right = 429.56522
+offset_bottom = 64.0
 scale = Vector2(0.92, 1)
 mouse_default_cursor_shape = 2
 texture = SubResource("AtlasTexture_e5c64")
@@ -381,11 +359,11 @@ correct_category = "no-hardware"
 
 [node name="Obj_lapiz" type="TextureRect" parent="Objects"]
 layout_mode = 0
-offset_left = 71.999985
-offset_top = 192.0
-offset_right = 132.0
-offset_bottom = 272.0
-scale = Vector2(0.8, 0.8)
+offset_left = 24.000004
+offset_top = 128.0
+offset_right = 84.000015
+offset_bottom = 208.0
+scale = Vector2(0.6, 0.6)
 mouse_default_cursor_shape = 2
 texture = SubResource("AtlasTexture_c4685")
 stretch_mode = 5
@@ -394,10 +372,10 @@ correct_category = "no-hardware"
 
 [node name="Obj_Impresora" type="TextureRect" parent="Objects"]
 layout_mode = 0
-offset_left = 240.0
-offset_top = 200.0
-offset_right = 288.0
-offset_bottom = 248.0
+offset_left = 536.0
+offset_top = 128.0
+offset_right = 584.0
+offset_bottom = 176.0
 mouse_default_cursor_shape = 2
 texture = SubResource("AtlasTexture_ckfm7")
 stretch_mode = 5
@@ -405,11 +383,11 @@ script = ExtResource("6_3ulx7")
 
 [node name="Obj_Cuchara" type="TextureRect" parent="Objects"]
 layout_mode = 0
-offset_left = 448.0
-offset_top = 192.0
-offset_right = 488.0
-offset_bottom = 272.0
-scale = Vector2(0.8, 0.8)
+offset_left = 496.0
+offset_top = 80.00001
+offset_right = 536.0
+offset_bottom = 160.0
+scale = Vector2(0.6, 0.6)
 mouse_default_cursor_shape = 2
 texture = SubResource("AtlasTexture_0o74e")
 stretch_mode = 5
@@ -418,10 +396,10 @@ correct_category = "no-hardware"
 
 [node name="Obj_Balon" type="TextureRect" parent="Objects"]
 layout_mode = 0
-offset_left = 512.0
-offset_top = 128.0
-offset_right = 576.0
-offset_bottom = 192.0
+offset_left = 528.0
+offset_top = 8.0
+offset_right = 592.0
+offset_bottom = 72.0
 mouse_default_cursor_shape = 2
 texture = SubResource("AtlasTexture_t3a2u")
 stretch_mode = 5
@@ -430,10 +408,10 @@ correct_category = "no-hardware"
 
 [node name="Obj_Monitor2" type="TextureRect" parent="Objects"]
 layout_mode = 0
-offset_left = 64.0
-offset_top = 64.0
-offset_right = 136.0
-offset_bottom = 135.11111
+offset_left = 24.0
+offset_top = 8.0
+offset_right = 96.0
+offset_bottom = 79.111115
 scale = Vector2(0.9, 0.9)
 mouse_default_cursor_shape = 2
 texture = SubResource("AtlasTexture_ckrm8")
@@ -442,11 +420,10 @@ script = ExtResource("6_3ulx7")
 
 [node name="Obj_Tenedor" type="TextureRect" parent="Objects"]
 layout_mode = 0
-offset_left = 64.0
-offset_top = 136.0
-offset_right = 117.66669
-offset_bottom = 176.0
-scale = Vector2(1.2, 1.2)
+offset_left = 32.0
+offset_top = 80.0
+offset_right = 85.66669
+offset_bottom = 120.0
 mouse_default_cursor_shape = 2
 texture = SubResource("AtlasTexture_elfji")
 stretch_mode = 5
@@ -455,10 +432,10 @@ correct_category = "no-hardware"
 
 [node name="Obj_Plato" type="TextureRect" parent="Objects"]
 layout_mode = 0
-offset_left = 344.0
-offset_top = 192.0
-offset_right = 408.0
-offset_bottom = 256.0
+offset_left = 400.0
+offset_top = 72.0
+offset_right = 464.0
+offset_bottom = 136.0
 mouse_default_cursor_shape = 2
 texture = SubResource("AtlasTexture_c8dis")
 stretch_mode = 5
