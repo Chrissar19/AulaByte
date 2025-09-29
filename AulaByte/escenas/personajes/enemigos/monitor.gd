@@ -1,5 +1,4 @@
 extends CharacterBody2D
-
 # ============================================================================
 # EXPORTS
 # ============================================================================
@@ -7,14 +6,14 @@ extends CharacterBody2D
 @export var monedas: int = 3
 @export var velocidad: float = 30.0
 @export var gravedad: float = 400.0
-@export var impulso_salto: float = -250.0
+@export var impulso_salto: float = -700.0
 @export var impulso_impacto: float = 900.0
 @export var distancia_deteccion_borde: float = 32.0
 
 # ============================================================================
 # VARIABLES
 # ============================================================================
-var vida: int = 1
+var vida: int = 3
 var direccion: int = 1
 var base_vida: int = vida
 
@@ -26,9 +25,9 @@ var base_vida: int = vida
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var timer_muerte: Timer = $TimerMuerte
 @onready var timer_recuperacion: Timer = $TimerRecuperacion
-@onready var colision_slime: CollisionShape2D = $ColisionSlime
+@onready var collision_monitor: CollisionShape2D = $CollisionMonitor
 @onready var audio_muerte: AudioStreamPlayer2D = $SensorPisoton/AudioMuerte
-@onready var particulas: CPUParticles2D = $ParticulasSlime
+@onready var particulas_monitor: CPUParticles2D = $ParticulasMonitor
 @onready var area_daño: Area2D = $AreaDaño
 
 # ============================================================================
@@ -37,7 +36,7 @@ var base_vida: int = vida
 func _ready() -> void:
 	add_to_group("Enemigos")
 	area_daño.add_to_group("DMG")
-	sprite.play("slime_walk_blue")
+	sprite.play("animacion_monitor")
 	cofigurar_ray_suelo()
 
 # ============================================================================
@@ -102,7 +101,7 @@ func _on_sensor_pisoton_body_entered(body: Node2D) -> void:
 			set_physics_process(false)
 			audio_muerte.play()
 			timer_muerte.start(0.4)
-			particulas.emitting = true
+			particulas_monitor.emitting = true
 			sprite.play("slime_death_blue")
 			body.ganar_puntos(monedas * base_vida)
 		else:
@@ -120,7 +119,7 @@ func _on_sensor_pisoton_area_shape_entered(area_rid: RID, area: Area2D, area_sha
 		set_physics_process(false)
 		sprite.play("slime_death_blue")
 		audio_muerte.play()
-		particulas.emitting = true
+		particulas_monitor.emitting = true
 		queue_free()
 
 func _on_timer_recuperacion_timeout() -> void:

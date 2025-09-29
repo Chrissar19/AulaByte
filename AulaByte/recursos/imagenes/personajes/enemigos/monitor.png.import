@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c32w8mojgthif"
-path="res://.godot/imported/Logo6.png-eb222a6cb3e4dfd443e76ffa6e3545e8.ctex"
+uid="uid://d3ri1p6guwp1x"
+path="res://.godot/imported/monitor.png-cf300adc0e208ff44f9f3c5f15dea5d9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/logos/Logo6.png"
-dest_files=["res://.godot/imported/Logo6.png-eb222a6cb3e4dfd443e76ffa6e3545e8.ctex"]
+source_file="res://recursos/imagenes/personajes/enemigos/monitor.png"
+dest_files=["res://.godot/imported/monitor.png-cf300adc0e208ff44f9f3c5f15dea5d9.ctex"]
 
 [params]
 
