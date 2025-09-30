@@ -2,7 +2,7 @@ extends Panel
 class_name Carpeta
 
 @export_enum("hardware", "no-hardware") var category: String = "hardware"
-signal item_dropped(correct: bool)
+signal soltar_item(verdadero: bool)
 
 func _ready() -> void:
     mouse_filter = Control.MOUSE_FILTER_PASS
@@ -21,4 +21,4 @@ func _drop_data(_pos: Vector2, data: Variant) -> void:
     else:
         obj.return_to_start()
 
-    item_dropped.emit(correct)
+    soltar_item.emit(correct)

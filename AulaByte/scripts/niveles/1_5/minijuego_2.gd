@@ -29,7 +29,7 @@ func _ready() -> void:
 func _conectar_carpetas() -> void:
     for c in contenedor_carpetas.get_children():
         if c is Carpeta:
-            c.item_dropped.connect(_soltar_item)
+            c.soltar_item.connect(_soltar_item)
 
 func _contar_objetos() -> void:
     _total_objetos = 0

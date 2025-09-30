@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://chbe70iu5ss65"]
+
+[node name="TeclaArrastrable" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
