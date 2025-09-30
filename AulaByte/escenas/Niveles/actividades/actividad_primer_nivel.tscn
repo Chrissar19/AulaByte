@@ -72,7 +72,7 @@ theme_override_fonts/font = ExtResource("3_mbatl")
 text = "SALIR"
 
 [node name="SalidaTexto" type="Label" parent="."]
-layout_mode = 2
+layout_mode = 0
 offset_left = 256.0
 offset_top = 136.0
 offset_right = 576.0
@@ -84,7 +84,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HBoxClaves" type="HBoxContainer" parent="."]
-layout_mode = 2
+layout_mode = 0
 offset_left = 312.0
 offset_top = 176.0
 offset_right = 548.0
@@ -119,15 +119,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_twqsm")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Dato4" type="Label" parent="HBoxClaves"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.0117647, 0.627451, 0.384314, 1)
-theme_override_fonts/font = ExtResource("3_mbatl")
-theme_override_styles/normal = SubResource("StyleBoxFlat_twqsm")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="BtnBorrar" type="Button" parent="."]
 layout_mode = 0
 offset_left = 376.0
@@ -153,7 +144,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BtnDerecha" type="TextureButton" parent="."]
-layout_mode = 2
+layout_mode = 0
 offset_left = 208.0
 offset_top = 176.0
 offset_right = 240.0
@@ -162,7 +153,7 @@ texture_normal = SubResource("AtlasTexture_r8uex")
 stretch_mode = 5
 
 [node name="BtnIzquierda" type="TextureButton" parent="."]
-layout_mode = 2
+layout_mode = 0
 offset_left = 128.0
 offset_top = 176.0
 offset_right = 160.0
@@ -171,7 +162,7 @@ texture_normal = SubResource("AtlasTexture_0j8xr")
 stretch_mode = 5
 
 [node name="BtnArriba" type="TextureButton" parent="."]
-layout_mode = 2
+layout_mode = 0
 offset_left = 168.0
 offset_top = 136.0
 offset_right = 200.0
@@ -180,7 +171,7 @@ texture_normal = SubResource("AtlasTexture_lvkxs")
 stretch_mode = 5
 
 [node name="BtnAbajo" type="TextureButton" parent="."]
-layout_mode = 2
+layout_mode = 0
 offset_left = 168.0
 offset_top = 176.0
 offset_right = 200.0

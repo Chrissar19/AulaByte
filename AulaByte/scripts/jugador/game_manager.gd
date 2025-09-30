@@ -374,8 +374,15 @@ func generar_codigo() -> Array[int]:
 		num_random.randomize()
 
 		codigo_actividad_actual = []
-		for i in range(4):
+		for i in range(3):
 			codigo_actividad_actual.append(num_random.randi_range(1, 4))
+		
+		if nivel_actual > 1:
+			codigo_actividad_actual.append(num_random.randi_range(1, 4))
+			
+		if nivel_actual > 8:
+			codigo_actividad_actual.append(num_random.randi_range(1, 4))
+			
 		codigo_generado = true
 		print("Codigo generado para el nivel: ", codigo_actividad_actual)
 	return codigo_actividad_actual

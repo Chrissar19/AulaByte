@@ -4,7 +4,6 @@ extends NivelBase
 @onready var cuadro_1: TextureRect = $Cuadros/Cuadro1
 @onready var cuadro_2: TextureRect = $Cuadros/Cuadro2
 @onready var cuadro_3: TextureRect = $Cuadros/Cuadro3
-@onready var cuadro_4: TextureRect = $Cuadros/Cuadro4
 
 var fle_arriba: Texture2D = preload("res://recursos/imagenes/objetos/Flecha arriba.png")
 var fle_izquierda: Texture2D = preload("res://recursos/imagenes/objetos/Flecha izq.png")
@@ -40,7 +39,6 @@ func asignar_imagen() -> void:
 	asignar_imagen_a_cuadro(cuadro_1, codigo_actividad[0])
 	asignar_imagen_a_cuadro(cuadro_2, codigo_actividad[1])
 	asignar_imagen_a_cuadro(cuadro_3, codigo_actividad[2])
-	asignar_imagen_a_cuadro(cuadro_4, codigo_actividad[3])
 
 func asignar_imagen_a_cuadro(cuadro: TextureRect, codigo: int) -> void:
 	match codigo:
