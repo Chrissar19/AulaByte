@@ -1,5 +1,5 @@
 extends TextureRect
-class_name DraggableObject
+class_name ObjetoArrastrable
 
 @export_enum("hardware", "no-hardware") var correct_category: String = "hardware"
 

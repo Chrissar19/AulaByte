@@ -7,53 +7,57 @@ signal resuelto(exito: bool)
 signal actividad_superada
 signal actividad_fallida
 
-@onready var attempts_label: Label = $UI/AttemptsLabel
-@onready var win_label: Label = $UI/WinLabel
-@onready var objects_container: Control = $Objects
-@onready var folders_root: Node = $Folders
+@onready var lbl_ganar: Label = $UI/LblGanar
+@onready var lbl_intentos: Label = $UI/LblIntentos
+@onready var contenedor_objetos: Control = $ContenedorObjetos
+@onready var contenedor_carpetas: Control = $ContenedorCarpetas
 
 @export var intentos: int = 5
 
-var _objects_total: int = 0
-var _objects_correct: int = 0
+var _total_objetos: int = 0
+var _objeto_correcto: int = 0
 
 func _ready() -> void:
-    win_label.visible = false
-    _connect_folders()
-    _count_objects()
-    _update_attempts()
+    lbl_ganar.visible = false
+    _conectar_carpetas()
+    _contar_objetos()
+    _actualizar_intentos()
 
     # Este minijuego corre en modo pausado (GameManager lo activa así)
     process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 
-func _connect_folders() -> void:
-    for c in folders_root.get_children():
-        if c is Folder:
-            c.item_dropped.connect(_on_item_dropped)
+func _conectar_carpetas() -> void:
+    for c in contenedor_carpetas.get_children():
+        if c is Carpeta:
+            c.item_dropped.connect(_soltar_item)
 
-func _count_objects() -> void:
-    _objects_total = 0
-    for c in objects_container.get_children():
-        if c is DraggableObject:
-            _objects_total += 1
+func _contar_objetos() -> void:
+    _total_objetos = 0
+    for c in contenedor_objetos.get_children():
+        if c is ObjetoArrastrable:
+            _total_objetos += 1
 
-func _update_attempts() -> void:
-    attempts_label.text = "Intentos: %d" % intentos
+func _actualizar_intentos() -> void:
+    lbl_intentos.text = "Intentos: %d" % intentos
 
-func _on_item_dropped(correct: bool) -> void:
+func _soltar_item(correct: bool) -> void:
     if correct:
-        _objects_correct += 1
-        if _objects_correct >= _objects_total:
-            _on_win()
+        _objeto_correcto += 1
+        lbl_ganar.text = "¡Bien hecho!"
+        lbl_ganar.visible = true
+        if _objeto_correcto >= _total_objetos:
+            _ganar()
     else:
         intentos -= 1
-        _update_attempts()
+        lbl_ganar.text = "UPS"
+        lbl_ganar.visible = true
+        _actualizar_intentos()
         if intentos <= 0:
-            _on_fail()
+            _perder()
 
-func _on_win() -> void:
-    win_label.text = "¡Bien hecho! "
-    win_label.visible = true
+func _ganar() -> void:
+    lbl_ganar.text = "¡Bien hecho! "
+    lbl_ganar.visible = true
 
     # Señales opcionales locales
     actividad_superada.emit()
@@ -62,20 +66,20 @@ func _on_win() -> void:
     resuelto.emit(true)
 
     # (Opcional) bloquear más arrastres
-    _disable_remaining_draggables()
+    _bloquear_objetos_arrastrables()
 
-func _on_fail() -> void:
-    win_label.text = "Sin intentos."
-    win_label.visible = true
+func _perder() -> void:
+    lbl_ganar.text = "Sin intentos."
+    lbl_ganar.visible = true
 
     # Señales opcionales locales
     actividad_fallida.emit()
 
     # Señal que consume GameManager -> él resta vida y decide si vuelve a JUGANDO o GAME_OVER
     resuelto.emit(false)
-    _disable_remaining_draggables()
+    _bloquear_objetos_arrastrables()
 
-func _disable_remaining_draggables() -> void:
-    for c in objects_container.get_children():
-        if c is DraggableObject and is_instance_valid(c):
+func _bloquear_objetos_arrastrables() -> void:
+    for c in contenedor_objetos.get_children():
+        if c is ObjetoArrastrable and is_instance_valid(c):
             c.mouse_filter = Control.MOUSE_FILTER_IGNORE

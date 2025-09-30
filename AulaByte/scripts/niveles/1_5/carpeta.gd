@@ -1,5 +1,5 @@
 extends Panel
-class_name Folder
+class_name Carpeta
 
 @export_enum("hardware", "no-hardware") var category: String = "hardware"
 signal item_dropped(correct: bool)
@@ -13,7 +13,7 @@ func _can_drop_data(_pos: Vector2, data: Variant) -> bool:
         and data.has("from") and data.has("correct_category")
 
 func _drop_data(_pos: Vector2, data: Variant) -> void:
-    var obj: DraggableObject = data["from"]
+    var obj: ObjetoArrastrable = data["from"]
     var correct: bool = (data["correct_category"] == category)
 
     if correct:
