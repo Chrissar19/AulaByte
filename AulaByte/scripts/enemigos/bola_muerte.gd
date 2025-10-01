@@ -7,9 +7,10 @@ extends Node2D
 # ============================================================================
 # PARÁMETROS EXPORTADOS
 # ============================================================================
-@export var distancia_cadena := 0         # Longitud fija (opcional)
+@export var dmg: int = 2
+@export var speed: float = 0.5 #Velocidad rotacion bola
 @export var tamano_bola := 1.0  # Escala del sprite
-@export var dmg: int = 2        
+@export var distancia_cadena := 0         # Longitud fija (opcional)
 
 # ============================================================================
 # VARIABLES INTERNAS
@@ -22,17 +23,19 @@ const VALOR_INICIAL_RAYCAST := 56
 # ============================================================================
 # NODOS HIJO
 # ============================================================================
-@onready var ray_cast_suelo: RayCast2D = $RayCastDeteccionSuelo
 @onready var bola: Sprite2D = $Bola
 @onready var timer_espera: Timer = $TimerTilePintado
 @onready var anim_bola: AnimationPlayer = $RotacionBola
+@onready var rotacion_bola: AnimationPlayer = $RotacionBola
+@onready var ray_cast_suelo: RayCast2D = $RayCastDeteccionSuelo
 
 # ============================================================================
 # READY
 # ============================================================================
 func _ready() -> void:
 	add_to_group("DMG")
-	add_to_group("Enemigos")
+	add_to_group("Trampas")
+	rotacion_bola.speed_scale = speed
 	ray_cast_suelo.target_position.y = VALOR_INICIAL_RAYCAST * tamano_bola
 	bola.scale *= tamano_bola
 

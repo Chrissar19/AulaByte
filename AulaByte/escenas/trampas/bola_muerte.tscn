@@ -48,7 +48,7 @@ _data = {
 &"movimiento_bola": SubResource("Animation_u7ovi")
 }
 
-[node name="BolaMuerte" type="Node2D" groups=["Enemigos"]]
+[node name="BolaMuerte" type="Node2D" groups=["Trampas"]]
 script = ExtResource("1_krn8g")
 
 [node name="ganchoCadena" type="Sprite2D" parent="."]
@@ -67,17 +67,17 @@ offset = Vector2(0, 20)
 region_enabled = true
 region_rect = Rect2(0, 88, 32, 40)
 
-[node name="AreaColision" type="Area2D" parent="Bola"]
+[node name="AreaColision" type="Area2D" parent="Bola" groups=["Trampas"]]
 position = Vector2(0, -16)
-collision_layer = 16
-collision_mask = 49
+collision_layer = 1024
+collision_mask = 48
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bola/AreaColision"]
 position = Vector2(0, 40)
 shape = SubResource("CircleShape2D_x6b7q")
 
 [node name="AreaDMG" type="Area2D" parent="Bola" groups=["DMG"]]
-collision_layer = 8
+collision_layer = 1024
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bola/AreaDMG"]
@@ -95,6 +95,7 @@ one_shot = true
 libraries = {
 &"": SubResource("AnimationLibrary_omtho")
 }
+speed_scale = 0.5
 
 [connection signal="body_entered" from="Bola/AreaColision" to="." method="_on_area_colision_body_entered"]
 [connection signal="body_entered" from="Bola/AreaDMG" to="." method="_on_detector_jugador_body_entered"]

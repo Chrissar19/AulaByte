@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://ce4psiq5ll2ou"]
+[gd_scene load_steps=38 format=4 uid="uid://ce4psiq5ll2ou"]
 
 [ext_resource type="Script" uid="uid://coe5412e75vcn" path="res://scripts/niveles/nivel_1.gd" id="1_68m43"]
 [ext_resource type="PackedScene" uid="uid://c8f486kolklgt" path="res://escenas/Niveles/actividades/actividad_primer_nivel.tscn" id="2_4pfxj"]
@@ -20,7 +20,6 @@
 [ext_resource type="Texture2D" uid="uid://dp6ddal4ebclo" path="res://recursos/imagenes/objetos/Flecha abajo.png" id="18_1lge7"]
 [ext_resource type="PackedScene" uid="uid://o7nxc8ggkh43" path="res://escenas/personajes/Insuasty/Insuasty.tscn" id="18_q4rug"]
 [ext_resource type="PackedScene" uid="uid://cl1bwd6mofchq" path="res://escenas/objetos_interacciones/item_vida.tscn" id="18_s863u"]
-[ext_resource type="PackedScene" uid="uid://bd3tvkqc3t15v" path="res://escenas/personajes/enemigos/monitor.tscn" id="18_x8ajn"]
 [ext_resource type="PackedScene" uid="uid://diph6j8wlkfed" path="res://escenas/objetos_interacciones/plataforma_cae.tscn" id="21_nlh1x"]
 [ext_resource type="PackedScene" uid="uid://bqyt6lm4d2ydo" path="res://escenas/objetos_interacciones/plataforma_sube.tscn" id="23_nlh1x"]
 
@@ -1357,18 +1356,9 @@ offset_bottom = -161.0
 texture = ExtResource("18_1lge7")
 
 [node name="Insuasty" parent="." instance=ExtResource("18_q4rug")]
-position = Vector2(535, 126)
+position = Vector2(518, 126)
 
 [node name="enemigos" type="Node" parent="."]
-
-[node name="SlimeAzul" parent="enemigos" instance=ExtResource("12_4be78")]
-position = Vector2(391, -101)
-
-[node name="SlimeAzul2" parent="enemigos" instance=ExtResource("12_4be78")]
-position = Vector2(370, -347)
-
-[node name="SlimeAzul3" parent="enemigos" instance=ExtResource("12_4be78")]
-position = Vector2(12, -341)
 
 [node name="SlimeAzul5" parent="enemigos" instance=ExtResource("12_4be78")]
 position = Vector2(-421, -519)
@@ -1382,17 +1372,10 @@ position = Vector2(-552, 139)
 [node name="SlimeAzul8" parent="enemigos" instance=ExtResource("12_4be78")]
 position = Vector2(-263, -105)
 
-[node name="SlimeAzul9" parent="enemigos" instance=ExtResource("12_4be78")]
-position = Vector2(-1, -106)
-
-[node name="monitor" parent="enemigos" groups=["Enemigos"] instance=ExtResource("18_x8ajn")]
-z_index = 2
-position = Vector2(407, -525)
-
 [node name="puertas" type="Node" parent="."]
 
 [node name="PuertaEntrada" parent="puertas" instance=ExtResource("16_xcw0p")]
-position = Vector2(532, 122)
+position = Vector2(517, 123)
 
 [node name="PuertaSalida" parent="puertas" instance=ExtResource("16_xcw0p")]
 z_index = 1
