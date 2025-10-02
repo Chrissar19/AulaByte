@@ -1,7 +1,7 @@
 [gd_scene load_steps=38 format=4 uid="uid://ce4psiq5ll2ou"]
 
-[ext_resource type="Script" uid="uid://coe5412e75vcn" path="res://scripts/niveles/nivel_1.gd" id="1_68m43"]
-[ext_resource type="PackedScene" uid="uid://c8f486kolklgt" path="res://escenas/Niveles/actividades/actividad_primer_nivel.tscn" id="2_4pfxj"]
+[ext_resource type="Script" uid="uid://coe5412e75vcn" path="res://scripts/niveles/1_5/nivel_1.gd" id="1_68m43"]
+[ext_resource type="PackedScene" uid="uid://c8f486kolklgt" path="res://escenas/Niveles/0_5/actividad_primer_nivel.tscn" id="2_4pfxj"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_q4rug"]
 [ext_resource type="Texture2D" uid="uid://dr3bkmou477j5" path="res://recursos/imagenes/TileSets/FondoSheet.png" id="3_4dly0"]
 [ext_resource type="Texture2D" uid="uid://14pnjoo6241b" path="res://recursos/imagenes/TileSets/DecoracionesFondo.png" id="4_4pfxj"]
@@ -1356,7 +1356,7 @@ offset_bottom = -161.0
 texture = ExtResource("18_1lge7")
 
 [node name="Insuasty" parent="." instance=ExtResource("18_q4rug")]
-position = Vector2(518, 126)
+position = Vector2(523, 122)
 
 [node name="enemigos" type="Node" parent="."]
 
@@ -1375,7 +1375,7 @@ position = Vector2(-263, -105)
 [node name="puertas" type="Node" parent="."]
 
 [node name="PuertaEntrada" parent="puertas" instance=ExtResource("16_xcw0p")]
-position = Vector2(517, 123)
+position = Vector2(522, 120)
 
 [node name="PuertaSalida" parent="puertas" instance=ExtResource("16_xcw0p")]
 z_index = 1
