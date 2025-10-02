@@ -1,24 +1,24 @@
 extends Control
-class_name tecladoZona
+class_name TecladoZona
 
-signal soltar_item(verdadero: bool)
+signal soltar_item(correcto: bool)
 
 @export var mascara_textura: Texture2D
 @export var teclado_textura: Texture2D
 
-# Colores "clave" que usas en la máscara (ajusta si tus PNG difieren)
-@export var color_letras: Color = Color(0, 1, 0, 1)     # verde
-@export var color_numeros: Color = Color(1, 1, 0, 1)    # amarillo
-@export var color_simbolos: Color = Color(0, 0.4, 1, 1) # azul
-
-# Tolerancia para comparar colores (por si hay compresión o anti-alias)
-const EPS := 0.08
+# Ajusta a los colores reales de tu máscara
+@export var color_letras: Color   = Color(0.016, 0.973, 0.459, 1.0)  # verde
+@export var color_numeros: Color  = Color(1.0,   0.725, 0.078, 1.0)  # naranja
+@export var color_simbolos: Color = Color(0.031, 0.329, 0.941, 1.0)  # azul
 
 var _mascara_imagen: Image
 var _teclado: TextureRect
 
 func _ready() -> void:
     mouse_filter = Control.MOUSE_FILTER_PASS
+
+    if mascara_textura:
+        _mascara_imagen = mascara_textura.get_image()
 
     if teclado_textura:
         _teclado = TextureRect.new()
@@ -28,41 +28,31 @@ func _ready() -> void:
         _teclado.set_anchors_preset(Control.PRESET_FULL_RECT)
         add_child(_teclado)
 
-    # Cargamos la imagen de la máscara (debe ser un Texture2D no-streaming)
-    if mascara_textura:
-        _mascara_imagen = mascara_textura.get_image()
-
-# ---- Drag & Drop ----
-func can_drop_data(at_position: Vector2, data: Variant) -> bool:
-    return typeof(data) == TYPE_DICTIONARY \
+func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
+    return (data is Dictionary) \
         and data.has("type") and data["type"] == "draggable_obj" \
-        and data.has("from") and data.has("correct_category")
+        and data.has("from") and data.has("categoria_correcta")
 
-func drop_data(at_position: Vector2, data: Variant) -> void:
+func _drop_data(at_position: Vector2, data: Variant) -> void:
     var obj: Node = data["from"] as Node
     var cat: String = _categoria_en_pos(at_position)
-    var verdadero: bool = (cat != "" and data["correct_category"] == cat)
+    var correcto: bool = (cat != "" and data["categoria_correcta"] == cat)
 
-    if verdadero:
-        # soltar definitivo: por ejemplo eliminar la tecla
-        if obj and obj.is_inside_tree():
-            obj.queue_free()
+    if correcto:
+        obj.queue_free()
     else:
-        # devolver a origen si el arrastrable lo implementa
-        if obj and obj.has_method("return_to_start"):
-            obj.call("return_to_start")
+        if obj.has_method("volver_a_empezar"):
+            obj.volver_a_empezar()
 
-    soltar_item.emit(verdadero)
+    soltar_item.emit(correcto)
 
 # ---- Utilidades ----
 func _categoria_en_pos(local_pos: Vector2) -> String:
-    # Si no hay máscara, no podemos categorizar
     if _mascara_imagen == null:
         return ""
 
-    # Convertimos la posición local (en el Control) a coordenadas de la imagen de la máscara
-    # Suponiendo que el TextureRect está a tamaño completo (FULL_RECT) y STRETCH_SCALE:
-    var size: Vector2 = get_size()
+    var w := float(_mascara_imagen.get_width())
+    var h := float(_mascara_imagen.get_height())
     if size.x <= 0.0 or size.y <= 0.0:
         return ""
 
@@ -70,19 +60,14 @@ func _categoria_en_pos(local_pos: Vector2) -> String:
         clamp(local_pos.x / size.x, 0.0, 1.0),
         clamp(local_pos.y / size.y, 0.0, 1.0)
     )
+    var px := int(uv.x * (w - 1.0))
+    var py := int(uv.y * (h - 1.0))
+    var c := _mascara_imagen.get_pixel(px, py)
 
-    var px := int(round(uv.x * float(_mascara_imagen.get_width() - 1)))
-    var py := int(round(uv.y * float(_mascara_imagen.get_height() - 1)))
-    var c: Color = _mascara_imagen.get_pixel(px, py)
-
-    if _color_casi_igual(c, color_letras):
-        return "letters"
-    if _color_casi_igual(c, color_numeros):
-        return "numbers"
-    if _color_casi_igual(c, color_simbolos):
-        return "symbols"
-
+    if _color_casi_igual(c, color_letras):   return "letras"
+    if _color_casi_igual(c, color_numeros):  return "numeros"
+    if _color_casi_igual(c, color_simbolos): return "simbolos"
     return ""
 
 func _color_casi_igual(a: Color, b: Color) -> bool:
-    return abs(a.r - b.r) <= EPS and abs(a.g - b.g) <= EPS and abs(a.b - b.b) <= EPS
+    return abs(a.r - b.r) < 0.08 and abs(a.g - b.g) < 0.08 and abs(a.b - b.b) < 0.08

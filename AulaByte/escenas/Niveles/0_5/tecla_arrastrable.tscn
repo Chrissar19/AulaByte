@@ -1,5 +1,12 @@
-[gd_scene format=3 uid="uid://chbe70iu5ss65"]
+[gd_scene load_steps=3 format=3 uid="uid://chbe70iu5ss65"]
+
+[ext_resource type="Texture2D" uid="uid://cuoioyhg6qpw4" path="res://recursos/imagenes/TileSets/niveles/nivel3/tecla.png" id="1_n08l3"]
+[ext_resource type="Script" uid="uid://jh1jmdeov3fg" path="res://scripts/niveles/1_5/tecla_arrastrable.gd" id="2_ueotw"]
 
 [node name="TeclaArrastrable" type="TextureRect"]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 9.0
+offset_bottom = 9.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_n08l3")
+stretch_mode = 2
+script = ExtResource("2_ueotw")

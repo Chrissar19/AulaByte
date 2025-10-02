@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5qhxol8oagfm"
-path="res://.godot/imported/pantallaNivel.png-bd18c721927c44a82337c81bb7dd2327.ctex"
+uid="uid://larkjkghmili"
+path="res://.godot/imported/mascara_teclado.png-a7cd7e09d0e3f9ea76326318ac012dfe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/imagenes/objetos/pantallaNivel.png"
-dest_files=["res://.godot/imported/pantallaNivel.png-bd18c721927c44a82337c81bb7dd2327.ctex"]
+source_file="res://recursos/imagenes/TileSets/niveles/nivel3/mascara_teclado.png"
+dest_files=["res://.godot/imported/mascara_teclado.png-a7cd7e09d0e3f9ea76326318ac012dfe.ctex"]
 
 [params]
 
