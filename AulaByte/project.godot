@@ -37,6 +37,7 @@ DMG="El daño que se causara al jugador"
 Vida=""
 Pisos="Marca todos los objetos fisicos de piso"
 Checkpoint="Punto de inicio y de control de los niveles"
+ItemArrastrable=""
 
 [input]
 

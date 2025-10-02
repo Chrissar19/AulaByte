@@ -18,46 +18,46 @@ class_name NivelBase
 @export var actividad: PackedScene
 
 func _ready() -> void:
-	#-- ejecuta el nivel, para testeo
-	if id_nivel >= 0:
-		GameManager.nivel_actual = id_nivel
-	#-- estado global del juego
-	GameManager.cambiar_estado(GameManager.EstadoJuego.JUGANDO)
-	
-	#-- reiniciar valores del nivel
-	GameManager.reiniciar_nivel()
-	
-	#-- Mostrar HUD
-	hud.visible = true
-	
-	#-- iniciar cuenta regresiva
-	GameManager.iniciar_tiempo(cuenta_regresiva)
-	
-	#-- cargar el personaje
-	_cargar_personaje()
-	
+    #-- ejecuta el nivel, para testeo
+    if id_nivel >= 0:
+        GameManager.nivel_actual = id_nivel
+    #-- estado global del juego
+    GameManager.cambiar_estado(GameManager.EstadoJuego.JUGANDO)
+    
+    #-- reiniciar valores del nivel
+    GameManager.reiniciar_nivel()
+    
+    #-- Mostrar HUD
+    hud.visible = true
+    
+    #-- iniciar cuenta regresiva
+    GameManager.iniciar_tiempo(cuenta_regresiva)
+    
+    #-- cargar el personaje
+    _cargar_personaje()
+    
 func get_actividad() -> PackedScene:
-	return actividad
-	
+    return actividad
+    
 func _cargar_personaje() -> void:
-	var info_personaje: personajeInfo = GameManager.get_personaje()
-	
-	if info_personaje and info_personaje.archivo_escena:
-		var jugador = info_personaje.archivo_escena.instantiate()
-		jugador.global_position = punto_control.global_position
-		add_child(jugador)
-		
-		# Registrar en GameManager
-		GameManager.set_jugador(jugador)
-		
-		# Pasar límites de cámara si el jugador lo soporta
-		if jugador.has_method("establecer_limites_camara"):
-			jugador.establecer_limites_camara(
-				camara_alto,
-				camara_izquierda,
-				camara_derecha,
-				camara_abajo
-			)
-	else:
-		push_warning("No se cargó el personaje: revisa la selección en el menú")
-		
+    var info_personaje: personajeInfo = GameManager.get_personaje()
+    
+    if info_personaje and info_personaje.archivo_escena:
+        var jugador = info_personaje.archivo_escena.instantiate()
+        jugador.global_position = punto_control.global_position
+        add_child(jugador)
+        
+        # Registrar en GameManager
+        GameManager.set_jugador(jugador)
+        
+        # Pasar límites de cámara si el jugador lo soporta
+        if jugador.has_method("establecer_limites_camara"):
+            jugador.establecer_limites_camara(
+                camara_alto,
+                camara_izquierda,
+                camara_derecha,
+                camara_abajo
+            )
+    else:
+        push_warning("No se cargó el personaje: revisa la selección en el menú")
+        
