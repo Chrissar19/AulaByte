@@ -38,6 +38,7 @@ Vida=""
 Pisos="Marca todos los objetos fisicos de piso"
 Checkpoint="Punto de inicio y de control de los niveles"
 Trampas=""
+ItemArrastrable=""
 
 [input]
 

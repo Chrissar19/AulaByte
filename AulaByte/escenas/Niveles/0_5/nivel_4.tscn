@@ -1,6 +1,6 @@
 [gd_scene load_steps=38 format=4 uid="uid://bdp4vuaodlgyi"]
 
-[ext_resource type="Script" uid="uid://bv5rnpun0bjga" path="res://scripts/niveles/nivel_4.gd" id="1_ekcxq"]
+[ext_resource type="Script" uid="uid://bv5rnpun0bjga" path="res://scripts/niveles/1_5/nivel_4.gd" id="1_ekcxq"]
 [ext_resource type="Texture2D" uid="uid://cxyafbo3ck6fg" path="res://recursos/imagenes/TileSets/Pisos.png" id="1_lv0ag"]
 [ext_resource type="Texture2D" uid="uid://dr3bkmou477j5" path="res://recursos/imagenes/TileSets/FondoSheet.png" id="2_yf17g"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="3_btu8m"]
