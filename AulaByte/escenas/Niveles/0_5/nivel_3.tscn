@@ -1285,4 +1285,4 @@ collision_layer = 64
 collision_mask = 12
 
 [node name="PuntoControl" parent="." instance=ExtResource("6_ono6s")]
-position = Vector2(1333, 89)
+position = Vector2(1349, 98)
