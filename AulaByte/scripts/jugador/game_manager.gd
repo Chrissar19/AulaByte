@@ -147,6 +147,7 @@ func _salir_estado(estado: int) -> void:
             if ui_actividad:
                 ui_actividad.queue_free()
                 ui_actividad = null
+            get_tree().paused = false
 
 # -----------------------------------------------------------------------
 # Conexión con el jugador
@@ -343,6 +344,11 @@ func solicitar_minijuego() -> void:
         actividad.connect("resuelto", Callable(self, "_on_minijuego_resuelto"))
     else:
         push_error("La actividad no tiene señal 'resuelto'")
+        
+    if actividad.has_signal("cancelado"):
+        actividad.connect("cancelado", Callable(self, "_on_minijuego_cancelado"))
+    elif actividad.has_signal("cancelar"):
+        actividad.connect("cancelar", Callable(self, "_on_minijuego_cancelado"))
 
 func _on_minijuego_resuelto(exito: bool) -> void:
     # Elimina el CanvasLayer que contenía la actividad (si existe)
@@ -359,6 +365,15 @@ func _on_minijuego_resuelto(exito: bool) -> void:
         # Volvemos a JUGAR (si aún hay vidas)
         if vidas > 0:
             cambiar_estado(EstadoJuego.JUGANDO)
+            
+func _on_minijuego_cancelado() -> void:
+    if ui_actividad:
+        ui_actividad.queue_free()
+        ui_actividad = null
+    get_tree().paused = false
+    print("Minijuego cancelado → volver a JUGANDO")
+    cambiar_estado(EstadoJuego.JUGANDO)
+
 
 func establecer_parametros_actividad(parametros: Dictionary) -> void:
     if codigo_actividad_actual.is_empty():

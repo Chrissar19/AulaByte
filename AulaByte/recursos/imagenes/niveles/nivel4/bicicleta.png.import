@@ -2,22 +2,24 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckfo3mn0cmgxx"
-path="res://.godot/imported/tecla_simbolos.png-572f6a4a08ee91e666a9614b1016ef2b.ctex"
+uid="uid://q21bd3opyssi"
+path="res://.godot/imported/bicicleta.png-22340996619b86aa1789ed72d153e28a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/imagenes/TileSets/niveles/nivel3/tecla_simbolos.png"
-dest_files=["res://.godot/imported/tecla_simbolos.png-572f6a4a08ee91e666a9614b1016ef2b.ctex"]
+source_file="res://recursos/imagenes/niveles/nivel4/bicicleta.png"
+dest_files=["res://.godot/imported/bicicleta.png-22340996619b86aa1789ed72d153e28a.ctex"]
 
 [params]
 
 compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
@@ -25,6 +27,10 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

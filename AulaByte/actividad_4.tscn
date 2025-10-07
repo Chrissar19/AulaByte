@@ -1,0 +1,220 @@
+[gd_scene load_steps=13 format=3 uid="uid://bxynr5uu8vrrc"]
+
+[ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="1_8hpby"]
+[ext_resource type="Script" uid="uid://cbuqahwafoq5n" path="res://scripts/niveles/1_5/actividad_4.gd" id="1_noxnw"]
+[ext_resource type="Texture2D" uid="uid://q21bd3opyssi" path="res://recursos/imagenes/niveles/nivel4/bicicleta.png" id="2_1s2no"]
+[ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/Fuentes/Normal.ttf" id="2_eeuxp"]
+[ext_resource type="Texture2D" uid="uid://bbmowyttpw64w" path="res://recursos/imagenes/niveles/nivel4/bus.png" id="3_ev2iq"]
+[ext_resource type="Texture2D" uid="uid://cutcuwqhf45df" path="res://recursos/imagenes/niveles/nivel4/camion.png" id="4_8tfsa"]
+[ext_resource type="Texture2D" uid="uid://cvcei1b0h3jkm" path="res://recursos/imagenes/niveles/nivel4/carta_frente.png" id="4_noxnw"]
+[ext_resource type="PackedScene" uid="uid://d82ugex3ucng" path="res://escenas/Niveles/0_5/carta_volteable.tscn" id="7_0d7u5"]
+[ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="9_0d7u5"]
+[ext_resource type="Texture2D" uid="uid://ddivg17ok2gdv" path="res://recursos/imagenes/niveles/nivel4/carro con piernas6.png" id="9_etfqf"]
+[ext_resource type="Texture2D" uid="uid://p5fdorrrxsds" path="res://recursos/imagenes/niveles/nivel4/carro con alas6.png" id="10_44ex8"]
+[ext_resource type="Texture2D" uid="uid://bwv10kn230h1o" path="res://recursos/imagenes/niveles/nivel4/Carro sin llantas6.png" id="11_ityl8"]
+
+[node name="Actividad4" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_noxnw")
+
+[node name="Fondo" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pantalla" type="TextureRect" parent="Fondo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 0.99441653)
+texture = ExtResource("1_8hpby")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Fondo"]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 19.0
+offset_right = 535.0
+offset_bottom = 59.0
+theme_override_fonts/normal_font = ExtResource("2_eeuxp")
+theme_override_fonts/bold_font = ExtResource("2_eeuxp")
+theme_override_fonts/bold_italics_font = ExtResource("2_eeuxp")
+theme_override_fonts/italics_font = ExtResource("2_eeuxp")
+theme_override_fonts/mono_font = ExtResource("2_eeuxp")
+text = "Todos los vehiculos tienen ruedas"
+
+[node name="HVehiculos" type="HBoxContainer" parent="Fondo"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 456.0
+offset_bottom = 288.0
+scale = Vector2(0.6, 0.6)
+
+[node name="ZonaCartas" type="Control" parent="Fondo"]
+anchors_preset = 0
+offset_left = 320.0
+offset_top = 64.0
+offset_right = 896.0
+offset_bottom = 544.0
+scale = Vector2(0.5, 0.5)
+
+[node name="cartaPatas" parent="Fondo/ZonaCartas" instance=ExtResource("7_0d7u5")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1.9073486e-05
+offset_top = -16.0
+offset_right = 128.00002
+offset_bottom = 208.0
+textura_frente = ExtResource("9_etfqf")
+
+[node name="CartaAlas" parent="Fondo/ZonaCartas" instance=ExtResource("7_0d7u5")]
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 192.0
+offset_top = 95.99999
+offset_right = 320.0
+offset_bottom = 320.0
+textura_frente = ExtResource("10_44ex8")
+
+[node name="CartaLlantas" parent="Fondo/ZonaCartas" instance=ExtResource("7_0d7u5")]
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 239.99998
+offset_right = 128.0
+offset_bottom = 464.0
+textura_frente = ExtResource("11_ityl8")
+
+[node name="CartaBici" type="TextureRect" parent="Fondo"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 64.0
+offset_right = 256.0
+offset_bottom = 288.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_noxnw")
+
+[node name="Bici" type="TextureRect" parent="Fondo/CartaBici"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_1s2no")
+
+[node name="CartaBus" type="TextureRect" parent="Fondo"]
+layout_mode = 0
+offset_left = 216.0
+offset_top = 128.0
+offset_right = 344.0
+offset_bottom = 352.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_noxnw")
+
+[node name="Bus" type="TextureRect" parent="Fondo/CartaBus"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ev2iq")
+
+[node name="CartaCamion" type="TextureRect" parent="Fondo"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 184.0
+offset_right = 256.0
+offset_bottom = 408.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_noxnw")
+
+[node name="Camion" type="TextureRect" parent="Fondo/CartaCamion"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_8tfsa")
+
+[node name="VozGuia" type="AudioStreamPlayer" parent="."]
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="UI" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 280.0
+offset_right = 614.0
+offset_bottom = 328.0
+
+[node name="BtnSalir" type="Button" parent="UI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -94.0
+offset_top = -24.0
+offset_right = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("9_0d7u5")
+text = "Salir
+"
+
+[node name="LblGanar" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="LblIntentos" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -24.0
+offset_right = 21.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BtnAceptar" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 16.0
+offset_right = 104.0
+offset_bottom = 48.0
+theme_override_fonts/font = ExtResource("9_0d7u5")
+text = "ACEPTAR"
+
+[connection signal="pressed" from="UI/BtnAceptar" to="." method="_on_btn_aceptar_pressed"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://donmjcvkqhnhh"
-path="res://.godot/imported/carpetas n2.png-edb7d7dfa3ae19641ce7e811a7c3030f.ctex"
+uid="uid://ckfo3mn0cmgxx"
+path="res://.godot/imported/tecla_simbolos.png-f8b1845abddebe1215fd4bb46376b5f0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/imagenes/TileSets/niveles/carpetas n2.png"
-dest_files=["res://.godot/imported/carpetas n2.png-edb7d7dfa3ae19641ce7e811a7c3030f.ctex"]
+source_file="res://recursos/imagenes/niveles/nivel3/tecla_simbolos.png"
+dest_files=["res://.godot/imported/tecla_simbolos.png-f8b1845abddebe1215fd4bb46376b5f0.ctex"]
 
 [params]
 
