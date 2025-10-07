@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dr3bkmou477j5" path="res://recursos/imagenes/TileSets/FondoSheet.png" id="3_y4rii"]
 [ext_resource type="Texture2D" uid="uid://14pnjoo6241b" path="res://recursos/imagenes/TileSets/DecoracionesFondo.png" id="4_5swcc"]
 [ext_resource type="Texture2D" uid="uid://cxyafbo3ck6fg" path="res://recursos/imagenes/TileSets/Pisos.png" id="5_3jcjs"]
-[ext_resource type="PackedScene" uid="uid://t8ur3tgfe14n" path="res://escenas/ui/puntos_inicio.tscn" id="6_i3h1u"]
+[ext_resource type="PackedScene" uid="uid://t8ur3tgfe14n" path="res://escenas/ui/punto_control.tscn" id="6_i3h1u"]
 [ext_resource type="PackedScene" uid="uid://brfxoes3nrqbr" path="res://escenas/ui/hud.tscn" id="7_83odg"]
 [ext_resource type="PackedScene" uid="uid://mher13w4mave" path="res://escenas/trampas/zona_muerte.tscn" id="8_flh77"]
 [ext_resource type="PackedScene" uid="uid://cydd1023br6iv" path="res://escenas/objetos_interacciones/bits_moneda.tscn" id="9_ok6l4"]
@@ -429,6 +429,21 @@ _data = {
 &"vertical": SubResource("Animation_wmhw6")
 }
 
+[sub_resource type="Animation" id="Animation_mba44"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(275, -505)]
+}
+
 [sub_resource type="Animation" id="Animation_ubcfo"]
 resource_name = "vertical_2"
 length = 2.0
@@ -444,21 +459,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(275, -505), Vector2(275, -377), Vector2(435, -377)]
-}
-
-[sub_resource type="Animation" id="Animation_mba44"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(275, -505)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ixpke"]
