@@ -1086,7 +1086,6 @@ _data = {
 }
 
 [node name="Nivel_3" type="Node2D"]
-position = Vector2(208, 8)
 script = ExtResource("1_xgcft")
 camara_alto = -528
 camara_izquierda = -850
