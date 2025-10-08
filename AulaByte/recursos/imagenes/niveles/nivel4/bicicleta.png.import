@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkgjhn2bvu20a"
-path="res://.godot/imported/tecla_letras.png-f53ff128e89f86cb55abeeeff9a75649.ctex"
+uid="uid://q21bd3opyssi"
+path="res://.godot/imported/bicicleta.png-22340996619b86aa1789ed72d153e28a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/imagenes/TileSets/niveles/nivel3/tecla_letras.png"
-dest_files=["res://.godot/imported/tecla_letras.png-f53ff128e89f86cb55abeeeff9a75649.ctex"]
+source_file="res://recursos/imagenes/niveles/nivel4/bicicleta.png"
+dest_files=["res://.godot/imported/bicicleta.png-22340996619b86aa1789ed72d153e28a.ctex"]
 
 [params]
 

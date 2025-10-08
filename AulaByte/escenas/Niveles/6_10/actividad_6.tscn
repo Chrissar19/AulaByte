@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://ct6q8iwp7wni2"]
+
+[ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="1_h4p5l"]
+
+[node name="Actividad6" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pantalla" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.728822, 0.728822, 0.728822, 0.8117647)
+
+[node name="TextureRect" type="TextureRect" parent="Pantalla"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_h4p5l")
