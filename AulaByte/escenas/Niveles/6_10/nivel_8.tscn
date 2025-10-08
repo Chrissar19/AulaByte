@@ -493,7 +493,7 @@ tile_map_data = PackedByteArray("AADU/wEAAAAPAAAAAADV/wEAAAADAAAAAADW/wEAAAADAAA
 tile_set = SubResource("TileSet_6d66m")
 
 [node name="PuntosInicio" parent="." instance=ExtResource("6_i3h1u")]
-position = Vector2(-112, 80)
+position = Vector2(1002, -338)
 
 [node name="HUD" parent="." instance=ExtResource("7_83odg")]
 visible = false
@@ -569,7 +569,6 @@ autoplay = "vertical_2"
 speed_scale = 0.9
 
 [node name="SlimeAzul" parent="." instance=ExtResource("12_fpiep")]
-z_index = 1
 position = Vector2(927, -325)
 
 [node name="Saltarin" parent="." instance=ExtResource("13_yuanl")]
