@@ -1,6 +1,6 @@
 [gd_scene load_steps=31 format=4 uid="uid://bfh1cti7h62ot"]
 
-[ext_resource type="Script" uid="uid://bl84y62aosyrq" path="res://scripts/niveles/nivel_tuto.gd" id="1_kxpsx"]
+[ext_resource type="Script" uid="uid://cgrxbfui28s7n" path="res://scripts/niveles/1_5/nivel_3.gd" id="1_xgcft"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_ubjym"]
 [ext_resource type="PackedScene" uid="uid://b36qfb650v6sr" path="res://escenas/Niveles/0_5/actividad_3.tscn" id="2_xgcft"]
 [ext_resource type="Texture2D" uid="uid://dr3bkmou477j5" path="res://recursos/imagenes/TileSets/FondoSheet.png" id="3_u4isy"]
@@ -1086,7 +1086,8 @@ _data = {
 }
 
 [node name="Nivel_3" type="Node2D"]
-script = ExtResource("1_kxpsx")
+position = Vector2(208, 8)
+script = ExtResource("1_xgcft")
 camara_alto = -528
 camara_izquierda = -850
 camara_derecha = 720

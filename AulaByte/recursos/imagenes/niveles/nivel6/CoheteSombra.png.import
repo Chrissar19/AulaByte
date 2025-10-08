@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://donmjcvkqhnhh"
-path="res://.godot/imported/carpetas n2.png-edb7d7dfa3ae19641ce7e811a7c3030f.ctex"
+uid="uid://b1km7x86sbx5k"
+path="res://.godot/imported/CoheteSombra.png-fcc0112689777f833961409159c95eb6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/imagenes/TileSets/niveles/carpetas n2.png"
-dest_files=["res://.godot/imported/carpetas n2.png-edb7d7dfa3ae19641ce7e811a7c3030f.ctex"]
+source_file="res://recursos/imagenes/niveles/nivel6/CoheteSombra.png"
+dest_files=["res://.godot/imported/CoheteSombra.png-fcc0112689777f833961409159c95eb6.ctex"]
 
 [params]
 

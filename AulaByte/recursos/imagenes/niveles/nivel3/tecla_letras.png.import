@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cuoioyhg6qpw4"
-path="res://.godot/imported/tecla.png-4e38de31c9b1ec82b4a4f207c3b5e89b.ctex"
+uid="uid://bkgjhn2bvu20a"
+path="res://.godot/imported/tecla_letras.png-023c2c2718f3b2840fc9546e78757676.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/imagenes/TileSets/niveles/nivel3/tecla.png"
-dest_files=["res://.godot/imported/tecla.png-4e38de31c9b1ec82b4a4f207c3b5e89b.ctex"]
+source_file="res://recursos/imagenes/niveles/nivel3/tecla_letras.png"
+dest_files=["res://.godot/imported/tecla_letras.png-023c2c2718f3b2840fc9546e78757676.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://larkjkghmili"
-path="res://.godot/imported/mascara_teclado.png-a7cd7e09d0e3f9ea76326318ac012dfe.ctex"
+uid="uid://cutcuwqhf45df"
+path="res://.godot/imported/camion.png-e8c1809bd085e0f3a235ba438971e471.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/imagenes/TileSets/niveles/nivel3/mascara_teclado.png"
-dest_files=["res://.godot/imported/mascara_teclado.png-a7cd7e09d0e3f9ea76326318ac012dfe.ctex"]
+source_file="res://recursos/imagenes/niveles/nivel4/camion.png"
+dest_files=["res://.godot/imported/camion.png-e8c1809bd085e0f3a235ba438971e471.ctex"]
 
 [params]
 

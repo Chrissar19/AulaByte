@@ -1,13 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://b36qfb650v6sr"]
+[gd_scene load_steps=8 format=3 uid="uid://b36qfb650v6sr"]
 
 [ext_resource type="Script" uid="uid://b8rh4btqfdevo" path="res://scripts/niveles/1_5/actividad_3.gd" id="1_3gb8d"]
 [ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="1_mnkbi"]
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="2_vjo3q"]
 [ext_resource type="Script" uid="uid://bmkm08edlfhky" path="res://scripts/niveles/1_5/teclado_zona.gd" id="3_g3fne"]
-[ext_resource type="Texture2D" uid="uid://djdfbg4v8ahx7" path="res://recursos/imagenes/TileSets/niveles/nivel3/teclado nv 3.png" id="3_inuu1"]
-[ext_resource type="Texture2D" uid="uid://larkjkghmili" path="res://recursos/imagenes/TileSets/niveles/nivel3/mascara_teclado.png" id="5_gexh0"]
+[ext_resource type="Texture2D" uid="uid://djdfbg4v8ahx7" path="res://recursos/imagenes/niveles/nivel3/teclado nv 3.png" id="3_inuu1"]
+[ext_resource type="Texture2D" uid="uid://larkjkghmili" path="res://recursos/imagenes/niveles/nivel3/mascara_teclado.png" id="5_gexh0"]
 [ext_resource type="PackedScene" uid="uid://chbe70iu5ss65" path="res://escenas/Niveles/0_5/tecla_arrastrable.tscn" id="5_orqk2"]
-[ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/Fuentes/Normal.ttf" id="7_8q7vd"]
 
 [node name="actividad_tercer_nivel" type="Control"]
 layout_mode = 3
@@ -72,10 +71,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -176.0
-offset_top = -176.0
-offset_right = 54.0
-offset_bottom = -102.0
+offset_left = -240.0
+offset_top = -232.0
+offset_right = 74.66666
+offset_bottom = -130.66666
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1.5, 1.5)
@@ -86,61 +85,103 @@ color_letras = Color(0, 1, 0, 1)
 color_numeros = Color(1, 1, 0, 1)
 color_simbolos = Color(0, 0.4, 1, 1)
 
-[node name="teclado" type="TextureRect" parent="TecladoZona"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -4.6666718
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="ContenedorObjetos" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 16.0
 offset_top = 88.0
 offset_right = 624.0
-offset_bottom = 220.0
+offset_bottom = 128.0
 
 [node name="A" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
 layout_mode = 0
 offset_left = 48.0
 offset_right = 64.0
-offset_bottom = 16.000004
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="ContenedorObjetos/A"]
-layout_mode = 0
-offset_right = 26.666664
-offset_bottom = 26.666664
-scale = Vector2(0.6, 0.6)
-theme_override_fonts/font = ExtResource("7_8q7vd")
-text = "A"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="TeclaArrastrable2" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
 layout_mode = 0
 offset_left = 112.0
 offset_right = 128.0
-offset_bottom = 16.000004
-stretch_mode = 5
 categoria_correcta = "numeros"
 
 [node name="TeclaArrastrable3" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
 layout_mode = 0
 offset_left = 80.0
 offset_right = 96.0
-offset_bottom = 16.0
-stretch_mode = 5
-categoria_correcta = "simbolos"
+categoria_correcta = "letras"
 
 [node name="TeclaArrastrable4" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
 layout_mode = 0
 offset_left = 144.0
 offset_right = 160.0
-offset_bottom = 16.000004
-stretch_mode = 5
+categoria_correcta = "letras"
+
+[node name="TeclaArrastrable" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 176.0
+offset_right = 192.0
+categoria_correcta = "numeros"
+
+[node name="TeclaArrastrable5" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 208.0
+offset_right = 224.0
+
+[node name="TeclaArrastrable6" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 240.0
+offset_right = 256.0
+categoria_correcta = "numeros"
+
+[node name="TeclaArrastrable7" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 272.0
+offset_right = 288.0
+categoria_correcta = "numeros"
+
+[node name="TeclaArrastrable8" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 304.0
+offset_right = 320.0
+categoria_correcta = "numeros"
+
+[node name="TeclaArrastrable9" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 336.0
+offset_right = 352.0
+categoria_correcta = "letras"
+
+[node name="TeclaArrastrable10" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 368.0
+offset_right = 384.0
+
+[node name="TeclaArrastrable11" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 400.0
+offset_right = 416.0
+
+[node name="TeclaArrastrable12" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 432.0
+offset_right = 448.0
+categoria_correcta = "letras"
+
+[node name="TeclaArrastrable13" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 464.00003
+offset_right = 480.00003
+categoria_correcta = "numeros"
+
+[node name="TeclaArrastrable14" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 496.0
+offset_right = 512.0
+
+[node name="TeclaArrastrable15" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 528.0
+offset_right = 544.0
+categoria_correcta = "letras"
 
 [node name="UI" type="Control" parent="."]
 anchors_preset = 0
