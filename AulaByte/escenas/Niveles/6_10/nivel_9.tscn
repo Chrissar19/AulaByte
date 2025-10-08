@@ -2064,7 +2064,7 @@ position = Vector2(6190, -194)
 fuerza_rebote = -800.0
 
 [node name="Delgado" parent="." instance=ExtResource("16_e033u")]
-position = Vector2(-973, -114)
+position = Vector2(-964, -114)
 collision_mask = 59
 
 [node name="Enemigos" type="Node" parent="."]
@@ -2120,7 +2120,7 @@ position = Vector2(311.99994, -294)
 position = Vector2(4658, -105)
 
 [node name="PuertaNivel" parent="Puntos de control" instance=ExtResource("19_x4brk")]
-position = Vector2(-973, -116)
+position = Vector2(-965, -115)
 
 [node name="PuertaNivel2" parent="Puntos de control" instance=ExtResource("19_x4brk")]
 position = Vector2(7357, -113)

@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var area_2d: Area2D = $Area2D
 @onready var timer_subida: Timer = $TimerSubida
+@onready var sprite_2d: Sprite2D = $Sprite2D
 
 @export var auto_play := false
 @export var vel_subida := 40.0
@@ -23,6 +24,7 @@ func _ready() -> void:
 	timer_subida.one_shot = true
 
 	if auto_play:
+		sprite_2d.modulate = Color(0.792, 0.592, 0.208, 1.0)
 		bajando = true
 
 func _process(delta: float) -> void:
