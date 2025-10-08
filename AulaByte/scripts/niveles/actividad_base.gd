@@ -15,7 +15,6 @@ var _finalizado: bool = false
 @onready var _btn_salir: Button = _find_exit_button()
 
 func _ready() -> void:
-    process_mode = Node.PROCESS_MODE_WHEN_PAUSED
     set_process_unhandled_input(habilitar_esc)
 
     # Si no hay botón y está permitido, se crea uno básico
@@ -77,9 +76,6 @@ func _create_exit_button() -> Button:
     b.size = Vector2(96, 32)
     return b
 
-# =========================================================
-# Hooks que ya tenías (mantengo tu contrato)
-# =========================================================
 func configurar_con_parametros(parametros: Dictionary) -> void:
     pass
 

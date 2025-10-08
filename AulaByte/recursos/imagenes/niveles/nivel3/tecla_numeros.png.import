@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djdfbg4v8ahx7"
-path="res://.godot/imported/teclado nv 3.png-e6eeccd3f428421f0da7f8b4609d7e22.ctex"
+uid="uid://1r0npa2gxysd"
+path="res://.godot/imported/tecla_numeros.png-950678ebfc5e57f76a41a7ae2aa92740.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/imagenes/TileSets/niveles/nivel3/teclado nv 3.png"
-dest_files=["res://.godot/imported/teclado nv 3.png-e6eeccd3f428421f0da7f8b4609d7e22.ctex"]
+source_file="res://recursos/imagenes/niveles/nivel3/tecla_numeros.png"
+dest_files=["res://.godot/imported/tecla_numeros.png-950678ebfc5e57f76a41a7ae2aa92740.ctex"]
 
 [params]
 
