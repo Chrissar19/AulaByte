@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://b36qfb650v6sr"]
+[gd_scene load_steps=8 format=3 uid="uid://b36qfb650v6sr"]
 
+[ext_resource type="Script" uid="uid://b8rh4btqfdevo" path="res://scripts/niveles/1_5/actividad_3.gd" id="1_3gb8d"]
 [ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="1_mnkbi"]
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="2_vjo3q"]
-[ext_resource type="Texture2D" uid="uid://b6w5wmj3qwcf4" path="res://recursos/imagenes/TileSets/niveles/nivel3/teclado nv 3.png" id="3_inuu1"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8g2w2"]
-atlas = ExtResource("3_inuu1")
+[ext_resource type="Script" uid="uid://bmkm08edlfhky" path="res://scripts/niveles/1_5/teclado_zona.gd" id="3_g3fne"]
+[ext_resource type="Texture2D" uid="uid://djdfbg4v8ahx7" path="res://recursos/imagenes/niveles/nivel3/teclado nv 3.png" id="3_inuu1"]
+[ext_resource type="Texture2D" uid="uid://larkjkghmili" path="res://recursos/imagenes/niveles/nivel3/mascara_teclado.png" id="5_gexh0"]
+[ext_resource type="PackedScene" uid="uid://chbe70iu5ss65" path="res://escenas/Niveles/0_5/tecla_arrastrable.tscn" id="5_orqk2"]
 
 [node name="actividad_tercer_nivel" type="Control"]
 layout_mode = 3
@@ -14,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_3gb8d")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -22,6 +24,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.72549, 0.72549, 0.72549, 0.470588)
 
 [node name="pantalla" type="TextureRect" parent="ColorRect"]
@@ -31,6 +34,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("1_mnkbi")
 
 [node name="fondo" type="ColorRect" parent="ColorRect/pantalla"]
@@ -44,27 +48,11 @@ offset_right = -20.0
 offset_bottom = -22.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.199169, 0.270564, 0.304483, 0.85098)
 
-[node name="BtnSalir" type="Button" parent="ColorRect/pantalla"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 177.0
-offset_top = 111.0
-offset_right = 261.0
-offset_bottom = 135.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_vjo3q")
-text = "Salir
-"
-
 [node name="descripcion act" type="Label" parent="ColorRect/pantalla"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 68.0
 offset_top = 35.0
 offset_right = 594.0
@@ -76,49 +64,172 @@ text = "Arrastra cada eleménto al grupo
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BtnReiniciar" type="Button" parent="ColorRect/pantalla"]
-offset_left = 271.0
-offset_top = 286.0
-offset_right = 411.0
-offset_bottom = 310.0
+[node name="TecladoZona" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -240.0
+offset_top = -232.0
+offset_right = 74.66666
+offset_bottom = -130.66666
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+script = ExtResource("3_g3fne")
+mascara_textura = ExtResource("5_gexh0")
+teclado_textura = ExtResource("3_inuu1")
+color_letras = Color(0, 1, 0, 1)
+color_numeros = Color(1, 1, 0, 1)
+color_simbolos = Color(0, 0.4, 1, 1)
+
+[node name="ContenedorObjetos" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 88.0
+offset_right = 624.0
+offset_bottom = 128.0
+
+[node name="A" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 48.0
+offset_right = 64.0
+
+[node name="TeclaArrastrable2" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 112.0
+offset_right = 128.0
+categoria_correcta = "numeros"
+
+[node name="TeclaArrastrable3" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 80.0
+offset_right = 96.0
+categoria_correcta = "letras"
+
+[node name="TeclaArrastrable4" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 144.0
+offset_right = 160.0
+categoria_correcta = "letras"
+
+[node name="TeclaArrastrable" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 176.0
+offset_right = 192.0
+categoria_correcta = "numeros"
+
+[node name="TeclaArrastrable5" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 208.0
+offset_right = 224.0
+
+[node name="TeclaArrastrable6" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 240.0
+offset_right = 256.0
+categoria_correcta = "numeros"
+
+[node name="TeclaArrastrable7" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 272.0
+offset_right = 288.0
+categoria_correcta = "numeros"
+
+[node name="TeclaArrastrable8" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 304.0
+offset_right = 320.0
+categoria_correcta = "numeros"
+
+[node name="TeclaArrastrable9" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 336.0
+offset_right = 352.0
+categoria_correcta = "letras"
+
+[node name="TeclaArrastrable10" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 368.0
+offset_right = 384.0
+
+[node name="TeclaArrastrable11" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 400.0
+offset_right = 416.0
+
+[node name="TeclaArrastrable12" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 432.0
+offset_right = 448.0
+categoria_correcta = "letras"
+
+[node name="TeclaArrastrable13" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 464.00003
+offset_right = 480.00003
+categoria_correcta = "numeros"
+
+[node name="TeclaArrastrable14" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 496.0
+offset_right = 512.0
+
+[node name="TeclaArrastrable15" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
+layout_mode = 0
+offset_left = 528.0
+offset_right = 544.0
+categoria_correcta = "letras"
+
+[node name="UI" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 24.0
+offset_top = 280.0
+offset_right = 622.0
+offset_bottom = 328.0
+
+[node name="BtnSalir" type="Button" parent="UI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -94.0
+offset_top = -24.0
+offset_right = -10.0
+grow_horizontal = 0
+grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_vjo3q")
-text = "Reiniciar"
+text = "Salir
+"
 
-[node name="objetos" type="Node" parent="ColorRect/pantalla"]
+[node name="LblGanar" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
 
-[node name="teclado" type="TextureRect" parent="ColorRect/pantalla/objetos"]
-offset_left = 204.0
-offset_top = 106.0
-offset_right = 434.0
-offset_bottom = 180.0
-texture = SubResource("AtlasTexture_8g2w2")
-
-[node name="Simbolos" type="Area2D" parent="ColorRect/pantalla/objetos/teclado"]
-
-[node name="simbolos1" type="CollisionPolygon2D" parent="ColorRect/pantalla/objetos/teclado/Simbolos"]
-polygon = PackedVector2Array(3, 20, 132, 20, 132, 30, 137, 30, 138, 40, 138, 51, 129, 51, 129, 40, 127, 40, 118, 40, 118, 31, 114, 31, 3, 31)
-
-[node name="simbolo2" type="CollisionPolygon2D" parent="ColorRect/pantalla/objetos/teclado/Simbolos"]
-polygon = PackedVector2Array(96, 50, 125, 50, 125, 61, 96, 61)
-
-[node name="simbolo3" type="CollisionPolygon2D" parent="ColorRect/pantalla/objetos/teclado/Simbolos"]
-polygon = PackedVector2Array(155, 50, 184, 50, 184, 70, 153, 70, 153, 50)
-
-[node name="letras" type="Area2D" parent="ColorRect/pantalla/objetos/teclado"]
-scale = Vector2(1.3, 1.3)
-
-[node name="letras" type="CollisionPolygon2D" parent="ColorRect/pantalla/objetos/teclado/letras"]
-polygon = PackedVector2Array(13.8461, 23.8462, 13.8461, 30.7692, 13.8461, 38.4615, 11.5385, 38.4615, 11.5385, 46.9231, 73.8462, 46.9231, 73.8462, 38.4615, 99.2308, 38.4615, 99.2308, 30.7692, 90.7692, 30.7692, 90.7692, 23.8462)
-
-[node name="numeros" type="Area2D" parent="ColorRect/pantalla/objetos/teclado"]
-
-[node name="numeros" type="CollisionPolygon2D" parent="ColorRect/pantalla/objetos/teclado/numeros"]
-polygon = PackedVector2Array(188, 31, 217, 31, 217, 60, 207, 60, 207, 69, 188, 69)
-
-[node name="BtnConfirmar" type="Button" parent="ColorRect/pantalla"]
-offset_left = 40.0
-offset_top = 290.0
-offset_right = 188.0
-offset_bottom = 314.0
-theme_override_fonts/font = ExtResource("2_vjo3q")
-text = "Confirmar"
+[node name="LblIntentos" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -24.0
+offset_right = 21.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 0
