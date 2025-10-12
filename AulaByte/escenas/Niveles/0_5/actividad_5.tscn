@@ -1,0 +1,174 @@
+[gd_scene load_steps=10 format=3 uid="uid://dy3m6ci02csih"]
+
+[ext_resource type="Script" uid="uid://dsu8enqkqb0e2" path="res://escenas/Niveles/0_5/actividad_5.gd" id="1_ewnyt"]
+[ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="2_yrvsu"]
+[ext_resource type="PackedScene" uid="uid://d82ugex3ucng" path="res://escenas/Niveles/0_5/carta_volteable.tscn" id="3_dphv0"]
+[ext_resource type="Texture2D" uid="uid://yhekko0uthkg" path="res://recursos/imagenes/niveles/nivel5/actividad5/moviendo_cursor.png" id="4_rmb52"]
+[ext_resource type="Texture2D" uid="uid://djbsm1epuy3sm" path="res://recursos/imagenes/niveles/nivel5/actividad5/escribir_texto.png" id="5_lgamn"]
+[ext_resource type="Texture2D" uid="uid://b78p03ef5ia24" path="res://recursos/imagenes/niveles/nivel5/actividad5/grabar_sonidos.png" id="6_lgamn"]
+[ext_resource type="Texture2D" uid="uid://cvcei1b0h3jkm" path="res://recursos/imagenes/niveles/nivel4/carta_frente.png" id="7_370m8"]
+[ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="12_a1co2"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_tvwjn"]
+
+[node name="Actividad5" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ewnyt")
+
+[node name="Fondo" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pantalla" type="TextureRect" parent="Fondo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 0.99441653)
+texture = ExtResource("2_yrvsu")
+
+[node name="ZonaCartas" type="Control" parent="Fondo"]
+anchors_preset = 0
+offset_left = 200.0
+offset_top = 105.0
+offset_right = 706.24994
+offset_bottom = 346.24997
+scale = Vector2(0.8, 0.8)
+
+[node name="mover_raton" parent="Fondo/ZonaCartas" instance=ExtResource("3_dphv0")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 23.749962
+offset_top = -35.000004
+offset_right = 151.74997
+offset_bottom = 189.0
+textura_frente = ExtResource("4_rmb52")
+
+[node name="escribir" parent="Fondo/ZonaCartas" instance=ExtResource("3_dphv0")]
+layout_mode = 1
+anchor_left = -0.039
+anchor_right = -0.039
+anchor_bottom = 0.0
+offset_left = 203.49371
+offset_top = -33.75
+offset_right = 331.4937
+offset_bottom = 190.25
+textura_frente = ExtResource("5_lgamn")
+
+[node name="sonido" parent="Fondo/ZonaCartas" instance=ExtResource("3_dphv0")]
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 340.0
+offset_top = -34.999992
+offset_right = 468.00003
+offset_bottom = 189.0
+textura_frente = ExtResource("6_lgamn")
+
+[node name="GeneraCartaAleatoria" type="TextureRect" parent="Fondo"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 87.0
+offset_right = 173.99997
+offset_bottom = 311.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("7_370m8")
+
+[node name="ImagenAleatoria" type="TextureRect" parent="Fondo/GeneraCartaAleatoria"]
+layout_mode = 0
+offset_left = 7.5000005
+offset_top = 2.5
+offset_right = 128.74998
+offset_bottom = 219.99997
+texture = SubResource("ImageTexture_tvwjn")
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="UI" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 280.0
+offset_right = 614.0
+offset_bottom = 328.0
+
+[node name="BtnSalir" type="Button" parent="UI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -94.0
+offset_top = -24.0
+offset_right = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("12_a1co2")
+text = "Salir
+"
+
+[node name="LblTexto" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -304.0
+offset_right = 88.0
+offset_bottom = -281.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.8, 0.8)
+theme_override_fonts/font = ExtResource("12_a1co2")
+text = "TEXTO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnAceptar" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 136.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("12_a1co2")
+text = "ACEPTAR"
+
+[node name="BtnReiniciar" type="Button" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -43.0
+offset_top = -40.0
+offset_right = 43.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("12_a1co2")
+text = "REINICIAR"
+
+[node name="VozGuia" type="AudioStreamPlayer" parent="."]
+
+[connection signal="carta_seleccionada" from="Fondo/ZonaCartas/mover_raton" to="." method="_on_mover_raton_carta_seleccionada"]
+[connection signal="carta_seleccionada" from="Fondo/ZonaCartas/escribir" to="." method="_on_escribir_carta_seleccionada"]
+[connection signal="carta_seleccionada" from="Fondo/ZonaCartas/sonido" to="." method="_on_sonido_carta_seleccionada"]
+[connection signal="pressed" from="UI/BtnAceptar" to="." method="_on_btn_aceptar_pressed"]
+[connection signal="pressed" from="UI/BtnReiniciar" to="." method="_on_btn_reiniciar_pressed"]

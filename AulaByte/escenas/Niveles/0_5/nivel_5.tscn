@@ -1,7 +1,8 @@
-[gd_scene load_steps=36 format=4 uid="uid://cdwofmeuk46tn"]
+[gd_scene load_steps=37 format=4 uid="uid://cdwofmeuk46tn"]
 
 [ext_resource type="Script" uid="uid://dsyfork36rnyd" path="res://scripts/niveles/1_5/nivel_5.gd" id="1_5dphs"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_b6k6u"]
+[ext_resource type="PackedScene" uid="uid://dy3m6ci02csih" path="res://escenas/Niveles/0_5/actividad_5.tscn" id="2_pvtlr"]
 [ext_resource type="Texture2D" uid="uid://b1n8qlwfa0q0x" path="res://recursos/imagenes/TileSets/IMG Salon de clases.png" id="3_2rwhl"]
 [ext_resource type="Texture2D" uid="uid://dr3bkmou477j5" path="res://recursos/imagenes/TileSets/FondoSheet.png" id="3_hc13m"]
 [ext_resource type="Texture2D" uid="uid://bjxo1iphkg72d" path="res://recursos/imagenes/TileSets/decoraciones de pared.png" id="4_8wtce"]
@@ -1134,6 +1135,7 @@ _data = {
 script = ExtResource("1_5dphs")
 cuenta_regresiva = 240.0
 id_nivel = 5
+actividad = ExtResource("2_pvtlr")
 
 [node name="Fondos" type="Node" parent="."]
 
@@ -1337,16 +1339,16 @@ position = Vector2(3309, -414)
 collision_layer = 17
 
 [node name="Delgado" parent="." instance=ExtResource("14_31m0w")]
-position = Vector2(1600, -193)
+position = Vector2(1602, -197)
 
 [node name="puertas" type="Node" parent="."]
 
 [node name="PuertaEntra" parent="puertas" instance=ExtResource("21_4pd8g")]
-position = Vector2(1598, -196)
+position = Vector2(1600, -196)
 
 [node name="PuertaSalida" parent="puertas" instance=ExtResource("21_4pd8g")]
 z_index = 1
-position = Vector2(47, 397)
+position = Vector2(54, 394)
 
 [node name="puntos_control" type="Node" parent="."]
 
