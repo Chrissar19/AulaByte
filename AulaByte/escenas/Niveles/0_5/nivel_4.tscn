@@ -1755,6 +1755,7 @@ position = Vector2(529, 138)
 position = Vector2(345, 195)
 distancia_cadena = 90
 tamano_bola = 1.5
+dmg = 4
 
 [node name="BolaMuerte2" parent="Trampas" instance=ExtResource("9_ekcxq")]
 position = Vector2(1081, -239)
@@ -1793,7 +1794,7 @@ collision_layer = 64
 collision_mask = 12
 
 [node name="Delgado" parent="." instance=ExtResource("4_iyvrh")]
-position = Vector2(1021, 452)
+position = Vector2(520, 315)
 nombre = ""
 
 [node name="HUD" parent="." instance=ExtResource("11_oo3vv")]

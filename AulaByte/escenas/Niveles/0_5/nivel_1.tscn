@@ -1274,7 +1274,7 @@ offset_bottom = -544.0
 texture = ExtResource("18_1lge7")
 
 [node name="Insuasty" parent="." instance=ExtResource("18_q4rug")]
-position = Vector2(454, -558)
+position = Vector2(-369, 128)
 
 [node name="enemigos" type="Node" parent="."]
 

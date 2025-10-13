@@ -1387,4 +1387,4 @@ position = Vector2(165, 141)
 [node name="HUD" parent="." instance=ExtResource("5_auyua")]
 
 [node name="Delgado" parent="." instance=ExtResource("19_rkb6m")]
-position = Vector2(562, 103)
+position = Vector2(182, 97)

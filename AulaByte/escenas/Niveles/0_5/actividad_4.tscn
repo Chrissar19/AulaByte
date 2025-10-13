@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxaiua0gmcsj6"]
+[gd_scene load_steps=5 format=3 uid="uid://cxaiua0gmcsj6"]
 
 [ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="1_ji3yi"]
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="2_elar7"]
+[ext_resource type="Texture2D" uid="uid://w5bbjep6aj58" path="res://recursos/imagenes/TileSets/niveles/nivel4/carta_3_vehiculos.png" id="3_elar7"]
+[ext_resource type="Texture2D" uid="uid://c85l4u0fmrgrm" path="res://recursos/imagenes/TileSets/niveles/nivel4/Carro sin llantas6.png" id="4_scr66"]
 
 [node name="actividad_4" type="Control"]
 layout_mode = 3
@@ -50,12 +52,27 @@ offset_right = 594.0
 offset_bottom = 70.0
 theme_override_colors/font_color = Color(0.141176, 0.623529, 0.396078, 1)
 theme_override_fonts/font = ExtResource("2_elar7")
-text = "Arrastra cada eleménto al grupo
- que corresponde "
+text = "Completa la secuencia"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="objetos" type="Node" parent="ColorRect/pantalla"]
+
+[node name="carta1" type="TextureRect" parent="ColorRect/pantalla/objetos"]
+offset_left = 63.0
+offset_top = 111.0
+offset_right = 134.0
+offset_bottom = 235.0
+texture = ExtResource("3_elar7")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/pantalla/objetos"]
+offset_left = 234.0
+offset_top = 109.0
+offset_right = 302.0
+offset_bottom = 228.0
+texture = ExtResource("4_scr66")
+expand_mode = 1
 
 [node name="botones" type="Node" parent="."]
 
