@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b51y87ysvl54g" path="res://scripts/niveles/niveles.gd" id="1_b2vrk"]
 [ext_resource type="PackedScene" uid="uid://cqk82ixbb1sb0" path="res://escenas/Niveles/0_5/nivel_tuto.tscn" id="1_qafu8"]
 [ext_resource type="PackedScene" uid="uid://ce4psiq5ll2ou" path="res://escenas/Niveles/0_5/nivel_1.tscn" id="2_rha8x"]
-[ext_resource type="PackedScene" uid="uid://eeffx2i0jisl" path="res://escenas/Niveles/0_5/nivel_2.tscn" id="3_384g5"]
+[ext_resource type="PackedScene" uid="uid://eeffx2i0jisl" path="res://escenas/Niveles/0_5/nivel_12.tscn" id="3_384g5"]
 [ext_resource type="PackedScene" uid="uid://bfh1cti7h62ot" path="res://escenas/Niveles/0_5/nivel_3.tscn" id="4_gjded"]
 
 [resource]
