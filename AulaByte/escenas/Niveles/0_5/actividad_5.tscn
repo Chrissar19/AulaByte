@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dy3m6ci02csih"]
 
-[ext_resource type="Script" uid="uid://dsu8enqkqb0e2" path="res://escenas/Niveles/0_5/actividad_5.gd" id="1_ewnyt"]
+[ext_resource type="Script" uid="uid://dsu8enqkqb0e2" path="res://scripts/niveles/1_5/actividad_5.gd" id="1_ewnyt"]
 [ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="2_yrvsu"]
 [ext_resource type="PackedScene" uid="uid://d82ugex3ucng" path="res://escenas/Niveles/0_5/carta_volteable.tscn" id="3_dphv0"]
 [ext_resource type="Texture2D" uid="uid://yhekko0uthkg" path="res://recursos/imagenes/niveles/nivel5/actividad5/moviendo_cursor.png" id="4_rmb52"]
