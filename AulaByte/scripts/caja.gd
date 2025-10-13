@@ -9,25 +9,25 @@ extends CharacterBody2D
 var fuerza_externa: Vector2 = Vector2.ZERO
 
 func _physics_process(delta):
-	aplicar_gravedad(delta)
-	aplicar_friccion()
-	manejar_empuje()
-	move_and_slide()
-	
+    aplicar_gravedad(delta)
+    aplicar_friccion()
+    manejar_empuje()
+    move_and_slide()
+    
 func aplicar_gravedad(delta):
-	if not is_on_floor():
-		velocity.y += gravedad * delta
-		
+    if not is_on_floor():
+        velocity.y += gravedad * delta
+        
 func aplicar_friccion():
-	if is_on_floor():
-		velocity.x = lerp(velocity.x, 0.0, friccion)
+    if is_on_floor():
+        velocity.x = lerp(velocity.x, 0.0, friccion)
 
 func manejar_empuje():
-	# Aplica la fuerza del jugador
-	velocity += fuerza_externa / masa
-	fuerza_externa = Vector2.ZERO
-	
+    # Aplica la fuerza del jugador
+    velocity += fuerza_externa / masa
+    fuerza_externa = Vector2.ZERO
+    
 # Llamado por el jugador al empujar
 func recibir_empuje(fuerza: Vector2):
-	if abs(fuerza.x) > umbral_empuje:
-		fuerza_externa = fuerza
+    if abs(fuerza.x) > umbral_empuje:
+        fuerza_externa = fuerza

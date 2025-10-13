@@ -1,0 +1,108 @@
+[gd_scene load_steps=6 format=3 uid="uid://ct6q8iwp7wni2"]
+
+[ext_resource type="Script" uid="uid://df7ghgpbhadbt" path="res://scripts/niveles/6_10/actividad_6.gd" id="1_cufmi"]
+[ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="1_h4p5l"]
+[ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="3_3owi0"]
+[ext_resource type="Texture2D" uid="uid://b1km7x86sbx5k" path="res://recursos/imagenes/niveles/nivel6/CoheteSombra.png" id="3_cufmi"]
+[ext_resource type="PackedScene" uid="uid://cqunln0ejwl07" path="res://escenas/Niveles/6_10/pieza_tangram.tscn" id="4_cufmi"]
+
+[node name="Actividad6" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cufmi")
+
+[node name="Pantalla" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.728822, 0.728822, 0.728822, 0.8117647)
+
+[node name="TextureRect" type="TextureRect" parent="Pantalla"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_h4p5l")
+
+[node name="SombraChohete" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 48.0
+offset_right = 358.0
+offset_bottom = 304.0
+texture = ExtResource("3_cufmi")
+
+[node name="ZonaPiezas" type="Node2D" parent="."]
+
+[node name="PiezaTangram" parent="ZonaPiezas" instance=ExtResource("4_cufmi")]
+position = Vector2(64, 96)
+
+[node name="UI" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 256.0
+offset_right = 616.0
+offset_bottom = 328.0
+
+[node name="BtnRotarIzq" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -232.0
+offset_right = 152.0
+offset_bottom = -208.0
+theme_override_fonts/font = ExtResource("3_3owi0")
+text = "IZQUIERDA"
+
+[node name="BtnRotarDer" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 472.0
+offset_top = -232.0
+offset_right = 592.0
+offset_bottom = -208.0
+theme_override_fonts/font = ExtResource("3_3owi0")
+text = "DERECHA"
+
+[node name="BtnVoltear" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = -232.0
+offset_right = 360.0
+offset_bottom = -208.0
+theme_override_fonts/font = ExtResource("3_3owi0")
+text = "VOLTEAR"
+
+[node name="BtnReiniciar" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 48.0
+offset_right = 372.0
+offset_bottom = 72.0
+theme_override_fonts/font = ExtResource("3_3owi0")
+text = "REINICIAR"
+
+[node name="BtnPista" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 92.0
+offset_bottom = 72.0
+theme_override_fonts/font = ExtResource("3_3owi0")
+text = "PISTA"
+
+[node name="BtnSalir" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 40.0
+offset_right = 596.0
+offset_bottom = 71.0
+theme_override_fonts/font = ExtResource("3_3owi0")
+text = "SALIR"
