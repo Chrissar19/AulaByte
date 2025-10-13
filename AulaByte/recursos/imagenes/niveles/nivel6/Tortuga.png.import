@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://boq12uvw01kiu"
-path="res://.godot/imported/Avion.png-38e6b37c4d05298af0e0b6ad1f49203b.ctex"
+uid="uid://bhuni8lpa25kn"
+path="res://.godot/imported/Tortuga.png-e8469908c9bced75803a7aeed3d59f0e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/imagenes/niveles/nivel6/Avion.png"
-dest_files=["res://.godot/imported/Avion.png-38e6b37c4d05298af0e0b6ad1f49203b.ctex"]
+source_file="res://recursos/imagenes/niveles/nivel6/Tortuga.png"
+dest_files=["res://.godot/imported/Tortuga.png-e8469908c9bced75803a7aeed3d59f0e.ctex"]
 
 [params]
 

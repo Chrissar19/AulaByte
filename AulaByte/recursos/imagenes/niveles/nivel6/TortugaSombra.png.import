@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dow6x7r4hju26"
-path="res://.godot/imported/AvionSombra.png-f38d327657eddd2a8f4d469642c66030.ctex"
+uid="uid://do7juao38uwox"
+path="res://.godot/imported/TortugaSombra.png-69200666d421b6d5a7e2faf5e9bccd72.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/imagenes/niveles/nivel6/AvionSombra.png"
-dest_files=["res://.godot/imported/AvionSombra.png-f38d327657eddd2a8f4d469642c66030.ctex"]
+source_file="res://recursos/imagenes/niveles/nivel6/TortugaSombra.png"
+dest_files=["res://.godot/imported/TortugaSombra.png-69200666d421b6d5a7e2faf5e9bccd72.ctex"]
 
 [params]
 
