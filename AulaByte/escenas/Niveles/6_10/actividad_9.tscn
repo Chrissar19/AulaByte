@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="3_6m560"]
 [ext_resource type="Texture2D" uid="uid://gn7tiwhhd4vf" path="res://recursos/imagenes/niveles/nivel9/actividad9/caja_clasifica.png" id="4_8y32a"]
 [ext_resource type="Texture2D" uid="uid://w3xgar7sst3k" path="res://recursos/imagenes/niveles/nivel7/actividad7/archivo.png" id="5_k7rnx"]
-[ext_resource type="Script" uid="uid://ce0f0t2hy0ov2" path="res://escenas/Niveles/6_10/imagen_arrastrable_2.gd" id="6_8y32a"]
+[ext_resource type="Script" uid="uid://ce0f0t2hy0ov2" path="res://scripts/niveles/imagen_arrastrable_2.gd" id="6_8y32a"]
 [ext_resource type="Texture2D" uid="uid://c0g00dib8uwb6" path="res://recursos/imagenes/niveles/nivel9/actividad9/teclado.png" id="7_ugwav"]
 [ext_resource type="Texture2D" uid="uid://bygck0oi1g2r6" path="res://recursos/imagenes/niveles/nivel9/actividad9/raton.png" id="8_k7rnx"]
 [ext_resource type="Texture2D" uid="uid://dkwyx27uvh3dt" path="res://recursos/imagenes/niveles/nivel9/actividad9/DD.png" id="8_m652h"]
@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://daboj786vngiq" path="res://recursos/imagenes/niveles/nivel9/actividad9/video2.png" id="11_6m560"]
 [ext_resource type="Texture2D" uid="uid://gu2mkap3ip2l" path="res://recursos/imagenes/niveles/nivel9/actividad9/video.png" id="12_2wd5m"]
 [ext_resource type="Texture2D" uid="uid://bhpicvqm0hcc5" path="res://recursos/imagenes/niveles/nivel9/actividad9/ram.png" id="15_vqajt"]
-[ext_resource type="Texture2D" uid="uid://dcjw3lif2pawo" path="res://recursos/imagenes/niveles/nivel9/actividad9/procesador.png" id="16_rtywy"]
+[ext_resource type="Texture2D" uid="uid://dv6g1wfwyp8p1" path="res://recursos/imagenes/niveles/nivel9/actividad9/procesador.png" id="16_rtywy"]
 [ext_resource type="Texture2D" uid="uid://c15g4a65fipqn" path="res://recursos/imagenes/niveles/nivel9/actividad9/impresora.png" id="17_rk04y"]
 [ext_resource type="Texture2D" uid="uid://doqpatdiifqba" path="res://recursos/imagenes/niveles/nivel9/actividad9/audifonos.png" id="18_igk3y"]
 

@@ -38,7 +38,7 @@ func _get_drag_data(at_position: Vector2) -> Variant:
 	vista.texture = texture
 	vista.size = size
 	vista.scale = scale
-	vista.modulate.a = 0.6
+	vista.modulate.a = 0.2
 	vista.expand_mode = expand_mode
 	vista.stretch_mode = stretch_mode
 

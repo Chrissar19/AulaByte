@@ -1339,7 +1339,7 @@ position = Vector2(3309, -414)
 collision_layer = 17
 
 [node name="Delgado" parent="." instance=ExtResource("14_31m0w")]
-position = Vector2(1602, -197)
+position = Vector2(116, 383)
 
 [node name="puertas" type="Node" parent="."]
 

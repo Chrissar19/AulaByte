@@ -1134,7 +1134,7 @@ position = Vector2(679, -584)
 [node name="Plataformas" type="Node" parent="."]
 
 [node name="Delgado" parent="." instance=ExtResource("16_bbok4")]
-position = Vector2(589, 159)
+position = Vector2(-702, -566)
 collision_mask = 59
 
 [node name="Enemigos" type="Node" parent="."]
