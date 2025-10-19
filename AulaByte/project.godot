@@ -77,12 +77,13 @@ Accion={
 2d_physics/layer_5="Objetos"
 2d_physics/layer_6="Pisos"
 2d_physics/layer_7="ZonaMuerte"
-2d_physics/layer_8="vidas"
+2d_physics/layer_8="Vidas"
 2d_physics/layer_9="Interacciones"
 2d_physics/layer_10="Checkpoint"
 2d_physics/layer_11="Trampas"
 2d_physics/layer_12="Sensores"
 2d_physics/layer_13="Plataformas"
+2d_physics/layer_14="Piezas"
 
 [rendering]
 

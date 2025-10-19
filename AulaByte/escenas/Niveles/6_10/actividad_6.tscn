@@ -89,8 +89,11 @@ z_index = 5
 position = Vector2(127, 78)
 texture = ExtResource("8_btufc")
 script = ExtResource("5_84ncr")
+tipo = 2
 
 [node name="Area2D" type="Area2D" parent="Contenedor_piezas/TrianguloPeque2"]
+collision_layer = 8192
+collision_mask = 2048
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Contenedor_piezas/TrianguloPeque2/Area2D"]
 
@@ -98,6 +101,8 @@ script = ExtResource("5_84ncr")
 z_index = 5
 position = Vector2(64, 88)
 texture = ExtResource("4_3owi0")
+script = ExtResource("5_84ncr")
+tipo = 1
 
 [node name="Area2D" type="Area2D" parent="Contenedor_piezas/TrianguloMediano"]
 
@@ -107,6 +112,8 @@ texture = ExtResource("4_3owi0")
 z_index = 5
 position = Vector2(122, 198)
 texture = ExtResource("5_b0omr")
+script = ExtResource("5_84ncr")
+tipo = null
 
 [node name="Area2D" type="Area2D" parent="Contenedor_piezas/TrianguloGrande"]
 
@@ -116,6 +123,8 @@ texture = ExtResource("5_b0omr")
 z_index = 5
 position = Vector2(206, 164)
 texture = ExtResource("6_ayony")
+script = ExtResource("5_84ncr")
+tipo = null
 
 [node name="Area2D" type="Area2D" parent="Contenedor_piezas/TrianguloGrande2"]
 
@@ -125,6 +134,8 @@ texture = ExtResource("6_ayony")
 z_index = 5
 position = Vector2(48, 199)
 texture = ExtResource("7_84ncr")
+script = ExtResource("5_84ncr")
+tipo = 2
 
 [node name="Area2D" type="Area2D" parent="Contenedor_piezas/TrianguloPeque"]
 
@@ -134,6 +145,8 @@ texture = ExtResource("7_84ncr")
 z_index = 5
 position = Vector2(120, 136)
 texture = ExtResource("9_52262")
+script = ExtResource("5_84ncr")
+tipo = 3
 
 [node name="Area2D" type="Area2D" parent="Contenedor_piezas/Cuadrado"]
 
@@ -143,6 +156,8 @@ texture = ExtResource("9_52262")
 z_index = 5
 position = Vector2(197, 76)
 texture = ExtResource("10_gmokl")
+script = ExtResource("5_84ncr")
+tipo = 4
 
 [node name="Area2D" type="Area2D" parent="Contenedor_piezas/Paralelogramo"]
 
@@ -150,11 +165,84 @@ texture = ExtResource("10_gmokl")
 
 [node name="Figura" type="Node" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="Figura"]
+[node name="Cohete" type="Sprite2D" parent="Figura"]
 position = Vector2(472, 160)
 texture = ExtResource("11_ayony")
 
-[node name="SensorTrianguloGrande" type="Area2D" parent="Figura"]
+[node name="SensorTrianguloPequeno1" type="Area2D" parent="Figura"]
+collision_layer = 2048
+collision_mask = 8192
+monitoring = false
+metadata/tipo_esperado = 1
+metadata/rotacion_esperada = 180.0
+metadata/tolerancia_rotacion = 20.0
 
-[node name="Triangulopeque" type="CollisionPolygon2D" parent="Figura/SensorTrianguloGrande"]
+[node name="Triangulopeque" type="CollisionPolygon2D" parent="Figura/SensorTrianguloPequeno1"]
 polygon = PackedVector2Array(448, 88, 472, 64, 496, 88)
+
+[node name="SensorTrianguloMediano" type="Area2D" parent="Figura"]
+position = Vector2(480, 104)
+collision_layer = 2048
+collision_mask = 8192
+monitoring = false
+metadata/tipo_esperado = 0
+metadata/rotacion_esperada = 90.0
+metadata/tolerancia_rotacion = 20.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Figura/SensorTrianguloMediano"]
+polygon = PackedVector2Array(-32, -16, 16, -16, 16, 32)
+
+[node name="SensorTrianguloGrande1" type="Area2D" parent="Figura"]
+collision_layer = 2048
+collision_mask = 8192
+monitoring = false
+metadata/tipo_esperado = 4
+metadata/rotacion_esperada = 0.0
+metadata/tolerancia_rotacion = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Figura/SensorTrianguloGrande1"]
+polygon = PackedVector2Array(448, 184, 496, 136, 448, 88)
+
+[node name="SensorTrianguloGrande2" type="Area2D" parent="Figura"]
+collision_layer = 2048
+collision_mask = 8192
+monitoring = false
+metadata/tipo_esperado = 4
+metadata/rotacion_esperada = 0.0
+metadata/tolerancia_rotacion = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Figura/SensorTrianguloGrande2"]
+polygon = PackedVector2Array(448, 184, 496, 232, 496, 136)
+
+[node name="SensorCuadrado" type="Area2D" parent="Figura"]
+collision_layer = 2048
+collision_mask = 8192
+monitoring = false
+metadata/tipo_esperado = 2
+metadata/rotacion_esperada = 0.0
+metadata/tolerancia_rotacion = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Figura/SensorCuadrado"]
+polygon = PackedVector2Array(424, 208, 448, 184, 472, 208, 448, 232)
+
+[node name="SensorTrianguloPequeno2" type="Area2D" parent="Figura"]
+collision_layer = 2048
+collision_mask = 8192
+monitoring = false
+metadata/tipo_esperado = 1
+metadata/rotacion_esperada = 0.0
+metadata/tolerancia_rotacion = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Figura/SensorTrianguloPequeno2"]
+polygon = PackedVector2Array(424, 208, 424, 256, 448, 232)
+
+[node name="SensorParalelogramo" type="Area2D" parent="Figura"]
+collision_layer = 2048
+collision_mask = 8192
+monitoring = false
+metadata/tipo_esperado = 3
+metadata/rotacion_esperada = 0.0
+metadata/tolerancia_rotacion = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Figura/SensorParalelogramo"]
+polygon = PackedVector2Array(496, 232, 520, 256, 520, 208, 496, 184)
