@@ -1,0 +1,465 @@
+[gd_scene load_steps=20 format=3 uid="uid://x2g43rgbtgk8"]
+
+[ext_resource type="Script" uid="uid://j6nv5eoxs78u" path="res://scripts/niveles/actividad_9.gd" id="1_m652h"]
+[ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="2_hygnx"]
+[ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="3_6m560"]
+[ext_resource type="Texture2D" uid="uid://gn7tiwhhd4vf" path="res://recursos/imagenes/niveles/nivel9/actividad9/caja_clasifica.png" id="4_8y32a"]
+[ext_resource type="Texture2D" uid="uid://w3xgar7sst3k" path="res://recursos/imagenes/niveles/nivel7/actividad7/archivo.png" id="5_k7rnx"]
+[ext_resource type="Script" uid="uid://ce0f0t2hy0ov2" path="res://escenas/Niveles/6_10/imagen_arrastrable_2.gd" id="6_8y32a"]
+[ext_resource type="Texture2D" uid="uid://c0g00dib8uwb6" path="res://recursos/imagenes/niveles/nivel9/actividad9/teclado.png" id="7_ugwav"]
+[ext_resource type="Texture2D" uid="uid://bygck0oi1g2r6" path="res://recursos/imagenes/niveles/nivel9/actividad9/raton.png" id="8_k7rnx"]
+[ext_resource type="Texture2D" uid="uid://dkwyx27uvh3dt" path="res://recursos/imagenes/niveles/nivel9/actividad9/DD.png" id="8_m652h"]
+[ext_resource type="Texture2D" uid="uid://hychud2olipp" path="res://recursos/imagenes/niveles/nivel9/actividad9/microfono.png" id="9_7hlpd"]
+[ext_resource type="Texture2D" uid="uid://dqm1kbf44ugc3" path="res://recursos/imagenes/niveles/nivel9/actividad9/imagen.png" id="9_hygnx"]
+[ext_resource type="Texture2D" uid="uid://dr4ho8760mf3h" path="res://recursos/imagenes/niveles/nivel9/actividad9/imagen2.png" id="10_6m560"]
+[ext_resource type="Script" uid="uid://pcc5jm4dnwgf" path="res://scripts/niveles/zona_cpu.gd" id="10_rk04y"]
+[ext_resource type="Texture2D" uid="uid://daboj786vngiq" path="res://recursos/imagenes/niveles/nivel9/actividad9/video2.png" id="11_6m560"]
+[ext_resource type="Texture2D" uid="uid://gu2mkap3ip2l" path="res://recursos/imagenes/niveles/nivel9/actividad9/video.png" id="12_2wd5m"]
+[ext_resource type="Texture2D" uid="uid://bhpicvqm0hcc5" path="res://recursos/imagenes/niveles/nivel9/actividad9/ram.png" id="15_vqajt"]
+[ext_resource type="Texture2D" uid="uid://dcjw3lif2pawo" path="res://recursos/imagenes/niveles/nivel9/actividad9/procesador.png" id="16_rtywy"]
+[ext_resource type="Texture2D" uid="uid://c15g4a65fipqn" path="res://recursos/imagenes/niveles/nivel9/actividad9/impresora.png" id="17_rk04y"]
+[ext_resource type="Texture2D" uid="uid://doqpatdiifqba" path="res://recursos/imagenes/niveles/nivel9/actividad9/audifonos.png" id="18_igk3y"]
+
+[node name="actividad_noveno_nivel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m652h")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.72549, 0.72549, 0.72549, 0.470588)
+
+[node name="pantalla" type="TextureRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_hygnx")
+
+[node name="fondo" type="ColorRect" parent="ColorRect/pantalla"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = -20.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.199169, 0.270564, 0.304483, 0.85098)
+
+[node name="descripcion act" type="Label" parent="ColorRect/pantalla"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 28.0
+offset_right = 586.0
+offset_bottom = 63.0
+theme_override_colors/font_color = Color(0.141176, 0.623529, 0.396078, 1)
+theme_override_fonts/font = ExtResource("3_6m560")
+text = "Arrastra cada eleménto 
+a su estación correspondiente."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UI" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 24.0
+offset_top = 280.0
+offset_right = 622.0
+offset_bottom = 328.0
+
+[node name="BtnSalir" type="Button" parent="UI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -104.0
+offset_top = -23.0
+offset_right = -20.0
+offset_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_6m560")
+text = "Salir
+"
+
+[node name="LblIntentos" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -24.0
+offset_right = 21.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Labels" type="Node" parent="."]
+
+[node name="LblElementosEntrada" type="Label" parent="Labels"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -277.0
+offset_top = -136.0
+offset_right = -107.0
+offset_bottom = -113.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+text = "Elementos de Entrada"
+
+[node name="LblElementosSalida" type="Label" parent="Labels"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -163.0
+offset_top = -136.0
+offset_right = 7.0
+offset_bottom = -113.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+text = "Elementos de Salida"
+
+[node name="LblPartesComputador" type="Label" parent="Labels"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -44.5
+offset_top = -136.0
+offset_right = 134.5
+offset_bottom = -113.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+text = "Partes del Computador"
+
+[node name="LblComponentesInternos" type="Label" parent="Labels"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 73.5
+offset_top = -136.0
+offset_right = 252.5
+offset_bottom = -113.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+text = "Componentes Internos"
+
+[node name="LblComponentesInternos2" type="Label" parent="Labels"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 191.5
+offset_top = -136.0
+offset_right = 370.5
+offset_bottom = -113.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+text = "Archivos Digitales"
+
+[node name="ImagenesElementos" type="Node" parent="."]
+
+[node name="ElementosEntrada" type="TextureRect" parent="ImagenesElementos"]
+offset_left = 44.0
+offset_top = 217.0
+offset_right = 122.0
+offset_bottom = 293.0
+texture = ExtResource("4_8y32a")
+expand_mode = 1
+
+[node name="ElementosSalida" type="TextureRect" parent="ImagenesElementos"]
+offset_left = 167.0
+offset_top = 217.0
+offset_right = 245.0
+offset_bottom = 293.0
+texture = ExtResource("4_8y32a")
+expand_mode = 1
+
+[node name="PartesComputador" type="TextureRect" parent="ImagenesElementos"]
+offset_left = 279.0
+offset_top = 217.0
+offset_right = 357.0
+offset_bottom = 293.0
+texture = ExtResource("4_8y32a")
+expand_mode = 1
+
+[node name="ComponentesInternos" type="TextureRect" parent="ImagenesElementos"]
+offset_left = 397.0
+offset_top = 217.0
+offset_right = 475.0
+offset_bottom = 293.0
+texture = ExtResource("4_8y32a")
+expand_mode = 1
+
+[node name="ArchivosDigitales" type="TextureRect" parent="ImagenesElementos"]
+offset_left = 507.0
+offset_top = 217.0
+offset_right = 585.0
+offset_bottom = 293.0
+texture = ExtResource("4_8y32a")
+expand_mode = 1
+
+[node name="ZonaJuego" type="Node" parent="."]
+
+[node name="ContenedorObjetos" type="Control" parent="ZonaJuego"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 105.0
+offset_top = 70.0
+offset_right = 537.0
+offset_bottom = 185.0
+
+[node name="Texto" type="TextureRect" parent="ZonaJuego/ContenedorObjetos"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 3.0
+offset_right = 111.0
+offset_bottom = 87.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_k7rnx")
+script = ExtResource("6_8y32a")
+
+[node name="Teclado" type="TextureRect" parent="ZonaJuego/ContenedorObjetos"]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 59.0
+offset_right = 172.0
+offset_bottom = 144.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("7_ugwav")
+expand_mode = 1
+script = ExtResource("6_8y32a")
+
+[node name="Raton" type="TextureRect" parent="ZonaJuego/ContenedorObjetos"]
+layout_mode = 0
+offset_left = 139.00002
+offset_top = 62.999996
+offset_right = 309.0
+offset_bottom = 297.99997
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("8_k7rnx")
+expand_mode = 1
+script = ExtResource("6_8y32a")
+
+[node name="Microfono" type="TextureRect" parent="ZonaJuego/ContenedorObjetos"]
+layout_mode = 0
+offset_left = 346.0
+offset_top = 8.0
+offset_right = 481.0
+offset_bottom = 207.99997
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("9_7hlpd")
+expand_mode = 1
+script = ExtResource("6_8y32a")
+
+[node name="DiscoDuro" type="TextureRect" parent="ZonaJuego/ContenedorObjetos"]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 4.0
+offset_right = 186.33334
+offset_bottom = 80.66667
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("8_m652h")
+expand_mode = 1
+script = ExtResource("6_8y32a")
+
+[node name="Imagen" type="TextureRect" parent="ZonaJuego/ContenedorObjetos"]
+layout_mode = 0
+offset_left = 169.0
+offset_top = 4.0
+offset_right = 252.33334
+offset_bottom = 80.66667
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("9_hygnx")
+expand_mode = 1
+script = ExtResource("6_8y32a")
+
+[node name="Imagen2" type="TextureRect" parent="ZonaJuego/ContenedorObjetos"]
+layout_mode = 0
+offset_left = 223.0
+offset_top = 7.0
+offset_right = 306.33334
+offset_bottom = 83.66667
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("10_6m560")
+expand_mode = 1
+script = ExtResource("6_8y32a")
+
+[node name="Video" type="TextureRect" parent="ZonaJuego/ContenedorObjetos"]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 68.0
+offset_right = 274.33334
+offset_bottom = 144.66667
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("11_6m560")
+expand_mode = 1
+script = ExtResource("6_8y32a")
+
+[node name="Video2" type="TextureRect" parent="ZonaJuego/ContenedorObjetos"]
+layout_mode = 0
+offset_left = 247.0
+offset_top = 68.0
+offset_right = 330.33334
+offset_bottom = 144.66667
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("12_2wd5m")
+expand_mode = 1
+script = ExtResource("6_8y32a")
+
+[node name="Ram" type="TextureRect" parent="ZonaJuego/ContenedorObjetos"]
+layout_mode = 0
+offset_left = 306.0
+offset_top = 61.0
+offset_right = 397.66663
+offset_bottom = 142.66666
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("15_vqajt")
+expand_mode = 1
+script = ExtResource("6_8y32a")
+
+[node name="Procesador" type="TextureRect" parent="ZonaJuego/ContenedorObjetos"]
+layout_mode = 0
+offset_left = 283.0
+offset_top = 5.0
+offset_right = 374.66663
+offset_bottom = 86.66666
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("16_rtywy")
+expand_mode = 1
+script = ExtResource("6_8y32a")
+
+[node name="Impresora" type="TextureRect" parent="ZonaJuego/ContenedorObjetos"]
+layout_mode = 0
+offset_left = 377.00003
+offset_top = 61.0
+offset_right = 450.3334
+offset_bottom = 116.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("17_rk04y")
+expand_mode = 1
+script = ExtResource("6_8y32a")
+
+[node name="Audifonos" type="TextureRect" parent="ZonaJuego/ContenedorObjetos"]
+layout_mode = 0
+offset_left = -9.0
+offset_top = 67.0
+offset_right = 72.66666
+offset_bottom = 136.99998
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("18_igk3y")
+expand_mode = 1
+script = ExtResource("6_8y32a")
+
+[node name="Zonas" type="Control" parent="ZonaJuego"]
+light_mask = 4
+visibility_layer = 4
+z_index = 2
+layout_mode = 3
+anchors_preset = 0
+offset_left = 30.0
+offset_top = 216.0
+offset_right = 608.0
+offset_bottom = 311.0
+
+[node name="ZonaElementosEntrada" type="Control" parent="ZonaJuego/Zonas"]
+light_mask = 32
+visibility_layer = 32
+z_index = 3
+anchors_preset = 0
+offset_left = 8.0
+offset_top = -1.0
+offset_right = 103.0
+offset_bottom = 82.0
+script = ExtResource("10_rk04y")
+
+[node name="ZonaElementosSalida" type="Control" parent="ZonaJuego/Zonas"]
+light_mask = 32
+visibility_layer = 32
+z_index = 3
+anchors_preset = 0
+offset_left = 123.0
+offset_right = 218.0
+offset_bottom = 83.0
+script = ExtResource("10_rk04y")
+
+[node name="ZonaPartesComputador" type="Control" parent="ZonaJuego/Zonas"]
+light_mask = 32
+visibility_layer = 32
+z_index = 3
+anchors_preset = 0
+offset_left = 244.0
+offset_top = 1.0
+offset_right = 339.0
+offset_bottom = 84.0
+script = ExtResource("10_rk04y")
+
+[node name="ZonaComponentesInternos" type="Control" parent="ZonaJuego/Zonas"]
+light_mask = 32
+visibility_layer = 32
+z_index = 3
+anchors_preset = 0
+offset_left = 363.0
+offset_top = -1.0
+offset_right = 458.0
+offset_bottom = 82.0
+script = ExtResource("10_rk04y")
+
+[node name="ZonaArchivosDigitales" type="Control" parent="ZonaJuego/Zonas"]
+light_mask = 32
+visibility_layer = 32
+z_index = 3
+anchors_preset = 0
+offset_left = 473.0
+offset_top = -3.0
+offset_right = 568.0
+offset_bottom = 80.0
+script = ExtResource("10_rk04y")
+
+[connection signal="element_asigned" from="ZonaJuego/ContenedorObjetos/Texto" to="." method="_on_texto_element_asigned"]
+[connection signal="element_asigned" from="ZonaJuego/ContenedorObjetos/Teclado" to="." method="_on_teclado_element_asigned"]
+[connection signal="element_asigned" from="ZonaJuego/ContenedorObjetos/Raton" to="." method="_on_raton_element_asigned"]
+[connection signal="element_asigned" from="ZonaJuego/ContenedorObjetos/Microfono" to="." method="_on_microfono_element_asigned"]
+[connection signal="element_asigned" from="ZonaJuego/ContenedorObjetos/DiscoDuro" to="." method="_on_disco_duro_element_asigned"]
+[connection signal="element_asigned" from="ZonaJuego/ContenedorObjetos/Imagen" to="." method="_on_imagen_element_asigned"]
+[connection signal="element_asigned" from="ZonaJuego/ContenedorObjetos/Imagen2" to="." method="_on_imagen_2_element_asigned"]
+[connection signal="element_asigned" from="ZonaJuego/ContenedorObjetos/Video" to="." method="_on_video_element_asigned"]
+[connection signal="element_asigned" from="ZonaJuego/ContenedorObjetos/Video2" to="." method="_on_video_2_element_asigned"]
+[connection signal="element_asigned" from="ZonaJuego/ContenedorObjetos/Ram" to="." method="_on_ram_element_asigned"]
+[connection signal="element_asigned" from="ZonaJuego/ContenedorObjetos/Procesador" to="." method="_on_procesador_element_asigned"]
+[connection signal="element_asigned" from="ZonaJuego/ContenedorObjetos/Impresora" to="." method="_on_impresora_element_asigned"]
+[connection signal="element_asigned" from="ZonaJuego/ContenedorObjetos/Audifonos" to="." method="_on_audifonos_element_asigned"]

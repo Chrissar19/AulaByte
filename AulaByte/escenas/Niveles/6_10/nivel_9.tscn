@@ -1,7 +1,8 @@
-[gd_scene load_steps=31 format=4 uid="uid://dbiaf3ojvsxus"]
+[gd_scene load_steps=32 format=4 uid="uid://dbiaf3ojvsxus"]
 
 [ext_resource type="Script" uid="uid://dwgm0k3l87k50" path="res://scripts/niveles/nivel_9.gd" id="1_52svh"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_2k4on"]
+[ext_resource type="PackedScene" uid="uid://x2g43rgbtgk8" path="res://escenas/Niveles/6_10/actividad_9.tscn" id="2_57tqw"]
 [ext_resource type="Texture2D" uid="uid://dr3bkmou477j5" path="res://recursos/imagenes/TileSets/FondoSheet.png" id="3_pfrmk"]
 [ext_resource type="Texture2D" uid="uid://14pnjoo6241b" path="res://recursos/imagenes/TileSets/DecoracionesFondo.png" id="4_subxy"]
 [ext_resource type="Texture2D" uid="uid://cxyafbo3ck6fg" path="res://recursos/imagenes/TileSets/Pisos.png" id="5_3obpa"]
@@ -1951,6 +1952,7 @@ sources/0 = SubResource("TileSetAtlasSource_7svhg")
 script = ExtResource("1_52svh")
 cuenta_regresiva = 240.0
 id_nivel = 9
+actividad = ExtResource("2_57tqw")
 
 [node name="Fondos" type="Node" parent="."]
 
@@ -2064,7 +2066,7 @@ position = Vector2(6190, -194)
 fuerza_rebote = -800.0
 
 [node name="Delgado" parent="." instance=ExtResource("16_e033u")]
-position = Vector2(-964, -114)
+position = Vector2(-965, -116)
 collision_mask = 59
 
 [node name="Enemigos" type="Node" parent="."]
@@ -2120,7 +2122,7 @@ position = Vector2(311.99994, -294)
 position = Vector2(4658, -105)
 
 [node name="PuertaNivel" parent="Puntos de control" instance=ExtResource("19_x4brk")]
-position = Vector2(-965, -115)
+position = Vector2(-965, -117)
 
 [node name="PuertaNivel2" parent="Puntos de control" instance=ExtResource("19_x4brk")]
 position = Vector2(7357, -113)
