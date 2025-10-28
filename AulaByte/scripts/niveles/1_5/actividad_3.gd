@@ -1,4 +1,5 @@
 extends ActividadBase
+class_name Actividad3
 
 @onready var lbl_ganar: Label = $UI/LblGanar
 @onready var lbl_intentos: Label = $UI/LblIntentos

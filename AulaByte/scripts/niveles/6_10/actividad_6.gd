@@ -1,158 +1,154 @@
+# Actividad6.gd (fix Godot 4.x)
 extends ActividadBase
 class_name Actividad6
 
-# Contenedor de todas las piezas del tangram
-@onready var contenedor_piezas: Node = $Contenedor_piezas
+@onready var silueta: TextureRect = $Silueta
+@onready var piezas_root: Node = $Piezas
+@onready var lbl_tiempo: Label = $UI/LblTiempo
+@onready var t_nivel: Timer = $TimerNivel
 
-# Variables para controlar el arrastre
-var pieza_arrastrando: Node = null
-var offset = Vector2.ZERO
-var piezas: Array[Node] = []
-const GRADOS_ROTACION := 15.0
-const MAX_ROTACION: int = 24 #-- 360 / 15
+@export var tiempo_segundos: int = 120
+@export var textura_mascara: Texture2D
+@export var paso_rot_deg: float = 15.0
+@export var tolerancia_rot_deg: float = 8.0
 
-func _ready():
-    super._ready()  # Llamar al _ready del padre
-    
-    # Obtener todas las piezas hijas del contenedor
-    if contenedor_piezas:
-        for hijo in contenedor_piezas.get_children():
-            if hijo is Sprite2D or hijo is TextureRect or hijo is Control:
-                piezas.append(hijo)
-                if hijo is PiezaTangram:
-                    hijo.init_rotation_steps()
-    set_process_input(true)
+var _img_mask: Image
+var _restantes: int
 
-func _input(event):
-    # No procesar input si la actividad ya finalizó
-    if _finalizado:
+@export var color_a_destino: Dictionary = {
+    # Triángulos grandes (2 slots)
+    Color(1, 0, 0): [
+        { "pos": Vector2(220, 340), "rot_deg": 45.0,  "used": false },
+        { "pos": Vector2(360, 340), "rot_deg": -45.0, "used": false },
+    ],
+    # Triángulo mediano (1 slot)
+    Color(0, 0, 1): [
+        { "pos": Vector2(290, 420), "rot_deg": 0.0,   "used": false },
+    ],
+    # Triángulos pequeños (2 slots)
+    Color(0, 1, 0): [
+        { "pos": Vector2(260, 280), "rot_deg": 0.0,   "used": false },
+        { "pos": Vector2(420, 280), "rot_deg": 90.0,  "used": false },
+    ],
+    # Cuadrado (1 slot)
+    Color(1, 1, 0): [
+        { "pos": Vector2(330, 300), "rot_deg": 0.0,   "used": false },
+    ],
+    # Paralelogramo (1 slot)
+    Color(1, 0, 1): [
+        { "pos": Vector2(380, 410), "rot_deg": 180.0, "used": false },
+    ],
+}
+
+func _ready() -> void:
+    super._ready()
+    add_to_group("Actividad6")
+    _restantes = piezas_root.get_child_count()
+    if textura_mascara:
+        _img_mask = textura_mascara.get_image()  # ✅ sin lock()
+    _actualizar_tiempo()
+    t_nivel.timeout.connect(_tick)
+
+func _tick() -> void:
+    tiempo_segundos -= 1
+    _actualizar_tiempo()
+    if tiempo_segundos <= 0:
+        finalizar_fracaso()
+
+func _actualizar_tiempo() -> void:
+    if lbl_tiempo:
+        lbl_tiempo.text = "Tiempo: %ds" % tiempo_segundos
+
+# Llamado por la pieza al soltar
+func intentar_colocar(pieza: Node2D, color_objetivo: Color) -> void:
+    if _img_mask == null:
         return
-    
-    if event is InputEventMouseButton:
-        if event.button_index == MOUSE_BUTTON_LEFT:
-            if event.pressed:
-                var pieza_clickeada = obtener_pieza_bajo_mouse(event.position)
-                if pieza_clickeada:
-                    pieza_arrastrando = pieza_clickeada
-                    mover_al_frente(pieza_arrastrando)
-                    offset = pieza_arrastrando.position - event.position
-            else:
-                # Al soltar
-                if pieza_arrastrando:
-                    if pieza_arrastrando.has_method("verificar_posicion"):
-                        pieza_arrastrando.verificar_posicion()
-                        if pieza_arrastrando is PiezaTangram and pieza_arrastrando.locked:
-                            piezas.erase(pieza_arrastrando)
-                            pieza_arrastrando = null
-                            verificar_completado()
-                            return
-                    pieza_arrastrando = null
-                    verificar_completado()
-                    
-        elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
-            var pieza = obtener_pieza_bajo_mouse(event.position)
-            if pieza and pieza is PiezaTangram and not pieza.locked:
-                rotar_pieza(pieza, 1)  # +1 step (15 grados horario)
-        elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-            var pieza = obtener_pieza_bajo_mouse(event.position)
-            if pieza and pieza is PiezaTangram and not pieza.locked:
-                rotar_pieza(pieza, -1)  # -1 step (15 grados antihorario)
 
-    if event is InputEventMouseMotion and pieza_arrastrando:
-        if pieza_arrastrando is PiezaTangram and pieza_arrastrando.locked:
-            pieza_arrastrando = null
-            return
-        pieza_arrastrando.position = event.position + offset
+    var uv: Vector2 = _global_to_mask_uv(pieza.global_position)
+    if uv.x < 0.0 or uv.x > 1.0 or uv.y < 0.0 or uv.y > 1.0:
+        return
 
-func obtener_pieza_bajo_mouse(mouse_pos: Vector2) -> Node:
-    # Recorrer las piezas en orden inverso (las de arriba primero)
-    for i in range(piezas.size() - 1, -1, -1):
-        var pieza = piezas[i]
-        # Ignorar si la pieza ya está bloqueada
-        if pieza is PiezaTangram and pieza.locked:
-            continue
-        if esta_sobre_pieza(pieza, mouse_pos):
-            return pieza
-    return null
+    var w: int = _img_mask.get_width()
+    var h: int = _img_mask.get_height()
 
-func esta_sobre_pieza(pieza: Node, mouse_pos: Vector2) -> bool:
-    if not pieza:
-        return false
-    
-    # Para Sprite2D y Node2D
-    if pieza is Sprite2D:
-        var sprite := pieza as Sprite2D
-        if sprite.texture:
-            var local_mouse_pos = sprite.to_local(mouse_pos)
-            var rect = sprite.get_rect()
-            rect.position = -sprite.texture.get_size() / 2  # Asume centered=true
-            return rect.has_point(local_mouse_pos)
-        return false
-    
-    # Para TextureRect
-    if pieza is TextureRect:
-        var tex_rect := pieza as TextureRect
-        return tex_rect.get_global_rect().has_point(mouse_pos)
-    
-    # Para Control genérico
-    if pieza is Control:
-        var control := pieza as Control
-        return control.get_global_rect().has_point(mouse_pos)
-    
+    var px_x: int = int(round(uv.x * float(w - 1)))
+    var px_y: int = int(round(uv.y * float(h - 1)))
+    var c: Color = _img_mask.get_pixel(px_x, px_y)
+
+    # 👇 Ya no usamos _rot_ok aquí. Solo color; la rotación se valida en _snap_or_replace.
+    if _matches_color(c, color_objetivo):
+        var colocado: bool = _snap_or_replace(pieza, color_objetivo)
+        if colocado:
+            _restantes -= 1
+            if _restantes <= 0:
+                finalizar_exito()
+
+func _rot_ok_against(rot_pieza_deg: float, rot_dest_deg: float) -> bool:
+    # Valida rotación de la pieza contra la rotación destino del slot
+    var delta: float = abs(wrapf(rot_pieza_deg - rot_dest_deg, -180.0, 180.0))
+    if delta <= tolerancia_rot_deg:
+        return true
     return false
 
-func rotar_pieza(pieza: Node, steps_delta: int):
-    if pieza is PiezaTangram:
-        var tangram := pieza as PiezaTangram
-        tangram.rotar_pieza = (tangram.rotar_pieza + steps_delta) % MAX_ROTACION
-        if tangram.rotation_steps < 0:
-            tangram.rotation_steps += MAX_ROTACION
-        tangram.rotation_degrees = tangram.rotation_steps * GRADOS_ROTACION
-        print("Rotación steps: ", tangram.rotation_steps, " -> grados: ", tangram.rotation_degrees)  # Debug
-        
+func _matches_color(c1: Color, c2: Color) -> bool:
+    var eps: float = 0.05
+    if abs(c1.r - c2.r) <= eps and abs(c1.g - c2.g) <= eps and abs(c1.b - c2.b) <= eps:
+        return true
+    return false
 
-func mover_al_frente(pieza: Node):
-    if pieza in piezas:
-        piezas.erase(pieza)
-        piezas.append(pieza)
-        if pieza is Node2D:
-            pieza.z_index = piezas.size()
+func _snap_or_replace(pieza: Node2D, color_objetivo: Color) -> bool:
+    if not color_a_destino.has(color_objetivo):
+        return false
 
-func verificar_completado():
-    var todas_locked = true
-    for pieza in contenedor_piezas.get_children():
-        if pieza is PiezaTangram and not pieza.locked:
-            todas_locked = false
-            break
-    if todas_locked:
-        finalizar_exito()
-    # Aquí implementas tu lógica de verificación
-    # Por ejemplo, verificar si todas las piezas están en sus posiciones objetivo
-    
-    # Ejemplo básico: verificar si cada pieza está cerca de su posición objetivo
-    # var todas_correctas = true
-    # for i in piezas.size():
-    #     var pieza = piezas[i]
-    #     var posicion_objetivo = posiciones_objetivo[i]
-    #     if pieza.position.distance_to(posicion_objetivo) > 20:
-    #         todas_correctas = false
-    #         break
-    #
-    # if todas_correctas:
-    #     finalizar_exito()
-    
+    var lista: Array = color_a_destino[color_objetivo]
+    if lista.is_empty():
+        return false
 
-# Sobrescribir si necesitas configuración personalizada
-func configurar_con_parametros(parametros: Dictionary) -> void:
-    super.configurar_con_parametros(parametros)
-    # Ejemplo: 
-    # if parametros.has("posiciones_iniciales"):
-    #     var posiciones = parametros["posiciones_iniciales"]
-    #     for i in min(piezas.size(), posiciones.size()):
-    #         piezas[i].position = posiciones[i]
+    # Slot libre más cercano
+    var mejor_idx: int = -1
+    var mejor_dist: float = INF
+    var i: int = 0
+    while i < lista.size():
+        var slot: Dictionary = lista[i]
+        var usado: bool = bool(slot.get("used", false))
+        if not usado:
+            var pos_slot: Vector2 = slot.get("pos", Vector2.ZERO)
+            var dist: float = pieza.global_position.distance_to(pos_slot)
+            if dist < mejor_dist:
+                mejor_dist = dist
+                mejor_idx = i
+        i += 1
 
-# Sobrescribir para limpiar recursos
-func limpiar() -> void:
-    super.limpiar()
-    pieza_arrastrando = null
-    piezas.clear()
+    if mejor_idx == -1:
+        return false  # no hay slots libres para este color
+
+    var elegido: Dictionary = lista[mejor_idx]
+    var pos_dest: Vector2 = elegido.get("pos", Vector2.ZERO)
+    var rot_dest: float = float(elegido.get("rot_deg", 0.0))
+
+    # Validar rotación contra el destino
+    if not _rot_ok_against(pieza.rotation_degrees, rot_dest):
+        return false
+
+    # Fijar
+    pieza.global_position = pos_dest
+    pieza.rotation_degrees = rot_dest
+    pieza.set_process_input(false)
+    pieza.set_process_unhandled_input(false)
+    pieza.set_physics_process(false)
+
+    # Marcar slot ocupado
+    elegido["used"] = true
+    lista[mejor_idx] = elegido
+    color_a_destino[color_objetivo] = lista
+
+    return true
+
+
+func _global_to_mask_uv(gpos: Vector2) -> Vector2:
+    # Convierte posición global (de la pieza) a posición local dentro del TextureRect
+    var inv_transform: Transform2D = silueta.get_global_transform_with_canvas().affine_inverse()
+    var lp: Vector2 = inv_transform * gpos
+    var size: Vector2 = silueta.get_rect().size
+    var uv: Vector2 = Vector2(lp.x / size.x, lp.y / size.y)
+    return uv

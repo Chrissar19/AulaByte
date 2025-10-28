@@ -1,108 +1,51 @@
 extends Sprite2D
 class_name PiezaTangram
 
-enum TipoPieza {
-    TRIANGULO_GRANDE,
-    TRIANGULO_MEDIANO,
-    TRIANGULO_PEQUENO,
-    CUADRADO,
-    PARALELOGRAMO
-}
+signal soltar(global_pos: Vector2)
 
-@export var tipo: TipoPieza = TipoPieza.TRIANGULO_GRANDE
-@export var area_colision: Area2D
+@export var color_objetivo: Color
+@export var draggable: bool = true
+@export var rot_step_deg: float = 15.0
 
-var rotation_steps: int = 0
-var en_posicion_correcta: bool = false
-var sensor_actual: Area2D = null
-var locked: bool = false
-# tolerancia por defecto en pixeles
-var tolerancia_posicion: float = 15.0
-
-func init_rotation_steps() -> void:
-    rotation_steps = int(round(rotation_degrees / Actividad6.GRADOS_ROTACION)) % Actividad6.MAX_ROTACION
-    rotation_degrees = rotation_steps * Actividad6.GRADOS_ROTACION
+var _arrastrando := false
+var _offset := Vector2.ZERO
+var _actividad: Actividad6
 
 func _ready() -> void:
-    init_rotation_steps()
-    if area_colision:
-        area_colision.area_entered.connect(_on_area_entered)
-        area_colision.area_exited.connect(_on_area_exited)
+    _actividad = get_tree().get_first_node_in_group("Actividad6") as Actividad6
+    if _actividad == null:
+        _actividad = get_parent().get_parent() as Actividad6
 
-
-func _on_area_entered(area: Area2D) -> void:
-    if area.has_meta("tipo_esperado"):
-        var tipo_esperado = area.get_meta("tipo_esperado")
-        if tipo_esperado == tipo and not locked:
-            sensor_actual = area
-            verificar_posicion()
-
-
-func _on_area_exited(area: Area2D) -> void:
-    if area == sensor_actual:
-        en_posicion_correcta = false
-        sensor_actual = null
-        actualizar_visual()
-
-
-func verificar_posicion() -> void:
-    if not sensor_actual:
-        en_posicion_correcta = false
-        actualizar_visual()
+func _input(event: InputEvent) -> void:
+    if not draggable:
         return
+    if event is InputEventMouseButton:
+        var mb := event as InputEventMouseButton
+        if mb.button_index == MOUSE_BUTTON_LEFT:
+            if mb.pressed and _sobre_mi():
+                _arrastrando = true
+                _offset = global_position - get_global_mouse_position()
+            elif not mb.pressed and _arrastrando:
+                _arrastrando = false
+                if is_instance_valid(_actividad):
+                    _actividad.intentar_colocar(self, color_objetivo)
+        if mb.pressed and (mb.button_index == MOUSE_BUTTON_WHEEL_UP or mb.button_index == MOUSE_BUTTON_WHEEL_DOWN):
+            var dir := 0.0
+            if mb.button_index == MOUSE_BUTTON_WHEEL_UP:
+                dir = 1.0
+            else:
+                dir = -1.0
+            rotation_degrees = round((rotation_degrees + dir * rot_step_deg) / rot_step_deg) * rot_step_deg
 
-    var expected_steps: int = int(sensor_actual.get_meta("expected_steps", 0))
-    var tolerancia_pos: float = float(sensor_actual.get_meta("tolerancia_posicion", tolerancia_posicion))
+func _process(_dt: float) -> void:
+    if _arrastrando:
+        global_position = get_global_mouse_position() + _offset
 
-    var distancia: float = global_position.distance_to(sensor_actual.global_position)
-    
-    en_posicion_correcta = (rotation_steps == expected_steps) and (distancia <= tolerancia_pos)
-    actualizar_visual()
-    
-    if en_posicion_correcta:
-        lock_in_place(sensor_actual)
-
-
-func lock_in_place(sensor: Area2D) -> void:
-    if locked:
-        return
-    locked = true
-    
-    global_position = sensor.global_position
-    rotation_degrees = int(sensor.get_meta("expected_steps", rotation_steps)) * Actividad6.GRADOS_ROTACION
-
-    # Desactivar colisiones y sensor para evitar reentradas
-    if area_colision:
-        area_colision.monitoring = false
-        area_colision.set_deferred("monitoring", false)
-
-    actualizar_visual()
-
-    # Llamar hook opcional 'on_locked' sólo si existe
-    if has_method("on_locked"):
-        call("on_locked")
-
-
-func actualizar_visual() -> void:
-    if locked:
-        # apariencia bloqueada (por ejemplo, destacar)
-        modulate = Color(1, 1, 1, 1)
-    elif en_posicion_correcta:
-        modulate = Color(1, 1, 1, 1)
-    else:
-        modulate = Color(1, 1, 1, 0.9)
-
-
-func get_tipo_pieza() -> String:
-    match tipo:
-        TipoPieza.TRIANGULO_MEDIANO:
-            return "TRIANGULO_MEDIANO"
-        TipoPieza.TRIANGULO_PEQUENO:
-            return "TRIANGULO_PEQUENO"
-        TipoPieza.CUADRADO:
-            return "CUADRADO"
-        TipoPieza.PARALELOGRAMO:
-            return "PARALELOGRAMO"
-        TipoPieza.TRIANGULO_GRANDE:
-            return "TRIANGULO_GRANDE"
-    return "PIEZA DESCONOCIDA"
+func _sobre_mi() -> bool:
+    var vp := get_viewport()
+    var mouse := vp.get_mouse_position()
+    var lp := to_local(mouse)
+    # Si hay Sprite2D hijo, se puede usar get_rect(); aquí un radio simple:
+    if lp.length() <= 64.0:
+        return true
+    return false

@@ -1,17 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://ct6q8iwp7wni2"]
+[gd_scene load_steps=8 format=3 uid="uid://ct6q8iwp7wni2"]
 
 [ext_resource type="Script" uid="uid://df7ghgpbhadbt" path="res://scripts/niveles/6_10/actividad_6.gd" id="1_cufmi"]
 [ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="1_h4p5l"]
+[ext_resource type="Texture2D" uid="uid://4mysj6p3ttot" path="res://recursos/imagenes/niveles/nivel6/mascaraCohete.png" id="2_rsy60"]
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="3_3owi0"]
 [ext_resource type="Texture2D" uid="uid://dhbsdfe4uetf0" path="res://recursos/imagenes/niveles/nivel6/pieza1verde.png" id="4_3owi0"]
+[ext_resource type="Texture2D" uid="uid://b1km7x86sbx5k" path="res://recursos/imagenes/niveles/nivel6/CoheteSombra.png" id="4_5pec8"]
 [ext_resource type="Script" uid="uid://bbebdd838lrmc" path="res://scripts/niveles/6_10/pieza_tangram.gd" id="5_84ncr"]
-[ext_resource type="Texture2D" uid="uid://c6ug5pnnotw7j" path="res://recursos/imagenes/niveles/nivel6/Pieza6Verde.png" id="5_b0omr"]
-[ext_resource type="Texture2D" uid="uid://b16m06ayefqwn" path="res://recursos/imagenes/niveles/nivel6/Pieza7Amarilla.png" id="6_ayony"]
-[ext_resource type="Texture2D" uid="uid://c3jq4mx24v182" path="res://recursos/imagenes/niveles/nivel6/pieza2Azul.png" id="7_84ncr"]
-[ext_resource type="Texture2D" uid="uid://brli7q1cxc20m" path="res://recursos/imagenes/niveles/nivel6/Pieza4Naranja.png" id="8_btufc"]
-[ext_resource type="Texture2D" uid="uid://brejfoa75g8op" path="res://recursos/imagenes/niveles/nivel6/Pieza3Roja.png" id="9_52262"]
-[ext_resource type="Texture2D" uid="uid://djubqompt8aan" path="res://recursos/imagenes/niveles/nivel6/Pieza5Azul.png" id="10_gmokl"]
-[ext_resource type="Texture2D" uid="uid://llq8e0kajkf3" path="res://recursos/imagenes/niveles/nivel6/Cohete.png" id="11_ayony"]
 
 [node name="Actividad6" type="Control"]
 layout_mode = 3
@@ -21,6 +16,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cufmi")
+textura_mascara = ExtResource("2_rsy60")
 
 [node name="Pantalla" type="ColorRect" parent="."]
 layout_mode = 1
@@ -56,16 +52,7 @@ offset_bottom = 71.0
 theme_override_fonts/font = ExtResource("3_3owi0")
 text = "SALIR"
 
-[node name="BtnConfirmar" type="Button" parent="UI"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 40.0
-offset_right = 111.0
-offset_bottom = 71.0
-theme_override_fonts/font = ExtResource("3_3owi0")
-text = "CONFIRMAR"
-
-[node name="LblIntentos" type="Label" parent="UI"]
+[node name="LblTiempo" type="Label" parent="UI"]
 editor_description = "ADFSADFSDF"
 layout_mode = 0
 offset_left = 248.0
@@ -77,172 +64,28 @@ text = "INTENTOS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LblInstrucciones" type="Label" parent="UI"]
+[node name="LblInfo" type="Label" parent="UI"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="Contenedor_piezas" type="Node" parent="."]
+[node name="Silueta" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 64.0
+offset_right = 495.0
+offset_bottom = 256.0
+texture = ExtResource("4_5pec8")
+stretch_mode = 3
 
-[node name="TrianguloPeque2" type="Sprite2D" parent="Contenedor_piezas"]
-z_index = 5
-position = Vector2(127, 78)
-texture = ExtResource("8_btufc")
-script = ExtResource("5_84ncr")
-tipo = 2
+[node name="Piezas" type="Node2D" parent="."]
 
-[node name="Area2D" type="Area2D" parent="Contenedor_piezas/TrianguloPeque2"]
-collision_layer = 8192
-collision_mask = 2048
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Contenedor_piezas/TrianguloPeque2/Area2D"]
-
-[node name="TrianguloMediano" type="Sprite2D" parent="Contenedor_piezas"]
-z_index = 5
-position = Vector2(64, 88)
+[node name="PiezaTianguloMediano" type="Sprite2D" parent="Piezas"]
+position = Vector2(152, 88)
 texture = ExtResource("4_3owi0")
 script = ExtResource("5_84ncr")
-tipo = 1
+color_objetivo = Color(0, 1, 0, 1)
 
-[node name="Area2D" type="Area2D" parent="Contenedor_piezas/TrianguloMediano"]
+[node name="Area2D" type="Area2D" parent="Piezas/PiezaTianguloMediano"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Contenedor_piezas/TrianguloMediano/Area2D"]
-
-[node name="TrianguloGrande" type="Sprite2D" parent="Contenedor_piezas"]
-z_index = 5
-position = Vector2(122, 198)
-texture = ExtResource("5_b0omr")
-script = ExtResource("5_84ncr")
-tipo = null
-
-[node name="Area2D" type="Area2D" parent="Contenedor_piezas/TrianguloGrande"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Contenedor_piezas/TrianguloGrande/Area2D"]
-
-[node name="TrianguloGrande2" type="Sprite2D" parent="Contenedor_piezas"]
-z_index = 5
-position = Vector2(206, 164)
-texture = ExtResource("6_ayony")
-script = ExtResource("5_84ncr")
-tipo = null
-
-[node name="Area2D" type="Area2D" parent="Contenedor_piezas/TrianguloGrande2"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Contenedor_piezas/TrianguloGrande2/Area2D"]
-
-[node name="TrianguloPeque" type="Sprite2D" parent="Contenedor_piezas"]
-z_index = 5
-position = Vector2(48, 199)
-texture = ExtResource("7_84ncr")
-script = ExtResource("5_84ncr")
-tipo = 2
-
-[node name="Area2D" type="Area2D" parent="Contenedor_piezas/TrianguloPeque"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Contenedor_piezas/TrianguloPeque/Area2D"]
-
-[node name="Cuadrado" type="Sprite2D" parent="Contenedor_piezas"]
-z_index = 5
-position = Vector2(120, 136)
-texture = ExtResource("9_52262")
-script = ExtResource("5_84ncr")
-tipo = 3
-
-[node name="Area2D" type="Area2D" parent="Contenedor_piezas/Cuadrado"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Contenedor_piezas/Cuadrado/Area2D"]
-
-[node name="Paralelogramo" type="Sprite2D" parent="Contenedor_piezas"]
-z_index = 5
-position = Vector2(197, 76)
-texture = ExtResource("10_gmokl")
-script = ExtResource("5_84ncr")
-tipo = 4
-
-[node name="Area2D" type="Area2D" parent="Contenedor_piezas/Paralelogramo"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Contenedor_piezas/Paralelogramo/Area2D"]
-
-[node name="Figura" type="Node" parent="."]
-
-[node name="Cohete" type="Sprite2D" parent="Figura"]
-position = Vector2(472, 160)
-texture = ExtResource("11_ayony")
-
-[node name="SensorTrianguloPequeno1" type="Area2D" parent="Figura"]
-collision_layer = 2048
-collision_mask = 8192
-monitoring = false
-metadata/tipo_esperado = 1
-metadata/rotacion_esperada = 180.0
-metadata/tolerancia_rotacion = 20.0
-
-[node name="Triangulopeque" type="CollisionPolygon2D" parent="Figura/SensorTrianguloPequeno1"]
-polygon = PackedVector2Array(448, 88, 472, 64, 496, 88)
-
-[node name="SensorTrianguloMediano" type="Area2D" parent="Figura"]
-position = Vector2(480, 104)
-collision_layer = 2048
-collision_mask = 8192
-monitoring = false
-metadata/tipo_esperado = 0
-metadata/rotacion_esperada = 90.0
-metadata/tolerancia_rotacion = 20.0
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Figura/SensorTrianguloMediano"]
-polygon = PackedVector2Array(-32, -16, 16, -16, 16, 32)
-
-[node name="SensorTrianguloGrande1" type="Area2D" parent="Figura"]
-collision_layer = 2048
-collision_mask = 8192
-monitoring = false
-metadata/tipo_esperado = 4
-metadata/rotacion_esperada = 0.0
-metadata/tolerancia_rotacion = 0.0
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Figura/SensorTrianguloGrande1"]
-polygon = PackedVector2Array(448, 184, 496, 136, 448, 88)
-
-[node name="SensorTrianguloGrande2" type="Area2D" parent="Figura"]
-collision_layer = 2048
-collision_mask = 8192
-monitoring = false
-metadata/tipo_esperado = 4
-metadata/rotacion_esperada = 0.0
-metadata/tolerancia_rotacion = 0.0
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Figura/SensorTrianguloGrande2"]
-polygon = PackedVector2Array(448, 184, 496, 232, 496, 136)
-
-[node name="SensorCuadrado" type="Area2D" parent="Figura"]
-collision_layer = 2048
-collision_mask = 8192
-monitoring = false
-metadata/tipo_esperado = 2
-metadata/rotacion_esperada = 0.0
-metadata/tolerancia_rotacion = 0.0
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Figura/SensorCuadrado"]
-polygon = PackedVector2Array(424, 208, 448, 184, 472, 208, 448, 232)
-
-[node name="SensorTrianguloPequeno2" type="Area2D" parent="Figura"]
-collision_layer = 2048
-collision_mask = 8192
-monitoring = false
-metadata/tipo_esperado = 1
-metadata/rotacion_esperada = 0.0
-metadata/tolerancia_rotacion = 0.0
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Figura/SensorTrianguloPequeno2"]
-polygon = PackedVector2Array(424, 208, 424, 256, 448, 232)
-
-[node name="SensorParalelogramo" type="Area2D" parent="Figura"]
-collision_layer = 2048
-collision_mask = 8192
-monitoring = false
-metadata/tipo_esperado = 3
-metadata/rotacion_esperada = 0.0
-metadata/tolerancia_rotacion = 0.0
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Figura/SensorParalelogramo"]
-polygon = PackedVector2Array(496, 232, 520, 256, 520, 208, 496, 184)
+[node name="TimerNivel" type="Timer" parent="."]
