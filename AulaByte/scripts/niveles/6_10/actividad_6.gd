@@ -17,26 +17,26 @@ var _restantes: int
 
 @export var color_a_destino: Dictionary = {
     # Triángulos grandes (2 slots)
-    Color(1, 0, 0): [
-        { "pos": Vector2(220, 340), "rot_deg": 45.0,  "used": false },
-        { "pos": Vector2(360, 340), "rot_deg": -45.0, "used": false },
+    Color(1.0, 0.0, 0.0, 1.0): [
+        { "pos": Vector2(448, 137), "rot_deg": 90.0,  "used": false },
+        { "pos": Vector2(448, 184), "rot_deg": 270.0, "used": false },
     ],
     # Triángulo mediano (1 slot)
-    Color(0, 0, 1): [
-        { "pos": Vector2(290, 420), "rot_deg": 0.0,   "used": false },
+    Color(0.0, 1.0, 0.0, 1.0): [
+        { "pos": Vector2(448, 112), "rot_deg": 90.0,   "used": false },
     ],
     # Triángulos pequeños (2 slots)
-    Color(0, 1, 0): [
-        { "pos": Vector2(260, 280), "rot_deg": 0.0,   "used": false },
-        { "pos": Vector2(420, 280), "rot_deg": 90.0,  "used": false },
+    Color(0.0, 0.0, 1.0, 1.0): [
+        { "pos": Vector2(448, 77), "rot_deg": 270.0,   "used": false },
+        { "pos": Vector2(412, 232), "rot_deg": 0.0,  "used": false },
     ],
     # Cuadrado (1 slot)
     Color(1, 1, 0): [
-        { "pos": Vector2(330, 300), "rot_deg": 0.0,   "used": false },
+        { "pos": Vector2(424, 209), "rot_deg": 45.0,   "used": false },
     ],
     # Paralelogramo (1 slot)
     Color(1, 0, 1): [
-        { "pos": Vector2(380, 410), "rot_deg": 180.0, "used": false },
+        { "pos": Vector2(483, 219), "rot_deg": 270.0, "used": false },
     ],
 }
 

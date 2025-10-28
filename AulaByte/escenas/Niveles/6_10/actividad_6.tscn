@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ct6q8iwp7wni2"]
+[gd_scene load_steps=14 format=3 uid="uid://ct6q8iwp7wni2"]
 
 [ext_resource type="Script" uid="uid://df7ghgpbhadbt" path="res://scripts/niveles/6_10/actividad_6.gd" id="1_cufmi"]
 [ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="1_h4p5l"]
@@ -7,6 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://dhbsdfe4uetf0" path="res://recursos/imagenes/niveles/nivel6/pieza1verde.png" id="4_3owi0"]
 [ext_resource type="Texture2D" uid="uid://b1km7x86sbx5k" path="res://recursos/imagenes/niveles/nivel6/CoheteSombra.png" id="4_5pec8"]
 [ext_resource type="Script" uid="uid://bbebdd838lrmc" path="res://scripts/niveles/6_10/pieza_tangram.gd" id="5_84ncr"]
+[ext_resource type="Texture2D" uid="uid://c6ug5pnnotw7j" path="res://recursos/imagenes/niveles/nivel6/Pieza6Verde.png" id="8_btufc"]
+[ext_resource type="Texture2D" uid="uid://b16m06ayefqwn" path="res://recursos/imagenes/niveles/nivel6/Pieza7Amarilla.png" id="9_52262"]
+[ext_resource type="Texture2D" uid="uid://c3jq4mx24v182" path="res://recursos/imagenes/niveles/nivel6/pieza2Azul.png" id="10_gmokl"]
+[ext_resource type="Texture2D" uid="uid://brli7q1cxc20m" path="res://recursos/imagenes/niveles/nivel6/Pieza4Naranja.png" id="11_ejh48"]
+[ext_resource type="Texture2D" uid="uid://brejfoa75g8op" path="res://recursos/imagenes/niveles/nivel6/Pieza3Roja.png" id="12_2nrgl"]
+[ext_resource type="Texture2D" uid="uid://djubqompt8aan" path="res://recursos/imagenes/niveles/nivel6/Pieza5Azul.png" id="13_vgy3k"]
 
 [node name="Actividad6" type="Control"]
 layout_mode = 3
@@ -17,6 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cufmi")
 textura_mascara = ExtResource("2_rsy60")
+tolerancia_rot_deg = 10.0
 
 [node name="Pantalla" type="ColorRect" parent="."]
 layout_mode = 1
@@ -81,11 +88,59 @@ stretch_mode = 3
 [node name="Piezas" type="Node2D" parent="."]
 
 [node name="PiezaTianguloMediano" type="Sprite2D" parent="Piezas"]
-position = Vector2(152, 88)
+position = Vector2(187, 107)
 texture = ExtResource("4_3owi0")
 script = ExtResource("5_84ncr")
 color_objetivo = Color(0, 1, 0, 1)
 
 [node name="Area2D" type="Area2D" parent="Piezas/PiezaTianguloMediano"]
+
+[node name="PiezaTianguloGrande" type="Sprite2D" parent="Piezas"]
+position = Vector2(84, 137)
+texture = ExtResource("8_btufc")
+script = ExtResource("5_84ncr")
+color_objetivo = Color(1, 0, 0, 1)
+
+[node name="Area2D" type="Area2D" parent="Piezas/PiezaTianguloGrande"]
+
+[node name="PiezaTianguloGrande2" type="Sprite2D" parent="Piezas"]
+position = Vector2(137, 195)
+texture = ExtResource("9_52262")
+script = ExtResource("5_84ncr")
+color_objetivo = Color(1, 0, 0, 1)
+
+[node name="Area2D" type="Area2D" parent="Piezas/PiezaTianguloGrande2"]
+
+[node name="PiezaTianguloPeque" type="Sprite2D" parent="Piezas"]
+position = Vector2(51, 234)
+texture = ExtResource("10_gmokl")
+script = ExtResource("5_84ncr")
+color_objetivo = Color(0, 0, 1, 1)
+
+[node name="Area2D" type="Area2D" parent="Piezas/PiezaTianguloPeque"]
+
+[node name="PiezaTianguloPeque2" type="Sprite2D" parent="Piezas"]
+position = Vector2(72, 60)
+texture = ExtResource("11_ejh48")
+script = ExtResource("5_84ncr")
+color_objetivo = Color(0, 0, 1, 1)
+
+[node name="Area2D" type="Area2D" parent="Piezas/PiezaTianguloPeque2"]
+
+[node name="PiezaCuadrado" type="Sprite2D" parent="Piezas"]
+position = Vector2(172.00003, 253.00003)
+texture = ExtResource("12_2nrgl")
+script = ExtResource("5_84ncr")
+color_objetivo = Color(1, 1, 0, 1)
+
+[node name="Area2D" type="Area2D" parent="Piezas/PiezaCuadrado"]
+
+[node name="PiezaPaealelogramo" type="Sprite2D" parent="Piezas"]
+position = Vector2(84, 284)
+texture = ExtResource("13_vgy3k")
+script = ExtResource("5_84ncr")
+color_objetivo = Color(1, 0, 1, 1)
+
+[node name="Area2D" type="Area2D" parent="Piezas/PiezaPaealelogramo"]
 
 [node name="TimerNivel" type="Timer" parent="."]
