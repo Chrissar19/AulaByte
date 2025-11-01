@@ -1,4 +1,3 @@
-# Actividad6.gd (fix Godot 4.x)
 extends ActividadBase
 class_name Actividad6
 
@@ -45,7 +44,7 @@ func _ready() -> void:
     add_to_group("Actividad6")
     _restantes = piezas_root.get_child_count()
     if textura_mascara:
-        _img_mask = textura_mascara.get_image()  # ✅ sin lock()
+        _img_mask = textura_mascara.get_image()
     _actualizar_tiempo()
     
     #-- Cuenta regresiva
@@ -88,12 +87,26 @@ func intentar_colocar(pieza: Node2D, color_objetivo: Color) -> void:
             if _restantes <= 0:
                 finalizar_exito()
 
-func _rot_ok_against(rot_pieza_deg: float, rot_dest_deg: float) -> bool:
-    # Valida rotación de la pieza contra la rotación destino del slot
-    var delta: float = abs(wrapf(rot_pieza_deg - rot_dest_deg, -180.0, 180.0))
-    if delta <= tolerancia_rot_deg:
-        return true
-    return false
+func _rot_ok_against(rot_pieza_deg: float, rot_dest_deg: float, color_objetivo: Color) -> bool:
+    var period := _symmetry_period_for_color(color_objetivo)  # 90° cuadrado, 180° paralelogramo, 360° otros
+    # Distancia angular mínima al conjunto de ángulos equivalentes (dest + k*period)
+    var diff := fposmod((rot_pieza_deg - rot_dest_deg), period)
+    diff = min(diff, period - diff)
+    return diff <= tolerancia_rot_deg
+
+    
+func _symmetry_period_for_color(c: Color) -> float:
+    if _cuadrado_color(c):
+        return 90.0
+    if _paralelogramo_color(c):
+        return 180.0
+    return 360.0
+    
+func _cuadrado_color(c: Color) -> bool:
+    return _matches_color(c, Color(1.0, 1.0, 0.0, 1.0))
+    
+func _paralelogramo_color(c: Color) -> bool:
+    return _matches_color(c, Color(1.0, 0.0, 1.0, 1.0))
 
 func _matches_color(c1: Color, c2: Color) -> bool:
     var eps: float = 0.05
@@ -132,7 +145,7 @@ func _snap_or_replace(pieza: Node2D, color_objetivo: Color) -> bool:
     var rot_dest: float = float(elegido.get("rot_deg", 0.0))
 
     # Validar rotación contra el destino
-    if not _rot_ok_against(pieza.rotation_degrees, rot_dest):
+    if not _rot_ok_against(pieza.rotation_degrees, rot_dest, color_objetivo):
         return false
 
     # Fijar

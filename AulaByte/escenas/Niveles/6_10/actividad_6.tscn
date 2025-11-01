@@ -137,6 +137,7 @@ color_objetivo = Color(1, 1, 0, 1)
 
 [node name="PiezaPaealelogramo" type="Sprite2D" parent="Piezas"]
 position = Vector2(84, 284)
+rotation = 3.1415927
 texture = ExtResource("13_vgy3k")
 script = ExtResource("5_84ncr")
 color_objetivo = Color(1, 0, 1, 1)
