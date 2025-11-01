@@ -2066,7 +2066,7 @@ position = Vector2(6190, -194)
 fuerza_rebote = -800.0
 
 [node name="Delgado" parent="." instance=ExtResource("16_e033u")]
-position = Vector2(7296, -114)
+position = Vector2(-961, -115)
 collision_mask = 59
 
 [node name="Enemigos" type="Node" parent="."]

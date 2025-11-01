@@ -12,5 +12,5 @@
 
 [resource]
 script = ExtResource("1_b2vrk")
-nivel = Array[PackedScene]([ExtResource("1_qafu8"), ExtResource("10_dwmlx"), ExtResource("3_384g5"), ExtResource("4_n08a6"), ExtResource("5_eekmv"), ExtResource("10_dwmlx"), ExtResource("7_8cfyj"), ExtResource("8_aeayr"), ExtResource("7_8cfyj"), ExtResource("10_dwmlx"), ExtResource("11_s05tq")])
+nivel = Array[PackedScene]([ExtResource("1_qafu8"), ExtResource("10_dwmlx"), ExtResource("3_384g5"), ExtResource("4_n08a6"), ExtResource("5_eekmv"), ExtResource("10_dwmlx"), ExtResource("7_8cfyj"), ExtResource("8_aeayr"), ExtResource("7_8cfyj"), ExtResource("8_aeayr"), ExtResource("11_s05tq")])
 metadata/_custom_type_script = "uid://b51y87ysvl54g"
