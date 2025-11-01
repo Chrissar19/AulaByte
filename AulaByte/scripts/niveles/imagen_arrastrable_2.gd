@@ -26,7 +26,7 @@ func _ready() -> void:
 
 func _get_drag_data(at_position: Vector2) -> Variant:
 	_drag_activo = true
-
+	
 	var data := {
 		"from": self,
 		"categorias": categorias,
@@ -41,9 +41,19 @@ func _get_drag_data(at_position: Vector2) -> Variant:
 	vista.modulate.a = 0.2
 	vista.expand_mode = expand_mode
 	vista.stretch_mode = stretch_mode
+	vista.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	
+	var preview_size: Vector2 = size * scale
+	vista.position = -preview_size * 0.5
+	
+	var wrapper := Control.new()
+	wrapper.name = "DragPreviewWrapper"
+	wrapper.size = preview_size
+	wrapper.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	wrapper.add_child(vista)
 
-	set_drag_preview(vista)
-
+	set_drag_preview(wrapper)
+	
 	return data
 
 func _notification(what: int) -> void:
@@ -106,8 +116,9 @@ func _clonar_en_zona(zona: Control) -> void:
 	zona.add_child(copia)
 
 	await get_tree().process_frame
-
-	copia.global_position = _posicion_final_drag
+	
+	var preview_size: Vector2 = copia.size * copia.scale
+	copia.global_position = _posicion_final_drag - (preview_size * 0.5)
 	copia.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	copia.visible = true
 
