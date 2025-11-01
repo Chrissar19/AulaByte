@@ -47,7 +47,13 @@ func _ready() -> void:
     if textura_mascara:
         _img_mask = textura_mascara.get_image()  # ✅ sin lock()
     _actualizar_tiempo()
+    
+    #-- Cuenta regresiva
+    t_nivel.one_shot = false
+    t_nivel.wait_time = 1.0
+    t_nivel.process_mode = Node.PROCESS_MODE_INHERIT
     t_nivel.timeout.connect(_tick)
+    t_nivel.start()
 
 func _tick() -> void:
     tiempo_segundos -= 1
@@ -75,7 +81,6 @@ func intentar_colocar(pieza: Node2D, color_objetivo: Color) -> void:
     var px_y: int = int(round(uv.y * float(h - 1)))
     var c: Color = _img_mask.get_pixel(px_x, px_y)
 
-    # 👇 Ya no usamos _rot_ok aquí. Solo color; la rotación se valida en _snap_or_replace.
     if _matches_color(c, color_objetivo):
         var colocado: bool = _snap_or_replace(pieza, color_objetivo)
         if colocado:
@@ -152,3 +157,19 @@ func _global_to_mask_uv(gpos: Vector2) -> Vector2:
     var size: Vector2 = silueta.get_rect().size
     var uv: Vector2 = Vector2(lp.x / size.x, lp.y / size.y)
     return uv
+    
+    
+func finalizar_exito() -> void:
+    if is_instance_valid(t_nivel):
+        t_nivel.stop()
+    super.finalizar_exito()
+
+func finalizar_fracaso() -> void:
+    if is_instance_valid(t_nivel):
+        t_nivel.stop()
+    super.finalizar_fracaso()
+
+func cancelar_actividad() -> void:
+    if is_instance_valid(t_nivel):
+        t_nivel.stop()
+    super.cancelar_actividad()
