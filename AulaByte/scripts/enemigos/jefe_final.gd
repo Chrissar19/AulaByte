@@ -8,6 +8,7 @@ signal ondead
 # ============================================================================
 # EXPORTS
 # ============================================================================
+@export var vida: int = 4
 @export var monedas: int = 100
 @export var imagen_bala: Texture2D
 @export var velocidad: float = 30.0
@@ -22,7 +23,6 @@ signal ondead
 # ============================================================================
 # VARIABLES
 # ============================================================================
-var vida: int = 4
 var direccion: int = 1
 var base_vida: int = vida
 var tiempo_disparo: float = 0.0
