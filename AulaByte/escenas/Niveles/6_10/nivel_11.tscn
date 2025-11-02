@@ -1201,7 +1201,7 @@ position = Vector2(1488, -368)
 
 [node name="jefe_final" parent="Enemigos" groups=["Enemigos"] instance=ExtResource("15_wrice")]
 position = Vector2(496, 171)
-velocidad = 300.0
+velocidad = 60.0
 
 [node name="Puntos Control" type="Node" parent="."]
 

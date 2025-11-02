@@ -1,15 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://bh53eu0ttba8f"]
+[gd_scene load_steps=9 format=3 uid="uid://bgrl2h1flcnql"]
 
-[ext_resource type="Script" uid="uid://dme0l86yrphna" path="res://escenas/personajes/enemigos/jefe_final.gd" id="1_mfwhd"]
-[ext_resource type="Texture2D" uid="uid://bcqr84us07yuj" path="res://recursos/imagenes/personajes/enemigos/JefeFinal.png" id="2_mfwhd"]
-[ext_resource type="AudioStream" uid="uid://dix4e4onit5a4" path="res://recursos/Audio/Efectos/muerteSlime.wav" id="3_pvrvo"]
-[ext_resource type="Script" uid="uid://des7dpc6t220a" path="res://escenas/personajes/enemigos/particulas_monitor.gd" id="4_7ilqp"]
+[ext_resource type="Script" uid="uid://dme0l86yrphna" path="res://escenas/personajes/enemigos/jefe_final.gd" id="1_fs5n1"]
+[ext_resource type="Texture2D" uid="uid://bcqr84us07yuj" path="res://recursos/imagenes/personajes/enemigos/JefeFinal.png" id="2_d6d1v"]
+[ext_resource type="AudioStream" uid="uid://dix4e4onit5a4" path="res://recursos/Audio/Efectos/muerteSlime.wav" id="3_smow0"]
+[ext_resource type="Script" uid="uid://des7dpc6t220a" path="res://escenas/personajes/enemigos/particulas_monitor.gd" id="4_xa7l0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j5gl5"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_mfwhd")
+"texture": ExtResource("2_d6d1v")
 }],
 "loop": true,
 "name": &"default",
@@ -23,13 +23,13 @@ size = Vector2(40, 8.333333)
 size = Vector2(159.0278, 17.361116)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ce6np"]
-size = Vector2(218.05553, 177.77776)
+size = Vector2(186.11108, 177.77776)
 
 [node name="jefe_final" type="CharacterBody2D"]
 scale = Vector2(0.6, 0.6)
 collision_layer = 8
 collision_mask = 48
-script = ExtResource("1_mfwhd")
+script = ExtResource("1_fs5n1")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
@@ -58,22 +58,22 @@ shape = SubResource("RectangleShape2D_0dq5j")
 
 [node name="AudioMuerte" type="AudioStreamPlayer2D" parent="SensorPisoton"]
 position = Vector2(18.333332, -1.666666)
-stream = ExtResource("3_pvrvo")
+stream = ExtResource("3_smow0")
 
 [node name="AreaDaño" type="Area2D" parent="." groups=["DMG"]]
 scale = Vector2(0.6, 0.6)
-collision_layer = 24
-collision_mask = 52
+collision_layer = 8
+collision_mask = 4
 
 [node name="SensorColision" type="CollisionShape2D" parent="AreaDaño"]
-position = Vector2(-0.694437, -5.5555553)
+position = Vector2(0, -5.555555)
 scale = Vector2(1.0000001, 1.0000001)
 shape = SubResource("RectangleShape2D_ce6np")
 
 [node name="ParticulasJefe" type="CPUParticles2D" parent="."]
 emitting = false
 amount = 256
-script = ExtResource("4_7ilqp")
+script = ExtResource("4_xa7l0")
 
 [node name="Node" type="Node" parent="."]
 
@@ -86,5 +86,4 @@ target_position = Vector2(0, 38.888885)
 
 [connection signal="timeout" from="TimerMuerte" to="." method="_on_timer_muerte_timeout"]
 [connection signal="body_shape_entered" from="SensorPisoton" to="." method="_on_sensor_pisoton_body_shape_entered"]
-[connection signal="body_shape_entered" from="AreaDaño" to="." method="_on_area_daño_body_shape_entered"]
 [connection signal="timeout" from="TimerRecuperacion" to="." method="_on_timer_recuperacion_timeout"]

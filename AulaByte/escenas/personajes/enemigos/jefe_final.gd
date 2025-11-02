@@ -110,3 +110,7 @@ func _on_sensor_pisoton_body_shape_entered(body_rid: RID, body: Node2D, body_sha
 			sprite.play("slime_death_blue")
 		else:
 			vida = vida - 1
+
+func _on_area_daño_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	if body.is_in_group("Cajas"):
+		body.retornar_a_posicion_inicial()
