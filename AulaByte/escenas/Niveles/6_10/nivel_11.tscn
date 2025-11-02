@@ -1205,6 +1205,7 @@ position = Vector2(496, 171)
 imagen_bala = ExtResource("16_rhdrk")
 velocidad = 60.0
 duracion_bala = 10.0
+tiempo_entre_disparos = 5.0
 
 [node name="Puntos Control" type="Node" parent="."]
 

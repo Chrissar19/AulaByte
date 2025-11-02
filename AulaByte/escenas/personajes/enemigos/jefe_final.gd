@@ -114,8 +114,8 @@ func disparar(rotacion: float) -> void:
 	get_parent().add_child(nueva_bala)
 	
 func disparar_en_todas_direcciones() -> void:
-	for i in range(12):
-		var angulo = -i * 20.0
+	for i in range(9):
+		var angulo = -i * 30.0
 		disparar(angulo)
 
 func _on_sensor_pisoton_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
