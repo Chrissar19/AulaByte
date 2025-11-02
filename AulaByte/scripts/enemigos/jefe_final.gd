@@ -24,9 +24,11 @@ signal ondead
 # VARIABLES
 # ============================================================================
 var direccion: int = 1
+var is_dead: bool = false
 var base_vida: int = vida
 var tiempo_disparo: float = 0.0
 var current_angle: float = -180
+var animations = ["3", "2", "1", "0"]
 
 const BALA = preload("uid://bgrl2h1flcnql")
 
@@ -36,19 +38,24 @@ const BALA = preload("uid://bgrl2h1flcnql")
 @onready var area_daño: Area2D = $AreaDaño
 @onready var ray_pared: RayCast2D = $RayPared
 @onready var ray_suelo: RayCast2D = $RaySuelo
-@onready var sprite: AnimatedSprite2D = $Sprite
 @onready var timer_muerte: Timer = $TimerMuerte
-@onready var particulas_jefe: CPUParticles2D = $ParticulasJefe
 @onready var collision_monitor: CollisionShape2D = $CollisionMonitor
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var particulas_jefe_final: CPUParticles2D = $ParticulasJefeFinal
 @onready var audio_muerte: AudioStreamPlayer2D = $SensorPisoton/AudioMuerte
+@onready var sensor_colision: CollisionShape2D = $SensorPisoton/SensorColision
 
 # ============================================================================
 # READY
 # ============================================================================
 func _ready() -> void:
 	add_to_group("Enemigos")
+	
+	var animation = animations[(vida - 1)]
+	if animation:
+		animated_sprite_2d.play(animation)
+		
 	area_daño.add_to_group("DMG")
-	sprite.play("animacion_monitor")
 	cofigurar_ray_suelo()
 
 # ============================================================================
@@ -84,7 +91,7 @@ func _physics_process(delta: float) -> void:
 
 	if cambio_direccion:
 		direccion *= -1
-		sprite.flip_h = direccion < 0
+		animated_sprite_2d.flip_h = direccion < 0
 		_actualizar_raycast()
 		
 	tiempo_disparo += delta
@@ -147,20 +154,31 @@ func disparar_en_todas_direcciones() -> void:
 # SENSOR DE PISOTÓN
 # ============================================================================
 func _on_sensor_pisoton_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	if is_dead:
+		return
+		
 	if body.is_in_group("Cajas"):
 		body.retornar_a_posicion_inicial()
 		
 		if vida <= 1:
-			set_physics_process(false)
+			is_dead = true
 			audio_muerte.play()
 			timer_muerte.start(0.4)
-			particulas_jefe.emitting = true
-			sprite.play("slime_death_blue")
-
+			set_physics_process(false)
+			sensor_colision.disabled = true
+			animated_sprite_2d.visible = false
+			particulas_jefe_final.emitting = true
+			
+			animated_sprite_2d.play("4")
 			emit_signal("ondead")
 
 		else:
 			vida -= 1
+			tiempo_entre_disparos -= 1
+			var animation = animations[(vida -1)]
+			
+			if animation:
+				animated_sprite_2d.play(animation)
 
 # ============================================================================
 # ÁREA DE DAÑO

@@ -1,24 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bh53eu0ttba8f"]
+[gd_scene load_steps=14 format=3 uid="uid://bh53eu0ttba8f"]
 
 [ext_resource type="Script" uid="uid://dme0l86yrphna" path="res://scripts/enemigos/jefe_final.gd" id="1_mfwhd"]
-[ext_resource type="Texture2D" uid="uid://bj8h740d2fdlp" path="res://recursos/imagenes/personajes/enemigos/enemigo.png" id="2_j5gl5"]
-[ext_resource type="Texture2D" uid="uid://bcqr84us07yuj" path="res://recursos/imagenes/personajes/enemigos/JefeFinal.png" id="2_mfwhd"]
 [ext_resource type="AudioStream" uid="uid://dix4e4onit5a4" path="res://recursos/Audio/Efectos/muerteSlime.wav" id="3_pvrvo"]
-[ext_resource type="Script" uid="uid://des7dpc6t220a" path="res://scripts/enemigos/particulas_monitor.gd" id="4_7ilqp"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_j5gl5"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_j5gl5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_mfwhd")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="Texture2D" uid="uid://xau4yxoxj4a5" path="res://recursos/imagenes/personajes/enemigos/enemigo_animated.png" id="4_mfwhd"]
+[ext_resource type="PackedScene" uid="uid://cq0liyf6wwpew" path="res://escenas/personajes/enemigos/particulas_jefe_final.tscn" id="6_pvrvo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6h0kv"]
 size = Vector2(40, 8.333333)
@@ -29,16 +14,69 @@ size = Vector2(261.1111, 19.791672)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ce6np"]
 size = Vector2(269.4444, 286.11108)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5gl5"]
+atlas = ExtResource("4_mfwhd")
+region = Rect2(0, 0, 130, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvrvo"]
+atlas = ExtResource("4_mfwhd")
+region = Rect2(390, 0, 130, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ilqp"]
+atlas = ExtResource("4_mfwhd")
+region = Rect2(520, 0, 130, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfwhd"]
+atlas = ExtResource("4_mfwhd")
+region = Rect2(650, 0, 130, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfdtb"]
+atlas = ExtResource("4_mfwhd")
+region = Rect2(780, 0, 130, 130)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vfdtb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5gl5")
+}],
+"loop": true,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvrvo")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ilqp")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfwhd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfdtb")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}]
+
 [node name="jefe_final" type="CharacterBody2D"]
 scale = Vector2(0.6, 0.6)
 collision_layer = 8
 collision_mask = 48
 script = ExtResource("1_mfwhd")
-
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(3.0994415e-06, 1.6666651)
-scale = Vector2(1.3076923, 1.2051282)
-sprite_frames = SubResource("SpriteFrames_j5gl5")
 
 [node name="CollisionMonitor" type="CollisionShape2D" parent="."]
 position = Vector2(-6.953875e-07, 90.83336)
@@ -75,11 +113,6 @@ position = Vector2(-1.3888971, -15.277786)
 scale = Vector2(1.0000001, 1.0000001)
 shape = SubResource("RectangleShape2D_ce6np")
 
-[node name="ParticulasJefe" type="CPUParticles2D" parent="."]
-emitting = false
-amount = 256
-script = ExtResource("4_7ilqp")
-
 [node name="Node" type="Node" parent="."]
 
 [node name="RaySuelo" type="RayCast2D" parent="."]
@@ -88,6 +121,20 @@ scale = Vector2(0.6, 0.6)
 target_position = Vector2(0, 38.888885)
 
 [node name="TimerRecuperacion" type="Timer" parent="."]
+
+[node name="ParticulasJefeFinal" parent="." instance=ExtResource("6_pvrvo")]
+scale = Vector2(3, 3)
+amount = 250
+scale_amount_max = 0.5
+color = Color(1, 0, 0.023529412, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-0.8333359, -10.833329)
+scale = Vector2(1.2435899, 1.2179487)
+sprite_frames = SubResource("SpriteFrames_vfdtb")
+animation = &"0"
+frame_progress = 0.17569827
+speed_scale = 0.3
 
 [connection signal="timeout" from="TimerMuerte" to="." method="_on_timer_muerte_timeout"]
 [connection signal="body_shape_entered" from="SensorPisoton" to="." method="_on_sensor_pisoton_body_shape_entered"]
