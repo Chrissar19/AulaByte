@@ -109,6 +109,7 @@ func _on_timer_recuperacion_timeout() -> void:
 func disparar(rotacion: float) -> void:
 	var nueva_bala = BALA.instantiate() as Bala
 	var offset := Vector2.RIGHT.rotated(deg_to_rad(rotacion)) * 40
+	offset.y += 10
 	nueva_bala.global_position = global_position + offset
 	
 	nueva_bala.imagen = imagen_bala
@@ -123,10 +124,10 @@ func disparar(rotacion: float) -> void:
 func disparar_en_todas_direcciones() -> void:
 	if vida > 1:
 		disparar(current_angle)
-		if current_angle > 0:
+		if current_angle > 30:
 			current_angle = -180
 		else:
-			current_angle = current_angle + 45
+			current_angle = current_angle + 30
 		return
 	
 	for i in range(9):

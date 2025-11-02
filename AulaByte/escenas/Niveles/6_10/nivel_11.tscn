@@ -1171,7 +1171,7 @@ position = Vector2(468, -4)
 
 [node name="Caja" parent="Cajas" instance=ExtResource("11_b2dl3")]
 z_index = 1
-position = Vector2(270, 36)
+position = Vector2(310, 35)
 collision_layer = 17
 
 [node name="Caja2" parent="Cajas" instance=ExtResource("11_b2dl3")]
@@ -1180,7 +1180,7 @@ position = Vector2(670, 37)
 collision_layer = 17
 
 [node name="Delgado" parent="." instance=ExtResource("14_07sts")]
-position = Vector2(-722, 58)
+position = Vector2(363, 27)
 collision_mask = 59
 
 [node name="Plataformas" type="Node" parent="."]
@@ -1201,7 +1201,7 @@ fuerza_rebote = -600.0
 position = Vector2(1488, -368)
 
 [node name="jefe_final" parent="Enemigos" groups=["Enemigos"] instance=ExtResource("15_wrice")]
-position = Vector2(496, 171)
+position = Vector2(485, 149)
 imagen_bala = ExtResource("16_rhdrk")
 velocidad = 60.0
 duracion_bala = 10.0
