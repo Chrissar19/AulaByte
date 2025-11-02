@@ -6,6 +6,7 @@ class_name Bala
 @export var tiempo_vida: float = 6.0
 @export var velocidad: float = 1000.0
 @export var rotacion_grados: float = 0.0
+@export var img_scale: Vector2 = Vector2(1, 1)
 
 var direccion: Vector2 = Vector2.RIGHT
 var tiempo_transcurrido: float = 0.0
@@ -16,6 +17,7 @@ var tiempo_transcurrido: float = 0.0
 func _ready() -> void:
 	if imagen_bala and imagen:
 		imagen_bala.texture = imagen
+		imagen_bala.scale = img_scale
 		imagen_bala.size = imagen.get_size()
 	
 	rotation_degrees = rotacion_grados
@@ -29,11 +31,11 @@ func configurar(imagen_nueva: Texture2D, rotacion: float, vel: float, duracion: 
 		imagen_bala.texture = imagen_nueva
 		imagen_bala.size = imagen_nueva.get_size()
 	
+	velocidad = vel
+	tiempo_vida = duracion
 	rotacion_grados = rotacion
 	rotation_degrees = rotacion
 	direccion = Vector2.RIGHT.rotated(deg_to_rad(rotacion))
-	velocidad = vel
-	tiempo_vida = duracion
 
 
 func _physics_process(delta: float) -> void:

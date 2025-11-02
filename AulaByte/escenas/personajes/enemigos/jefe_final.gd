@@ -38,7 +38,6 @@ const BALA = preload("uid://bgrl2h1flcnql")
 # READY
 # ============================================================================
 func _ready() -> void:
-	print("prinrrr")
 	add_to_group("Enemigos")
 	area_daño.add_to_group("DMG")
 	sprite.play("animacion_monitor")
@@ -110,7 +109,13 @@ func disparar(rotacion: float) -> void:
 	var offset := Vector2.RIGHT.rotated(deg_to_rad(rotacion)) * 40
 	nueva_bala.global_position = global_position + offset
 	
+	nueva_bala.imagen = imagen_bala
+	nueva_bala.rotacion_grados = rotacion
+	nueva_bala.velocidad = velocidad_bala
+	nueva_bala.tiempo_vida = duracion_bala
+	nueva_bala.img_scale = Vector2(0.8, 0.8)
 	nueva_bala.configurar(imagen_bala, rotacion, velocidad_bala, duracion_bala)
+	
 	get_parent().add_child(nueva_bala)
 	
 func disparar_en_todas_direcciones() -> void:

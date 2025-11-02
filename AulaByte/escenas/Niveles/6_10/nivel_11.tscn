@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://57wg0kv8rcf6" path="res://escenas/personajes/Delgado/delgado.tscn" id="14_07sts"]
 [ext_resource type="PackedScene" uid="uid://cl1bwd6mofchq" path="res://escenas/objetos_interacciones/item_vida.tscn" id="15_0tpo5"]
 [ext_resource type="PackedScene" uid="uid://bh53eu0ttba8f" path="res://escenas/personajes/enemigos/jefe_final.tscn" id="15_wrice"]
-[ext_resource type="Texture2D" uid="uid://dsrby76w3lf3w" path="res://recursos/imagenes/ui/Corazon.png" id="16_rhdrk"]
+[ext_resource type="Texture2D" uid="uid://bcqr84us07yuj" path="res://recursos/imagenes/personajes/enemigos/JefeFinal.png" id="16_rhdrk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5rite"]
 texture = ExtResource("2_cwynq")
