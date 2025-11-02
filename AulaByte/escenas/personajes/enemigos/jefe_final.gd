@@ -4,10 +4,14 @@ extends CharacterBody2D
 # ============================================================================
 
 @export var monedas: int = 100
+@export var imagen_bala: Texture2D
 @export var velocidad: float = 30.0
 @export var gravedad: float = 400.0
+@export var duracion_bala: float = 6.0
 @export var impulso_salto: float = -700.0
+@export var velocidad_bala: float = 800.0
 @export var impulso_impacto: float = 900.0
+@export var tiempo_entre_disparos: float = 4.0
 @export var distancia_deteccion_borde: float = 32.0
 
 # ============================================================================
@@ -16,7 +20,8 @@ extends CharacterBody2D
 var vida: int = 4
 var direccion: int = 1
 var base_vida: int = vida
-
+var tiempo_disparo: float = 0.0
+const BALA = preload("uid://bgrl2h1flcnql")
 # ============================================================================
 # NODOS
 # ============================================================================
@@ -52,16 +57,13 @@ func cofigurar_ray_suelo() -> void:
 # PROCESO FÍSICO
 # ============================================================================
 func _physics_process(delta: float) -> void:
-	# Aplicar gravedad
 	if not is_on_floor():
 		velocity.y += gravedad * delta
 	else:
 		velocity.y = 0
 
-	# Movimiento horizontal
 	velocity.x = direccion * velocidad
 
-	# Cambio de dirección al detectar pared
 	var cambio_direccion = false
 	ray_pared.force_raycast_update()
 	if ray_pared.is_colliding():
@@ -77,6 +79,11 @@ func _physics_process(delta: float) -> void:
 		direccion *= -1
 		sprite.flip_h = direccion < 0
 		_actualizar_raycast()
+		
+	tiempo_disparo += delta
+	if tiempo_disparo >= tiempo_entre_disparos:
+		disparar_en_todas_direcciones()
+		tiempo_disparo = 0.0
 		
 	move_and_slide()
 
@@ -97,6 +104,19 @@ func _on_timer_muerte_timeout() -> void:
 
 func _on_timer_recuperacion_timeout() -> void:
 	vida = base_vida
+	
+func disparar(rotacion: float) -> void:
+	var nueva_bala = BALA.instantiate() as Bala
+	var offset := Vector2.RIGHT.rotated(deg_to_rad(rotacion)) * 40
+	nueva_bala.global_position = global_position + offset
+	
+	nueva_bala.configurar(imagen_bala, rotacion, velocidad_bala, duracion_bala)
+	get_parent().add_child(nueva_bala)
+	
+func disparar_en_todas_direcciones() -> void:
+	for i in range(12):
+		var angulo = -i * 20.0
+		disparar(angulo)
 
 func _on_sensor_pisoton_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if body.is_in_group("Cajas"):

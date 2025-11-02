@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bh53eu0ttba8f"]
+[gd_scene load_steps=10 format=3 uid="uid://bh53eu0ttba8f"]
 
 [ext_resource type="Script" uid="uid://dme0l86yrphna" path="res://escenas/personajes/enemigos/jefe_final.gd" id="1_mfwhd"]
+[ext_resource type="Texture2D" uid="uid://dbtek4t1i8s6k" path="res://recursos/imagenes/personajes/CabezaDelgado.png" id="2_j5gl5"]
 [ext_resource type="Texture2D" uid="uid://bcqr84us07yuj" path="res://recursos/imagenes/personajes/enemigos/JefeFinal.png" id="2_mfwhd"]
 [ext_resource type="AudioStream" uid="uid://dix4e4onit5a4" path="res://recursos/Audio/Efectos/muerteSlime.wav" id="3_pvrvo"]
 [ext_resource type="Script" uid="uid://des7dpc6t220a" path="res://escenas/personajes/enemigos/particulas_monitor.gd" id="4_7ilqp"]
@@ -30,6 +31,7 @@ scale = Vector2(0.6, 0.6)
 collision_layer = 8
 collision_mask = 48
 script = ExtResource("1_mfwhd")
+imagen_bala = ExtResource("2_j5gl5")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
