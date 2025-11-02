@@ -21,6 +21,8 @@ var vida: int = 4
 var direccion: int = 1
 var base_vida: int = vida
 var tiempo_disparo: float = 0.0
+var current_angle: float = - 180
+
 const BALA = preload("uid://bgrl2h1flcnql")
 # ============================================================================
 # NODOS
@@ -119,6 +121,14 @@ func disparar(rotacion: float) -> void:
 	get_parent().add_child(nueva_bala)
 	
 func disparar_en_todas_direcciones() -> void:
+	if vida > 1:
+		disparar(current_angle)
+		if current_angle > 0:
+			current_angle = -180
+		else:
+			current_angle = current_angle + 45
+		return
+	
 	for i in range(9):
 		var angulo = -i * 30.0
 		disparar(angulo)
