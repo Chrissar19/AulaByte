@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bgrl2h1flcnql"]
 
-[ext_resource type="Script" uid="uid://bac7fbo1wrrva" path="res://escenas/personajes/enemigos/bala.gd" id="1_gha27"]
+[ext_resource type="Script" uid="uid://bac7fbo1wrrva" path="res://scripts/enemigos/bala.gd" id="1_gha27"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n2bxl"]
 size = Vector2(30.826822, 30)

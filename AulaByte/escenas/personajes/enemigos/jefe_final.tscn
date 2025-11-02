@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://bh53eu0ttba8f"]
 
-[ext_resource type="Script" uid="uid://dme0l86yrphna" path="res://escenas/personajes/enemigos/jefe_final.gd" id="1_mfwhd"]
+[ext_resource type="Script" uid="uid://dme0l86yrphna" path="res://scripts/enemigos/jefe_final.gd" id="1_mfwhd"]
 [ext_resource type="Texture2D" uid="uid://bj8h740d2fdlp" path="res://recursos/imagenes/personajes/enemigos/enemigo.png" id="2_j5gl5"]
 [ext_resource type="Texture2D" uid="uid://bcqr84us07yuj" path="res://recursos/imagenes/personajes/enemigos/JefeFinal.png" id="2_mfwhd"]
 [ext_resource type="AudioStream" uid="uid://dix4e4onit5a4" path="res://recursos/Audio/Efectos/muerteSlime.wav" id="3_pvrvo"]
-[ext_resource type="Script" uid="uid://des7dpc6t220a" path="res://escenas/personajes/enemigos/particulas_monitor.gd" id="4_7ilqp"]
+[ext_resource type="Script" uid="uid://des7dpc6t220a" path="res://scripts/enemigos/particulas_monitor.gd" id="4_7ilqp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j5gl5"]
 animations = [{
@@ -46,7 +46,7 @@ shape = SubResource("RectangleShape2D_6h0kv")
 
 [node name="RayPared" type="RayCast2D" parent="."]
 position = Vector2(0, 68.333336)
-target_position = Vector2(96.666664, -7.6293945e-06)
+target_position = Vector2(78.33333, -7.6293945e-06)
 
 [node name="TimerMuerte" type="Timer" parent="."]
 

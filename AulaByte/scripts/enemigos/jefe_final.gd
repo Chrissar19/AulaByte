@@ -1,8 +1,13 @@
 extends CharacterBody2D
+
+# ============================================================================
+# SEÑALES
+# ============================================================================
+signal ondead
+
 # ============================================================================
 # EXPORTS
 # ============================================================================
-
 @export var monedas: int = 100
 @export var imagen_bala: Texture2D
 @export var velocidad: float = 30.0
@@ -21,9 +26,10 @@ var vida: int = 4
 var direccion: int = 1
 var base_vida: int = vida
 var tiempo_disparo: float = 0.0
-var current_angle: float = - 180
+var current_angle: float = -180
 
 const BALA = preload("uid://bgrl2h1flcnql")
+
 # ============================================================================
 # NODOS
 # ============================================================================
@@ -105,7 +111,10 @@ func _on_timer_muerte_timeout() -> void:
 
 func _on_timer_recuperacion_timeout() -> void:
 	vida = base_vida
-	
+
+# ============================================================================
+# DISPARO
+# ============================================================================
 func disparar(rotacion: float) -> void:
 	var nueva_bala = BALA.instantiate() as Bala
 	var offset := Vector2.RIGHT.rotated(deg_to_rad(rotacion)) * 40
@@ -127,13 +136,16 @@ func disparar_en_todas_direcciones() -> void:
 		if current_angle > 30:
 			current_angle = -180
 		else:
-			current_angle = current_angle + 30
+			current_angle += 30
 		return
 	
 	for i in range(9):
 		var angulo = -i * 30.0
 		disparar(angulo)
 
+# ============================================================================
+# SENSOR DE PISOTÓN
+# ============================================================================
 func _on_sensor_pisoton_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if body.is_in_group("Cajas"):
 		body.retornar_a_posicion_inicial()
@@ -144,9 +156,15 @@ func _on_sensor_pisoton_body_shape_entered(body_rid: RID, body: Node2D, body_sha
 			timer_muerte.start(0.4)
 			particulas_jefe.emitting = true
 			sprite.play("slime_death_blue")
-		else:
-			vida = vida - 1
 
+			emit_signal("ondead")
+
+		else:
+			vida -= 1
+
+# ============================================================================
+# ÁREA DE DAÑO
+# ============================================================================
 func _on_area_daño_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if body.is_in_group("Cajas"):
 		body.retornar_a_posicion_inicial()
