@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://m4ow67bdwg25"
-path="res://.godot/imported/CabezaCuyHerido.png-04b6ed9adb1c9ab2e232dbe9e9b13e20.ctex"
+uid="uid://b2p15rkomf4sx"
+path="res://.godot/imported/CUY.png-2058a46a310c59fafaf1df9950c6d816.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/imagenes/personajes/CabezaCuyHerido.png"
-dest_files=["res://.godot/imported/CabezaCuyHerido.png-04b6ed9adb1c9ab2e232dbe9e9b13e20.ctex"]
+source_file="res://recursos/imagenes/objetos/CUY.png"
+dest_files=["res://.godot/imported/CUY.png-2058a46a310c59fafaf1df9950c6d816.ctex"]
 
 [params]
 

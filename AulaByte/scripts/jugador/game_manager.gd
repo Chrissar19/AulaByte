@@ -139,6 +139,9 @@ func _entrar_estado(estado: int) -> void:
 		EstadoJuego.GAME_OVER:
 			print("Entrando a estado GAME_OVER")
 			get_tree().change_scene_to_file("res://escenas/menu/menu_perder.tscn")
+		EstadoJuego.CREDITOS:
+			print("Entrando a estado CREDITOS")
+			get_tree().change_scene_to_file("res://escenas/menu/creditos.tscn")
 
 func _salir_estado(estado: int) -> void:
 	match estado:
@@ -405,3 +408,7 @@ func generar_codigo() -> Array[int]:
 		codigo_generado = true
 		print("Codigo generado para el nivel: ", codigo_actividad_actual)
 	return codigo_actividad_actual
+
+func terminar_juego() -> void:
+	print("AQUI VAN LOS CREDITOS")
+	cambiar_estado(EstadoJuego.CREDITOS)

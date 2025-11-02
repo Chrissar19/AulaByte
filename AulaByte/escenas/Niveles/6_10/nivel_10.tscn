@@ -1277,6 +1277,7 @@ _data = {
 
 [node name="NivelTuto" type="Node2D"]
 script = ExtResource("1_2mcb4")
+id_nivel = 10
 
 [node name="HUD" parent="." instance=ExtResource("9_nnd1k")]
 visible = false
@@ -1304,7 +1305,6 @@ tile_map_data = PackedByteArray("AAATABsAAAAGAAMAAAATABoAAAAGAAMAAAATABkAAAAGAAM
 tile_set = SubResource("TileSet_6d66m")
 
 [node name="PuntosInicio" parent="." instance=ExtResource("8_21x4d")]
-z_index = 2
 position = Vector2(2084, 0.999999)
 
 [node name="ZonaMuerte" parent="." instance=ExtResource("10_5y6kh")]
@@ -1486,7 +1486,7 @@ curve = SubResource("Curve2D_ys3pd")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Plataformas/Path2D"]
 position = Vector2(601, 5)
-rotation = -0.00150602
+rotation = -0.001506023
 
 [node name="Plataforma" parent="Plataformas/Path2D/PathFollow2D" instance=ExtResource("12_6seny")]
 z_index = 2
