@@ -6,11 +6,18 @@ class_name Actividad6
 @onready var lbl_tiempo: Label = $UI/LblTiempo
 @onready var t_nivel: Timer = $TimerNivel
 
+@onready var mascara_debug: TextureRect
+
 @export var tiempo_segundos: int = 120
 @export var textura_mascara: Texture2D
 @export var paso_rot_deg: float = 15.0
 @export var tolerancia_rot_deg: float = 8.0
 
+@export var mascara_dg: bool:
+    set(value):
+        mascara_dg = value
+        _actualizar_visibilidad_mascara()
+        
 var _img_mask: Image
 var _restantes: int
 
@@ -22,7 +29,7 @@ var _restantes: int
     ],
     # Triángulo mediano (1 slot)
     Color(0.0, 1.0, 0.0, 1.0): [
-        { "pos": Vector2(448, 112), "rot_deg": 90.0,   "used": false },
+        { "pos": Vector2(454, 105), "rot_deg": 90.0,   "used": false },
     ],
     # Triángulos pequeños (2 slots)
     Color(0.0, 0.0, 1.0, 1.0): [
@@ -42,6 +49,9 @@ var _restantes: int
 func _ready() -> void:
     super._ready()
     add_to_group("Actividad6")
+    
+    _crear_mascara_dbg()
+    
     _restantes = piezas_root.get_child_count()
     if textura_mascara:
         _img_mask = textura_mascara.get_image()
@@ -53,6 +63,23 @@ func _ready() -> void:
     t_nivel.process_mode = Node.PROCESS_MODE_INHERIT
     t_nivel.timeout.connect(_tick)
     t_nivel.start()
+    
+func _crear_mascara_dbg() -> void:
+    mascara_debug = TextureRect.new()
+    mascara_debug.name = "MascaraDebug"
+    mascara_debug.texture = textura_mascara
+    mascara_debug.size = silueta.size
+    mascara_debug.position = silueta.position
+    mascara_debug.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    mascara_debug.modulate = Color(1, 1, 1, 0.5)
+    mascara_debug.z_index = 2
+    
+    add_child(mascara_debug)
+    _actualizar_visibilidad_mascara()
+    
+func _actualizar_visibilidad_mascara() -> void:
+    if mascara_debug:
+        mascara_debug.visible = mascara_dg
 
 func _tick() -> void:
     tiempo_segundos -= 1
@@ -154,6 +181,9 @@ func _snap_or_replace(pieza: Node2D, color_objetivo: Color) -> bool:
     pieza.set_process_input(false)
     pieza.set_process_unhandled_input(false)
     pieza.set_physics_process(false)
+    
+    if pieza is CanvasItem:
+        pieza.z_index = 0
 
     # Marcar slot ocupado
     elegido["used"] = true

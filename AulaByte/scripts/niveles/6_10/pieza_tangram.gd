@@ -22,7 +22,6 @@ func _input(event: InputEvent) -> void:
         
     if event is InputEventMouseButton:
         var mb := event as InputEventMouseButton
-        
         # Solo procesar si el mouse está sobre esta pieza
         if not _sobre_mi():
             return
@@ -31,12 +30,14 @@ func _input(event: InputEvent) -> void:
             if mb.pressed:
                 _arrastrando = true
                 _offset = global_position - get_global_mouse_position()
+                z_index = 50
                 # Marcar como manejado para que otras piezas no lo capturen
                 get_viewport().set_input_as_handled()
             elif not mb.pressed and _arrastrando:
                 _arrastrando = false
                 if is_instance_valid(_actividad):
                     _actividad.intentar_colocar(self, color_objetivo)
+
                 get_viewport().set_input_as_handled()
         
         # Rotación con rueda del mouse
@@ -61,5 +62,5 @@ func _sobre_mi() -> bool:
     else:
         tam_texture = Vector2(64, 64)
         
-    var rect := Rect2(-tam_texture/2, tam_texture)
+    var rect := Rect2(-tam_texture / 2, tam_texture)
     return rect.has_point(lp)

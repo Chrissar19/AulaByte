@@ -88,8 +88,9 @@ stretch_mode = 3
 [node name="Piezas" type="Node2D" parent="."]
 
 [node name="PiezaTianguloMediano" type="Sprite2D" parent="Piezas"]
-position = Vector2(187, 107)
+position = Vector2(164, 77)
 texture = ExtResource("4_3owi0")
+offset = Vector2(7, 6)
 script = ExtResource("5_84ncr")
 color_objetivo = Color(0, 1, 0, 1)
 
