@@ -1239,6 +1239,7 @@ camara_izquierda = -850
 camara_derecha = 720
 camara_abajo = 176
 cuenta_regresiva = 500.0
+id_nivel = 6
 
 [node name="Fondos" type="Node" parent="."]
 

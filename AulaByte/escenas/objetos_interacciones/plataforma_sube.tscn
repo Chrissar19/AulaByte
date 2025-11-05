@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqyt6lm4d2ydo"]
+
+[ext_resource type="Script" uid="uid://c2a6be2rjfpqq" path="res://scripts/objetos/plataforma_sube.gd" id="1_ro72l"]
+[ext_resource type="Texture2D" uid="uid://dclm53qe2idn1" path="res://recursos/imagenes/objetos/Plataforma.png" id="2_go6u7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yggpa"]
+size = Vector2(70, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_67t8s"]
+size = Vector2(70, 0)
+
+[node name="PlataformaCae" type="Node2D"]
+z_index = 3
+script = ExtResource("1_ro72l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_go6u7")
+region_enabled = true
+region_rect = Rect2(128.5, 17, 62, 17)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1, -1)
+shape = SubResource("RectangleShape2D_yggpa")
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4096
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, -9)
+shape = SubResource("RectangleShape2D_67t8s")
+
+[node name="TimerSubida" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="TimerSubida" to="." method="_on_timer_subida_timeout"]

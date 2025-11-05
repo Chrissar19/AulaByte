@@ -139,6 +139,9 @@ func _entrar_estado(estado: int) -> void:
 		EstadoJuego.GAME_OVER:
 			print("Entrando a estado GAME_OVER")
 			get_tree().change_scene_to_file("res://escenas/menu/menu_perder.tscn")
+		EstadoJuego.CREDITOS:
+			print("Entrando a estado CREDITOS")
+			get_tree().change_scene_to_file("res://escenas/menu/creditos.tscn")
 
 func _salir_estado(estado: int) -> void:
 	match estado:
@@ -344,6 +347,10 @@ func solicitar_minijuego() -> void:
 		actividad.connect("resuelto", Callable(self, "_on_minijuego_resuelto"))
 	else:
 		push_error("La actividad no tiene señal 'resuelto'")
+	if actividad.has_signal("resuelto"):
+		actividad.connect("resuelto", Callable(self, "_on_minijuego_resuelto"))
+	else:
+		push_error("La actividad no tiene señal 'resuelto'")
 		
 	if actividad.has_signal("cancelado"):
 		actividad.connect("cancelado", Callable(self, "_on_minijuego_cancelado"))
@@ -389,8 +396,19 @@ func generar_codigo() -> Array[int]:
 		num_random.randomize()
 
 		codigo_actividad_actual = []
-		for i in range(4):
+		for i in range(3):
 			codigo_actividad_actual.append(num_random.randi_range(1, 4))
+		
+		if nivel_actual > 1:
+			codigo_actividad_actual.append(num_random.randi_range(1, 4))
+			
+		if nivel_actual > 8:
+			codigo_actividad_actual.append(num_random.randi_range(1, 4))
+			
 		codigo_generado = true
 		print("Codigo generado para el nivel: ", codigo_actividad_actual)
 	return codigo_actividad_actual
+
+func terminar_juego() -> void:
+	print("AQUI VAN LOS CREDITOS")
+	cambiar_estado(EstadoJuego.CREDITOS)
