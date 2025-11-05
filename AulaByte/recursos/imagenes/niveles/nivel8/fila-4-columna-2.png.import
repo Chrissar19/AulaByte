@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://boq12uvw01kiu"
-path="res://.godot/imported/Avion.png-38e6b37c4d05298af0e0b6ad1f49203b.ctex"
+uid="uid://4c01bsmq673l"
+path="res://.godot/imported/fila-4-columna-2.png-ff19868f4af7af7a674adf96eef63c3d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/imagenes/niveles/nivel6/Avion.png"
-dest_files=["res://.godot/imported/Avion.png-38e6b37c4d05298af0e0b6ad1f49203b.ctex"]
+source_file="res://recursos/imagenes/niveles/nivel8/fila-4-columna-2.png"
+dest_files=["res://.godot/imported/fila-4-columna-2.png-ff19868f4af7af7a674adf96eef63c3d.ctex"]
 
 [params]
 

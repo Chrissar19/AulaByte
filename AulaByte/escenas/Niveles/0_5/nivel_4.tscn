@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://bdp4vuaodlgyi"]
+[gd_scene load_steps=39 format=4 uid="uid://bdp4vuaodlgyi"]
 
 [ext_resource type="Script" uid="uid://bv5rnpun0bjga" path="res://scripts/niveles/1_5/nivel_4.gd" id="1_ekcxq"]
 [ext_resource type="Texture2D" uid="uid://cxyafbo3ck6fg" path="res://recursos/imagenes/TileSets/Pisos.png" id="1_lv0ag"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://brfxoes3nrqbr" path="res://escenas/ui/hud.tscn" id="11_oo3vv"]
 [ext_resource type="PackedScene" uid="uid://cydd1023br6iv" path="res://escenas/objetos_interacciones/bits_moneda.tscn" id="11_sac71"]
 [ext_resource type="PackedScene" uid="uid://dfr8bmdn5actv" path="res://escenas/personajes/enemigos/slime_azul.tscn" id="16_yy4w5"]
+[ext_resource type="PackedScene" uid="uid://fva12xfahbpb" path="res://escenas/objetos_interacciones/puerta_nivel.tscn" id="18_4pmdn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3so63"]
 texture = ExtResource("2_yf17g")
@@ -1626,11 +1627,6 @@ position = Vector2(1081, -239)
 distancia_cadena = 85
 tamano_bola = 1.2
 
-[node name="Puertas" type="Sprite2D" parent="."]
-position = Vector2(1295, 692)
-scale = Vector2(1.09091, 1)
-hframes = 6
-
 [node name="plataformas" type="Node" parent="."]
 
 [node name="Plataforma2" parent="plataformas" instance=ExtResource("6_camrd")]
@@ -1788,3 +1784,7 @@ position = Vector2(529, 138)
 [node name="Delgado" parent="." instance=ExtResource("4_iyvrh")]
 position = Vector2(1165, 574)
 nombre = ""
+
+[node name="PuertaNivel" parent="." instance=ExtResource("18_4pmdn")]
+z_index = 1
+position = Vector2(1280, -683)
