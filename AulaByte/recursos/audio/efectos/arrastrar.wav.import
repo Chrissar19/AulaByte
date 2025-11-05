@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://crid2tslr4ybl"
-path="res://.godot/imported/arrastrar.wav-50350755538cd0f4784695700684baec.sample"
+path="res://.godot/imported/arrastrar.wav-bcc264e457bb15682667deff236ea535.sample"
 
 [deps]
 
-source_file="res://recursos/Audio/efectos/arrastrar.wav"
-dest_files=["res://.godot/imported/arrastrar.wav-50350755538cd0f4784695700684baec.sample"]
+source_file="res://recursos/Audio/Efectos/arrastrar.wav"
+dest_files=["res://.godot/imported/arrastrar.wav-bcc264e457bb15682667deff236ea535.sample"]
 
 [params]
 

@@ -38,6 +38,7 @@ Vida=""
 Pisos="Marca todos los objetos fisicos de piso"
 Checkpoint="Punto de inicio y de control de los niveles"
 ItemArrastrable=""
+Interruptores=""
 
 [input]
 
@@ -84,6 +85,7 @@ Accion={
 2d_physics/layer_12="Sensores"
 2d_physics/layer_13="Plataformas"
 2d_physics/layer_14="Piezas"
+2d_physics/layer_15="Interruptores"
 
 [rendering]
 
