@@ -80,7 +80,6 @@ offset_top = -30.0
 offset_right = 357.99997
 offset_bottom = 194.0
 textura_frente = ExtResource("6_etfqf")
-es_correcta = true
 
 [node name="CartaBici" type="TextureRect" parent="Fondo"]
 layout_mode = 0

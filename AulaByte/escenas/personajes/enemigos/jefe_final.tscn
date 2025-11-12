@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://bh53eu0ttba8f"]
 
 [ext_resource type="Script" uid="uid://dme0l86yrphna" path="res://scripts/enemigos/jefe_final.gd" id="1_mfwhd"]
-[ext_resource type="AudioStream" uid="uid://dix4e4onit5a4" path="res://recursos/Audio/Efectos/muerteSlime.wav" id="3_pvrvo"]
+[ext_resource type="AudioStream" uid="uid://dix4e4onit5a4" path="res://recursos/Audio/efectos/muerteSlime.wav" id="3_pvrvo"]
 [ext_resource type="Texture2D" uid="uid://xau4yxoxj4a5" path="res://recursos/imagenes/personajes/enemigos/enemigo_animated.png" id="4_mfwhd"]
 [ext_resource type="PackedScene" uid="uid://cq0liyf6wwpew" path="res://escenas/personajes/enemigos/particulas_jefe_final.tscn" id="6_pvrvo"]
 

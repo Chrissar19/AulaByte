@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://7kbhq3oc7ris" path="res://scripts/enemigos/slime_azul.gd" id="1_gxtbd"]
 [ext_resource type="SpriteFrames" uid="uid://b4ualtviupkrg" path="res://recursos/imagenes/enemigo_slime_blue.tres" id="2_t3s4k"]
-[ext_resource type="AudioStream" uid="uid://dix4e4onit5a4" path="res://recursos/Audio/Efectos/muerteSlime.wav" id="3_8vshj"]
+[ext_resource type="AudioStream" uid="uid://dix4e4onit5a4" path="res://recursos/Audio/efectos/muerteSlime.wav" id="3_8vshj"]
 [ext_resource type="PackedScene" uid="uid://b18ryctxwv5mu" path="res://escenas/personajes/enemigos/particulas_slime.tscn" id="4_8vshj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8vshj"]
@@ -16,7 +16,6 @@ size = Vector2(15, 30)
 
 [node name="SlimeAzul" type="CharacterBody2D" groups=["Enemigos"]]
 z_index = 1
-collision_layer = 8
 collision_mask = 48
 script = ExtResource("1_gxtbd")
 
@@ -64,13 +63,7 @@ shape = SubResource("RectangleShape2D_gxtbd")
 
 [node name="Node" type="Node" parent="."]
 
-[node name="RaySuelo" type="RayCast2D" parent="."]
-
-[node name="TimerRecuperacion" type="Timer" parent="."]
-one_shot = true
-
 [connection signal="timeout" from="TimerMuerte" to="." method="_on_timer_muerte_timeout"]
 [connection signal="area_shape_entered" from="SensorPisoton" to="." method="_on_sensor_pisoton_area_shape_entered"]
 [connection signal="body_entered" from="SensorPisoton" to="." method="_on_sensor_pisoton_body_entered"]
 [connection signal="body_entered" from="AreaDaño" to="." method="_on_detector_jugador_body_entered"]
-[connection signal="timeout" from="TimerRecuperacion" to="." method="_on_timer_recuperacion_timeout"]

@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_etfk8"]
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="3_ax1rx"]
 [ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/Fuentes/Normal.ttf" id="4_w0ifg"]
-[ext_resource type="AudioStream" uid="uid://rv3tqp8mrdwm" path="res://recursos/Audio/Efectos/click.wav" id="5_eo13w"]
-[ext_resource type="AudioStream" uid="uid://smlda04d7351" path="res://recursos/Audio/Efectos/cambio_personaje.wav" id="6_kk00m"]
+[ext_resource type="AudioStream" uid="uid://rv3tqp8mrdwm" path="res://recursos/Audio/efectos/click.wav" id="5_eo13w"]
+[ext_resource type="AudioStream" uid="uid://smlda04d7351" path="res://recursos/Audio/efectos/cambio_personaje.wav" id="6_kk00m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e7txn"]
 texture = ExtResource("2_etfk8")

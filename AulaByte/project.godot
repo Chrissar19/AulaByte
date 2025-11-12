@@ -10,14 +10,15 @@ config_version=5
 
 [application]
 
-config/name="AulaByte"
+config/name="AulaByte (Copy)"
 config/version="1.0.2"
+run/main_scene="uid://bk4p6hke41s0k"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="uid://dmoqu2apkie6"
 
 [autoload]
 
-MusicaGlobal="*res://scripts/musica_global.gd"
+MusicaGlobal="*res://scripts/autoloads/musica_global.gd"
 GameManager="*res://scripts/jugador/game_manager.gd"
 
 [display]
@@ -37,7 +38,6 @@ DMG="El daño que se causara al jugador"
 Vida=""
 Pisos="Marca todos los objetos fisicos de piso"
 Checkpoint="Punto de inicio y de control de los niveles"
-Trampas=""
 ItemArrastrable=""
 Interruptores=""
 

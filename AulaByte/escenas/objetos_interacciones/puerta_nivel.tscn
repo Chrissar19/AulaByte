@@ -1,31 +1,35 @@
-[gd_scene load_steps=11 format=3 uid="uid://fva12xfahbpb"]
+[gd_scene load_steps=12 format=3 uid="uid://fva12xfahbpb"]
 
 [ext_resource type="Script" uid="uid://c5fqgpwvnxkjw" path="res://scripts/objetos/puerta_nivel.gd" id="1_o3bfo"]
 [ext_resource type="Texture2D" uid="uid://c0edkeqwhip1q" path="res://recursos/imagenes/objetos/PuertaAuto.png" id="2_yxvyc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o3bfo"]
 atlas = ExtResource("2_yxvyc")
-region = Rect2(42, 0, 42, 72)
+region = Rect2(0, 0, 43, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yxvyc"]
 atlas = ExtResource("2_yxvyc")
-region = Rect2(84, 0, 42, 72)
+region = Rect2(43, 0, 43, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6snj7"]
 atlas = ExtResource("2_yxvyc")
-region = Rect2(126, 0, 42, 72)
+region = Rect2(86, 0, 43, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c8pr2"]
 atlas = ExtResource("2_yxvyc")
-region = Rect2(168, 0, 42, 72)
+region = Rect2(129, 0, 43, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r51lu"]
 atlas = ExtResource("2_yxvyc")
-region = Rect2(210, 0, 42, 72)
+region = Rect2(172, 0, 43, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_26b0p"]
 atlas = ExtResource("2_yxvyc")
-region = Rect2(0, 0, 42, 72)
+region = Rect2(215, 0, 43, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngupe"]
+atlas = ExtResource("2_yxvyc")
+region = Rect2(0, 0, 43, 72)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5ihpb"]
 animations = [{
@@ -44,6 +48,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_r51lu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26b0p")
 }],
 "loop": false,
 "name": &"Abriendo",
@@ -51,7 +58,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_26b0p")
+"texture": SubResource("AtlasTexture_ngupe")
 }],
 "loop": true,
 "name": &"Cerrada",

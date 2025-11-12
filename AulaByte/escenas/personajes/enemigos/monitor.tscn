@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://d3ri1p6guwp1x" path="res://recursos/imagenes/personajes/enemigos/monitor.png" id="1_0dq5j"]
 [ext_resource type="Script" uid="uid://ofyiow0xm2vg" path="res://scripts/enemigos/monitor.gd" id="1_4siuf"]
-[ext_resource type="AudioStream" uid="uid://dix4e4onit5a4" path="res://recursos/Audio/Efectos/muerteSlime.wav" id="2_ce6np"]
+[ext_resource type="AudioStream" uid="uid://dix4e4onit5a4" path="res://recursos/Audio/efectos/muerteSlime.wav" id="2_ce6np"]
 [ext_resource type="Script" uid="uid://des7dpc6t220a" path="res://scripts/enemigos/particulas_monitor.gd" id="3_udkuc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ce6np"]

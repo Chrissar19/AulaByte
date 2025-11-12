@@ -1,12 +1,14 @@
-[gd_scene load_steps=40 format=4 uid="uid://bdp4vuaodlgyi"]
+[gd_scene load_steps=39 format=4 uid="uid://bdp4vuaodlgyi"]
 
 [ext_resource type="Script" uid="uid://bv5rnpun0bjga" path="res://scripts/niveles/1_5/nivel_4.gd" id="1_ekcxq"]
 [ext_resource type="Texture2D" uid="uid://cxyafbo3ck6fg" path="res://recursos/imagenes/TileSets/Pisos.png" id="1_lv0ag"]
-[ext_resource type="PackedScene" uid="uid://bxynr5uu8vrrc" path="res://actividad_4.tscn" id="2_4pmdn"]
+<<<<<<< Updated upstream
+=======
+[ext_resource type="PackedScene" uid="uid://bxynr5uu8vrrc" path="res://escenas/Niveles/0_5/actividad_4.tscn" id="2_4pmdn"]
+>>>>>>> Stashed changes
 [ext_resource type="Texture2D" uid="uid://dr3bkmou477j5" path="res://recursos/imagenes/TileSets/FondoSheet.png" id="2_yf17g"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="3_btu8m"]
 [ext_resource type="Texture2D" uid="uid://14pnjoo6241b" path="res://recursos/imagenes/TileSets/DecoracionesFondo.png" id="4_7v5ps"]
-[ext_resource type="PackedScene" uid="uid://57wg0kv8rcf6" path="res://escenas/personajes/Delgado/delgado.tscn" id="4_iyvrh"]
 [ext_resource type="Texture2D" uid="uid://bjxo1iphkg72d" path="res://recursos/imagenes/TileSets/decoraciones de pared.png" id="4_sac71"]
 [ext_resource type="Texture2D" uid="uid://dwol4vs2hvfno" path="res://recursos/imagenes/TileSets/Tilesets Decoracion.png" id="5_ydqx6"]
 [ext_resource type="PackedScene" uid="uid://dkm0atk4qawk3" path="res://escenas/objetos_interacciones/plataforma.tscn" id="6_camrd"]
@@ -18,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://brfxoes3nrqbr" path="res://escenas/ui/hud.tscn" id="11_oo3vv"]
 [ext_resource type="PackedScene" uid="uid://cydd1023br6iv" path="res://escenas/objetos_interacciones/bits_moneda.tscn" id="11_sac71"]
 [ext_resource type="PackedScene" uid="uid://dfr8bmdn5actv" path="res://escenas/personajes/enemigos/slime_azul.tscn" id="16_yy4w5"]
-[ext_resource type="PackedScene" uid="uid://fva12xfahbpb" path="res://escenas/objetos_interacciones/puerta_nivel.tscn" id="19_cls0v"]
+[ext_resource type="PackedScene" uid="uid://fva12xfahbpb" path="res://escenas/objetos_interacciones/puerta_nivel.tscn" id="18_4pmdn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3so63"]
 texture = ExtResource("2_yf17g")
@@ -1600,8 +1602,6 @@ _data = {
 [node name="Nivel4" type="Node2D"]
 position = Vector2(3, 7)
 script = ExtResource("1_ekcxq")
-id_nivel = 4
-actividad = ExtResource("2_4pmdn")
 
 [node name="Tiles" type="Node" parent="."]
 
@@ -1622,18 +1622,13 @@ tile_set = SubResource("TileSet_1xae4")
 
 [node name="BolaMuerte" parent="Tiles" instance=ExtResource("9_ekcxq")]
 position = Vector2(345, 195)
-tamano_bola = 1.5
 distancia_cadena = 90
+tamano_bola = 1.5
 
 [node name="BolaMuerte2" parent="Tiles" instance=ExtResource("9_ekcxq")]
 position = Vector2(1081, -239)
-tamano_bola = 1.2
 distancia_cadena = 85
-
-[node name="Puertas" type="Sprite2D" parent="."]
-position = Vector2(1295, 692)
-scale = Vector2(1.09091, 1)
-hframes = 6
+tamano_bola = 1.2
 
 [node name="plataformas" type="Node" parent="."]
 
@@ -1789,10 +1784,15 @@ visible = false
 [node name="SlimeAzul" parent="." instance=ExtResource("16_yy4w5")]
 position = Vector2(529, 138)
 
+<<<<<<< Updated upstream
 [node name="Delgado" parent="." instance=ExtResource("4_iyvrh")]
-position = Vector2(1282, 595)
+position = Vector2(1165, 574)
 nombre = ""
 
+[node name="PuertaNivel" parent="." instance=ExtResource("18_4pmdn")]
+z_index = 1
+position = Vector2(1280, -683)
+=======
 [node name="PuntosControl" type="Node" parent="."]
 
 [node name="PuertaNivel" parent="PuntosControl" instance=ExtResource("19_cls0v")]
@@ -1802,3 +1802,4 @@ position = Vector2(1287, 603)
 [node name="PuertaNivel2" parent="PuntosControl" instance=ExtResource("19_cls0v")]
 z_index = 2
 position = Vector2(1276, -676)
+>>>>>>> Stashed changes
