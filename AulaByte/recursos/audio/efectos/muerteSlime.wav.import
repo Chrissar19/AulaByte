@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dix4e4onit5a4"
-path="res://.godot/imported/muerteSlime.wav-df6abcc46a62079803753abf4785fb0b.sample"
+path="res://.godot/imported/muerteSlime.wav-69549fd83ff3a1eb7f43ed6d1be087f5.sample"
 
 [deps]
 
-source_file="res://recursos/Audio/Efectos/muerteSlime.wav"
-dest_files=["res://.godot/imported/muerteSlime.wav-df6abcc46a62079803753abf4785fb0b.sample"]
+source_file="res://recursos/Audio/efectos/muerteSlime.wav"
+dest_files=["res://.godot/imported/muerteSlime.wav-69549fd83ff3a1eb7f43ed6d1be087f5.sample"]
 
 [params]
 

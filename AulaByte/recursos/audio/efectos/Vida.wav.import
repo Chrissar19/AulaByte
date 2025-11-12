@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://d3aipnrp7bahb"
-path="res://.godot/imported/Vida.wav-a0d271ee01de433120d12bba3780f95c.sample"
+path="res://.godot/imported/Vida.wav-a7465efb3a103594aa9b2e1ca093bdf6.sample"
 
 [deps]
 
-source_file="res://recursos/Audio/Efectos/Vida.wav"
-dest_files=["res://.godot/imported/Vida.wav-a0d271ee01de433120d12bba3780f95c.sample"]
+source_file="res://recursos/Audio/efectos/Vida.wav"
+dest_files=["res://.godot/imported/Vida.wav-a7465efb3a103594aa9b2e1ca093bdf6.sample"]
 
 [params]
 
