@@ -32,11 +32,6 @@ func _ready() -> void:
     # Conexiones
     temporizador_nubes.timeout.connect(_crear_nube_normal)
     temporizador_espera.timeout.connect(_on_tem_espera_timeout)
-    btn_jugar.pressed.connect(_on_jugar)
-    btn_opciones.pressed.connect(_on_opciones)
-    btn_salir.pressed.connect(_on_salir)
-    
-    btn_jugar.grab_focus()
     
     _crear_nube_normal()
     _crear_nube_fondo()
@@ -44,22 +39,6 @@ func _ready() -> void:
     var musica_menu := preload("res://recursos/audio/Musica/neon-pulse-30s-307999.wav")
     if Engine.has_singleton("MusicaGlobal"):
         MusicaGlobal.reproducir(musica_menu, true)
-
-# ───────────────────────────────────────────────────────────────
-# Botones
-# ───────────────────────────────────────────────────────────────
-func _on_jugar() -> void:
-    jugador_activo = true
-    cambiar_escena("res://escenas/menu/Seleccion_personaje/seleccion_personaje.tscn")
-
-func _on_opciones() -> void:
-    jugador_activo = true
-    print("Opción aún no implementada.")
-
-func _on_salir() -> void:
-    jugador_activo = true
-    MusicaGlobal.detener()
-    get_tree().quit()
 
 # ───────────────────────────────────────────────────────────────
 # Transición de escena
@@ -99,3 +78,19 @@ func _input(event: InputEvent) -> void:
 func _on_tem_espera_timeout() -> void:
     if not jugador_activo:
         get_tree().change_scene_to_file("res://escenas/intro/Intro.tscn")
+
+
+func _on_jugar_pressed() -> void:
+    jugador_activo = true
+    cambiar_escena("res://escenas/menu/Seleccion_personaje/seleccion_personaje.tscn")
+
+
+func _on_opciones_pressed() -> void:
+    jugador_activo = true
+    print("Opción aún no implementada.")
+
+
+func _on_salir_pressed() -> void:
+    jugador_activo = true
+    MusicaGlobal.detener()
+    get_tree().quit()
