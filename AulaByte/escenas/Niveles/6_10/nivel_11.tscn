@@ -1179,10 +1179,6 @@ z_index = 1
 position = Vector2(666, 38)
 collision_layer = 17
 
-[node name="Delgado" parent="." instance=ExtResource("14_07sts")]
-position = Vector2(-765, 59)
-collision_mask = 59
-
 [node name="Plataformas" type="Node" parent="."]
 
 [node name="Saltarin2" parent="Plataformas" instance=ExtResource("13_ihec5")]
@@ -1231,6 +1227,10 @@ scale = Vector2(0.5, 0.5)
 
 [node name="ItemVelocidad" parent="." instance=ExtResource("20_dxj43")]
 position = Vector2(752, 32)
+
+[node name="Delgado" parent="." instance=ExtResource("14_07sts")]
+position = Vector2(715, -61)
+collision_mask = 59
 
 [connection signal="ondead" from="Enemigos/jefe_final" to="." method="_on_jefe_final_ondead"]
 [connection signal="on_cuy_liberado" from="Puntos Control/JaulaCuy" to="." method="_on_jaula_cuy_on_cuy_liberado"]
