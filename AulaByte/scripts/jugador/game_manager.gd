@@ -120,6 +120,12 @@ func cambiar_estado(nuevo_estado: int) -> void:
 
 func _entrar_estado(estado: int) -> void:
     match estado:
+        EstadoJuego.MENU_PRINCIPAL:
+            print("Entrando a estado JMENU PRINCIPAL")
+            get_tree().paused = false
+            tiempo_activo = false
+            tiempo_nivel_actual = 0.0
+            _ultimo_segundos = -1
         EstadoJuego.JUGANDO:
             print("Entrando a estado JUGANDO")
             get_tree().paused = false
@@ -330,6 +336,11 @@ func reiniciar_nivel() -> void:
     cambiar_estado(EstadoJuego.JUGANDO)
     codigo_generado = false
     codigo_actividad_actual.clear()
+    
+func ir_a_menu_principal() -> void:
+    estado_anterior = estado_actual
+    estado_actual = EstadoJuego.MENU_PRINCIPAL
+    get_tree().change_scene_to_file("res://escenas/menu/menu_principal.tscn")
 
 # =====================================================================
 # ACTIVIDAD / MINIJUEGO
@@ -372,11 +383,7 @@ func solicitar_minijuego() -> void:
         actividad.connect("resuelto", Callable(self, "_on_minijuego_resuelto"))
     else:
         push_error("La actividad no tiene señal 'resuelto'")
-    if actividad.has_signal("resuelto"):
-        actividad.connect("resuelto", Callable(self, "_on_minijuego_resuelto"))
-    else:
-        push_error("La actividad no tiene señal 'resuelto'")
-        
+
     if actividad.has_signal("cancelado"):
         actividad.connect("cancelado", Callable(self, "_on_minijuego_cancelado"))
     elif actividad.has_signal("cancelar"):

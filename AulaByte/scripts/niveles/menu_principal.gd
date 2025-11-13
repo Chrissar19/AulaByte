@@ -1,96 +1,137 @@
 extends Control
+class_name MenuPrincipal
 
 # ───────────────────────────────────────────────────────────────
-# Referencias UI
+# Constantes de rutas
 # ───────────────────────────────────────────────────────────────
-@onready var btn_jugar: Button = $VBoxContainer/Jugar
-@onready var btn_opciones: Button = $VBoxContainer/Opciones
-@onready var btn_salir: Button = $VBoxContainer/Salir
+const RUTA_INTRO            := "res://escenas/intro/Intro.tscn"
+const RUTA_SELECCION        := "res://escenas/menu/Seleccion_personaje/seleccion_personaje.tscn"
+const RUTA_OPCIONES         := "res://escenas/menu/opciones_menu.tscn"
+const RUTA_NUBE_SCN         := "res://escenas/menu/nubes.tscn"
+const RUTA_MUSICA_MENU      := "res://recursos/Audio/musica/neon-pulse-30s-307999.wav"
 
 # ───────────────────────────────────────────────────────────────
-# Temporizadores
+# Nodos
 # ───────────────────────────────────────────────────────────────
+@onready var fondo: Control = $Fondo
+@onready var lbl_version: Label = %LblVersion
+@onready var btn_jugar: Button = $VBoxContainer/BtnJugar
+@onready var btn_opciones: Button = $VBoxContainer/BtnOpciones
+@onready var btn_salir: Button = $VBoxContainer/BtnSalir
+
 @onready var temporizador_nubes: Timer = $temNubes
 @onready var temporizador_espera: Timer = $temEspera
 
 # ───────────────────────────────────────────────────────────────
 # Recursos
 # ───────────────────────────────────────────────────────────────
-@onready var escena_nube: PackedScene = preload("res://escenas/menu/nubes.tscn")
+var escena_nube: PackedScene = preload(RUTA_NUBE_SCN)
+var musica_menu: AudioStream = preload(RUTA_MUSICA_MENU)
 
 # ───────────────────────────────────────────────────────────────
 # Estado
 # ───────────────────────────────────────────────────────────────
-var jugador_activo: bool = false
+var jugador_activo := false
+var rng := RandomNumberGenerator.new()
 
 # ───────────────────────────────────────────────────────────────
 # Ready
 # ───────────────────────────────────────────────────────────────
 func _ready() -> void:
-    randomize()
-    
-    # Conexiones
-    temporizador_nubes.timeout.connect(_crear_nube_normal)
+    rng.randomize()
+
+    # Música (via autoload "Musica" recomendado)
+    if has_node("/root/Musica"):
+        get_node("/root/Musica").call("reproducir", musica_menu, true)
+
+    # Etiqueta versión (opcional)
+    if lbl_version:
+        lbl_version.text = ProjectSettings.get_setting("application/config/version", "v0.1") as String
+
+    # Foco y navegación por teclado
+    btn_jugar.grab_focus()
+    btn_jugar.focus_neighbor_bottom = btn_opciones.get_path()
+    btn_opciones.focus_neighbor_top = btn_jugar.get_path()
+    btn_opciones.focus_neighbor_bottom = btn_salir.get_path()
+    btn_salir.focus_neighbor_top = btn_opciones.get_path()
+
+    # Conecta señales
+    btn_jugar.pressed.connect(_on_jugar_pressed)
+    btn_opciones.pressed.connect(_on_opciones_pressed)
+    btn_salir.pressed.connect(_on_salir_pressed)
+
+    # Timers
     temporizador_espera.timeout.connect(_on_tem_espera_timeout)
-    
+    temporizador_nubes.timeout.connect(_on_tem_nubes_timeout)
+
+    # Arranques
+    temporizador_espera.start()        # inactividad → intro
+    temporizador_nubes.start()         # spawn de nubes
+
+    # Semilla decorativa inicial
     _crear_nube_normal()
     _crear_nube_fondo()
-    
-    var musica_menu := preload("res://recursos/audio/Musica/neon-pulse-30s-307999.wav")
-    if Engine.has_singleton("MusicaGlobal"):
-        MusicaGlobal.reproducir(musica_menu, true)
+
+# Resetea inactividad al detectar interacción
+func _unhandled_input(event: InputEvent) -> void:
+    if event is InputEventMouse or event is InputEventKey or event is InputEventJoypadButton:
+        jugador_activo = true
+        temporizador_espera.start()  # reinicia el conteo de inactividad
 
 # ───────────────────────────────────────────────────────────────
-# Transición de escena
-# ───────────────────────────────────────────────────────────────
-func cambiar_escena(ruta: String) -> void:
-    MusicaGlobal.detener()
-    get_tree().change_scene_to_file(ruta)
-
-# ───────────────────────────────────────────────────────────────
-# Nubes decorativas
+# Nubes decorativas (pooling simple)
 # ───────────────────────────────────────────────────────────────
 func _crear_nube(z: int, alto_min: int, alto_max: int, tam_min: float, tam_max: float, vel_min: float, vel_max: float) -> void:
-    var nube: Node2D = escena_nube.instantiate()
-    var altura := randi_range(alto_min, alto_max)
-    
-    nube.position = Vector2(-450.0, altura)
-    nube.velocidad = randf_range(vel_min, vel_max)
+    var nube: Nube = escena_nube.instantiate()
+    var altura := rng.randi_range(alto_min, alto_max)
+    nube.position = Vector2(-200.0, altura)
+    nube.velocidad = rng.randf_range(vel_min, vel_max)  # <-- asignación directa
     nube.z_index = z
-    nube.scale = Vector2(randf_range(tam_min, tam_max), randf_range(tam_min, tam_max))
-    
-    $Panel.add_child(nube)
+    var s := rng.randf_range(tam_min, tam_max)
+    nube.scale = Vector2(s, s)
+    fondo.add_child(nube)
+
 
 func _crear_nube_normal() -> void:
-    var z_index: int = [-1, 0, 1].pick_random()
-    _crear_nube(z_index, 5, 120, 0.5, 1.5, 0.8, 40.0)
+    var z_nube: int = [-1, 0, 1][rng.randi_range(0, 2)]
+    _crear_nube(z_nube, 5, 120, 0.5, 1.5, 0.8, 40.0)
 
 func _crear_nube_fondo() -> void:
     _crear_nube(-1, 4, 280, 0.2, 0.7, 0.15, 10.0)
 
-# ───────────────────────────────────────────────────────────────
-# Inactividad (volver a intro)
-# ───────────────────────────────────────────────────────────────
-func _input(event: InputEvent) -> void:
-    if event.is_pressed():
-        temporizador_espera.start()
+func _on_tem_nubes_timeout() -> void:
+    # Ritmo: alterna entre nube foreground y fondo
+    if rng.randf() < 0.6:
+        _crear_nube_normal()
+    else:
+        _crear_nube_fondo()
 
+# ───────────────────────────────────────────────────────────────
+# Inactividad → Intro
+# ───────────────────────────────────────────────────────────────
 func _on_tem_espera_timeout() -> void:
     if not jugador_activo:
-        get_tree().change_scene_to_file("res://escenas/intro/Intro.tscn")
+        get_tree().change_scene_to_file(RUTA_INTRO)
+    else:
+        jugador_activo = false
+        temporizador_espera.start()
 
-
-func _on_jugar_pressed() -> void:
-    jugador_activo = true
-    cambiar_escena("res://escenas/menu/Seleccion_personaje/seleccion_personaje.tscn")
-
+# ───────────────────────────────────────────────────────────────
+# Botones
+# ───────────────────────────────────────────────────────────────
+func _on_salir_pressed() -> void:
+    if has_node("/root/Musica"):
+        get_node("/root/Musica").call("detener")
+    get_tree().quit()
 
 func _on_opciones_pressed() -> void:
-    jugador_activo = true
-    print("Opción aún no implementada.")
+    if ResourceLoader.exists(RUTA_OPCIONES):
+        get_tree().change_scene_to_file(RUTA_OPCIONES)
+    else:
+        push_warning("Escena de opciones no implementada aún.")
 
-
-func _on_salir_pressed() -> void:
-    jugador_activo = true
-    MusicaGlobal.detener()
-    get_tree().quit()
+func _on_jugar_pressed() -> void:
+    # Si tienes GameManager autoload, puedes notificar estado:
+    if has_node("/root/GameManager"):
+        get_node("/root/GameManager").call("cambiar_estado", get_node("/root/GameManager").EstadoJuego.SELECCION_PERSONAJE)
+    get_tree().change_scene_to_file(RUTA_SELECCION)

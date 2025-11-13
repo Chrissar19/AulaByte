@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qik4t041dbum"
-path="res://.godot/imported/LogoFinaleSFs.png-bfcf7fc7c6af8439aa76dae631c810cf.ctex"
+uid="uid://dmoqu2apkie6"
+path="res://.godot/imported/icono logo.png-cfbb69f49e3a0de3d5a62002baccd182.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/logos/LogoFinaleSFs.png"
-dest_files=["res://.godot/imported/LogoFinaleSFs.png-bfcf7fc7c6af8439aa76dae631c810cf.ctex"]
+source_file="res://recursos/logos/icono logo.png"
+dest_files=["res://.godot/imported/icono logo.png-cfbb69f49e3a0de3d5a62002baccd182.ctex"]
 
 [params]
 
