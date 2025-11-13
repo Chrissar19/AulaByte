@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://dcrxsoxpi4gwj"]
+[gd_scene load_steps=46 format=4 uid="uid://dcrxsoxpi4gwj"]
 
 [ext_resource type="Script" uid="uid://wpxeklo0qb7c" path="res://scripts/niveles/6-10/nivel_10.gd" id="1_2mcb4"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_t5ix2"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://57wg0kv8rcf6" path="res://escenas/personajes/Delgado/delgado.tscn" id="17_et4ew"]
 [ext_resource type="PackedScene" uid="uid://cl1bwd6mofchq" path="res://escenas/objetos_interacciones/item_vida.tscn" id="18_7ywhe"]
 [ext_resource type="PackedScene" uid="uid://b555un3jiwkeg" path="res://escenas/Niveles/6_10/interruptor.tscn" id="18_ne6iv"]
+[ext_resource type="PackedScene" uid="uid://tkh75sw4tr42" path="res://escenas/habilidades/item_salto.tscn" id="19_5t652"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5rite"]
 texture = ExtResource("2_t5ix2")
@@ -1434,15 +1435,6 @@ position = Vector2(138, -444)
 [node name="BitsMoneda25" parent="Puntos" instance=ExtResource("11_dj20p")]
 position = Vector2(52, -556)
 
-[node name="BitsMoneda26" parent="Puntos" instance=ExtResource("11_dj20p")]
-position = Vector2(136, -600)
-
-[node name="BitsMoneda27" parent="Puntos" instance=ExtResource("11_dj20p")]
-position = Vector2(136, -632)
-
-[node name="BitsMoneda28" parent="Puntos" instance=ExtResource("11_dj20p")]
-position = Vector2(135, -670)
-
 [node name="BitsMoneda29" parent="Puntos" instance=ExtResource("11_dj20p")]
 position = Vector2(53, -732)
 
@@ -1528,7 +1520,6 @@ z_index = 2
 position = Vector2(2799, -499)
 rotation = 0.0006201268
 scale = Vector2(0.99999994, 0.99999994)
-plataf = "amarilla"
 
 [node name="AnimB" type="AnimationPlayer" parent="Plataformas/Plataforma2"]
 libraries = {
@@ -1560,7 +1551,6 @@ speed_scale = 0.5
 z_index = 2
 position = Vector2(601, 5)
 rotation = -0.001506023
-plataf = "roja"
 
 [node name="AnimA" type="AnimationPlayer" parent="Plataformas/Plataforma" groups=["Interruptores"]]
 libraries = {
@@ -1570,7 +1560,6 @@ speed_scale = 0.5
 
 [node name="Plataforma3" parent="Plataformas" instance=ExtResource("12_6seny")]
 position = Vector2(1613, -380)
-plataf = "morada"
 
 [node name="AnimC" type="AnimationPlayer" parent="Plataformas/Plataforma3"]
 libraries = {
@@ -1654,3 +1643,6 @@ color_inter = "azul"
 position = Vector2(2186, -1147)
 id = "G"
 color_inter = "amarilla"
+
+[node name="ItemVelocidad" parent="." instance=ExtResource("19_5t652")]
+position = Vector2(128, -600)

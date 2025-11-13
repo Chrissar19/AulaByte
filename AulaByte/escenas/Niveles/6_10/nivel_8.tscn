@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://c820bpkqmqupo"]
+[gd_scene load_steps=35 format=4 uid="uid://c820bpkqmqupo"]
 
 [ext_resource type="Script" uid="uid://bl84y62aosyrq" path="res://scripts/niveles/nivel_tuto.gd" id="1_mba44"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_ixpke"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bd3tvkqc3t15v" path="res://escenas/personajes/enemigos/monitor.tscn" id="16_77hwh"]
 [ext_resource type="PackedScene" uid="uid://57wg0kv8rcf6" path="res://escenas/personajes/Delgado/delgado.tscn" id="16_e1pa8"]
 [ext_resource type="PackedScene" uid="uid://cl1bwd6mofchq" path="res://escenas/objetos_interacciones/item_vida.tscn" id="18_remnt"]
+[ext_resource type="PackedScene" uid="uid://tkh75sw4tr42" path="res://escenas/habilidades/item_salto.tscn" id="19_liqpc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5rite"]
 texture = ExtResource("2_ixpke")
@@ -1231,9 +1232,6 @@ position = Vector2(730, -438)
 [node name="BitsMoneda4" parent="Puntos" instance=ExtResource("9_ok6l4")]
 position = Vector2(1177, -643)
 
-[node name="BitsMoneda11" parent="Puntos" instance=ExtResource("9_ok6l4")]
-position = Vector2(1179, -381)
-
 [node name="BitsMoneda12" parent="Puntos" instance=ExtResource("9_ok6l4")]
 position = Vector2(1273, -577)
 
@@ -1310,3 +1308,6 @@ position = Vector2(1882, -851)
 
 [node name="monitor3" parent="Enemigos" instance=ExtResource("16_77hwh")]
 position = Vector2(3486, -911)
+
+[node name="ItemVelocidad" parent="." instance=ExtResource("19_liqpc")]
+position = Vector2(1176, -400)

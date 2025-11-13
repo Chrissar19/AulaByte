@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://42madykfvlwl"]
+[gd_scene load_steps=31 format=4 uid="uid://42madykfvlwl"]
 
 [ext_resource type="Script" uid="uid://b23jvap86p60m" path="res://scripts/niveles/nivel_11.gd" id="1_f02el"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_cwynq"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://bh53eu0ttba8f" path="res://escenas/personajes/enemigos/jefe_final.tscn" id="15_wrice"]
 [ext_resource type="Texture2D" uid="uid://bcqr84us07yuj" path="res://recursos/imagenes/personajes/enemigos/JefeFinal.png" id="16_rhdrk"]
 [ext_resource type="PackedScene" uid="uid://cey7572ttsbym" path="res://escenas/objetos_interacciones/pared.tscn" id="19_f02el"]
+[ext_resource type="PackedScene" uid="uid://tkh75sw4tr42" path="res://escenas/habilidades/item_salto.tscn" id="20_dxj43"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5rite"]
 texture = ExtResource("2_cwynq")
@@ -1227,6 +1228,9 @@ position = Vector2(-401, 72)
 [node name="JaulaCuy" parent="Puntos Control" instance=ExtResource("7_f02el")]
 position = Vector2(1812, 121)
 scale = Vector2(0.5, 0.5)
+
+[node name="ItemVelocidad" parent="." instance=ExtResource("20_dxj43")]
+position = Vector2(752, 32)
 
 [connection signal="ondead" from="Enemigos/jefe_final" to="." method="_on_jefe_final_ondead"]
 [connection signal="on_cuy_liberado" from="Puntos Control/JaulaCuy" to="." method="_on_jaula_cuy_on_cuy_liberado"]

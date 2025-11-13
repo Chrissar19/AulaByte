@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cl561n5x8dihd"]
+[gd_scene load_steps=19 format=4 uid="uid://cl561n5x8dihd"]
 
 [ext_resource type="Script" uid="uid://bl84y62aosyrq" path="res://scripts/niveles/nivel_tuto.gd" id="1_73hpg"]
 [ext_resource type="TileSet" uid="uid://dbxx1jhbs275d" path="res://datos/pisos.tres" id="2_jjbt2"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dkm0atk4qawk3" path="res://escenas/objetos_interacciones/plataforma.tscn" id="12_srw4k"]
 [ext_resource type="PackedScene" uid="uid://1eeeqekb3ych" path="res://escenas/objetos_interacciones/caja.tscn" id="13_xlm6l"]
 [ext_resource type="PackedScene" uid="uid://dfr8bmdn5actv" path="res://escenas/personajes/enemigos/slime_azul.tscn" id="14_qi2e3"]
+[ext_resource type="PackedScene" uid="uid://tkh75sw4tr42" path="res://escenas/habilidades/item_salto.tscn" id="15_vc3jh"]
 [ext_resource type="PackedScene" uid="uid://57wg0kv8rcf6" path="res://escenas/personajes/Delgado/delgado.tscn" id="17_4o0fn"]
 [ext_resource type="PackedScene" uid="uid://cl1bwd6mofchq" path="res://escenas/objetos_interacciones/item_vida.tscn" id="18_cyj44"]
 
@@ -162,7 +163,7 @@ position = Vector2(1467, -292)
 fuerza_rebote = -500.0
 
 [node name="Delgado" parent="." instance=ExtResource("17_4o0fn")]
-position = Vector2(421, -532)
+position = Vector2(785, -494)
 collision_mask = 59
 
 [node name="ItemVida" parent="." instance=ExtResource("18_cyj44")]
@@ -183,3 +184,6 @@ position = Vector2(712, 217)
 [node name="SlimeAzul" parent="." instance=ExtResource("14_qi2e3")]
 z_index = 2
 position = Vector2(609, -272)
+
+[node name="ItemVelocidad" parent="." instance=ExtResource("15_vc3jh")]
+position = Vector2(406, -484)

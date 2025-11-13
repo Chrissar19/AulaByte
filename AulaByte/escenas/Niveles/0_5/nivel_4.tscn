@@ -1,8 +1,8 @@
-[gd_scene load_steps=40 format=4 uid="uid://bdp4vuaodlgyi"]
+[gd_scene load_steps=41 format=4 uid="uid://bdp4vuaodlgyi"]
 
 [ext_resource type="Script" uid="uid://bv5rnpun0bjga" path="res://scripts/niveles/1_5/nivel_4.gd" id="1_ekcxq"]
 [ext_resource type="Texture2D" uid="uid://cxyafbo3ck6fg" path="res://recursos/imagenes/TileSets/Pisos.png" id="1_lv0ag"]
-[ext_resource type="PackedScene" uid="uid://bxynr5uu8vrrc" path="res://actividad_4.tscn" id="2_4pmdn"]
+[ext_resource type="PackedScene" uid="uid://bxynr5uu8vrrc" path="res://escenas/Niveles/0_5/actividad_4.tscn" id="2_4pmdn"]
 [ext_resource type="Texture2D" uid="uid://dr3bkmou477j5" path="res://recursos/imagenes/TileSets/FondoSheet.png" id="2_yf17g"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="3_btu8m"]
 [ext_resource type="Texture2D" uid="uid://14pnjoo6241b" path="res://recursos/imagenes/TileSets/DecoracionesFondo.png" id="4_7v5ps"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://cydd1023br6iv" path="res://escenas/objetos_interacciones/bits_moneda.tscn" id="11_sac71"]
 [ext_resource type="PackedScene" uid="uid://dfr8bmdn5actv" path="res://escenas/personajes/enemigos/slime_azul.tscn" id="16_yy4w5"]
 [ext_resource type="PackedScene" uid="uid://fva12xfahbpb" path="res://escenas/objetos_interacciones/puerta_nivel.tscn" id="19_cls0v"]
+[ext_resource type="PackedScene" uid="uid://tkh75sw4tr42" path="res://escenas/habilidades/item_salto.tscn" id="20_qmrxr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3so63"]
 texture = ExtResource("2_yf17g")
@@ -1729,12 +1730,6 @@ position = Vector2(784, 236)
 [node name="BitsMoneda12" parent="puntos/sumar" instance=ExtResource("11_sac71")]
 position = Vector2(1296, 201)
 
-[node name="BitsMoneda13" parent="puntos/sumar" instance=ExtResource("11_sac71")]
-position = Vector2(644, 181)
-
-[node name="BitsMoneda14" parent="puntos/sumar" instance=ExtResource("11_sac71")]
-position = Vector2(611, 180)
-
 [node name="BitsMoneda15" parent="puntos/sumar" instance=ExtResource("11_sac71")]
 position = Vector2(313, 71)
 
@@ -1802,3 +1797,6 @@ position = Vector2(1287, 603)
 [node name="PuertaNivel2" parent="PuntosControl" instance=ExtResource("19_cls0v")]
 z_index = 2
 position = Vector2(1276, -676)
+
+[node name="ItemVelocidad" parent="." instance=ExtResource("20_qmrxr")]
+position = Vector2(613, 169)
