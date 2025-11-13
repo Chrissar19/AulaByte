@@ -86,7 +86,6 @@ func _crear_nube(z: int, alto_min: int, alto_max: int, tam_min: float, tam_max: 
     nube.scale = Vector2(s, s)
     fondo.add_child(nube)
 
-
 func _crear_nube_normal() -> void:
     var z_nube: int = [-1, 0, 1][rng.randi_range(0, 2)]
     _crear_nube(z_nube, 5, 120, 0.5, 1.5, 0.8, 40.0)
@@ -126,7 +125,9 @@ func _on_opciones_pressed() -> void:
         push_warning("Escena de opciones no implementada aún.")
 
 func _on_jugar_pressed() -> void:
-    # Si tienes GameManager autoload, puedes notificar estado:
-    if has_node("/root/GameManager"):
-        get_node("/root/GameManager").call("cambiar_estado", get_node("/root/GameManager").EstadoJuego.SELECCION_PERSONAJE)
+    if temporizador_espera:
+        temporizador_espera.stop()
+
+    GameManager.cambiar_estado(GameManager.EstadoJuego.SELECCION_PERSONAJE)
+
     get_tree().change_scene_to_file(RUTA_SELECCION)
