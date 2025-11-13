@@ -52,7 +52,7 @@ columns = 2
 
 [node name="LblGeneral" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 8
 text = "Vol. general"
 label_settings = SubResource("LabelSettings_vp8qn")
 
@@ -63,25 +63,42 @@ size_flags_vertical = 4
 
 [node name="LblMusica" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-text = "Vol. general"
+size_flags_horizontal = 8
+text = "Musica"
 label_settings = SubResource("LabelSettings_vp8qn")
+horizontal_alignment = 1
 
 [node name="SldMusica" type="HSlider" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
-[node name="LblGeneral3" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+[node name="LblEfectos" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-text = "Vol. general"
+size_flags_horizontal = 8
+text = "Efectos"
 label_settings = SubResource("LabelSettings_vp8qn")
 
-[node name="SldGeneral3" type="HSlider" parent="MarginContainer/VBoxContainer/GridContainer"]
+[node name="SldEfectos" type="HSlider" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+
+[node name="LblNarraciones" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Narraciones"
+label_settings = SubResource("LabelSettings_vp8qn")
+
+[node name="SldNarraciones" type="HSlider" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="ChkFull" type="CheckButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_whpv3")
+text = "Pantalla Completa"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

@@ -14,10 +14,10 @@ const RUTA_MUSICA_MENU      := "res://recursos/Audio/musica/neon-pulse-30s-30799
 # Nodos
 # ───────────────────────────────────────────────────────────────
 @onready var fondo: Control = $Fondo
-@onready var lbl_version: Label = %LblVersion
 @onready var btn_jugar: Button = $VBoxContainer/BtnJugar
 @onready var btn_opciones: Button = $VBoxContainer/BtnOpciones
 @onready var btn_salir: Button = $VBoxContainer/BtnSalir
+@onready var lbl_version: Label = $LblVersion
 
 @onready var temporizador_nubes: Timer = $temNubes
 @onready var temporizador_espera: Timer = $temEspera
@@ -55,11 +55,6 @@ func _ready() -> void:
     btn_opciones.focus_neighbor_bottom = btn_salir.get_path()
     btn_salir.focus_neighbor_top = btn_opciones.get_path()
 
-    # Conecta señales
-    btn_jugar.pressed.connect(_on_jugar_pressed)
-    btn_opciones.pressed.connect(_on_opciones_pressed)
-    btn_salir.pressed.connect(_on_salir_pressed)
-
     # Timers
     temporizador_espera.timeout.connect(_on_tem_espera_timeout)
     temporizador_nubes.timeout.connect(_on_tem_nubes_timeout)
@@ -84,8 +79,8 @@ func _unhandled_input(event: InputEvent) -> void:
 func _crear_nube(z: int, alto_min: int, alto_max: int, tam_min: float, tam_max: float, vel_min: float, vel_max: float) -> void:
     var nube: Nube = escena_nube.instantiate()
     var altura := rng.randi_range(alto_min, alto_max)
-    nube.position = Vector2(-200.0, altura)
-    nube.velocidad = rng.randf_range(vel_min, vel_max)  # <-- asignación directa
+    nube.position = Vector2(-50.0, altura)
+    nube.velocidad = rng.randf_range(vel_min, vel_max)
     nube.z_index = z
     var s := rng.randf_range(tam_min, tam_max)
     nube.scale = Vector2(s, s)

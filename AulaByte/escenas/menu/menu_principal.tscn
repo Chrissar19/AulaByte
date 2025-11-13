@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://bk4p6hke41s0k"]
+[gd_scene load_steps=8 format=3 uid="uid://bk4p6hke41s0k"]
 
 [ext_resource type="Script" uid="uid://y78h04b46o4c" path="res://scripts/niveles/menu_principal.gd" id="1_8qhkl"]
 [ext_resource type="Texture2D" uid="uid://brytj307nefg0" path="res://recursos/logos/Cielo.png" id="2_msw0b"]
 [ext_resource type="Texture2D" uid="uid://b75utru5tlqdy" path="res://recursos/logos/FondoMenu.png" id="3_aemwv"]
 [ext_resource type="Texture2D" uid="uid://dqr5fmlmguii6" path="res://recursos/logos/logo.png" id="4_8qhkl"]
+[ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/Fuentes/Normal.ttf" id="6_aemwv"]
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="6_msw0b"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_e7qrj"]
+font = ExtResource("6_aemwv")
+font_color = Color(0.47788018, 0.47788012, 0.47788012, 1)
 
 [node name="Menu principal" type="Control"]
 layout_mode = 3
@@ -93,6 +98,17 @@ autostart = true
 wait_time = 50.0
 one_shot = true
 autostart = true
+
+[node name="LblVersion" type="Label" parent="."]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 328.0
+offset_right = 632.0
+offset_bottom = 351.0
+text = "VERSION 1.053.0"
+label_settings = SubResource("LabelSettings_e7qrj")
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [connection signal="pressed" from="VBoxContainer/BtnJugar" to="." method="_on_jugar_pressed"]
 [connection signal="pressed" from="VBoxContainer/BtnOpciones" to="." method="_on_opciones_pressed"]
