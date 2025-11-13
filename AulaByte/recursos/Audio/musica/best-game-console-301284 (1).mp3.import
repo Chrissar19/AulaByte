@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://smx4ipfi7d5v"
+path="res://.godot/imported/best-game-console-301284 (1).mp3-cb11703325a34bbfd20d93760e0c5ebc.mp3str"
+
+[deps]
+
+source_file="res://recursos/Audio/musica/best-game-console-301284 (1).mp3"
+dest_files=["res://.godot/imported/best-game-console-301284 (1).mp3-cb11703325a34bbfd20d93760e0c5ebc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

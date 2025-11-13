@@ -5,27 +5,27 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o3bfo"]
 atlas = ExtResource("2_yxvyc")
-region = Rect2(42, 0, 42, 72)
+region = Rect2(43, 0, 43, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yxvyc"]
 atlas = ExtResource("2_yxvyc")
-region = Rect2(84, 0, 42, 72)
+region = Rect2(86, 0, 43, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6snj7"]
 atlas = ExtResource("2_yxvyc")
-region = Rect2(126, 0, 42, 72)
+region = Rect2(129, 0, 43, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c8pr2"]
 atlas = ExtResource("2_yxvyc")
-region = Rect2(168, 0, 42, 72)
+region = Rect2(172, 0, 43, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r51lu"]
 atlas = ExtResource("2_yxvyc")
-region = Rect2(210, 0, 42, 72)
+region = Rect2(215, 0, 43, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_26b0p"]
 atlas = ExtResource("2_yxvyc")
-region = Rect2(0, 0, 42, 72)
+region = Rect2(0, 0, 43, 72)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5ihpb"]
 animations = [{
@@ -68,7 +68,9 @@ script = ExtResource("1_o3bfo")
 
 [node name="AnimacionPuerta" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5ihpb")
-animation = &"Cerrada"
+animation = &"Abriendo"
+frame = 4
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
