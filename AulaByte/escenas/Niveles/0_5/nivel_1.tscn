@@ -18,9 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://fva12xfahbpb" path="res://escenas/objetos_interacciones/puerta_nivel.tscn" id="16_xcw0p"]
 [ext_resource type="PackedScene" uid="uid://bnj0srep62yxe" path="res://escenas/trampas/bola_muerte.tscn" id="17_5bg0a"]
 [ext_resource type="Texture2D" uid="uid://dp6ddal4ebclo" path="res://recursos/imagenes/objetos/Flecha abajo.png" id="18_1lge7"]
-[ext_resource type="PackedScene" uid="uid://o7nxc8ggkh43" path="res://escenas/personajes/Insuasty/Insuasty.tscn" id="18_q4rug"]
 [ext_resource type="PackedScene" uid="uid://cl1bwd6mofchq" path="res://escenas/objetos_interacciones/item_vida.tscn" id="18_s863u"]
 [ext_resource type="PackedScene" uid="uid://diph6j8wlkfed" path="res://escenas/objetos_interacciones/plataforma_cae.tscn" id="21_nlh1x"]
+[ext_resource type="PackedScene" uid="uid://db7j3q20ljag8" path="res://escenas/ui/punto_inicio.tscn" id="23_nk5c4"]
 [ext_resource type="PackedScene" uid="uid://bqyt6lm4d2ydo" path="res://escenas/objetos_interacciones/plataforma_sube.tscn" id="23_nlh1x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x8ajn"]
@@ -1355,10 +1355,6 @@ offset_right = 320.0
 offset_bottom = -161.0
 texture = ExtResource("18_1lge7")
 
-[node name="Insuasty" parent="." instance=ExtResource("18_q4rug")]
-position = Vector2(523, 122)
-collision_mask = 24507
-
 [node name="enemigos" type="Node" parent="."]
 
 [node name="SlimeAzul5" parent="enemigos" instance=ExtResource("12_4be78")]
@@ -1402,3 +1398,6 @@ position = Vector2(-358, 168)
 [node name="PlataformaSube" parent="trampas" instance=ExtResource("23_nlh1x")]
 z_index = 4
 position = Vector2(-536, -311)
+
+[node name="PuntoInicio" parent="." instance=ExtResource("23_nk5c4")]
+position = Vector2(-117, -117)

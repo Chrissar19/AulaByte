@@ -145,6 +145,12 @@ func _get_info_actual() -> personajeInfo:
 #==============================================================================
 #  Input por teclado
 #==============================================================================
+func _accion_presionada(event: InputEvent, nombres: Array[String]) -> bool:
+    for nombre in nombres:
+        if InputMap.has_action(nombre) and event.is_action_pressed(nombre):
+            return true
+    return false
+
 
 func _unhandled_input(event: InputEvent) -> void:
     if lista_info.is_empty():
@@ -152,12 +158,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
     # Soportar varias acciones posibles para izquierda/derecha
     var izquierda_presionada := event.is_action_pressed("ui_left") \
-        or event.is_action_pressed("izquierda") \
-        or event.is_action_pressed("mover_izquierda")
+        or event.is_action_pressed("izquierda")
 
     var derecha_presionada := event.is_action_pressed("ui_right") \
-        or event.is_action_pressed("derecha") \
-        or event.is_action_pressed("mover_derecha")
+        or event.is_action_pressed("derecha")
 
     if izquierda_presionada:
         await _reproducir_sonido(audio_cambio)

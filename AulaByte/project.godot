@@ -45,6 +45,7 @@ Checkpoint="Punto de inicio y de control de los niveles"
 Trampas=""
 ItemArrastrable=""
 Interruptores=""
+PuntoInicio=""
 
 [input]
 

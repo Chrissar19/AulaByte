@@ -78,6 +78,11 @@ func _ready() -> void:
     punto_reaparicion = global_position
     GameManager.set_jugador(self)
     
+    if camara:
+        camara.position = Vector2.ZERO
+        camara.offset = Vector2.ZERO
+        camara.make_current()
+    
     # Configurar raycast de empuje
     empuje_ray.enabled = true
     empuje_ray.target_position = Vector2.ZERO
@@ -352,6 +357,8 @@ func reaparecer() -> void:
     if colision:
         colision.disabled = false
     
+    _resetear_camara()
+    
 # ============================================================================
 # CÁMARA Y RETROCESO
 # ============================================================================
@@ -361,6 +368,13 @@ func establecer_limites_camara(arr: int, izq: int, der: int, aba: int) -> void:
         camara.limit_left = izq
         camara.limit_right = der
         camara.limit_bottom = aba
+        
+func _resetear_camara() -> void:
+    if camara:
+        camara.position = Vector2.ZERO
+        camara.offset = Vector2.ZERO
+        camara.make_current()
+
 
 func iniciar_retroceso(direccion: float) -> void:
     esta_en_retroceso = true
