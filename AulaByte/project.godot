@@ -87,6 +87,7 @@ Accion={
 2d_physics/layer_13="Plataformas"
 2d_physics/layer_14="Piezas"
 2d_physics/layer_15="Interruptores"
+2d_physics/layer_16="PowerUp"
 
 [rendering]
 

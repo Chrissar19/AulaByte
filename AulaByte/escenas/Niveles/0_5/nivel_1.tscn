@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://ce4psiq5ll2ou"]
+[gd_scene load_steps=39 format=4 uid="uid://ce4psiq5ll2ou"]
 
 [ext_resource type="Script" uid="uid://coe5412e75vcn" path="res://scripts/niveles/1_5/nivel_1.gd" id="1_68m43"]
 [ext_resource type="PackedScene" uid="uid://c8f486kolklgt" path="res://escenas/Niveles/0_5/actividad_primer_nivel.tscn" id="2_4pfxj"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://o7nxc8ggkh43" path="res://escenas/personajes/Insuasty/Insuasty.tscn" id="18_q4rug"]
 [ext_resource type="PackedScene" uid="uid://cl1bwd6mofchq" path="res://escenas/objetos_interacciones/item_vida.tscn" id="18_s863u"]
 [ext_resource type="PackedScene" uid="uid://diph6j8wlkfed" path="res://escenas/objetos_interacciones/plataforma_cae.tscn" id="21_nlh1x"]
+[ext_resource type="PackedScene" uid="uid://bva0i33hhjmev" path="res://escenas/habilidades/item_velocidad.tscn" id="23_nk5c4"]
 [ext_resource type="PackedScene" uid="uid://bqyt6lm4d2ydo" path="res://escenas/objetos_interacciones/plataforma_sube.tscn" id="23_nlh1x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x8ajn"]
@@ -1357,6 +1358,7 @@ texture = ExtResource("18_1lge7")
 
 [node name="Insuasty" parent="." instance=ExtResource("18_q4rug")]
 position = Vector2(523, 122)
+collision_mask = 24507
 
 [node name="enemigos" type="Node" parent="."]
 
@@ -1401,3 +1403,6 @@ position = Vector2(-358, 168)
 [node name="PlataformaSube" parent="trampas" instance=ExtResource("23_nlh1x")]
 z_index = 4
 position = Vector2(-536, -311)
+
+[node name="ItemVelocidad" parent="." instance=ExtResource("23_nk5c4")]
+position = Vector2(75, 97)

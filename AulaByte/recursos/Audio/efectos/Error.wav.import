@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://usnqiq81w5j"
-path="res://.godot/imported/Caminar.wav-af3f1f258977bb45357bc2a0f92f636d.sample"
+uid="uid://mfudp3fwsw1h"
+path="res://.godot/imported/Error.wav-1aa27a7148e5d6703113a398155367ed.sample"
 
 [deps]
 
-source_file="res://recursos/Audio/efectos/Caminar.wav"
-dest_files=["res://.godot/imported/Caminar.wav-af3f1f258977bb45357bc2a0f92f636d.sample"]
+source_file="res://recursos/Audio/efectos/Error.wav"
+dest_files=["res://.godot/imported/Error.wav-1aa27a7148e5d6703113a398155367ed.sample"]
 
 [params]
 

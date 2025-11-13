@@ -1,3 +1,4 @@
+#GameManager
 extends Node
 
 # ====================================================================
@@ -239,6 +240,19 @@ func reiniciar_vidas() -> void:
 
 func get_vidas() -> int:
     return vidas
+    
+# -----------------------------------------------------------------------
+# HABILIDADES / POWER-UPS
+# -----------------------------------------------------------------------
+func aplicar_powerup_velocidad(duracion: float, factor: float) -> void:
+    if jugador_ref == null:
+        print("No se pudo aplicar power-up de velocidad: jugador no asignado (jugador_ref es null).")
+        return
+
+    if jugador_ref.has_method("activar_habilidad_velocidad"):
+        jugador_ref.activar_habilidad_velocidad(duracion, factor)
+    else:
+        print("No se pudo aplicar power-up de velocidad: el jugador no tiene el método activar_habilidad_velocidad().")
 
 # -----------------------------------------------------------------------
 # Tiempo
