@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ckai8femo32e4"]
 
 [ext_resource type="Script" uid="uid://c2tlsxq8nl3jt" path="res://scripts/jugador/jugador.gd" id="1_ki677"]
-[ext_resource type="AudioStream" uid="uid://cq2m6678f6s85" path="res://recursos/Audio/efectos/jump.wav" id="3_i0x0m"]
+[ext_resource type="AudioStream" uid="uid://cx2t6jxuxrwlq" path="res://recursos/Audio/efectos/jump.wav" id="3_i0x0m"]
 [ext_resource type="Script" uid="uid://to5dx5xoue0d" path="res://scripts/jugador/estados/estado.gd" id="3_tnr8s"]
 [ext_resource type="Script" uid="uid://rbkphyqr0tdk" path="res://scripts/jugador/estados/idle.gd" id="4_grd26"]
 
@@ -10,7 +10,7 @@
 [node name="Jugador" type="CharacterBody2D" groups=["Jugador"]]
 z_index = 10
 collision_layer = 4
-collision_mask = 24507
+collision_mask = 57275
 script = ExtResource("1_ki677")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

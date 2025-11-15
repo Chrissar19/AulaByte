@@ -1,15 +1,10 @@
 [gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dbxx1jhbs275d"]
 
-<<<<<<< Updated upstream
-[ext_resource type="Texture2D" uid="uid://cxyafbo3ck6fg" path="res://recursos/imagenes/tileSets/Pisos.png" id="1_kt5if"]
-=======
-[ext_resource type="Texture2D" uid="uid://2lq3ftgrpgki" path="res://recursos/imagenes/TileSets/Pisos01.png" id="1_7vacn"]
->>>>>>> Stashed changes
+[ext_resource type="Texture2D" uid="uid://ch7275g1bf46s" path="res://recursos/imagenes/TileSets/Pisos01.png" id="1_7vacn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g3qtq"]
 texture = ExtResource("1_7vacn")
 0:0/0 = 0
-0:0/0/terrain_set = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
 1:0/0/terrain_set = 0
@@ -31,9 +26,7 @@ texture = ExtResource("1_7vacn")
 3:0/0/terrains_peering_bit/bottom_side = 0
 3:0/0/terrains_peering_bit/left_side = 0
 4:0/0 = 0
-4:0/0/terrain_set = 0
 4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-4:0/0/terrains_peering_bit/bottom_right_corner = 0
 5:0/0 = 0
 5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:0/0 = 0
@@ -45,12 +38,12 @@ texture = ExtResource("1_7vacn")
 9:0/0 = 0
 9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:1/0 = 0
-0:1/0/terrain_set = 0
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:1/0 = 0
 1:1/0/terrain_set = 0
 1:1/0/terrain = 0
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0/terrains_peering_bit/right_side = 0
 1:1/0/terrains_peering_bit/bottom_side = 0
 1:1/0/terrains_peering_bit/top_side = 0
 2:1/0 = 0
@@ -69,9 +62,7 @@ texture = ExtResource("1_7vacn")
 3:1/0/terrains_peering_bit/left_side = 0
 3:1/0/terrains_peering_bit/top_side = 0
 4:1/0 = 0
-4:1/0/terrain_set = 0
 4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-4:1/0/terrains_peering_bit/bottom_right_corner = 0
 5:1/0 = 0
 5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:1/0 = 0
@@ -82,7 +73,6 @@ texture = ExtResource("1_7vacn")
 9:1/0 = 0
 9:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:2/0 = 0
-0:2/0/terrain_set = 0
 0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:2/0 = 0
 1:2/0/terrain_set = 0
@@ -104,9 +94,7 @@ texture = ExtResource("1_7vacn")
 3:2/0/terrains_peering_bit/left_side = 0
 3:2/0/terrains_peering_bit/top_side = 0
 4:2/0 = 0
-4:2/0/terrain_set = 0
 4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-4:2/0/terrains_peering_bit/bottom_right_corner = 0
 6:2/0 = 0
 6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 7:2/0 = 0
@@ -134,13 +122,11 @@ texture = ExtResource("1_7vacn")
 9:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:4/0 = 0
 0:4/0/terrain_set = 0
+0:4/0/terrain = 0
 0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:4/0 = 0
-1:4/0/terrain_set = 0
-1:4/0/terrain = 0
 1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:4/0 = 0
-2:4/0/terrain_set = 0
 2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:4/0 = 0
 3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -159,6 +145,8 @@ texture = ExtResource("1_7vacn")
 8:4/0/terrain_set = 0
 8:4/0/terrain = 0
 8:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:4/0/terrains_peering_bit/right_side = 0
+8:4/0/terrains_peering_bit/left_side = 0
 9:4/0 = 0
 9:4/0/terrain_set = 0
 9:4/0/terrain = 0
@@ -189,5 +177,5 @@ texture = ExtResource("1_7vacn")
 physics_layer_0/collision_layer = 33
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Pisos"
-terrain_set_0/terrain_0/color = Color(1, 1, 0, 1)
-sources/1 = SubResource("TileSetAtlasSource_g3qtq")
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_g3qtq")

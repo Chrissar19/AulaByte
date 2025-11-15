@@ -7,7 +7,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_hp4rs"]
 radius = 16.0
 
-[node name="ItemVida" type="Area2D" groups=["Vida"]]
+[node name="ItemVida" type="Area2D" groups=["Vida", "Z_ITEMS"]]
 z_index = 4
 collision_layer = 128
 collision_mask = 4
@@ -21,6 +21,5 @@ shape = SubResource("CircleShape2D_hp4rs")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_2fedu")
-bus = &"Efectos sonido"
 
 [connection signal="body_entered" from="." to="." method="_on_nodo_vida"]

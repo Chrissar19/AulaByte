@@ -16,6 +16,8 @@ var subiendo := false
 var bajando := false
 
 func _ready() -> void:
+	z_index = ZCapas.PLATAFORMAS
+	add_to_group("Z_PLATAFORMAS")
 	pos_inicial = global_position
 	area_2d.body_entered.connect(_on_area_2d_body_entered)
 	area_2d.body_exited.connect(_on_area_2d_body_exited)

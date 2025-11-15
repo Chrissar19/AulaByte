@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qik4t041dbum"
-path="res://.godot/imported/LogoFinaleSFs.png-bfcf7fc7c6af8439aa76dae631c810cf.ctex"
+uid="uid://dvd18r5esxir2"
+path="res://.godot/imported/power ups.png-b4319036b900a2b960a40b3af4cbea9b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/logos/LogoFinaleSFs.png"
-dest_files=["res://.godot/imported/LogoFinaleSFs.png-bfcf7fc7c6af8439aa76dae631c810cf.ctex"]
+source_file="res://recursos/imagenes/objetos/power ups.png"
+dest_files=["res://.godot/imported/power ups.png-b4319036b900a2b960a40b3af4cbea9b.ctex"]
 
 [params]
 

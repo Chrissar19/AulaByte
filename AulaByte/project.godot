@@ -14,7 +14,11 @@ config/name="AulaByte (Copy)"
 config/version="1.0.2"
 run/main_scene="uid://bk4p6hke41s0k"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+boot_splash/bg_color=Color(0.99116415, 0.99116427, 0.99116415, 1)
+boot_splash/fullsize=false
+boot_splash/image="uid://c32w8mojgthif"
 config/icon="uid://dmoqu2apkie6"
+boot_splash/minimum_display_time=2000
 
 [autoload]
 
@@ -40,6 +44,22 @@ Pisos="Marca todos los objetos fisicos de piso"
 Checkpoint="Punto de inicio y de control de los niveles"
 ItemArrastrable=""
 Interruptores=""
+PuntoInicio=""
+Z_FONDO_LEJANO=""
+Z_PAREDES=""
+Z_COLUMNAS=""
+Z_DECOR_FONDO=""
+Z_PISOS=""
+Z_CHECKPOINT=""
+Z_CAJAS=""
+Z_INTERRUPTORES=""
+Z_PUERTAS=""
+Z_PLATAFORMAS=""
+Z_ITEMS=""
+Z_ENEMIGOS=""
+Z_FX_SOMBRA=""
+Z_FX_PARTICULAS=""
+Z_AVISOS=""
 
 [input]
 
@@ -87,6 +107,7 @@ Accion={
 2d_physics/layer_13="Plataformas"
 2d_physics/layer_14="Piezas"
 2d_physics/layer_15="Interruptores"
+2d_physics/layer_16="PowerUp"
 
 [rendering]
 

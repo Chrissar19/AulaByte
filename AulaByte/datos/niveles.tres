@@ -1,33 +1,20 @@
-<<<<<<< Updated upstream
-[gd_resource type="Resource" script_class="Niveles" load_steps=6 format=3 uid="uid://bbwne8qhl8yj2"]
+[gd_resource type="Resource" script_class="Niveles" load_steps=14 format=3 uid="uid://bbwne8qhl8yj2"]
 
 [ext_resource type="Script" uid="uid://b51y87ysvl54g" path="res://scripts/niveles/niveles.gd" id="1_b2vrk"]
 [ext_resource type="PackedScene" uid="uid://cqk82ixbb1sb0" path="res://escenas/Niveles/0_5/nivel_tuto.tscn" id="1_qafu8"]
-[ext_resource type="PackedScene" uid="uid://ce4psiq5ll2ou" path="res://escenas/Niveles/0_5/nivel_1.tscn" id="2_rha8x"]
-[ext_resource type="PackedScene" uid="uid://eeffx2i0jisl" path="res://escenas/Niveles/0_5/nivel_2.tscn" id="3_384g5"]
-[ext_resource type="PackedScene" uid="uid://bfh1cti7h62ot" path="res://escenas/Niveles/0_5/nivel_3.tscn" id="4_gjded"]
-
-[resource]
-script = ExtResource("1_b2vrk")
-nivel = Array[PackedScene]([ExtResource("1_qafu8"), ExtResource("2_rha8x"), ExtResource("3_384g5"), ExtResource("4_gjded")])
-=======
-[gd_resource type="Resource" script_class="Niveles" load_steps=13 format=3 uid="uid://bbwne8qhl8yj2"]
-
-[ext_resource type="Script" uid="uid://b51y87ysvl54g" path="res://scripts/niveles/niveles.gd" id="1_b2vrk"]
-[ext_resource type="PackedScene" uid="uid://cqk82ixbb1sb0" path="res://escenas/Niveles/0_5/nivel_tuto.tscn" id="1_qafu8"]
-[ext_resource type="PackedScene" uid="uid://ce4psiq5ll2ou" path="res://escenas/Niveles/0_5/nivel_1.tscn" id="2_n08a6"]
-[ext_resource type="PackedScene" uid="uid://dv2rc1dwmstnh" path="res://escenas/Niveles/0_5/nivel_2.tscn" id="3_eekmv"]
+[ext_resource type="PackedScene" uid="uid://ce4psiq5ll2ou" path="res://escenas/Niveles/0_5/nivel_1.tscn" id="2_eekmv"]
+[ext_resource type="PackedScene" uid="uid://dv2rc1dwmstnh" path="res://escenas/Niveles/0_5/nivel_2.tscn" id="3_0g2oe"]
 [ext_resource type="PackedScene" uid="uid://bfh1cti7h62ot" path="res://escenas/Niveles/0_5/nivel_3.tscn" id="4_n08a6"]
 [ext_resource type="PackedScene" uid="uid://bdp4vuaodlgyi" path="res://escenas/Niveles/0_5/nivel_4.tscn" id="5_eekmv"]
 [ext_resource type="PackedScene" uid="uid://c820bpkqmqupo" path="res://escenas/Niveles/6_10/nivel_8.tscn" id="7_8cfyj"]
-[ext_resource type="PackedScene" uid="uid://sh3ta4dsapqi" path="res://escenas/Niveles/6_10/nivel_7.tscn" id="8_0g2oe"]
+[ext_resource type="PackedScene" uid="uid://sh3ta4dsapqi" path="res://escenas/Niveles/6_10/nivel_7.tscn" id="8_8cfyj"]
 [ext_resource type="PackedScene" uid="uid://dbiaf3ojvsxus" path="res://escenas/Niveles/6_10/nivel_9.tscn" id="8_aeayr"]
+[ext_resource type="PackedScene" uid="uid://42madykfvlwl" path="res://escenas/Niveles/6_10/nivel_11.tscn" id="9_ewe3a"]
 [ext_resource type="PackedScene" uid="uid://cdwofmeuk46tn" path="res://escenas/Niveles/0_5/nivel_5.tscn" id="10_dwmlx"]
-[ext_resource type="PackedScene" uid="uid://dcrxsoxpi4gwj" path="res://escenas/Niveles/6_10/nivel_10.tscn" id="11_8cfyj"]
+[ext_resource type="PackedScene" uid="uid://dcrxsoxpi4gwj" path="res://escenas/Niveles/6_10/nivel_10.tscn" id="11_aeayr"]
 [ext_resource type="PackedScene" uid="uid://cl561n5x8dihd" path="res://escenas/Niveles/6_10/nivel_6.tscn" id="11_s05tq"]
 
 [resource]
 script = ExtResource("1_b2vrk")
-nivel = Array[PackedScene]([ExtResource("1_qafu8"), ExtResource("2_n08a6"), ExtResource("3_eekmv"), ExtResource("4_n08a6"), ExtResource("5_eekmv"), ExtResource("10_dwmlx"), ExtResource("11_s05tq"), ExtResource("8_0g2oe"), ExtResource("7_8cfyj"), ExtResource("8_aeayr"), ExtResource("11_8cfyj")])
->>>>>>> Stashed changes
+nivel = Array[PackedScene]([ExtResource("1_qafu8"), ExtResource("2_eekmv"), ExtResource("3_0g2oe"), ExtResource("4_n08a6"), ExtResource("5_eekmv"), ExtResource("10_dwmlx"), ExtResource("11_s05tq"), ExtResource("8_8cfyj"), ExtResource("7_8cfyj"), ExtResource("8_aeayr"), ExtResource("11_aeayr"), ExtResource("9_ewe3a")])
 metadata/_custom_type_script = "uid://b51y87ysvl54g"

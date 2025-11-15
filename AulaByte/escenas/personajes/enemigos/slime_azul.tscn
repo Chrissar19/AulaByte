@@ -14,7 +14,7 @@ size = Vector2(10, 26)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gxtbd"]
 size = Vector2(15, 30)
 
-[node name="SlimeAzul" type="CharacterBody2D" groups=["Enemigos"]]
+[node name="SlimeAzul" type="CharacterBody2D" groups=["Enemigos", "Z_ENEMIGOS"]]
 z_index = 1
 collision_mask = 48
 script = ExtResource("1_gxtbd")
@@ -48,7 +48,6 @@ shape = SubResource("RectangleShape2D_adcx4")
 [node name="AudioMuerte" type="AudioStreamPlayer2D" parent="SensorPisoton"]
 stream = ExtResource("3_8vshj")
 max_distance = 100.0
-bus = &"Efectos sonido"
 
 [node name="AreaDaño" type="Area2D" parent="." groups=["DMG"]]
 collision_layer = 8
