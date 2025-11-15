@@ -4,6 +4,7 @@ extends Area2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
 func _ready() -> void:
+	z_index = ZCapas.ITEMS
 	connect("body_entered", _on_nodo_vida)
 
 func _on_nodo_vida(nodo: Node2D) -> void:

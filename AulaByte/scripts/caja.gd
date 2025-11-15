@@ -10,6 +10,7 @@ var fuerza_externa: Vector2 = Vector2.ZERO
 var posicion_inicial: Vector2
 
 func _ready() -> void:
+	z_index = ZCapas.CAJAS
 	posicion_inicial = global_position
 
 func _physics_process(delta):

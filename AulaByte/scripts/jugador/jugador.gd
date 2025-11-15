@@ -75,6 +75,7 @@ var input_dir: float = 0.0
 # ============================================================================
 func _ready() -> void:
 	add_to_group("Jugador")
+	z_index = ZCapas.JUGADOR
 	punto_reaparicion = global_position
 	GameManager.set_jugador(self)
 	

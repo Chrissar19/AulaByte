@@ -61,7 +61,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o3bfo"]
 size = Vector2(42, 64)
 
-[node name="PuertaNivel" type="Area2D"]
+[node name="PuertaNivel" type="Area2D" groups=["Z_PUERTAS"]]
 collision_layer = 256
 collision_mask = 4
 script = ExtResource("1_o3bfo")

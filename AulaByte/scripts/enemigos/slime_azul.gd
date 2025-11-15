@@ -36,6 +36,7 @@ var base_vida: int = vida
 # ============================================================================
 func _ready() -> void:
 	add_to_group("Enemigos")
+	z_index = ZCapas.ENEMIGOS
 	area_daño.add_to_group("DMG")
 	sprite.play("slime_walk_blue")
 	cofigurar_ray_suelo()

@@ -194,10 +194,9 @@ position = Vector2(-753, -457)
 [node name="BitsMoneda15" parent="Puntos" instance=ExtResource("10_wsaak")]
 position = Vector2(-718, -457)
 
-[node name="Plataformas" type="Node" parent="." groups=["Z_PLATAFORMAS"]]
+[node name="Plataformas" type="Node" parent="."]
 
-[node name="Plataforma2" parent="Plataformas" groups=["Z_PLATAFORMAS"] instance=ExtResource("11_cn7c0")]
-z_index = 30
+[node name="Plataforma2" parent="Plataformas" instance=ExtResource("11_cn7c0")]
 position = Vector2(-477, -232)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Plataformas/Plataforma2"]

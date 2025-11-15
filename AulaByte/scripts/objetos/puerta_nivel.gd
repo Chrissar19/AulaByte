@@ -4,6 +4,7 @@ extends Area2D
 var jugador_en_puerta := false
 
 func _ready() -> void:
+    z_index = ZCapas.PUERTAS
     animacion_puerta.play("Cerrada")
     connect("body_entered", Callable(self, "_on_body_entered"))
     connect("body_exited", Callable(self, "_on_body_exited"))
