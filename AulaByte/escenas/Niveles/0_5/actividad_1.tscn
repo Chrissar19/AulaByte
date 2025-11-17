@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://c8f486kolklgt"]
 
-[ext_resource type="Script" uid="uid://c5co0tb6l3hqk" path="res://scripts/niveles/1_5/actividad_primer_nivel.gd" id="1_twqsm"]
+[ext_resource type="Script" uid="uid://c5co0tb6l3hqk" path="res://scripts/niveles/1_5/actividad_1.gd" id="1_twqsm"]
 [ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="2_pu1qq"]
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="3_mbatl"]
 [ext_resource type="Texture2D" uid="uid://d3vh0l5545dux" path="res://recursos/imagenes/objetos/TeclasPC.png" id="4_a3ce4"]
@@ -111,6 +111,15 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Dato3" type="Label" parent="HBoxClaves"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0823529, 0.654902, 0.427451, 1)
+theme_override_fonts/font = ExtResource("3_mbatl")
+theme_override_styles/normal = SubResource("StyleBoxFlat_twqsm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Dato4" type="Label" parent="HBoxClaves"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0823529, 0.654902, 0.427451, 1)

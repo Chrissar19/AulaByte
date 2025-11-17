@@ -1,5 +1,5 @@
 extends ActividadBase
-
+class_name Actividad1
 # ===========================
 # Ajustes
 # ===========================
@@ -44,7 +44,7 @@ func _on_boton_numero_pressed(numero: int) -> void:
 		
 
 func _on_btn_confirmar_pressed() -> void:
-	if contrasenna_ingresada.size() < 3:
+	if contrasenna_ingresada.size() < 4:
 		salida_texto.text = "Contraseña incompleta"
 		return
 		
@@ -72,7 +72,7 @@ func _on_btn_confirmar_pressed() -> void:
 			actualizar_pantalla()
 
 func actualizar_pantalla() -> void:
-	var datos = [dato_1, dato_2, dato_3]
+	var datos = [dato_1, dato_2, dato_3, dato_4]
 	
 	for i in range(datos.size()):
 		if i < contrasenna_ingresada.size():

@@ -1,5 +1,5 @@
 extends ActividadBase
-class_name Minijuego5
+class_name Actividad5
 
 enum Fase { ELECCION, RESULTADO }
 

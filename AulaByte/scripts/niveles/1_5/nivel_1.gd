@@ -1,9 +1,10 @@
 extends NivelBase
-
+class_name Nivel1
 
 @onready var cuadro_1: TextureRect = $Cuadros/Cuadro1
 @onready var cuadro_2: TextureRect = $Cuadros/Cuadro2
 @onready var cuadro_3: TextureRect = $Cuadros/Cuadro3
+@onready var cuadro_4: TextureRect = $Cuadros/Cuadro4
 
 var fle_arriba: Texture2D = preload("res://recursos/imagenes/objetos/Flecha arriba.png")
 var fle_izquierda: Texture2D = preload("res://recursos/imagenes/objetos/Flecha izq.png")
@@ -17,28 +18,44 @@ func _ready() -> void:
 	#-- Llama a _ready de la nivel_base
 	super._ready()
 	
-	#-- Solo generar codigo si no exiete en Gamemanager
-	if not GameManager.parametros_actividad.has("codigo"):
-		codigo_actividad = GameManager.generar_codigo()
+	# 1) Si el GameManager ya tiene un código (por reintento, volver a entrar, etc.), lo reutilizamos
+	if GameManager.parametros_actividad.has("codigo"):
+		codigo_actividad = GameManager.parametros_actividad["codigo"]
+	else:
+		# 2) Este nivel genera SU propio código de flechas
+		codigo_actividad = _generar_codigo_nivel1(4)
 		
 		var parametros_actividad = {
 			"codigo": codigo_actividad,
 			"intentos": 3
 		}
+		# 3) Solo guardamos los parámetros en el GameManager (ya no genera nada él)
 		GameManager.establecer_parametros_actividad(parametros_actividad)
-		
-	else:
-		codigo_actividad = GameManager.parametros_actividad["codigo"]
 		
 	#-- Mostrar Cuadros
 	asignar_imagen()
-	
-		
+
+
+func _generar_codigo_nivel1(longitud: int = 4) -> Array[int]:
+	var rng := RandomNumberGenerator.new()
+	rng.randomize()
+	var codigo: Array[int] = []
+	for i in range(longitud):
+		codigo.append(rng.randi_range(1, 4))
+	return codigo
+
+
 func asignar_imagen() -> void:
 	#- Asignar imagen segun el codigo
-	asignar_imagen_a_cuadro(cuadro_1, codigo_actividad[0])
-	asignar_imagen_a_cuadro(cuadro_2, codigo_actividad[1])
-	asignar_imagen_a_cuadro(cuadro_3, codigo_actividad[2])
+	if codigo_actividad.size() >= 1:
+		asignar_imagen_a_cuadro(cuadro_1, codigo_actividad[0])
+	if codigo_actividad.size() >= 2:
+		asignar_imagen_a_cuadro(cuadro_2, codigo_actividad[1])
+	if codigo_actividad.size() >= 3:
+		asignar_imagen_a_cuadro(cuadro_3, codigo_actividad[2])
+	if codigo_actividad.size() >= 4:
+		asignar_imagen_a_cuadro(cuadro_4, codigo_actividad[3])
+
 
 func asignar_imagen_a_cuadro(cuadro: TextureRect, codigo: int) -> void:
 	match codigo:
@@ -51,4 +68,4 @@ func asignar_imagen_a_cuadro(cuadro: TextureRect, codigo: int) -> void:
 		4:
 			cuadro.texture = fle_derecha
 		_:
-			push_error("Codigo no valido en Nivel_1" % codigo)
+			push_error("Codigo no valido en Nivel_1: %s" % str(codigo))

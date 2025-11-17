@@ -31,10 +31,13 @@
 [ext_resource type="Texture2D" uid="uid://6skvsjl2uui2" path="res://recursos/imagenes/niveles/nivel8/fila-5-columna-4.png" id="27_suirn"]
 [ext_resource type="Texture2D" uid="uid://kf67lebk001p" path="res://recursos/imagenes/niveles/nivel8/fila-5-columna-5.png" id="28_1pmcy"]
 
-[node name="Actividad8" type="Node2D"]
+[node name="Actividad8" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_ob2y3")
 
 [node name="Fondo" type="TextureRect" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -47,7 +50,6 @@ size_flags_vertical = 3
 texture = ExtResource("2_2jmfk")
 
 [node name="ZonaRompeC" type="Control" parent="."]
-layout_mode = 3
 anchors_preset = 0
 offset_right = 320.0
 offset_bottom = 256.0
@@ -278,7 +280,6 @@ texture = ExtResource("3_kbwjy")
 stretch_mode = 2
 
 [node name="Piezas" type="Control" parent="."]
-layout_mode = 3
 anchors_preset = 0
 offset_left = 320.0
 offset_top = 16.0
@@ -559,7 +560,7 @@ script = ExtResource("12_0ba7y")
 posicion_correcta = Vector2(252, 232)
 
 [node name="UI" type="Control" parent="."]
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0

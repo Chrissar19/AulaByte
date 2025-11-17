@@ -1,4 +1,5 @@
 extends ActividadBase
+class_name Actividad7
 
 var asignaciones: Dictionary = {}
 var zonas_correctas := { "archivo": "archivo", "programa": "programa", "cpu": "cpu", "so": "so" }

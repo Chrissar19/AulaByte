@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://fva12xfahbpb"]
+[gd_scene load_steps=12 format=3 uid="uid://fva12xfahbpb"]
 
 [ext_resource type="Script" uid="uid://c5fqgpwvnxkjw" path="res://scripts/objetos/puerta_nivel.gd" id="1_o3bfo"]
 [ext_resource type="Texture2D" uid="uid://c0edkeqwhip1q" path="res://recursos/imagenes/objetos/PuertaAuto.png" id="2_yxvyc"]
+[ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="3_yxvyc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o3bfo"]
 atlas = ExtResource("2_yxvyc")
@@ -75,6 +76,18 @@ frame_progress = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("RectangleShape2D_o3bfo")
+
+[node name="LblIndicadorInteraccion" type="Label" parent="."]
+visible = false
+offset_left = -24.0
+offset_top = -89.0
+offset_right = 24.0
+offset_bottom = -41.0
+theme_override_fonts/font = ExtResource("3_yxvyc")
+theme_override_font_sizes/font_size = 48
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

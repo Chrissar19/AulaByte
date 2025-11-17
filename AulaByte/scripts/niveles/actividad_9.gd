@@ -1,4 +1,5 @@
 extends ActividadBase
+class_name Actividad9
 
 @onready var ram: ImagenArrastrable2 = $ZonaJuego/ContenedorObjetos/Ram
 @onready var video: ImagenArrastrable2 = $ZonaJuego/ContenedorObjetos/Video

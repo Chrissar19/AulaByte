@@ -405,50 +405,66 @@ func _on_minijuego_resuelto(exito: bool) -> void:
 		ui_actividad = null
 
 	if exito:
-		print("prueba superada, ABRIENDO PUERTA")
-		emit_signal("actividad_superada")
+		print("prueba superada")
+
+		if puerta_actual and is_instance_valid(puerta_actual):
+
+			var estaba_pausado := get_tree().paused
+			get_tree().paused = false
+
+			await puerta_actual.abrir_puerta()
+
+			# Restaurar estado de pausa (normalmente estaba en true por MINIJUEGO)
+			get_tree().paused = estaba_pausado
+
+		# Ahora sí, pasar al siguiente nivel (esto disparará TRANSICION_NIVEL → CARGANDO)
+		siguiente_nivel()
 	else:
 		print("Prueba fallida, INTENTALO DE NUEVO")
 		perder_vida()
-		# Volvemos a JUGAR (si aún hay vidas)
 		if vidas > 0:
 			cambiar_estado(EstadoJuego.JUGANDO)
-			
-func _on_minijuego_cancelado() -> void:
-	if ui_actividad:
-		ui_actividad.queue_free()
-		ui_actividad = null
-	get_tree().paused = false
-	print("Minijuego cancelado → volver a JUGANDO")
-	cambiar_estado(EstadoJuego.JUGANDO)
+
+
 
 
 func establecer_parametros_actividad(parametros: Dictionary) -> void:
+	#-- Guarda el codigo del nivel
+	if parametros.has("codigo"):
+		var codigo = parametros["codigo"]
+		
+		#-- Guarda una copia para reintentos
+		if codigo is Array:
+			codigo_actividad_actual = codigo.duplicate()
+		else:
+			codigo_actividad_actual = []
+		
+		parametros_actividad = parametros
+		return
+	
+	#-- Si nivel no genera un codigo lo crea
 	if codigo_actividad_actual.is_empty():
-		var codigo = generar_codigo()
-		parametros["codigo"] = codigo
+		var codigo_generado = generar_codigo()
+		parametros["codigo"] = codigo_generado
 	else:
 		parametros["codigo"] = codigo_actividad_actual
+	
 	parametros_actividad = parametros
 
-func generar_codigo() -> Array[int]:
-	if not codigo_generado or codigo_actividad_actual.is_empty():
+
+func generar_codigo(longitud: int = 4) -> Array[int]:
+	if not codigo_generado or codigo_actividad_actual.is_empty() or codigo_actividad_actual.size() != longitud:
 		var num_random = RandomNumberGenerator.new()
 		num_random.randomize()
 
 		codigo_actividad_actual = []
-		for i in range(3):
+		for i in range(longitud):
 			codigo_actividad_actual.append(num_random.randi_range(1, 4))
-		
-		if nivel_actual > 1:
-			codigo_actividad_actual.append(num_random.randi_range(1, 4))
-			
-		if nivel_actual > 8:
-			codigo_actividad_actual.append(num_random.randi_range(1, 4))
-			
+
 		codigo_generado = true
 		print("Codigo generado para el nivel: ", codigo_actividad_actual)
 	return codigo_actividad_actual
+
 
 func terminar_juego() -> void:
 	print("AQUI VAN LOS CREDITOS")
