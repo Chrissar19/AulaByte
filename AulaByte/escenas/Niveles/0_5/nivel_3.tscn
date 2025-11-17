@@ -353,8 +353,6 @@ tile_set = SubResource("TileSet_6d66m")
 position = Vector2(-12, -907)
 
 [node name="HUD" parent="." instance=ExtResource("7_b4glb")]
-visible = false
-script = null
 
 [node name="Vidas" type="Node" parent="."]
 

@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_etfk8"]
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="3_ax1rx"]
 [ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/Fuentes/Normal.ttf" id="4_w0ifg"]
-[ext_resource type="AudioStream" uid="uid://rv3tqp8mrdwm" path="res://recursos/Audio/Efectos/click.wav" id="5_eo13w"]
-[ext_resource type="AudioStream" uid="uid://smlda04d7351" path="res://recursos/Audio/Efectos/cambio_personaje.wav" id="6_kk00m"]
+[ext_resource type="AudioStream" uid="uid://rv3tqp8mrdwm" path="res://recursos/Audio/efectos/click.wav" id="5_eo13w"]
+[ext_resource type="AudioStream" uid="uid://smlda04d7351" path="res://recursos/Audio/efectos/cambio_personaje.wav" id="6_kk00m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e7txn"]
 texture = ExtResource("2_etfk8")
@@ -140,9 +140,9 @@ alignment = 1
 
 [node name="btnReintentar" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/icon_hover_pressed_color = Color(0, 0.176471, 0.552941, 1)
-theme_override_colors/icon_hover_color = Color(0.0588235, 0.537255, 0.701961, 0.862745)
 theme_override_colors/icon_normal_color = Color(0.437243, 0.606341, 0.505302, 0.784314)
+theme_override_colors/icon_hover_color = Color(0.0588235, 0.537255, 0.701961, 0.862745)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0.176471, 0.552941, 1)
 theme_override_fonts/font = ExtResource("3_ax1rx")
 action_mode = 0
 text = "Reintentar"
@@ -158,17 +158,15 @@ horizontal_alignment = 1
 
 [node name="btnMenuPrincipal" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/icon_hover_color = Color(0, 0.176471, 0.552941, 0.862745)
-theme_override_colors/icon_pressed_color = Color(0.0588235, 0.537255, 0.701961, 0.862745)
 theme_override_colors/icon_normal_color = Color(0.435294, 0.607843, 0.505882, 0.784314)
+theme_override_colors/icon_pressed_color = Color(0.0588235, 0.537255, 0.701961, 0.862745)
+theme_override_colors/icon_hover_color = Color(0, 0.176471, 0.552941, 0.862745)
 theme_override_fonts/font = ExtResource("3_ax1rx")
 text = "Menu principal"
 icon_alignment = 1
 
 [node name="AudioClick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_eo13w")
-bus = &"Efectos sonido"
 
 [node name="AudioCambio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_kk00m")
-bus = &"Efectos sonido"

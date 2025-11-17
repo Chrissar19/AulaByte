@@ -66,6 +66,7 @@ var tiempo_nivel_actual: float = 0.0
 var tiempo_restante: float = 90.0
 var tiempo_activo: bool = false
 var _ultimo_segundos: int = -1
+var delay_puerta: float = 1.5
 
 # =====================================================================
 # Actividades por nivel (PackedScene)
@@ -337,14 +338,31 @@ func completar_nivel() -> void:
 
 func pantalla_de_carga() -> void:
 	get_tree().change_scene_to_file("res://escenas/ui/pantalla_carga.tscn")
+	
+func reintentar_nivel_actual() -> void:
+	preparar_nivel()
+	reiniciar_vidas()
+	
+	var nivel := get_nivel_actual()
+	if nivel:
+		get_tree().change_scene_to_packed(nivel)
+		cambiar_estado(EstadoJuego.JUGANDO)
+	else:
+		push_error("GameManager: no se pudo recargar el nivel actual (nivel es null)")
+
 
 func reiniciar_nivel() -> void:
 	reiniciar_puntos()
 	reiniciar_vidas()
-	tiempo_nivel_actual = 0.0
+	preparar_nivel()
 	cambiar_estado(EstadoJuego.JUGANDO)
+	
+func preparar_nivel() -> void:
+	tiempo_nivel_actual = 0.0
+	parametros_actividad.clear()
 	codigo_generado = false
 	codigo_actividad_actual.clear()
+
 	
 func ir_a_menu_principal() -> void:
 	cambiar_estado(EstadoJuego.MENU_PRINCIPAL)
@@ -414,7 +432,8 @@ func _on_minijuego_resuelto(exito: bool) -> void:
 
 			await puerta_actual.abrir_puerta()
 
-			# Restaurar estado de pausa (normalmente estaba en true por MINIJUEGO)
+			if delay_puerta > 0.0:
+				await get_tree().create_timer(delay_puerta).timeout
 			get_tree().paused = estaba_pausado
 
 		# Ahora sí, pasar al siguiente nivel (esto disparará TRANSICION_NIVEL → CARGANDO)

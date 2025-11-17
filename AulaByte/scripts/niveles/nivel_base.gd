@@ -27,8 +27,7 @@ func _ready() -> void:
 	#-- estado global del juego
 	GameManager.cambiar_estado(GameManager.EstadoJuego.JUGANDO)
 	
-	#-- reiniciar valores del nivel
-	GameManager.reiniciar_nivel()
+	GameManager.preparar_nivel()
 	
 	#-- Mostrar HUD
 	hud.visible = true

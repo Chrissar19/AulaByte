@@ -19,12 +19,17 @@ func _ready() -> void:
 	
 	btn_menu_principal.pressed.connect(_volver_al_menu)
 	btn_reintentar.pressed.connect(_reintentar)
-	
-func _reintentar():
-	get_tree().change_scene_to_file("res://escenas/menu/Seleccion_personaje/seleccion_personaje.tscn")
-	
-func _volver_al_menu():
-	GameManager.reiniciar_vidas()
-	GameManager.set_tiempo(0.0)
-	GameManager.reiniciar_puntos()
-	get_tree().change_scene_to_file("res://escenas/menu/menu_principal.tscn")
+
+
+func _reintentar() -> void:
+	# Delega en el GameManager
+	if GameManager:
+		GameManager.reintentar_nivel_actual()
+
+
+func _volver_al_menu() -> void:
+	if GameManager:
+		GameManager.reiniciar_vidas()
+		GameManager.reiniciar_puntos()
+		GameManager.preparar_nivel()
+		GameManager.ir_a_menu_principal()
