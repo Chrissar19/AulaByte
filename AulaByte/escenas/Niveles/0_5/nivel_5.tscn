@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://cdwofmeuk46tn"]
+[gd_scene load_steps=31 format=4 uid="uid://cdwofmeuk46tn"]
 
 [ext_resource type="Script" uid="uid://dsyfork36rnyd" path="res://scripts/niveles/1_5/nivel_5.gd" id="1_5dphs"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_b6k6u"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://jgf3xqgo0gm5" path="res://escenas/objetos_interacciones/saltarin.tscn" id="19_5dphs"]
 [ext_resource type="PackedScene" uid="uid://bd3tvkqc3t15v" path="res://escenas/personajes/enemigos/monitor.tscn" id="20_5dphs"]
 [ext_resource type="PackedScene" uid="uid://fva12xfahbpb" path="res://escenas/objetos_interacciones/puerta_nivel.tscn" id="21_4pd8g"]
+[ext_resource type="PackedScene" uid="uid://o7nxc8ggkh43" path="res://escenas/personajes/Insuasty/Insuasty.tscn" id="21_pvtlr"]
 [ext_resource type="PackedScene" uid="uid://bva0i33hhjmev" path="res://escenas/habilidades/item_velocidad.tscn" id="23_x43lx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5rite"]
@@ -581,3 +582,6 @@ position = Vector2(1601, -196)
 
 [node name="ItemVelocidad" parent="." instance=ExtResource("23_x43lx")]
 position = Vector2(1384, 488)
+
+[node name="Insuasty" parent="." instance=ExtResource("21_pvtlr")]
+position = Vector2(306, 229)

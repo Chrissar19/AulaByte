@@ -5,6 +5,7 @@ class_name Actividad3
 @onready var lbl_intentos: Label = $UI/LblIntentos
 @onready var teclado_zona: TecladoZona = $TecladoZona
 @onready var contenedor_objetos: Control = $ContenedorObjetos
+@onready var btn_salir: Button = $UI/BtnSalir
 
 @export var intentos: int = 5
 var _total_objetos := 0
@@ -13,6 +14,9 @@ var _cerrado := false
 
 func _ready() -> void:
 	super._ready()
+	
+	btn_salir.pressed.connect(_on_btn_salir_pressed)
+	
 	lbl_ganar.visible = false
 	_contar_objetos()
 	_actualizar_intentos()
@@ -53,3 +57,6 @@ func configurar_con_parametros(parametros: Dictionary) -> void:
 	if parametros.has("intentos"):
 		intentos = max(1, int(parametros["intentos"]))
 		_actualizar_intentos()
+		
+func _on_btn_salir_pressed() -> void:
+	cancelar_actividad()

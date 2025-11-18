@@ -444,7 +444,20 @@ func _on_minijuego_resuelto(exito: bool) -> void:
 		if vidas > 0:
 			cambiar_estado(EstadoJuego.JUGANDO)
 
-
+func _on_minijuego_cancelado() -> void:
+	print("Minijuego cancelado por el jugador (sin perder vida)")
+	
+	# Cerrar la UI de la actividad si sigue viva
+	if ui_actividad:
+		ui_actividad.queue_free()
+		ui_actividad = null
+	
+	# Quitar la pausa
+	get_tree().paused = false
+	
+	# Volver al estado de juego normal si seguíamos en MINIJUEGO
+	if estado_actual == EstadoJuego.MINIJUEGO:
+		cambiar_estado(EstadoJuego.JUGANDO)
 
 
 func establecer_parametros_actividad(parametros: Dictionary) -> void:

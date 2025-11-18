@@ -5,6 +5,7 @@ class_name Actividad8
 @onready var piezas_root: Control = $Piezas
 @onready var lbl_tiempo: Label = $UI/LblTiempo
 @onready var t_nivel: Timer = Timer.new()
+@onready var btn_salir: Button = $UI/BtnSalir
 
 @export var tiempo_segundos: int = 90
 
@@ -14,6 +15,7 @@ var _total_piezas: int = 0
 func _ready() -> void:
 	# Llamar primero a la base
 	super._ready()
+	btn_salir.pressed.connect(_on_btn_salir_pressed)
 	
 	# Crear y configurar timer de cuenta regresiva
 	add_child(t_nivel)
@@ -136,3 +138,6 @@ func configurar_con_parametros(parametros: Dictionary) -> void:
 	if parametros.has("tiempo"):
 		tiempo_segundos = max(1, int(parametros["tiempo"]))
 		lbl_tiempo.text = "Tiempo: " + str(tiempo_segundos)
+
+func _on_btn_salir_pressed() -> void:
+	cancelar_actividad()

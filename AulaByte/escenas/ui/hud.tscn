@@ -22,25 +22,21 @@ theme_override_constants/margin_right = 10
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
+theme_override_constants/v_separation = 8
 columns = 4
 
-[node name="HBoxPuntos" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="LblNivel" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
-size_flags_vertical = 4
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/HBoxPuntos"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_1dl12")
-stretch_mode = 4
-
-[node name="lblPuntos" type="Label" parent="MarginContainer/HBoxContainer/HBoxPuntos" groups=["HUD"]]
-layout_mode = 2
+theme_override_colors/font_color = Color(0.32156864, 0.41960785, 1, 1)
 theme_override_fonts/font = ExtResource("3_6jpwg")
+text = "LV: 0"
+vertical_alignment = 1
 
 [node name="lblVidas" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.32156864, 0.41960785, 1, 1)
 theme_override_fonts/font = ExtResource("3_6jpwg")
 text = "Vidas:"
 horizontal_alignment = 2
@@ -57,12 +53,32 @@ alignment = 2
 
 [node name="lblTiempoRestante" type="Label" parent="MarginContainer/HBoxContainer/HBoxTiempo"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.32156864, 0.41960785, 1, 1)
 theme_override_fonts/font = ExtResource("3_6jpwg")
 text = "Tiempo"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="LblNivel" type="Label" parent="MarginContainer/HBoxContainer"]
+[node name="HBoxPuntos" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/HBoxPuntos"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_1dl12")
+stretch_mode = 4
+
+[node name="lblPuntos" type="Label" parent="MarginContainer/HBoxContainer/HBoxPuntos" groups=["HUD"]]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.32156864, 0.41960785, 1, 1)
 theme_override_fonts/font = ExtResource("3_6jpwg")
-text = "LV: 0"
+
+[node name="LblVacio" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Lblvacio2" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Lblvacio3" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2

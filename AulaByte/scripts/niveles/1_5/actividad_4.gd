@@ -14,6 +14,7 @@ enum Fase {INTRO1, INTRO2, ELECCION, RESULTADO}
 @onready var btn_reiniciar: Button = $UI/BtnReiniciar
 @onready var carta_carro: TextureRect = $Fondo/CartaCarro
 @onready var lbl_texto: Label = $UI/LblTexto
+@onready var btn_salir: Button = $UI/BtnSalir
 
 var _seleccion: CartaVolteable = null
 var _cartas: Array[CartaVolteable] = []
@@ -29,6 +30,7 @@ func _ready() -> void:
 		btn_aceptar.pressed.connect(_on_btn_aceptar_pressed)
 	if not btn_reiniciar.pressed.is_connected(_on_btn_reiniciar_pressed):
 		btn_reiniciar.pressed.connect(_on_btn_reiniciar_pressed)
+	btn_salir.pressed.connect(_on_btn_salir_pressed)
 		
 	_iniciar_secuencia()
 
@@ -122,3 +124,6 @@ func _on_btn_aceptar_pressed() -> void:
 
 func _on_btn_reiniciar_pressed() -> void:
 	_iniciar_secuencia()
+	
+func _on_btn_salir_pressed() -> void:
+	cancelar_actividad()

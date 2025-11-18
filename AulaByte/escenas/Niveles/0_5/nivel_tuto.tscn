@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://cqk82ixbb1sb0"]
+[gd_scene load_steps=30 format=4 uid="uid://cqk82ixbb1sb0"]
 
 [ext_resource type="Script" uid="uid://bl84y62aosyrq" path="res://scripts/niveles/nivel_tuto.gd" id="1_wwpym"]
 [ext_resource type="PackedScene" uid="uid://bf5jdpfiuhivo" path="res://escenas/Niveles/0_5/actividad_cero.tscn" id="2_rkb6m"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://mher13w4mave" path="res://escenas/trampas/zona_muerte.tscn" id="6_k7v1a"]
 [ext_resource type="PackedScene" uid="uid://cydd1023br6iv" path="res://escenas/objetos_interacciones/bits_moneda.tscn" id="10_wsaak"]
 [ext_resource type="PackedScene" uid="uid://dkm0atk4qawk3" path="res://escenas/objetos_interacciones/plataforma.tscn" id="11_cn7c0"]
+[ext_resource type="PackedScene" uid="uid://b7n32avjc7w4l" path="res://escenas/personajes/Jojoa/Jojoa.tscn" id="12_gm6qn"]
 [ext_resource type="PackedScene" uid="uid://dfr8bmdn5actv" path="res://escenas/personajes/enemigos/slime_azul.tscn" id="13_snr6v"]
 [ext_resource type="Texture2D" uid="uid://d3vh0l5545dux" path="res://recursos/imagenes/objetos/TeclasPC.png" id="15_7svhg"]
 [ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/Fuentes/Normal.ttf" id="16_6d66m"]
@@ -108,7 +109,7 @@ region = Rect2(463, 133, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1agg2"]
 atlas = ExtResource("15_7svhg")
-region = Rect2(528, 132, 33, 33)
+region = Rect2(529, 133, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_128oc"]
 atlas = ExtResource("15_7svhg")
@@ -116,7 +117,7 @@ region = Rect2(430, 133, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hqkji"]
 atlas = ExtResource("15_7svhg")
-region = Rect2(528, 132, 33, 33)
+region = Rect2(529, 133, 32, 32)
 
 [node name="NivelTuto" type="Node2D"]
 script = ExtResource("1_wwpym")
@@ -274,6 +275,9 @@ texture = SubResource("AtlasTexture_128oc")
 z_index = 4
 position = Vector2(739, -524)
 texture = SubResource("AtlasTexture_hqkji")
+
+[node name="Jojoa" parent="Avisos/lbSalto" instance=ExtResource("12_gm6qn")]
+position = Vector2(1196, 74)
 
 [node name="lbCaja" type="Label" parent="Avisos" groups=["Z_AVISOS"]]
 z_index = 2

@@ -13,7 +13,7 @@ func _ready() -> void:
 		btn_confirmar.pressed.connect(Callable(self, "_on_btn_confirmar_pressed"))
 
 func _on_btn_salir_pressed() -> void:
-	emit_signal("resuelto", false)
+	cancelar_actividad()
 
 func _on_btn_confirmar_pressed() -> void:
 	salida_texto.text = "Abriendo puerta"

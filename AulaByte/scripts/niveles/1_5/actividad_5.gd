@@ -31,6 +31,7 @@ const IMAGENES := [
 #-- CICLO DE VIDA
 #-----------------------------------------------------------
 func _ready() -> void:
+	super._ready()
 	lbl_texto.text = "Selecciona la carta correcta según la imagen."
 	_reunir_cartas()
 
@@ -38,6 +39,7 @@ func _ready() -> void:
 		btn_aceptar.pressed.connect(_on_btn_aceptar_pressed)
 	if not btn_reiniciar.pressed.is_connected(_on_btn_reiniciar_pressed):
 		btn_reiniciar.pressed.connect(_on_btn_reiniciar_pressed)
+	btn_salir.pressed.connect(_on_btn_salir_pressed)
 
 	_iniciar_secuencia()
 
@@ -111,3 +113,6 @@ func _on_sonido_carta_seleccionada(carta: CartaVolteable) -> void:
 		finalizar_exito()
 	else:
 		finalizar_fracaso()
+		
+func _on_btn_salir_pressed() -> void:
+	cancelar_actividad()

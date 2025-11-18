@@ -16,14 +16,12 @@ var _total_objetos: int = 0
 var _objeto_correcto: int = 0
 
 func _ready() -> void:
-	# Importante: llamar primero al _ready de la base
 	super._ready()
 	
 	lbl_ganar.visible = false
 	_conectar_carpetas()
 	_contar_objetos()
 	_actualizar_intentos()
-	# El GameManager ya pone process_mode = WHEN_PAUSED, no hace falta repetirlo aquí
 
 
 func _conectar_carpetas() -> void:

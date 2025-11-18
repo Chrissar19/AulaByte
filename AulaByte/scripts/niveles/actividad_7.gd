@@ -3,6 +3,12 @@ class_name Actividad7
 
 var asignaciones: Dictionary = {}
 var zonas_correctas := { "archivo": "archivo", "programa": "programa", "cpu": "cpu", "so": "so" }
+@onready var btn_salir: Button = $UI/BtnSalir
+
+func _ready() -> void:
+	super._ready()
+	
+	btn_salir.pressed.connect(_on_btn_salir_pressed)
 
 func _on_element_asigned(categoria: String, zona: String) -> void:
 	asignaciones[categoria] = zona
@@ -34,3 +40,6 @@ func _on_cpu_element_asigned(categoria: String, zona: String) -> void:
 
 func _on_so_element_asigned(categoria: String, zona: String) -> void:
 	_on_element_asigned(categoria, zona)
+	
+func _on_btn_salir_pressed() -> void:
+	cancelar_actividad()

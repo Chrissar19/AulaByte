@@ -12,6 +12,7 @@ class_name Actividad6
 @export var textura_mascara: Texture2D
 @export var paso_rot_deg: float = 15.0
 @export var tolerancia_rot_deg: float = 8.0
+@onready var btn_salir: Button = $UI/BtnSalir
 
 @export var mascara_dg: bool:
 	set(value):

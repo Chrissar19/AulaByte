@@ -95,92 +95,124 @@ offset_bottom = 128.0
 [node name="A" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
 layout_mode = 0
 offset_left = 48.0
+offset_top = 0.0
 offset_right = 64.0
+offset_bottom = 16.0
 
 [node name="TeclaArrastrable2" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
 layout_mode = 0
 offset_left = 112.0
+offset_top = 0.0
 offset_right = 128.0
+offset_bottom = 16.0
 categoria_correcta = "numeros"
 
 [node name="TeclaArrastrable3" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
 layout_mode = 0
 offset_left = 80.0
+offset_top = 0.0
 offset_right = 96.0
+offset_bottom = 16.0
 categoria_correcta = "letras"
 
 [node name="TeclaArrastrable4" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
 layout_mode = 0
 offset_left = 144.0
+offset_top = 0.0
 offset_right = 160.0
+offset_bottom = 16.0
 categoria_correcta = "letras"
 
 [node name="TeclaArrastrable" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
 layout_mode = 0
 offset_left = 176.0
+offset_top = 0.0
 offset_right = 192.0
+offset_bottom = 16.0
 categoria_correcta = "numeros"
 
 [node name="TeclaArrastrable5" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
 layout_mode = 0
 offset_left = 208.0
+offset_top = 0.0
 offset_right = 224.0
+offset_bottom = 16.0
 
 [node name="TeclaArrastrable6" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
 layout_mode = 0
 offset_left = 240.0
+offset_top = 0.0
 offset_right = 256.0
+offset_bottom = 16.0
 categoria_correcta = "numeros"
 
 [node name="TeclaArrastrable7" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
 layout_mode = 0
 offset_left = 272.0
+offset_top = 0.0
 offset_right = 288.0
+offset_bottom = 16.0
 categoria_correcta = "numeros"
 
 [node name="TeclaArrastrable8" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
 layout_mode = 0
 offset_left = 304.0
+offset_top = 0.0
 offset_right = 320.0
+offset_bottom = 16.0
 categoria_correcta = "numeros"
 
 [node name="TeclaArrastrable9" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
 layout_mode = 0
 offset_left = 336.0
+offset_top = 0.0
 offset_right = 352.0
+offset_bottom = 16.0
 categoria_correcta = "letras"
 
 [node name="TeclaArrastrable10" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
 layout_mode = 0
 offset_left = 368.0
+offset_top = 0.0
 offset_right = 384.0
+offset_bottom = 16.0
 
 [node name="TeclaArrastrable11" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
 layout_mode = 0
 offset_left = 400.0
+offset_top = 0.0
 offset_right = 416.0
+offset_bottom = 16.0
 
 [node name="TeclaArrastrable12" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
 layout_mode = 0
 offset_left = 432.0
+offset_top = 0.0
 offset_right = 448.0
+offset_bottom = 16.0
 categoria_correcta = "letras"
 
 [node name="TeclaArrastrable13" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
 layout_mode = 0
 offset_left = 464.00003
+offset_top = 0.0
 offset_right = 480.00003
+offset_bottom = 16.0
 categoria_correcta = "numeros"
 
 [node name="TeclaArrastrable14" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
 layout_mode = 0
 offset_left = 496.0
+offset_top = 0.0
 offset_right = 512.0
+offset_bottom = 16.0
 
 [node name="TeclaArrastrable15" parent="ContenedorObjetos" instance=ExtResource("5_orqk2")]
 layout_mode = 0
 offset_left = 528.0
+offset_top = 0.0
 offset_right = 544.0
+offset_bottom = 16.0
 categoria_correcta = "letras"
 
 [node name="UI" type="Control" parent="."]
