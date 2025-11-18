@@ -2,17 +2,19 @@ extends Node2D
 class_name NivelBase
 
 @onready var hud: CanvasLayer = $HUD
-
 @onready var punto_inicio: Node2D = get_node_or_null("PuntoInicio")
 
 #---------------------------------------------------------------------------------------------------
-#-- Variables para los limites de la camara
+# Variables para los límites de la cámara
+#---------------------------------------------------------------------------------------------------
 @export var camara_alto := -10000000
 @export var camara_izquierda := -10000000
 @export var camara_derecha := 10000000
 @export var camara_abajo := 10000000
+
 #---------------------------------------------------------------------------------------------------
-#-- Tiempo en el nivel
+# Tiempo en el nivel
+#---------------------------------------------------------------------------------------------------
 @export var cuenta_regresiva := 300.0
 @export var id_nivel: int = -1
 @export var actividad: PackedScene
@@ -20,22 +22,22 @@ class_name NivelBase
 func _ready() -> void:
 	_configurar_z_fondos()
 	
-	#-- ejecuta el nivel, para testeo
+	# Para testeo: si corres el nivel directo desde el editor
 	if id_nivel >= 0:
 		GameManager.nivel_actual = id_nivel
 
-	#-- estado global del juego
-	GameManager.cambiar_estado(GameManager.EstadoJuego.JUGANDO)
+	# Registrar checkpoint por seguridad (si entras directo al nivel)
+	if GameManager.has_method("registrar_checkpoint_nivel"):
+		GameManager.registrar_checkpoint_nivel()
 	
-	GameManager.preparar_nivel()
+	# Mostrar HUD
+	if hud:
+		hud.visible = true
 	
-	#-- Mostrar HUD
-	hud.visible = true
-	
-	#-- iniciar cuenta regresiva
+	# Iniciar la cuenta regresiva propia del nivel
 	GameManager.iniciar_tiempo(cuenta_regresiva)
 	
-	#-- cargar el personaje
+	# Cargar el personaje
 	_cargar_personaje()
 	
 func get_actividad() -> PackedScene:
@@ -47,9 +49,6 @@ func _cargar_personaje() -> void:
 	if info_personaje and info_personaje.archivo_escena:
 		var jugador = info_personaje.archivo_escena.instantiate()
 		
-		# ------------------------------------------------------------------
-		# BUSCAR PUNTO DE INICIO DEL NIVEL
-		# ------------------------------------------------------------------
 		var spawn_pos := Vector2.ZERO
 		
 		if punto_inicio:
@@ -66,12 +65,10 @@ func _cargar_personaje() -> void:
 		jugador.global_position = spawn_pos
 		add_child(jugador)
 		
-		#-- z_index
 		if jugador is CanvasItem:
 			jugador.z_index = ZCapas.JUGADOR
 			jugador.z_as_relative = false
 		
-		# Registrar en GameManager
 		GameManager.set_jugador(jugador)
 		
 		if "punto_reaparicion" in jugador:
@@ -105,7 +102,6 @@ func _configurar_z_fondos() -> void:
 	_set_z_por_grupo("Z_ENEMIGOS", ZCapas.ENEMIGOS)
 	_set_z_por_grupo("Z_FX_SOMBRA", ZCapas.FX_POLVO_SOMBRA)
 	_set_z_por_grupo("Z_FX_PARTICULAS", ZCapas.FX_PARTICULAS)
-	
 	
 func _set_z_por_grupo(nombre_grupo: String, valor_z: int) -> void:
 	for nodo in get_tree().get_nodes_in_group(nombre_grupo):

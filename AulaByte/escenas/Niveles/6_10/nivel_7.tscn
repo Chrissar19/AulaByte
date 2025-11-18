@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://sh3ta4dsapqi"]
+[gd_scene load_steps=24 format=4 uid="uid://sh3ta4dsapqi"]
 
 [ext_resource type="Script" uid="uid://bl84y62aosyrq" path="res://scripts/niveles/nivel_tuto.gd" id="1_phs6x"]
 [ext_resource type="PackedScene" uid="uid://cn2r1imis185w" path="res://escenas/Niveles/6_10/actividad_7.tscn" id="2_3kpqp"]
@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://dfr8bmdn5actv" path="res://escenas/personajes/enemigos/slime_azul.tscn" id="12_3dts0"]
 [ext_resource type="PackedScene" uid="uid://jgf3xqgo0gm5" path="res://escenas/objetos_interacciones/saltarin.tscn" id="13_mjgca"]
 [ext_resource type="PackedScene" uid="uid://bd3tvkqc3t15v" path="res://escenas/personajes/enemigos/monitor.tscn" id="13_y0leq"]
-[ext_resource type="PackedScene" uid="uid://57wg0kv8rcf6" path="res://escenas/personajes/Delgado/delgado.tscn" id="16_bbok4"]
 [ext_resource type="PackedScene" uid="uid://fva12xfahbpb" path="res://escenas/objetos_interacciones/puerta_nivel.tscn" id="16_kumsu"]
 [ext_resource type="PackedScene" uid="uid://bqyt6lm4d2ydo" path="res://escenas/objetos_interacciones/plataforma_sube.tscn" id="17_kumsu"]
 [ext_resource type="PackedScene" uid="uid://cl1bwd6mofchq" path="res://escenas/objetos_interacciones/item_vida.tscn" id="18_mtrbv"]
@@ -383,10 +382,6 @@ position = Vector2(715, -584)
 position = Vector2(679, -584)
 
 [node name="Plataformas" type="Node" parent="."]
-
-[node name="Delgado" parent="." instance=ExtResource("16_bbok4")]
-position = Vector2(-702, -566)
-collision_mask = 59
 
 [node name="Enemigos" type="Node" parent="."]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://bfh1cti7h62ot"]
+[gd_scene load_steps=27 format=4 uid="uid://bfh1cti7h62ot"]
 
 [ext_resource type="Script" uid="uid://cgrxbfui28s7n" path="res://scripts/niveles/1_5/nivel_3.gd" id="1_xgcft"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_ubjym"]
@@ -18,7 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://bd3tvkqc3t15v" path="res://escenas/personajes/enemigos/monitor.tscn" id="17_kxpsx"]
 [ext_resource type="PackedScene" uid="uid://cl1bwd6mofchq" path="res://escenas/objetos_interacciones/item_vida.tscn" id="18_6py4c"]
 [ext_resource type="PackedScene" uid="uid://db7j3q20ljag8" path="res://escenas/ui/punto_inicio.tscn" id="18_xgcft"]
-[ext_resource type="PackedScene" uid="uid://b7n32avjc7w4l" path="res://escenas/personajes/Jojoa/Jojoa.tscn" id="19_nfoi5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5rite"]
 texture = ExtResource("2_ubjym")
@@ -517,6 +516,3 @@ position = Vector2(1349, 98)
 
 [node name="PuntoInicio" parent="." instance=ExtResource("18_xgcft")]
 position = Vector2(-73, 204)
-
-[node name="Jojoa" parent="." instance=ExtResource("19_nfoi5")]
-position = Vector2(1376, -289)

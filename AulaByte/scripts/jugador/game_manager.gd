@@ -1,4 +1,3 @@
-#GameManager
 extends Node
 
 # ====================================================================
@@ -39,7 +38,7 @@ const NOMBRES_ESTADOS := [
 	"MINIJUEGO",
 	"TRANSICION_NIVEL",
 	"GAME_OVER",
-    "CREDITOS"
+	"CREDITOS"
 ]
 
 var estado_actual: int = EstadoJuego.MENU_PRINCIPAL
@@ -61,7 +60,11 @@ var vidas: int = VIDAS_INICIALES
 # Puntos
 var puntos: int = 0
 
-#-- causa de muerte
+# Checkpoint por nivel
+var puntos_base_nivel: int = 0
+var nivel_en_progreso: int = -1
+
+# Causa de muerte
 var causa_muerte: String = ""
 
 # Tiempo
@@ -74,8 +77,6 @@ var delay_puerta: float = 1.5
 # =====================================================================
 # Actividades por nivel (PackedScene)
 # =====================================================================
-
-
 var parametros_actividad: Dictionary = {}
 var codigo_actividad_actual: Array[int] = []
 var codigo_generado: bool = false
@@ -87,7 +88,6 @@ var ui_actividad: CanvasLayer = null
 var nivel_actual: int = 0
 var nivel_precargado: PackedScene = null
 
-
 func _ready() -> void:
 	connect("actividad_superada", Callable(self, "_on_actividad_superada"))
 	
@@ -95,9 +95,10 @@ func _ready() -> void:
 		connect("estado_cambiado", Callable(AudioManager, "_on_estado_cambiado"))
 	
 	cambiar_estado(estado_actual)
+
 # -----------------------------------------------------------------------
 func _process(delta: float) -> void:
-	#-- El tiempo contara solo si el juego esta corriendo
+	# El tiempo cuenta solo si el juego está corriendo
 	if estado_actual == EstadoJuego.JUGANDO and tiempo_activo:
 		tiempo_nivel_actual += delta
 		if tiempo_restante > 0.0:
@@ -114,6 +115,7 @@ func _process(delta: float) -> void:
 			causa_muerte = "Se agoto el tiempo"
 			emit_signal("tiempo_terminado")
 			cambiar_estado(EstadoJuego.GAME_OVER)
+
 # -----------------------------------------------------------------------
 # Máquina de estados
 # -----------------------------------------------------------------------
@@ -122,7 +124,7 @@ func cambiar_estado(nuevo_estado: int) -> void:
 	estado_anterior = estado_actual
 	estado_actual = nuevo_estado
 	_entrar_estado(estado_actual)
-	# Emitir nombre legible del estado
+	
 	var nombre := "DESCONOCIDO"
 	if estado_actual >= 0 and estado_actual < NOMBRES_ESTADOS.size():
 		nombre = NOMBRES_ESTADOS[estado_actual]
@@ -136,30 +138,38 @@ func _entrar_estado(estado: int) -> void:
 			tiempo_activo = false
 			tiempo_nivel_actual = 0.0
 			_ultimo_segundos = -1
+			
 		EstadoJuego.SELECCION_PERSONAJE:
 			print("Entrando a estado SELECCION_PERSONAJE")
 			get_tree().paused = false
 			tiempo_activo = false
+			
 		EstadoJuego.JUGANDO:
 			print("Entrando a estado JUGANDO")
 			get_tree().paused = false
 			tiempo_activo = true
+			
 		EstadoJuego.PAUSA:
 			print("Entrando a estado PAUSA")
 			get_tree().paused = true
+			
 		EstadoJuego.MINIJUEGO:
 			print("Entrando a estado MINIJUEGO")
 			get_tree().paused = true
+			
 		EstadoJuego.CARGANDO:
 			print("Entrando a estado CARGANDO")
 			precargar_nivel()
 			pantalla_de_carga()
+			
 		EstadoJuego.TRANSICION_NIVEL:
 			print("Entrando a estado TRANSICION_NIVEL")
 			transicion_siguiente_nivel()
+			
 		EstadoJuego.GAME_OVER:
 			print("Entrando a estado GAME_OVER")
 			get_tree().change_scene_to_file("res://escenas/menu/menu_perder.tscn")
+			
 		EstadoJuego.CREDITOS:
 			print("Entrando a estado CREDITOS")
 			get_tree().change_scene_to_file("res://escenas/menu/creditos.tscn")
@@ -172,9 +182,18 @@ func _salir_estado(estado: int) -> void:
 				ui_actividad.queue_free()
 				ui_actividad = null
 			get_tree().paused = false
-			
+
 func get_causa_muerte() -> String:
 	return causa_muerte
+
+# -----------------------------------------------------------------------
+# Checkpoint por nivel
+# -----------------------------------------------------------------------
+func registrar_checkpoint_nivel() -> void:
+	if nivel_en_progreso != nivel_actual:
+		puntos_base_nivel = puntos
+		nivel_en_progreso = nivel_actual
+		print("[GM] Checkpoint nivel ", nivel_actual, " = ", puntos_base_nivel)
 
 # -----------------------------------------------------------------------
 # Conexión con el jugador
@@ -184,7 +203,6 @@ func set_jugador(jugador: Node) -> void:
 	if not jugador_ref:
 		return
 
-	#-- conecta a señales del jugador (usamos Callable para claridad)
 	if jugador_ref.has_signal("jugador_gana_vida"):
 		jugador_ref.connect("jugador_gana_vida", Callable(self, "_on_jugador_gana_vida"))
 	if jugador_ref.has_signal("jugador_pierde_vida"):
@@ -200,7 +218,7 @@ func set_jugador(jugador: Node) -> void:
 # -----------------------------------------------------------------------
 func _on_jugador_gana_vida(vidas_actuales: int) -> void:
 	vidas = vidas_actuales
-	emit_signal("vida_actualizada", vidas) # FIX: señal consistente con la declarada
+	emit_signal("vida_actualizada", vidas)
 
 func _on_jugador_pierde_vida(dmg: int) -> void:
 	print("GameManager: señal recibida, daño =", dmg)
@@ -225,7 +243,8 @@ func get_personaje() -> personajeInfo:
 # -----------------------------------------------------------------------
 func agregar_puntos(cantidad: int) -> void:
 	puntos += cantidad
-	emit_signal("jugador_gana_puntos", puntos) # estoy enviando total; renombra señal si quieres enviar solo 'cantidad'
+	print("[GM] agregar_puntos: +", cantidad, " → ", puntos)
+	emit_signal("jugador_gana_puntos", puntos)
 
 func reiniciar_puntos() -> void:
 	puntos = 0
@@ -270,24 +289,21 @@ func get_vidas() -> int:
 # -----------------------------------------------------------------------
 func aplicar_powerup_velocidad(duracion: float, factor: float) -> void:
 	if jugador_ref == null:
-		print("No se pudo aplicar power-up de velocidad: jugador no asignado (jugador_ref es null).")
+		print("No se pudo aplicar power-up de velocidad: jugador no asignado.")
 		return
-
 	if jugador_ref.has_method("activar_habilidad_velocidad"):
 		jugador_ref.activar_habilidad_velocidad(duracion, factor)
 	else:
-		print("No se pudo aplicar power-up de velocidad: el jugador no tiene el método activar_habilidad_velocidad().")
+		print("El jugador no tiene el método activar_habilidad_velocidad().")
 
 func aplicar_powerup_salto(duracion: float, factor: float) -> void:
 	if jugador_ref == null:
-		print("No se pudo aplicar power-up de salto: jugador no asignado (jugador_ref es null).")
+		print("No se pudo aplicar power-up de salto: jugador no asignado.")
 		return
-
 	if jugador_ref.has_method("activar_habilidad_salto"):
 		jugador_ref.activar_habilidad_salto(duracion, factor)
 	else:
-		print("No se pudo aplicar power-up de salto: el jugador no tiene el método activar_habilidad_salto().")
-
+		print("El jugador no tiene el método activar_habilidad_salto().")
 
 # -----------------------------------------------------------------------
 # Tiempo
@@ -322,8 +338,14 @@ func _on_actividad_superada() -> void:
 	siguiente_nivel()
 
 func cargar_nivel_actual() -> void:
-	tiempo_nivel_actual = 0.0
-	iniciar_tiempo(90.0)
+	print("[GM] cargar_nivel_actual → nivel ", nivel_actual, " puntos = ", puntos)
+	
+	# Registrar checkpoint solo la primera vez que entramos a este nivel
+	registrar_checkpoint_nivel()
+	
+	# Resetear SOLO cosas de nivel (no puntos, no vidas)
+	preparar_nivel()
+	
 	var nivel: PackedScene = get_nivel_actual()
 	if nivel:
 		get_tree().change_scene_to_packed(nivel)
@@ -348,16 +370,14 @@ func pantalla_de_carga() -> void:
 	get_tree().change_scene_to_file("res://escenas/ui/pantalla_carga.tscn")
 	
 func reintentar_nivel_actual() -> void:
-	preparar_nivel()
+	# Solo reiniciamos vidas y restauramos puntos al checkpoint del nivel
 	reiniciar_vidas()
+	puntos = puntos_base_nivel
+	emit_signal("jugador_gana_puntos", puntos)
+	print("[GM] Reintentar nivel ", nivel_actual, " → puntos restaurados a ", puntos_base_nivel)
 	
-	var nivel := get_nivel_actual()
-	if nivel:
-		get_tree().change_scene_to_packed(nivel)
-		cambiar_estado(EstadoJuego.JUGANDO)
-	else:
-		push_error("GameManager: no se pudo recargar el nivel actual (nivel es null)")
-
+	# Volver a cargar el mismo nivel
+	cargar_nivel_actual()
 
 func reiniciar_nivel() -> void:
 	reiniciar_puntos()
@@ -372,17 +392,16 @@ func preparar_nivel() -> void:
 	codigo_actividad_actual.clear()
 	causa_muerte = ""
 
-	
 func ir_a_menu_principal() -> void:
+	nivel_en_progreso = -1
+	puntos_base_nivel = 0
 	cambiar_estado(EstadoJuego.MENU_PRINCIPAL)
 	get_tree().change_scene_to_file("res://escenas/menu/menu_principal.tscn")
-	
 
 # =====================================================================
 # ACTIVIDAD / MINIJUEGO
 # =====================================================================
 func solicitar_minijuego() -> void:
-	# Cambiamos estado (pausa el juego)
 	cambiar_estado(EstadoJuego.MINIJUEGO)
 	
 	var escena := get_tree().current_scene
@@ -399,7 +418,6 @@ func solicitar_minijuego() -> void:
 		emit_signal("actividad_superada")
 		return
 		
-	#-- Crear contenedor y cargar la actividad
 	ui_actividad = CanvasLayer.new()
 	ui_actividad.layer = 15
 	get_tree().root.add_child(ui_actividad)
@@ -426,7 +444,6 @@ func solicitar_minijuego() -> void:
 		actividad.connect("cancelar", Callable(self, "_on_minijuego_cancelado"))
 
 func _on_minijuego_resuelto(exito: bool) -> void:
-	# Elimina el CanvasLayer que contenía la actividad (si existe)
 	if ui_actividad:
 		ui_actividad.queue_free()
 		ui_actividad = null
@@ -435,7 +452,6 @@ func _on_minijuego_resuelto(exito: bool) -> void:
 		print("prueba superada")
 
 		if puerta_actual and is_instance_valid(puerta_actual):
-
 			var estaba_pausado := get_tree().paused
 			get_tree().paused = false
 
@@ -445,7 +461,6 @@ func _on_minijuego_resuelto(exito: bool) -> void:
 				await get_tree().create_timer(delay_puerta).timeout
 			get_tree().paused = estaba_pausado
 
-		# Ahora sí, pasar al siguiente nivel (esto disparará TRANSICION_NIVEL → CARGANDO)
 		siguiente_nivel()
 	else:
 		print("Prueba fallida, INTENTALO DE NUEVO")
@@ -456,25 +471,18 @@ func _on_minijuego_resuelto(exito: bool) -> void:
 func _on_minijuego_cancelado() -> void:
 	print("Minijuego cancelado por el jugador (sin perder vida)")
 	
-	# Cerrar la UI de la actividad si sigue viva
 	if ui_actividad:
 		ui_actividad.queue_free()
 		ui_actividad = null
 	
-	# Quitar la pausa
 	get_tree().paused = false
 	
-	# Volver al estado de juego normal si seguíamos en MINIJUEGO
 	if estado_actual == EstadoJuego.MINIJUEGO:
 		cambiar_estado(EstadoJuego.JUGANDO)
 
-
 func establecer_parametros_actividad(parametros: Dictionary) -> void:
-	#-- Guarda el codigo del nivel
 	if parametros.has("codigo"):
 		var codigo = parametros["codigo"]
-		
-		#-- Guarda una copia para reintentos
 		if codigo is Array:
 			codigo_actividad_actual = codigo.duplicate()
 		else:
@@ -483,7 +491,6 @@ func establecer_parametros_actividad(parametros: Dictionary) -> void:
 		parametros_actividad = parametros
 		return
 	
-	#-- Si nivel no genera un codigo lo crea
 	if codigo_actividad_actual.is_empty():
 		var codigo_gen = generar_codigo()
 		parametros["codigo"] = codigo_gen
@@ -491,7 +498,6 @@ func establecer_parametros_actividad(parametros: Dictionary) -> void:
 		parametros["codigo"] = codigo_actividad_actual
 	
 	parametros_actividad = parametros
-
 
 func generar_codigo(longitud: int = 4) -> Array[int]:
 	if not codigo_generado or codigo_actividad_actual.is_empty() or codigo_actividad_actual.size() != longitud:
@@ -506,7 +512,15 @@ func generar_codigo(longitud: int = 4) -> Array[int]:
 		print("Codigo generado para el nivel: ", codigo_actividad_actual)
 	return codigo_actividad_actual
 
-
 func terminar_juego() -> void:
 	print("AQUI VAN LOS CREDITOS")
 	cambiar_estado(EstadoJuego.CREDITOS)
+	
+	
+func _unhandled_input(event: InputEvent) -> void:
+	if estado_actual != EstadoJuego.JUGANDO:
+		return
+		
+	if event.is_action_pressed("reiniciar_nivel"):
+		print("[GM] Reinicio manual de nivel por tecla (R)")
+		reintentar_nivel_actual()
