@@ -628,4 +628,4 @@ position = Vector2(-536, -311)
 position = Vector2(508, 123)
 
 [node name="Jojoa" parent="." instance=ExtResource("20_yx3j8")]
-position = Vector2(416, -600)
+position = Vector2(-105, -152)

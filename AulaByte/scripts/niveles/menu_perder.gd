@@ -1,35 +1,47 @@
 extends Control
+class_name MenuPerder
 
-#-- Referencias de nodos de UI (Se resuelven en _ready) ---
 @onready var lbl_puntos: Label = $VBoxContainer/lblPuntos
-@onready var btn_reintentar: Button = $VBoxContainer/HBoxContainer/btnReintentar
-@onready var btn_menu_principal: Button = $VBoxContainer/HBoxContainer/btnMenuPrincipal
 @onready var lbl_causa_muerte: Label = $VBoxContainer/lblCausaMuerte
-
-#-- Datos internos
-var lista_info : Array[Resource] =[] # <- PersonaInfo
-var indice_seleccionado : int = -1 # <- Ningun personaje seleccionado
+@onready var btn_reintentar: Button = $VBoxContainer/HBoxContainer/btnReintentar
+@onready var btn_menu_principal: Button = $VBoxContainer/HBoxContainer/BtnMenuPrincipal
 
 func _ready() -> void:
-	lbl_causa_muerte.text = " "
-	if GameManager and GameManager.get_puntos() != null:
+	# Por si acaso venimos de un estado pausado
+	get_tree().paused = false
+
+	# Mostrar puntos y causa de muerte desde el GameManager
+	if GameManager:
 		lbl_puntos.text = "Puntos: " + str(GameManager.get_puntos())
+
+		if GameManager.has_method("get_causa_muerte"):
+			var causa := GameManager.get_causa_muerte()
+			# Evitar texto vacío raro
+			if causa == "":
+				causa = "Has perdido la partida"
+			lbl_causa_muerte.text = causa
+		else:
+			lbl_causa_muerte.text = "Has perdido la partida"
 	else:
 		lbl_puntos.text = "Puntos: 0"
-	
-	btn_menu_principal.pressed.connect(_volver_al_menu)
-	btn_reintentar.pressed.connect(_reintentar)
+		lbl_causa_muerte.text = "Has perdido la partida"
 
+	btn_reintentar.pressed.connect(_on_btn_reintentar_pressed)
+	btn_menu_principal.pressed.connect(_on_btn_menu_principal_pressed)
 
-func _reintentar() -> void:
-	# Delega en el GameManager
+func _on_btn_reintentar_pressed() -> void:
 	if GameManager:
 		GameManager.reintentar_nivel_actual()
+		# Este método ya:
+		# - prepara el nivel
+		# - reinicia vidas
+		# - hace change_scene al nivel actual
+		# - cambia estado a JUGANDO
 
-
-func _volver_al_menu() -> void:
+func _on_btn_menu_principal_pressed() -> void:
 	if GameManager:
-		GameManager.reiniciar_vidas()
+		# Reset general y volver al menú principal usando SOLO el GameManager
 		GameManager.reiniciar_puntos()
+		GameManager.reiniciar_vidas()
 		GameManager.preparar_nivel()
 		GameManager.ir_a_menu_principal()

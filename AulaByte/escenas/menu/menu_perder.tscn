@@ -156,7 +156,7 @@ theme_override_fonts/font = ExtResource("4_w0ifg")
 text = "  "
 horizontal_alignment = 1
 
-[node name="btnMenuPrincipal" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="BtnMenuPrincipal" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/icon_normal_color = Color(0.435294, 0.607843, 0.505882, 0.784314)
 theme_override_colors/icon_pressed_color = Color(0.0588235, 0.537255, 0.701961, 0.862745)

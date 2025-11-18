@@ -61,6 +61,9 @@ var vidas: int = VIDAS_INICIALES
 # Puntos
 var puntos: int = 0
 
+#-- causa de muerte
+var causa_muerte: String = ""
+
 # Tiempo
 var tiempo_nivel_actual: float = 0.0
 var tiempo_restante: float = 90.0
@@ -108,6 +111,7 @@ func _process(delta: float) -> void:
 		# Si se agotó el tiempo:
 		if tiempo_restante <= 0.0 and tiempo_activo:
 			tiempo_activo = false
+			causa_muerte = "Se agoto el tiempo"
 			emit_signal("tiempo_terminado")
 			cambiar_estado(EstadoJuego.GAME_OVER)
 # -----------------------------------------------------------------------
@@ -168,6 +172,9 @@ func _salir_estado(estado: int) -> void:
 				ui_actividad.queue_free()
 				ui_actividad = null
 			get_tree().paused = false
+			
+func get_causa_muerte() -> String:
+	return causa_muerte
 
 # -----------------------------------------------------------------------
 # Conexión con el jugador
@@ -238,6 +245,7 @@ func perder_vida() -> void:
 		if vidas <= 0:
 			vidas = 0
 			print("HAS MUERTO (GameManager)")
+			causa_muerte = "Te has quedado sin vidas"
 			emit_signal("jugador_muerto")
 			cambiar_estado(EstadoJuego.GAME_OVER)
 
@@ -362,6 +370,7 @@ func preparar_nivel() -> void:
 	parametros_actividad.clear()
 	codigo_generado = false
 	codigo_actividad_actual.clear()
+	causa_muerte = ""
 
 	
 func ir_a_menu_principal() -> void:
@@ -476,8 +485,8 @@ func establecer_parametros_actividad(parametros: Dictionary) -> void:
 	
 	#-- Si nivel no genera un codigo lo crea
 	if codigo_actividad_actual.is_empty():
-		var codigo_generado = generar_codigo()
-		parametros["codigo"] = codigo_generado
+		var codigo_gen = generar_codigo()
+		parametros["codigo"] = codigo_gen
 	else:
 		parametros["codigo"] = codigo_actividad_actual
 	

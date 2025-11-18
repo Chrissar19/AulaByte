@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://drv57hd11gbhw"
-path="res://.godot/imported/neon-pulse-30s-307999.wav-b128303f9750e78e8dfbe02fb2464def.sample"
+path="res://.godot/imported/neon-pulse-30s-307999.wav-a1d26301ac587909d804210f3381db16.sample"
 
 [deps]
 
-source_file="res://recursos/Audio/musica/neon-pulse-30s-307999.wav"
-dest_files=["res://.godot/imported/neon-pulse-30s-307999.wav-b128303f9750e78e8dfbe02fb2464def.sample"]
+source_file="res://recursos/Audio/Musica/neon-pulse-30s-307999.wav"
+dest_files=["res://.godot/imported/neon-pulse-30s-307999.wav-a1d26301ac587909d804210f3381db16.sample"]
 
 [params]
 
