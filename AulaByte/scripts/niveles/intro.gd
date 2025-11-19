@@ -40,7 +40,7 @@ func _ready() -> void:
 	mostrar_escena()
 
 	var musica_intro := preload("res://recursos/audio/Musica/tic-toc-suspenso-7312.wav")
-	MusicaGlobal.reproducir(musica_intro, true)
+	AudioManager.reproducir(musica_intro, true)
 
 # --- Mostrar escena actual (imagen, texto y audio) ---
 func mostrar_escena() -> void:
@@ -94,5 +94,5 @@ func _al_escribir_texto() -> void:
 
 # --- Transición al menú principal ---
 func cambiar_a_menu_principal() -> void:
-	MusicaGlobal.detener()
+	AudioManager.detener()
 	get_tree().change_scene_to_file("res://escenas/menu/menu_principal.tscn")

@@ -22,8 +22,8 @@ boot_splash/minimum_display_time=2000
 
 [autoload]
 
-MusicaGlobal="*res://scripts/musica_global.gd"
 GameManager="*res://scripts/jugador/game_manager.gd"
+AudioManager="*res://scripts/audio_manager.gd"
 
 [display]
 

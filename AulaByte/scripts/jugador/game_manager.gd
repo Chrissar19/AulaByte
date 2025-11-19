@@ -96,8 +96,11 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	connect("actividad_superada", Callable(self, "_on_actividad_superada"))
 	
-	if MusicaGlobal != null:
-		connect("estado_cambiado", Callable(AudioManager, "_on_estado_cambiado"))
+	if typeof(AudioManager) != TYPE_NIL:
+		if not is_connected("estado_cambiado", Callable(AudioManager, "_on_estado_cambiado")):
+			connect("estado_cambiado", Callable(AudioManager, "_on_estado_cambiado"))
+		else:
+			push_warning("AudioManager no está configurado como Autoload o el nombre no coincide.")
 	
 	cambiar_estado(estado_actual)
 
