@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://dxied1qotrtr5"
-path="res://.godot/imported/8-bit-console-from-my-childhood-301286 (1).mp3-0917cb212a884b78ba0dfc8d9f254f62.mp3str"
+path="res://.godot/imported/8-bit-console-from-my-childhood-301286 (1).mp3-2e82b4e5d6afc723f2121e86e44bc827.mp3str"
 
 [deps]
 
-source_file="res://recursos/Audio/Musica/8-bit-console-from-my-childhood-301286 (1).mp3"
-dest_files=["res://.godot/imported/8-bit-console-from-my-childhood-301286 (1).mp3-0917cb212a884b78ba0dfc8d9f254f62.mp3str"]
+source_file="res://recursos/Audio/musica/8-bit-console-from-my-childhood-301286 (1).mp3"
+dest_files=["res://.godot/imported/8-bit-console-from-my-childhood-301286 (1).mp3-2e82b4e5d6afc723f2121e86e44bc827.mp3str"]
 
 [params]
 

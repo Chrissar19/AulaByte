@@ -105,10 +105,20 @@ func _on_reset() -> void:
 
 func _on_volver() -> void:
 	_guardar_config()
-	# Notifica al GameManager (autoload) si quieres trackear estado
+	
 	if has_node("/root/GameManager"):
-		get_node("/root/GameManager").call("cambiar_estado", get_node("/root/GameManager").EstadoJuego.MENU_PRINCIPAL)
-	get_tree().change_scene_to_file(RUTA_MENU)
+		var gm = get_node("/root/GameManager")
+		
+		if "volver_a_nivel_desde_opciones" in gm and gm.volver_a_nivel_desde_opciones:
+			gm.volver_a_nivel_desde_opciones = false
+			gm.reintentar_nivel_actual()
+			return
+		else:
+			gm.cambiar_estado(gm.EstadoJuego.MENU_PRINCIPAL)
+			get_tree().change_scene_to_file(RUTA_MENU)
+	else:
+		get_tree().change_scene_to_file(RUTA_MENU)
+
 
 # ───────────── config ─────────────
 func _cargar_y_aplicar_config() -> void:

@@ -43,6 +43,10 @@ const NOMBRES_ESTADOS := [
 
 var estado_actual: int = EstadoJuego.MENU_PRINCIPAL
 var estado_anterior: int
+var volver_a_nivel_desde_opciones: bool = false 
+
+const RUTA_MENU_PAUSA := "res://escenas/ui/menu_pausa.tscn"
+var escena_menu_pausa: PackedScene = preload(RUTA_MENU_PAUSA)
 
 # ====================================================================
 # Variables globales
@@ -89,6 +93,7 @@ var nivel_actual: int = 0
 var nivel_precargado: PackedScene = null
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	connect("actividad_superada", Callable(self, "_on_actividad_superada"))
 	
 	if MusicaGlobal != null:
@@ -194,6 +199,35 @@ func registrar_checkpoint_nivel() -> void:
 		puntos_base_nivel = puntos
 		nivel_en_progreso = nivel_actual
 		print("[GM] Checkpoint nivel ", nivel_actual, " = ", puntos_base_nivel)
+		
+# -----------------------------------------------------------------------
+# PAUSA
+# -----------------------------------------------------------------------
+func pausar_juego() -> void:
+	if estado_actual != EstadoJuego.JUGANDO:
+		return
+	
+	cambiar_estado(EstadoJuego.PAUSA)
+	
+	if escena_menu_pausa:
+		var menu_pausa = escena_menu_pausa.instantiate()
+		
+		# Para que siga funcionando mientras el árbol está en pausa
+		if menu_pausa is CanvasItem:
+			menu_pausa.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+		
+		get_tree().root.add_child(menu_pausa)
+	else:
+		push_warning("No se asignó 'escena_menu_pausa' en GameManager.")
+
+
+func reanudar_juego() -> void:
+	if estado_actual != EstadoJuego.PAUSA:
+		return
+	
+	# Volver al estado de juego normal
+	cambiar_estado(EstadoJuego.JUGANDO)
+
 
 # -----------------------------------------------------------------------
 # Conexión con el jugador
@@ -518,6 +552,19 @@ func terminar_juego() -> void:
 	
 	
 func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		if estado_actual == EstadoJuego.JUGANDO:
+			# ESC → Pausar y abrir menú
+			pausar_juego()
+			return
+		elif estado_actual == EstadoJuego.PAUSA:
+			# ESC → Cerrar menú de pausa (si existe) y reanudar
+			for child in get_tree().root.get_children():
+				if child is MenuPausa:
+					child.queue_free()
+			reanudar_juego()
+			return
+	
 	if estado_actual != EstadoJuego.JUGANDO:
 		return
 		

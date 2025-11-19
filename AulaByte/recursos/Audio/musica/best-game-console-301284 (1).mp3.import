@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://smx4ipfi7d5v"
-path="res://.godot/imported/best-game-console-301284 (1).mp3-8a06e520092a67584a4f54b429ad2a70.mp3str"
+path="res://.godot/imported/best-game-console-301284 (1).mp3-cb11703325a34bbfd20d93760e0c5ebc.mp3str"
 
 [deps]
 
-source_file="res://recursos/Audio/Musica/best-game-console-301284 (1).mp3"
-dest_files=["res://.godot/imported/best-game-console-301284 (1).mp3-8a06e520092a67584a4f54b429ad2a70.mp3str"]
+source_file="res://recursos/Audio/musica/best-game-console-301284 (1).mp3"
+dest_files=["res://.godot/imported/best-game-console-301284 (1).mp3-cb11703325a34bbfd20d93760e0c5ebc.mp3str"]
 
 [params]
 

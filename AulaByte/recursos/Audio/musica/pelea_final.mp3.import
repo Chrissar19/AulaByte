@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://dvapyg5gw7j2c"
-path="res://.godot/imported/pelea_final.mp3-c868e65b565bc102f27e0ec0cb040b00.mp3str"
+path="res://.godot/imported/pelea_final.mp3-3a898e3d52465cb9699506b84885a265.mp3str"
 
 [deps]
 
-source_file="res://recursos/Audio/Musica/pelea_final.mp3"
-dest_files=["res://.godot/imported/pelea_final.mp3-c868e65b565bc102f27e0ec0cb040b00.mp3str"]
+source_file="res://recursos/Audio/musica/pelea_final.mp3"
+dest_files=["res://.godot/imported/pelea_final.mp3-3a898e3d52465cb9699506b84885a265.mp3str"]
 
 [params]
 
