@@ -9,6 +9,7 @@ signal actividad_fallida
 @onready var lbl_intentos: Label = $UI/LblIntentos
 @onready var contenedor_objetos: Control = $ContenedorObjetos
 @onready var contenedor_carpetas: Control = $ContenedorCarpetas
+@onready var btn_salir: Button = $UI/BtnSalir
 
 @export var intentos: int = 5
 
@@ -17,6 +18,8 @@ var _objeto_correcto: int = 0
 
 func _ready() -> void:
 	super._ready()
+	
+	btn_salir.pressed.connect(_on_btn_salir_pressed)
 	
 	lbl_ganar.visible = false
 	_conectar_carpetas()
@@ -100,3 +103,6 @@ func _bloquear_objetos_arrastrables() -> void:
 func configurar_con_parametros(parametros: Dictionary) -> void:
 	if parametros.has("intentos"):
 		intentos = max(1, int(parametros["intentos"]))
+		
+func _on_btn_salir_pressed() -> void:
+	cancelar_actividad()

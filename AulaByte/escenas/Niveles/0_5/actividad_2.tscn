@@ -153,43 +153,6 @@ position = Vector2(320, 180)
 scale = Vector2(2.857143, 3.2142856)
 texture = ExtResource("2_c4gbd")
 
-[node name="UI" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 200.0
-offset_top = 264.0
-offset_right = 440.0
-offset_bottom = 304.0
-
-[node name="LblIntentos" type="Label" parent="UI"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -30.0
-offset_right = 30.0
-offset_bottom = 23.0
-grow_horizontal = 2
-theme_override_fonts/font = ExtResource("3_j6ush")
-text = "text"
-vertical_alignment = 1
-
-[node name="LblGanar" type="Label" parent="UI"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -38.0
-offset_top = -23.0
-offset_right = 38.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_fonts/font = ExtResource("3_j6ush")
-text = "text2"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="ContenedorCarpetas" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -441,3 +404,49 @@ texture = SubResource("AtlasTexture_c8dis")
 stretch_mode = 5
 script = ExtResource("7_teo8n")
 correct_category = "no-hardware"
+
+[node name="UI" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 200.0
+offset_top = 264.0
+offset_right = 440.0
+offset_bottom = 304.0
+
+[node name="LblIntentos" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.0
+offset_right = 30.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_j6ush")
+text = "text"
+vertical_alignment = 1
+
+[node name="LblGanar" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -38.0
+offset_top = -23.0
+offset_right = 38.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_j6ush")
+text = "text2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnSalir" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 44.0
+offset_right = 164.0
+offset_bottom = 68.0
+theme_override_fonts/font = ExtResource("3_j6ush")
+text = "SALIR"

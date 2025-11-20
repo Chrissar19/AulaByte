@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://dv2rc1dwmstnh"]
+[gd_scene load_steps=30 format=4 uid="uid://dv2rc1dwmstnh"]
 
 [ext_resource type="Script" uid="uid://cmyl0o5rtivup" path="res://scripts/niveles/1_5/nivel_2.gd" id="1_38uqx"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_ekcxq"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dfr8bmdn5actv" path="res://escenas/personajes/enemigos/slime_azul.tscn" id="12_aa8u6"]
 [ext_resource type="PackedScene" uid="uid://db7j3q20ljag8" path="res://escenas/ui/punto_inicio.tscn" id="17_1mak7"]
 [ext_resource type="PackedScene" uid="uid://bva0i33hhjmev" path="res://escenas/habilidades/item_velocidad.tscn" id="18_1mak7"]
+[ext_resource type="PackedScene" uid="uid://57wg0kv8rcf6" path="res://escenas/personajes/Delgado/delgado.tscn" id="18_ny6w3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5rite"]
 texture = ExtResource("2_ekcxq")
@@ -553,3 +554,6 @@ position = Vector2(672, -64)
 
 [node name="PuntoInicio" parent="." instance=ExtResource("17_1mak7")]
 position = Vector2(128, 315)
+
+[node name="Delgado" parent="." instance=ExtResource("18_ny6w3")]
+position = Vector2(1712, -680)

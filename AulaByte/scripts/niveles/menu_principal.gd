@@ -5,7 +5,7 @@ const RUTA_INTRO     = "res://escenas/intro/Intro.tscn"
 const RUTA_SELECCION = "res://escenas/menu/Seleccion_personaje/seleccion_personaje.tscn"
 const RUTA_OPCIONES  = "res://escenas/menu/opciones_menu.tscn"
 const RUTA_NUBE_SCN  = "res://escenas/menu/nubes.tscn"
-const RUTA_MUSICA_MENU = "res://recursos/Audio/musica/neon-pulse-30s-307999.wav"
+const RUTA_MUSICA_MENU = "res://recursos/Audio/musica/MenuPrincipal.wav"
 
 @onready var fondo: Control         = $Fondo
 @onready var btn_jugar: Button      = $VBoxContainer/BtnJugar

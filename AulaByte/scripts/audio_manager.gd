@@ -13,18 +13,18 @@ var _rng := RandomNumberGenerator.new()
 # =============================================================================
 #  CONFIG MÚSICA POR ESTADO
 # =============================================================================
-const MUSICA_MENU: AudioStream      = preload("res://recursos/Audio/musica/menu_principal.mp3")
-const MUSICA_SELECCION: AudioStream = preload("res://recursos/Audio/musica/menu_principal.mp3")
-const MUSICA_MINIJUEGO: AudioStream = preload("res://recursos/Audio/musica/intro.mp3")
+const MUSICA_MENU: AudioStream      = preload("res://recursos/Audio/musica/MenuPrincipal.wav")
+const MUSICA_SELECCION: AudioStream = preload("res://recursos/Audio/musica/seleccion.mp3")
+const MUSICA_MINIJUEGO: AudioStream = preload("res://recursos/Audio/musica/actividad.mp3")
 const MUSICA_GAME_OVER: AudioStream = preload("res://recursos/Audio/efectos/Error.wav")
-const MUSICA_CREDITOS: AudioStream  = preload("res://recursos/Audio/musica/menu_principal.mp3")
+const MUSICA_CREDITOS: AudioStream  = preload("res://recursos/Audio/musica/creditos.mp3")
 
 # =============================================================================
 #  CONFIG SFX GLOBALES
 # =============================================================================
 const SFX_CLICK: AudioStream        = preload("res://recursos/Audio/efectos/click.wav")
 const SFX_CONFIRMAR: AudioStream    = preload("res://recursos/Audio/efectos/click.wav")
-const SFX_ERROR: AudioStream        = preload("res://recursos/Audio/musica/hurt.wav")
+const SFX_ERROR: AudioStream        = preload("res://recursos/Audio/efectos/hurt.wav")
 const SFX_GANAR: AudioStream        = preload("res://recursos/Audio/efectos/Vida.wav")
 const SFX_PERDER_VIDA: AudioStream  = preload("res://recursos/Audio/efectos/Vida.wav")
 
@@ -87,9 +87,10 @@ func cargar_pistas_nivel() -> void:
 	if not pistas_nivel.is_empty():
 		return
 	pistas_nivel = [
-		preload("res://recursos/Audio/musica/time_for_adventure.mp3"),
-		preload("res://recursos/Audio/musica/pelea_final.mp3"),
-		preload("res://recursos/Audio/musica/neon-pulse-30s-307999.wav")
+		preload("res://recursos/Audio/musica/nivel4.mp3"),
+		preload("res://recursos/Audio/musica/nivel1.mp3"),
+		preload("res://recursos/Audio/musica/nivel2.mp3"),
+		preload("res://recursos/Audio/musica/nivel3.mp3")
 	]
 
 # =============================================================================
