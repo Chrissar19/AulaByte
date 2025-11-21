@@ -1,6 +1,7 @@
-[gd_scene load_steps=28 format=4 uid="uid://cqk82ixbb1sb0"]
+[gd_scene load_steps=29 format=4 uid="uid://cqk82ixbb1sb0"]
 
 [ext_resource type="Script" uid="uid://bl84y62aosyrq" path="res://scripts/niveles/nivel_tuto.gd" id="1_wwpym"]
+[ext_resource type="PackedScene" uid="uid://bf5jdpfiuhivo" path="res://escenas/Niveles/0_5/actividad_cero.tscn" id="2_hqkji"]
 [ext_resource type="TileSet" uid="uid://dbxx1jhbs275d" path="res://datos/pisos.tres" id="3_7dyjp"]
 [ext_resource type="TileSet" uid="uid://bp5na5pgkpgt2" path="res://datos/decoraciones.tres" id="4_gm6qn"]
 [ext_resource type="TileSet" uid="uid://i5ue5h42c5s8" path="res://datos/fondos.tres" id="5_4xxjf"]
@@ -119,6 +120,12 @@ region = Rect2(529, 133, 32, 32)
 
 [node name="NivelTuto" type="Node2D"]
 script = ExtResource("1_wwpym")
+camara_alto = -730
+camara_izquierda = -826
+camara_derecha = 930
+camara_abajo = 303
+id_nivel = 0
+actividad = ExtResource("2_hqkji")
 
 [node name="Tiles" type="TileMapLayer" parent="."]
 
@@ -286,7 +293,7 @@ z_index = 1
 position = Vector2(808, 96)
 
 [node name="ZonaMuerte" parent="." instance=ExtResource("6_k7v1a")]
-position = Vector2(0, 256)
+position = Vector2(1, 351)
 collision_layer = 64
 collision_mask = 12
 

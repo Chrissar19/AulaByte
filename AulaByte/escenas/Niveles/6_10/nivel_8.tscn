@@ -1202,6 +1202,10 @@ _data = {
 
 [node name="NivelOcho" type="Node2D"]
 script = ExtResource("1_mba44")
+camara_alto = -1090
+camara_izquierda = -1016
+camara_derecha = 3935
+camara_abajo = -170
 cuenta_regresiva = 360.0
 id_nivel = 8
 actividad = ExtResource("2_jn5oj")
