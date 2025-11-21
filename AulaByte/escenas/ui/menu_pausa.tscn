@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=3 uid="uid://omchjti0qivp"]
+
+[ext_resource type="Script" uid="uid://c35cl8map6272" path="res://scripts/menu_pausa.gd" id="1_78awn"]
+[ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="2_fy3xb"]
+
+[node name="MenuPausa" type="CanvasLayer"]
+layer = 20
+script = ExtResource("1_78awn")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -96.0
+offset_top = 32.0
+offset_right = 104.0
+offset_bottom = -104.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="LblPausa" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 184.0
+offset_bottom = 48.0
+theme_override_fonts/font = ExtResource("2_fy3xb")
+theme_override_font_sizes/font_size = 32
+text = "pausa"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -71.0
+offset_top = -152.0
+offset_right = 75.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="BtnContinuar" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fy3xb")
+text = "Continuar"
+
+[node name="BtnOpciones" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fy3xb")
+text = "Opciones"
+
+[node name="BtnMenu" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fy3xb")
+text = "Menu"
+
+[node name="BtnSalir" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fy3xb")
+text = "Salir"

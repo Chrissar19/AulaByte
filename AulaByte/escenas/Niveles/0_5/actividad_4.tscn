@@ -166,12 +166,13 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -94.0
-offset_top = -24.0
+offset_top = -32.0
 offset_right = -10.0
+offset_bottom = -8.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("9_0d7u5")
-text = "Salir
+text = "SALIR
 "
 
 [node name="LblTexto" type="Label" parent="UI"]
@@ -208,9 +209,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -43.0
+offset_left = -59.0
 offset_top = -40.0
-offset_right = 43.0
+offset_right = 81.0
 offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 0

@@ -17,13 +17,13 @@ const VEL_HORIZONTAL := 150.0
 const FUERZA_SALTO := -420.0
 const FUERZA_EMPUJE := 500.0
 const TIEMPO_DE_EMPUJE := 0.15
+const COYOTE_TIME := 0.15
 
 @export var nombre: String = ""
 @export var punto_reaparicion: Vector2
 
 var equipo := "No"
 var intocable := false
-var tocando_suelo := false
 var ha_saltado := false
 
 # Retroceso (daño)
@@ -46,6 +46,7 @@ var multiplicador_velocidad: float = 1.0
 var boost_salto_activo: bool = false
 var tiempo_boost_salto: float = 0.0
 var multiplicador_salto: float = 1.0
+var tiempo_coyote: float = 0.0
 
 # ============================================================================
 # NODOS HIJO
@@ -55,7 +56,6 @@ var multiplicador_salto: float = 1.0
 @onready var animated_sprite_player: AnimatedSprite2D = $AnimatedSprite2D
 @onready var empuje_ray: RayCast2D = $EmpujeRay
 @onready var sonido_salto: AudioStreamPlayer = $SonidoSalto
-@onready var timer_coyote_time: Timer = $TimerCoyoteTime
 @onready var area_daño: Area2D = $AreaDaño
 
 const StateClasses := {
@@ -102,13 +102,16 @@ func _ready() -> void:
 # PHYSICS PROCESS
 # ============================================================================
 func _physics_process(delta: float) -> void:
+	# --- COYOTE TIME: gestionar ventana después de salir del suelo ---
 	if is_on_floor():
-		tocando_suelo = true
+		# Siempre que toca suelo, reseteamos ventana de coyote
+		tiempo_coyote = COYOTE_TIME
 		ha_saltado = false
-		
-	# -- HABILIDADES
+	else:
+		# Si está en el aire, el tiempo de coyote se va agotando
+		tiempo_coyote = max(tiempo_coyote - delta, 0.0)
 	
-	#-- velocidad
+	# -- HABILIDADES
 	if boost_activo:
 		tiempo_boost_restante -= delta
 		if tiempo_boost_restante <= 0.0:
@@ -116,16 +119,14 @@ func _physics_process(delta: float) -> void:
 			tiempo_boost_restante = 0.0
 			multiplicador_velocidad = 1.0
 			animated_sprite_player.modulate = Color(1, 1, 1)
-			
-	#
+	
 	if boost_salto_activo:
 		tiempo_boost_salto -= delta
 		if tiempo_boost_salto <= 0.0:
 			boost_salto_activo = false
 			tiempo_boost_salto = 0.0
 			multiplicador_salto = 1.0
-	# ---------------------------------
-		
+
 	# --- Retroceso (cuando recibe daño) ---
 	if esta_en_retroceso:
 		contador_retroceso -= delta
@@ -134,15 +135,12 @@ func _physics_process(delta: float) -> void:
 			modulate.a = 0.5
 		move_and_slide()
 		return
-		
+
 	# Movimiento normal
 	estaba_empujando = esta_empujando
 	tiempo_empujando = max(0, tiempo_empujando - delta)
 	esta_empujando = tiempo_empujando > 0
-		
-	if not is_on_floor() and not tocando_suelo:
-		timer_coyote_time.start()
-		tocando_suelo = true
+
 	gravedad(delta)
 
 	if Input.is_action_just_pressed("saltar") and saltar_ahora():
@@ -151,19 +149,20 @@ func _physics_process(delta: float) -> void:
 	input_dir = Input.get_axis("izquierda", "derecha")
 	actualizar_direccion(input_dir)
 	detectar_empuje()
-	
+
 	if current_state:
 		current_state.actualizar_fisicas(delta)
-		
+
 	reproducir_animacion()
 	move_and_slide()
-	
+
 	# Detectar transición de salto a idle/caminar
 	if is_on_floor() and current_state and current_state.name == "saltar":
 		if abs(velocity.x) > 0.1:
 			cambiar_estado("caminar")
 		else:
 			cambiar_estado("idle")
+
 
 # ============================================================================
 # MOVIMIENTO Y SALTO
@@ -191,19 +190,21 @@ func salto() -> void:
 	velocity.y = fuerza_salto
 	sonido_salto.play()
 
-	
-func saltar_ahora():
+func saltar_ahora() -> bool:
+	# Evitar saltos dobles mientras dure el mismo salto
+	if ha_saltado:
+		return false
+
 	if is_on_floor():
-		if ha_saltado: 
-			return false
 		ha_saltado = true
 		return true
-	elif not timer_coyote_time.is_stopped():
+
+	if tiempo_coyote > 0.0:
 		ha_saltado = true
+		tiempo_coyote = 0.0
 		return true
-		
-func _on_timer_coyote_time_timeout() -> void:
-	pass
+
+	return false
 
 # ============================================================================
 # DIRECCIÓN Y EMPUJE

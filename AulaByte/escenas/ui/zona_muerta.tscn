@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d2w5ygti68lle"]
 
 [ext_resource type="Script" uid="uid://b28ydkssdkqu1" path="res://scripts/zona_muerte.gd" id="1_6kesg"]
-[ext_resource type="AudioStream" uid="uid://coypurc8fta1a" path="res://recursos/Audio/musica/hurt.wav" id="2_fgjks"]
+[ext_resource type="AudioStream" uid="uid://coypurc8fta1a" path="res://recursos/Audio/efectos/hurt.wav" id="2_fgjks"]
 
 [node name="ZonaMuerta" type="Area2D"]
 collision_mask = 2

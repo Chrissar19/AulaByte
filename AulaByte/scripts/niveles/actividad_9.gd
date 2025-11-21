@@ -1,4 +1,5 @@
 extends ActividadBase
+class_name Actividad9
 
 @onready var ram: ImagenArrastrable2 = $ZonaJuego/ContenedorObjetos/Ram
 @onready var video: ImagenArrastrable2 = $ZonaJuego/ContenedorObjetos/Video
@@ -13,6 +14,7 @@ extends ActividadBase
 @onready var audifonos: ImagenArrastrable2 = $ZonaJuego/ContenedorObjetos/Audifonos
 @onready var disco_duro: ImagenArrastrable2 = $ZonaJuego/ContenedorObjetos/DiscoDuro
 @onready var procesador: ImagenArrastrable2 = $ZonaJuego/ContenedorObjetos/Procesador
+@onready var btn_salir: Button = $UI/BtnSalir
 
 var zonas_correctas: Dictionary = {
 	"texto": ["ArchivosDigitales"],
@@ -33,7 +35,9 @@ var zonas_correctas: Dictionary = {
 var asignaciones: Dictionary = {}
 
 func _ready() -> void:
-	pass
+	super._ready()
+	
+	btn_salir.pressed.connect(_on_btn_salir_pressed)
 
 func on_element_asigned(element: String, categorias: Array[String], zona: String, image: ImagenArrastrable2) -> void:
 	if not zonas_correctas.has(element):
@@ -116,3 +120,6 @@ func _on_impresora_element_asigned(categorias: Array[String], zona: String) -> v
 
 func _on_audifonos_element_asigned(categorias: Array[String], zona: String) -> void:
 	on_element_asigned("audifonos", categorias, zona, audifonos)
+
+func _on_btn_salir_pressed() -> void:
+	cancelar_actividad()

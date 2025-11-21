@@ -1,7 +1,7 @@
 [gd_scene load_steps=29 format=4 uid="uid://eeffx2i0jisl"]
 
 [ext_resource type="Script" uid="uid://bl84y62aosyrq" path="res://scripts/niveles/nivel_tuto.gd" id="1_n8ujg"]
-[ext_resource type="PackedScene" uid="uid://c24u4nrmigkg8" path="res://escenas/Niveles/0_5/minijuego_2.tscn" id="2_xeet3"]
+[ext_resource type="PackedScene" uid="uid://c24u4nrmigkg8" path="res://escenas/Niveles/0_5/actividad_2.tscn" id="2_xeet3"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="3_y7wja"]
 [ext_resource type="Texture2D" uid="uid://dr3bkmou477j5" path="res://recursos/imagenes/TileSets/FondoSheet.png" id="4_3j1ky"]
 [ext_resource type="TileSet" uid="uid://bnfbycv7excbw" path="res://recursos/imagenes/objetos/decoraciones_fondo.tres" id="5_g348p"]

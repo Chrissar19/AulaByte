@@ -9,7 +9,6 @@ func enter(jugador: Node) -> void:
 func actualizar_fisicas(delta: float) -> void:
 	var dir = estado.input_dir
 
-	# Usar SIEMPRE la función del jugador (aquí entra el boost de velocidad)
 	estado.mov_horizontal(dir)
 	
 	# --- Cambios de estado ---

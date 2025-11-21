@@ -31,15 +31,20 @@
 [ext_resource type="Texture2D" uid="uid://6skvsjl2uui2" path="res://recursos/imagenes/niveles/nivel8/fila-5-columna-4.png" id="27_suirn"]
 [ext_resource type="Texture2D" uid="uid://kf67lebk001p" path="res://recursos/imagenes/niveles/nivel8/fila-5-columna-5.png" id="28_1pmcy"]
 
-[node name="Actividad8" type="Node2D"]
-script = ExtResource("1_ob2y3")
-
-[node name="Fondo" type="TextureRect" parent="."]
+[node name="Actividad8" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 640.0
-offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ob2y3")
+
+[node name="Fondo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -47,7 +52,6 @@ size_flags_vertical = 3
 texture = ExtResource("2_2jmfk")
 
 [node name="ZonaRompeC" type="Control" parent="."]
-layout_mode = 3
 anchors_preset = 0
 offset_right = 320.0
 offset_bottom = 256.0
@@ -278,7 +282,6 @@ texture = ExtResource("3_kbwjy")
 stretch_mode = 2
 
 [node name="Piezas" type="Control" parent="."]
-layout_mode = 3
 anchors_preset = 0
 offset_left = 320.0
 offset_top = 16.0
@@ -559,7 +562,7 @@ script = ExtResource("12_0ba7y")
 posicion_correcta = Vector2(252, 232)
 
 [node name="UI" type="Control" parent="."]
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -570,28 +573,19 @@ grow_vertical = 0
 [node name="LblTiempo" type="Label" parent="UI"]
 layout_mode = 0
 offset_left = 248.0
-offset_top = 24.0
+offset_top = -344.0
 offset_right = 394.0
-offset_bottom = 47.0
+offset_bottom = -321.0
 theme_override_fonts/font = ExtResource("13_wd7hl")
 text = "TIEMPO: 00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BtnReiniciar" type="Button" parent="UI"]
-layout_mode = 0
-offset_left = 24.0
-offset_top = 296.0
-offset_right = 164.0
-offset_bottom = 320.0
-theme_override_fonts/font = ExtResource("13_wd7hl")
-text = "REINICIAR"
-
 [node name="BtnSalir" type="Button" parent="UI"]
 layout_mode = 0
 offset_left = 528.0
-offset_top = 296.0
+offset_top = -56.0
 offset_right = 612.0
-offset_bottom = 320.0
+offset_bottom = -32.0
 theme_override_fonts/font = ExtResource("13_wd7hl")
 text = "SALIR"

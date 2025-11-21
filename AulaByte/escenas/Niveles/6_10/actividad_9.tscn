@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://c15g4a65fipqn" path="res://recursos/imagenes/niveles/nivel9/actividad9/impresora.png" id="17_rk04y"]
 [ext_resource type="Texture2D" uid="uid://doqpatdiifqba" path="res://recursos/imagenes/niveles/nivel9/actividad9/audifonos.png" id="18_igk3y"]
 
-[node name="actividad_noveno_nivel" type="Control"]
+[node name="Actividad9" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

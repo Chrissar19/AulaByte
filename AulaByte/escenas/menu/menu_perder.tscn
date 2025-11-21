@@ -140,9 +140,9 @@ alignment = 1
 
 [node name="btnReintentar" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/icon_hover_pressed_color = Color(0, 0.176471, 0.552941, 1)
-theme_override_colors/icon_hover_color = Color(0.0588235, 0.537255, 0.701961, 0.862745)
 theme_override_colors/icon_normal_color = Color(0.437243, 0.606341, 0.505302, 0.784314)
+theme_override_colors/icon_hover_color = Color(0.0588235, 0.537255, 0.701961, 0.862745)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0.176471, 0.552941, 1)
 theme_override_fonts/font = ExtResource("3_ax1rx")
 action_mode = 0
 text = "Reintentar"
@@ -156,19 +156,17 @@ theme_override_fonts/font = ExtResource("4_w0ifg")
 text = "  "
 horizontal_alignment = 1
 
-[node name="btnMenuPrincipal" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="BtnMenuPrincipal" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/icon_hover_color = Color(0, 0.176471, 0.552941, 0.862745)
-theme_override_colors/icon_pressed_color = Color(0.0588235, 0.537255, 0.701961, 0.862745)
 theme_override_colors/icon_normal_color = Color(0.435294, 0.607843, 0.505882, 0.784314)
+theme_override_colors/icon_pressed_color = Color(0.0588235, 0.537255, 0.701961, 0.862745)
+theme_override_colors/icon_hover_color = Color(0, 0.176471, 0.552941, 0.862745)
 theme_override_fonts/font = ExtResource("3_ax1rx")
 text = "Menu principal"
 icon_alignment = 1
 
 [node name="AudioClick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_eo13w")
-bus = &"Efectos sonido"
 
 [node name="AudioCambio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_kk00m")
-bus = &"Efectos sonido"
