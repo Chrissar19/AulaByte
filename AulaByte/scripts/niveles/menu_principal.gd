@@ -1,10 +1,10 @@
 extends Control
 class_name MenuPrincipal
 
-const RUTA_INTRO     = "res://escenas/intro/Intro.tscn"
-const RUTA_SELECCION = "res://escenas/menu/Seleccion_personaje/seleccion_personaje.tscn"
-const RUTA_OPCIONES  = "res://escenas/menu/opciones_menu.tscn"
-const RUTA_NUBE_SCN  = "res://escenas/menu/nubes.tscn"
+const RUTA_INTRO       = "res://escenas/intro/Intro.tscn"
+const RUTA_SELECCION   = "res://escenas/menu/Seleccion_personaje/seleccion_personaje.tscn"
+const RUTA_OPCIONES    = "res://escenas/menu/opciones_menu.tscn"
+const RUTA_NUBE_SCN    = "res://escenas/menu/nubes.tscn"
 const RUTA_MUSICA_MENU = "res://recursos/Audio/musica/MenuPrincipal.wav"
 
 @onready var fondo: Control         = $Fondo
@@ -19,7 +19,6 @@ const RUTA_MUSICA_MENU = "res://recursos/Audio/musica/MenuPrincipal.wav"
 var escena_nube = preload(RUTA_NUBE_SCN)
 var musica_menu = preload(RUTA_MUSICA_MENU)
 
-var jugador_activo: bool = false
 var rng := RandomNumberGenerator.new()
 
 func _ready() -> void:
@@ -36,7 +35,7 @@ func _ready() -> void:
 		var ver = ProjectSettings.get_setting("application/config/version", "v0.1")
 		lbl_version.text = str(ver)
 
-	# Conectar botones por código (más robusto que desde el editor)
+	# Conectar botones
 	if btn_jugar:
 		btn_jugar.pressed.connect(_on_jugar_pressed)
 	if btn_opciones:
@@ -55,6 +54,7 @@ func _ready() -> void:
 	# Timers
 	if temporizador_espera:
 		temporizador_espera.timeout.connect(_on_tem_espera_timeout)
+		# IMPORTANTE: solo se inicia una vez; que tenga wait_time = 45 en el editor
 		temporizador_espera.start()
 	if temporizador_nubes:
 		temporizador_nubes.timeout.connect(_on_tem_nubes_timeout)
@@ -63,13 +63,6 @@ func _ready() -> void:
 	# Nubes iniciales
 	_crear_nube_normal()
 	_crear_nube_fondo()
-
-func _unhandled_input(event: InputEvent) -> void:
-	# Cualquier interacción reinicia el temporizador de inactividad
-	if event is InputEventKey or event is InputEventMouseButton or event is InputEventMouseMotion or event is InputEventJoypadButton:
-		jugador_activo = true
-		if temporizador_espera:
-			temporizador_espera.start()
 
 # ---------------------------------------------------------
 # NUBES
@@ -116,28 +109,30 @@ func _on_tem_nubes_timeout() -> void:
 		_crear_nube_fondo()
 
 # ---------------------------------------------------------
-# INACTIVIDAD → INTRO
+# ESPERA FIJA → INTRO
 # ---------------------------------------------------------
 func _on_tem_espera_timeout() -> void:
-	if not jugador_activo:
-		print("[MenuPrincipal] Inactividad → Intro")
-		get_tree().change_scene_to_file(RUTA_INTRO)
-	else:
-		jugador_activo = false
-		if temporizador_espera:
-			temporizador_espera.start()
+	print("[MenuPrincipal] Tiempo límite alcanzado → Intro")
+	# Si aún seguimos en el menú (no se ha pulsado nada importante), pasamos a la intro
+	get_tree().change_scene_to_file(RUTA_INTRO)
 
 # ---------------------------------------------------------
 # BOTONES
 # ---------------------------------------------------------
+func _detener_temporizador_intro() -> void:
+	if temporizador_espera and temporizador_espera.is_stopped() == false:
+		temporizador_espera.stop()
+
 func _on_salir_pressed() -> void:
 	print("[MenuPrincipal] BtnSalir PRESSED")
+	_detener_temporizador_intro()
 	if has_node("/root/Musica"):
 		get_node("/root/Musica").call("detener")
 	get_tree().quit()
 
 func _on_opciones_pressed() -> void:
 	print("[MenuPrincipal] BtnOpciones PRESSED")
+	_detener_temporizador_intro()
 	if ResourceLoader.exists(RUTA_OPCIONES):
 		get_tree().change_scene_to_file(RUTA_OPCIONES)
 	else:
@@ -145,9 +140,6 @@ func _on_opciones_pressed() -> void:
 
 func _on_jugar_pressed() -> void:
 	print("[MenuPrincipal] BtnJugar PRESSED")
-
-	if temporizador_espera:
-		temporizador_espera.stop()
-
+	_detener_temporizador_intro()
 	GameManager.cambiar_estado(GameManager.EstadoJuego.SELECCION_PERSONAJE)
 	get_tree().change_scene_to_file(RUTA_SELECCION)
