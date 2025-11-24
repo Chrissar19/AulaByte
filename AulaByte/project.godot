@@ -23,7 +23,7 @@ boot_splash/minimum_display_time=2000
 [autoload]
 
 GameManager="*res://scripts/jugador/game_manager.gd"
-AudioManager="*res://scripts/audio_manager.gd"
+AudioManager="*res://scripts/autoloads/audio_manager.gd"
 
 [display]
 
