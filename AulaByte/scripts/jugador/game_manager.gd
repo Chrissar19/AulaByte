@@ -556,7 +556,7 @@ func terminar_juego() -> void:
 	
 	
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("menu"):
 		if estado_actual == EstadoJuego.JUGANDO:
 			# ESC → Pausar y abrir menú
 			pausar_juego()

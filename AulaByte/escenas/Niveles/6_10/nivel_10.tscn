@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://dcrxsoxpi4gwj"]
+[gd_scene load_steps=46 format=4 uid="uid://dcrxsoxpi4gwj"]
 
 [ext_resource type="Script" uid="uid://wpxeklo0qb7c" path="res://scripts/niveles/6-10/nivel_10.gd" id="1_2mcb4"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_t5ix2"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://cl1bwd6mofchq" path="res://escenas/objetos_interacciones/item_vida.tscn" id="18_7ywhe"]
 [ext_resource type="PackedScene" uid="uid://b555un3jiwkeg" path="res://escenas/Niveles/6_10/interruptor.tscn" id="18_ne6iv"]
 [ext_resource type="PackedScene" uid="uid://tkh75sw4tr42" path="res://escenas/habilidades/item_salto.tscn" id="19_5t652"]
+[ext_resource type="PackedScene" uid="uid://eoemjxt3hrtf" path="res://escenas/ui/control_movil.tscn" id="19_iqdo6"]
 [ext_resource type="PackedScene" uid="uid://db7j3q20ljag8" path="res://escenas/ui/punto_inicio.tscn" id="20_iqdo6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5rite"]
@@ -1886,6 +1887,8 @@ color_inter = "amarilla"
 [node name="InterruptorD" parent="Interruptores" instance=ExtResource("18_ne6iv")]
 position = Vector2(3000.6372, -463.77945)
 id = "D"
+
+[node name="ControlMovil" parent="Interruptores/InterruptorD" instance=ExtResource("19_iqdo6")]
 
 [node name="Interruptor" parent="Interruptores" instance=ExtResource("18_ne6iv")]
 position = Vector2(2101, -1147)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://cl561n5x8dihd"]
+[gd_scene load_steps=22 format=4 uid="uid://cl561n5x8dihd"]
 
 [ext_resource type="Script" uid="uid://bl84y62aosyrq" path="res://scripts/niveles/nivel_tuto.gd" id="1_73hpg"]
 [ext_resource type="TileSet" uid="uid://dbxx1jhbs275d" path="res://datos/pisos.tres" id="2_jjbt2"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://tkh75sw4tr42" path="res://escenas/habilidades/item_salto.tscn" id="15_vc3jh"]
 [ext_resource type="PackedScene" uid="uid://fva12xfahbpb" path="res://escenas/objetos_interacciones/puerta_nivel.tscn" id="16_rns2b"]
 [ext_resource type="PackedScene" uid="uid://cl1bwd6mofchq" path="res://escenas/objetos_interacciones/item_vida.tscn" id="18_cyj44"]
+[ext_resource type="PackedScene" uid="uid://eoemjxt3hrtf" path="res://escenas/ui/control_movil.tscn" id="18_x0uxo"]
 
 [sub_resource type="Animation" id="Animation_73hpg"]
 length = 3.0
@@ -194,3 +195,5 @@ position = Vector2(143, 205)
 
 [node name="PuertaNivel" parent="." instance=ExtResource("16_rns2b")]
 position = Vector2(1931, -1060)
+
+[node name="ControlMovil" parent="." instance=ExtResource("18_x0uxo")]

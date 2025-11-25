@@ -1,0 +1,58 @@
+[gd_scene load_steps=13 format=3 uid="uid://eoemjxt3hrtf"]
+
+[ext_resource type="Texture2D" uid="uid://d0qe6c1lr80xa" path="res://recursos/imagenes/controles/telefono/derecha_normal.png" id="1_4plp2"]
+[ext_resource type="Texture2D" uid="uid://1my4i2qafl8r" path="res://recursos/imagenes/controles/telefono/derecha_pressed.png" id="2_yi0yj"]
+[ext_resource type="Texture2D" uid="uid://yn7fihoy6hdo" path="res://recursos/imagenes/controles/telefono/izquierda_normal.png" id="3_u2wc3"]
+[ext_resource type="Texture2D" uid="uid://byoinkmus3ndk" path="res://recursos/imagenes/controles/telefono/izquierda_pressed.png" id="4_kcjqi"]
+[ext_resource type="Texture2D" uid="uid://c83bcyqmpqb60" path="res://recursos/imagenes/controles/telefono/Arriba_normal.png" id="5_ymoec"]
+[ext_resource type="Texture2D" uid="uid://c17cpn5ldme4y" path="res://recursos/imagenes/controles/telefono/arriba_pressed.png" id="6_tarvp"]
+[ext_resource type="Texture2D" uid="uid://kfqvahblg6l4" path="res://recursos/imagenes/controles/telefono/mano_normal.png" id="7_nhyso"]
+[ext_resource type="Texture2D" uid="uid://cqvlgd8ugvogc" path="res://recursos/imagenes/controles/telefono/mano_pressed.png" id="8_cqdca"]
+[ext_resource type="Texture2D" uid="uid://dggmnkwpnnauv" path="res://recursos/imagenes/controles/telefono/menu_normal.png" id="9_c7sht"]
+[ext_resource type="Texture2D" uid="uid://ckbla1lrl1sii" path="res://recursos/imagenes/controles/telefono/menu_pressed.png" id="10_o3guw"]
+[ext_resource type="Texture2D" uid="uid://78g3ki3n8441" path="res://recursos/imagenes/controles/telefono/reiniciar.png" id="11_u2wc3"]
+[ext_resource type="Texture2D" uid="uid://b1l4fqc35tbpr" path="res://recursos/imagenes/controles/telefono/reiniciar_pressed.png" id="12_kcjqi"]
+
+[node name="ControlMovil" type="CanvasLayer"]
+
+[node name="Derecha" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.78431374)
+position = Vector2(128, 272)
+texture_normal = ExtResource("1_4plp2")
+texture_pressed = ExtResource("2_yi0yj")
+action = "derecha"
+
+[node name="Izquierda" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.78431374)
+position = Vector2(32, 272)
+texture_normal = ExtResource("3_u2wc3")
+texture_pressed = ExtResource("4_kcjqi")
+action = "izquierda"
+
+[node name="Salto" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.78431374)
+position = Vector2(448, 272)
+texture_normal = ExtResource("5_ymoec")
+texture_pressed = ExtResource("6_tarvp")
+action = "saltar"
+
+[node name="Accion" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.78431374)
+position = Vector2(544, 272)
+texture_normal = ExtResource("7_nhyso")
+texture_pressed = ExtResource("8_cqdca")
+action = "Accion"
+
+[node name="Menu" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.78431374)
+position = Vector2(256, 16)
+texture_normal = ExtResource("9_c7sht")
+texture_pressed = ExtResource("10_o3guw")
+action = "menu"
+
+[node name="Reset" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.78431374)
+position = Vector2(568, 8)
+texture_normal = ExtResource("11_u2wc3")
+texture_pressed = ExtResource("12_kcjqi")
+action = "reiniciar_nivel"

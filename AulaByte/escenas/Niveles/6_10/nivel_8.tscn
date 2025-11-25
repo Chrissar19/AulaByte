@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://c820bpkqmqupo"]
+[gd_scene load_steps=37 format=4 uid="uid://c820bpkqmqupo"]
 
 [ext_resource type="Script" uid="uid://bl84y62aosyrq" path="res://scripts/niveles/nivel_tuto.gd" id="1_mba44"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_ixpke"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://cl1bwd6mofchq" path="res://escenas/objetos_interacciones/item_vida.tscn" id="18_remnt"]
 [ext_resource type="PackedScene" uid="uid://db7j3q20ljag8" path="res://escenas/ui/punto_inicio.tscn" id="19_jn5oj"]
 [ext_resource type="PackedScene" uid="uid://tkh75sw4tr42" path="res://escenas/habilidades/item_salto.tscn" id="19_liqpc"]
+[ext_resource type="PackedScene" uid="uid://eoemjxt3hrtf" path="res://escenas/ui/control_movil.tscn" id="21_gfcm2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5rite"]
 texture = ExtResource("2_ixpke")
@@ -1334,3 +1335,5 @@ position = Vector2(1176, -400)
 
 [node name="PuntoInicio" parent="." instance=ExtResource("19_jn5oj")]
 position = Vector2(-952, -261)
+
+[node name="ControlMovil" parent="." instance=ExtResource("21_gfcm2")]

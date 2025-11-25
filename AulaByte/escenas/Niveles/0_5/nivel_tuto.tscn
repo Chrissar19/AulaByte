@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://cqk82ixbb1sb0"]
+[gd_scene load_steps=30 format=4 uid="uid://cqk82ixbb1sb0"]
 
 [ext_resource type="Script" uid="uid://bl84y62aosyrq" path="res://scripts/niveles/nivel_tuto.gd" id="1_wwpym"]
 [ext_resource type="PackedScene" uid="uid://bf5jdpfiuhivo" path="res://escenas/Niveles/0_5/actividad_cero.tscn" id="2_hqkji"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://d3vh0l5545dux" path="res://recursos/imagenes/objetos/TeclasPC.png" id="15_7svhg"]
 [ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/Fuentes/Normal.ttf" id="16_6d66m"]
 [ext_resource type="PackedScene" uid="uid://db7j3q20ljag8" path="res://escenas/ui/punto_inicio.tscn" id="16_hqkji"]
+[ext_resource type="PackedScene" uid="uid://eoemjxt3hrtf" path="res://escenas/ui/control_movil.tscn" id="17_gm6qn"]
 [ext_resource type="PackedScene" uid="uid://cl1bwd6mofchq" path="res://escenas/objetos_interacciones/item_vida.tscn" id="18_128oc"]
 [ext_resource type="PackedScene" uid="uid://fva12xfahbpb" path="res://escenas/objetos_interacciones/puerta_nivel.tscn" id="19_e0mik"]
 
@@ -301,3 +302,5 @@ collision_mask = 12
 
 [node name="PuntoInicio" parent="." groups=["Z_CHECKPOINT"] instance=ExtResource("16_hqkji")]
 position = Vector2(170, 124)
+
+[node name="ControlMovil" parent="." instance=ExtResource("17_gm6qn")]
