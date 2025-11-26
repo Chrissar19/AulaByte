@@ -15,6 +15,8 @@ class_name Actividad9
 @onready var disco_duro: ImagenArrastrable2 = $ZonaJuego/ContenedorObjetos/DiscoDuro
 @onready var procesador: ImagenArrastrable2 = $ZonaJuego/ContenedorObjetos/Procesador
 @onready var btn_salir: Button = $UI/BtnSalir
+@onready var btn_pista: Button = $UI/BtnPista
+@onready var audio_pista: AudioStreamPlayer = $AudioPista
 
 var zonas_correctas: Dictionary = {
 	"texto": ["ArchivosDigitales"],
@@ -123,3 +125,8 @@ func _on_audifonos_element_asigned(categorias: Array[String], zona: String) -> v
 
 func _on_btn_salir_pressed() -> void:
 	cancelar_actividad()
+
+
+func _on_btn_pista_pressed() -> void:
+	if audio_pista:
+		audio_pista.play()
