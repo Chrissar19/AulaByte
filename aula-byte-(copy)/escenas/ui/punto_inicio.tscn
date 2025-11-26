@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://db7j3q20ljag8"]
+
+[ext_resource type="Script" uid="uid://6sr1fgifegx4" path="res://scripts/ui/punto_inicio.gd" id="1_4qn8k"]
+[ext_resource type="Texture2D" uid="uid://bo106uqipw8s0" path="res://recursos/imagenes/objetos/puertaCerrada.png" id="2_4qn8k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_472vm"]
+atlas = ExtResource("2_4qn8k")
+region = Rect2(0, 0, 43, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ksfh"]
+atlas = ExtResource("2_4qn8k")
+region = Rect2(43, 0, 43, 72)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gp47r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_472vm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ksfh")
+}],
+"loop": true,
+"name": &"cerrada",
+"speed": 4.0
+}]
+
+[node name="PuntoInicio" type="Node2D" groups=["PuntoInicio"]]
+z_index = 5
+script = ExtResource("1_4qn8k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gp47r")
+animation = &"cerrada"
+autoplay = "cerrada"
+frame_progress = 0.7358727

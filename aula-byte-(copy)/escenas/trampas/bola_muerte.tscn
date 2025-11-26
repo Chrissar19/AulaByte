@@ -1,0 +1,102 @@
+[gd_scene load_steps=9 format=3 uid="uid://bnj0srep62yxe"]
+
+[ext_resource type="Script" uid="uid://d0ptdlpln41il" path="res://scripts/enemigos/bola_muerte.gd" id="1_krn8g"]
+[ext_resource type="Texture2D" uid="uid://dikehn5kvgw3f" path="res://recursos/imagenes/objetos/estrella de la muerte1-sheet (1).png" id="2_thsoy"]
+[ext_resource type="PackedScene" uid="uid://dss8043rmoq0a" path="res://escenas/trampas/cadena.tscn" id="3_mtm31"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x6b7q"]
+radius = 13.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u7ovi"]
+radius = 17.0
+
+[sub_resource type="Animation" id="Animation_4jue8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_u7ovi"]
+resource_name = "movimiento_bola"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_omtho"]
+_data = {
+&"RESET": SubResource("Animation_4jue8"),
+&"movimiento_bola": SubResource("Animation_u7ovi")
+}
+
+[node name="BolaMuerte" type="Node2D" groups=["Trampas"]]
+script = ExtResource("1_krn8g")
+
+[node name="ganchoCadena" type="Sprite2D" parent="."]
+position = Vector2(0, 3)
+texture = ExtResource("2_thsoy")
+region_enabled = true
+region_rect = Rect2(8, 0, 16, 14)
+
+[node name="Cadena2" parent="." instance=ExtResource("3_mtm31")]
+position = Vector2(0, 13)
+
+[node name="Bola" type="Sprite2D" parent="."]
+position = Vector2(0, 16)
+texture = ExtResource("2_thsoy")
+offset = Vector2(0, 20)
+region_enabled = true
+region_rect = Rect2(0, 88, 32, 40)
+
+[node name="AreaColision" type="Area2D" parent="Bola" groups=["Trampas"]]
+position = Vector2(0, -16)
+collision_layer = 1024
+collision_mask = 48
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bola/AreaColision"]
+position = Vector2(0, 40)
+shape = SubResource("CircleShape2D_x6b7q")
+
+[node name="AreaDMG" type="Area2D" parent="Bola" groups=["DMG"]]
+collision_layer = 1024
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bola/AreaDMG"]
+position = Vector2(0, 24)
+shape = SubResource("CircleShape2D_u7ovi")
+
+[node name="RayCastDeteccionSuelo" type="RayCast2D" parent="."]
+target_position = Vector2(0, 52)
+
+[node name="TimerTilePintado" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="RotacionBola" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_omtho")
+}
+speed_scale = 0.5
+
+[connection signal="body_entered" from="Bola/AreaColision" to="." method="_on_area_colision_body_entered"]
+[connection signal="body_entered" from="Bola/AreaDMG" to="." method="_on_detector_jugador_body_entered"]
+[connection signal="timeout" from="TimerTilePintado" to="." method="_on_timer_tile_pintado_timeout"]

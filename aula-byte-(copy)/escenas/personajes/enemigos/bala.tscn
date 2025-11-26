@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgrl2h1flcnql"]
+
+[ext_resource type="Script" uid="uid://bac7fbo1wrrva" path="res://scripts/enemigos/bala.gd" id="1_gha27"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n2bxl"]
+size = Vector2(30.826822, 30)
+
+[node name="bala" type="CharacterBody2D"]
+scale = Vector2(0.6, 0.6)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_gha27")
+
+[node name="CollisionMonitor2" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_n2bxl")
+
+[node name="imagen_bala" type="TextureRect" parent="." groups=["DMG"]]
+offset_left = -14.999998
+offset_top = -13.33333
+offset_right = 13.333334
+offset_bottom = 15.000002
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="." groups=["DMG"]]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionMonitor" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_n2bxl")
+
+[node name="Area2D2" type="Area2D" parent="." groups=["DMG"]]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionMonitor" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(-0.41341114, -4.9670535e-07)
+shape = SubResource("RectangleShape2D_n2bxl")

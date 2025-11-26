@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dss8043rmoq0a"]
+
+[ext_resource type="Texture2D" uid="uid://dikehn5kvgw3f" path="res://recursos/imagenes/objetos/estrella de la muerte1-sheet (1).png" id="1_gfg7q"]
+
+[node name="Cadena" type="Sprite2D"]
+texture = ExtResource("1_gfg7q")
+region_enabled = true
+region_rect = Rect2(12, 14, 8, 6)

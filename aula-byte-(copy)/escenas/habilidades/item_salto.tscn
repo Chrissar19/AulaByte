@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://tkh75sw4tr42"]
+
+[ext_resource type="Script" uid="uid://dxf6g6dunyf50" path="res://scripts/jugador/habilidades/item_salto.gd" id="1_afumn"]
+[ext_resource type="Texture2D" uid="uid://dvd18r5esxir2" path="res://recursos/imagenes/objetos/power ups.png" id="2_fxva6"]
+[ext_resource type="AudioStream" uid="uid://bg0tx6o316xk1" path="res://recursos/Audio/efectos/Poderes.wav" id="3_6ykhm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5f6ty"]
+atlas = ExtResource("2_fxva6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lra6x"]
+radius = 16.0
+
+[node name="ItemSalto" type="Area2D"]
+z_index = 5
+collision_layer = 32768
+collision_mask = 4
+script = ExtResource("1_afumn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_5f6ty")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lra6x")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6ykhm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

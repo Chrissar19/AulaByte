@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=3 uid="uid://dkm0atk4qawk3"]
+
+[ext_resource type="Texture2D" uid="uid://dclm53qe2idn1" path="res://recursos/imagenes/objetos/Plataforma.png" id="1_b5bdj"]
+[ext_resource type="Script" uid="uid://cm1f8af2ko7b2" path="res://scripts/objetos/plataforma_movil.gd" id="1_ulhy3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ulhy3"]
+atlas = ExtResource("1_b5bdj")
+region = Rect2(128, 0, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6eams"]
+atlas = ExtResource("1_b5bdj")
+region = Rect2(0, 0, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0j48a"]
+atlas = ExtResource("1_b5bdj")
+region = Rect2(192, 0, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jm0bi"]
+atlas = ExtResource("1_b5bdj")
+region = Rect2(64, 0, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1oeo"]
+atlas = ExtResource("1_b5bdj")
+region = Rect2(0, 16, 64, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_grm37"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ulhy3")
+}],
+"loop": true,
+"name": &"amarilla",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6eams")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0j48a")
+}],
+"loop": true,
+"name": &"morada",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jm0bi")
+}],
+"loop": true,
+"name": &"roja",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q1oeo")
+}],
+"loop": true,
+"name": &"verde",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gp8j2"]
+size = Vector2(62, 13)
+
+[node name="Plataforma" type="AnimatableBody2D"]
+z_index = 3
+collision_layer = 4097
+collision_mask = 4
+script = ExtResource("1_ulhy3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_grm37")
+animation = &"verde"
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_gp8j2")
+one_way_collision = true

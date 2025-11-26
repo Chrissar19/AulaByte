@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://b555un3jiwkeg"]
+
+[ext_resource type="Script" uid="uid://d1klijdl20hi7" path="res://scripts/niveles/6_10/interruptor.gd" id="1_bwcyo"]
+[ext_resource type="Texture2D" uid="uid://b4ju4vaqhmtrq" path="res://recursos/imagenes/niveles/nivel10/Palanca_blanca.png" id="1_u12ep"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwcyo"]
+atlas = ExtResource("1_u12ep")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_caqkx"]
+atlas = ExtResource("1_u12ep")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfeof"]
+atlas = ExtResource("1_u12ep")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_io1bw"]
+atlas = ExtResource("1_u12ep")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0cn8"]
+atlas = ExtResource("1_u12ep")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3uun"]
+atlas = ExtResource("1_u12ep")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_io1bw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwcyo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_caqkx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfeof")
+}],
+"loop": false,
+"name": &"activado",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_io1bw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0cn8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3uun")
+}],
+"loop": false,
+"name": &"desactivado",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o0cn8"]
+size = Vector2(32, 32)
+
+[node name="Interruptor" type="Area2D"]
+z_index = 5
+collision_layer = 256
+collision_mask = 4
+script = ExtResource("1_bwcyo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 5
+sprite_frames = SubResource("SpriteFrames_io1bw")
+animation = &"desactivado"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_o0cn8")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

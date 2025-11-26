@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://b18ryctxwv5mu"]
+
+[ext_resource type="Script" uid="uid://cjy67weheull8" path="res://scripts/enemigos/particulas_slime.gd" id="1_vk2n0"]
+
+[sub_resource type="Gradient" id="Gradient_vk2n0"]
+colors = PackedColorArray(0.372549, 0.803922, 0.894118, 1, 0.690196, 0.858824, 0.894118, 1)
+
+[node name="ParticulasSlime" type="CPUParticles2D"]
+emitting = false
+amount = 256
+lifetime = 0.6
+one_shot = true
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 400)
+initial_velocity_min = 150.0
+initial_velocity_max = 300.0
+scale_amount_min = 2.0
+scale_amount_max = 6.0
+color = Color(0.372549, 0.803922, 0.894118, 1)
+color_ramp = SubResource("Gradient_vk2n0")
+hue_variation_min = -0.05
+hue_variation_max = 0.05
+script = ExtResource("1_vk2n0")

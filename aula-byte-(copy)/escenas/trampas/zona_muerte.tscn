@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://mher13w4mave"]
+
+[ext_resource type="Script" uid="uid://b28ydkssdkqu1" path="res://scripts/zona_muerte.gd" id="1_pvs3y"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tvoxf"]
+
+[node name="ZonaMuerte" type="Area2D" groups=["ZonaMortal"]]
+script = ExtResource("1_pvs3y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("WorldBoundaryShape2D_tvoxf")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="SonidoMuerte" type="AudioStreamPlayer" parent="." groups=["ZonaMortal"]]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
