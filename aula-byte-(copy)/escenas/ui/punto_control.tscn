@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://t8ur3tgfe14n"]
+
+[ext_resource type="Script" uid="uid://gg7tyv44ds0e" path="res://scripts/ui/punto_control.gd" id="1_sy4nt"]
+[ext_resource type="Texture2D" uid="uid://gmncndp47yyh" path="res://recursos/imagenes/objetos/Punto_control.png" id="2_nl8o7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wsous"]
+size = Vector2(300, 333.333)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sy4nt"]
+atlas = ExtResource("2_nl8o7")
+region = Rect2(900, 0, 450, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nl8o7"]
+atlas = ExtResource("2_nl8o7")
+region = Rect2(1350, 0, 450, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knmu7"]
+atlas = ExtResource("2_nl8o7")
+region = Rect2(0, 0, 450, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qala"]
+atlas = ExtResource("2_nl8o7")
+region = Rect2(450, 0, 450, 350)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f2e5p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sy4nt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nl8o7")
+}],
+"loop": true,
+"name": &"Activado",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knmu7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qala")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 2.0
+}]
+
+[node name="PuntoControl" type="Area2D" groups=["Checkpoint"]]
+z_index = 2
+scale = Vector2(0.8, 0.8)
+collision_layer = 512
+collision_mask = 4
+script = ExtResource("1_sy4nt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.68221e-06, -4.47035e-06)
+scale = Vector2(0.15, 0.15)
+shape = SubResource("RectangleShape2D_wsous")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_f2e5p")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.175006
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

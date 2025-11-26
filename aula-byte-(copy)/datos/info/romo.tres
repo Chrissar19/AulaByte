@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="personajeInfo" load_steps=4 format=3 uid="uid://dshoxi10m8doq"]
+
+[ext_resource type="Script" uid="uid://b2tv635ue2025" path="res://scripts/datos/personaje_info.gd" id="1_63kad"]
+[ext_resource type="PackedScene" uid="uid://bn26h8nuu10nr" path="res://escenas/personajes/Romo/romo.tscn" id="1_wlv1h"]
+[ext_resource type="Texture2D" uid="uid://bi77sdj5bighi" path="res://recursos/imagenes/personajes/CabezaRomo.png" id="3_wlv1h"]
+
+[resource]
+script = ExtResource("1_63kad")
+id = 3
+nombre = "Moro"
+sprite = ExtResource("3_wlv1h")
+archivo_escena = ExtResource("1_wlv1h")
+metadata/_custom_type_script = "uid://b2tv635ue2025"

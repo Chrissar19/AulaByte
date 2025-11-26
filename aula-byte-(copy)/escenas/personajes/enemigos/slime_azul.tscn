@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://dfr8bmdn5actv"]
+
+[ext_resource type="Script" uid="uid://7kbhq3oc7ris" path="res://scripts/enemigos/slime_azul.gd" id="1_gxtbd"]
+[ext_resource type="SpriteFrames" uid="uid://b4ualtviupkrg" path="res://recursos/imagenes/enemigo_slime_blue.tres" id="2_t3s4k"]
+[ext_resource type="AudioStream" uid="uid://dix4e4onit5a4" path="res://recursos/Audio/efectos/muerteSlime.wav" id="3_8vshj"]
+[ext_resource type="PackedScene" uid="uid://b18ryctxwv5mu" path="res://escenas/personajes/enemigos/particulas_slime.tscn" id="4_8vshj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8vshj"]
+size = Vector2(12, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_adcx4"]
+size = Vector2(10, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gxtbd"]
+size = Vector2(15, 30)
+
+[node name="SlimeAzul" type="CharacterBody2D" groups=["Enemigos", "Z_ENEMIGOS"]]
+z_index = 1
+collision_layer = 8
+collision_mask = 48
+script = ExtResource("1_gxtbd")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_t3s4k")
+animation = &"slime_walk_blue"
+autoplay = "slime_walk_blue"
+
+[node name="ColisionSlime" type="CollisionShape2D" parent="."]
+position = Vector2(-7.56391e-06, 4.00002)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_8vshj")
+
+[node name="RayPared" type="RayCast2D" parent="."]
+target_position = Vector2(20, 0)
+
+[node name="TimerMuerte" type="Timer" parent="."]
+one_shot = true
+
+[node name="SensorPisoton" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="ColisionSensor" type="CollisionShape2D" parent="SensorPisoton"]
+z_index = 10
+position = Vector2(-1.00001, -5)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_adcx4")
+
+[node name="AudioMuerte" type="AudioStreamPlayer2D" parent="SensorPisoton"]
+stream = ExtResource("3_8vshj")
+max_distance = 100.0
+
+[node name="AreaDaño" type="Area2D" parent="." groups=["DMG"]]
+collision_layer = 8
+collision_mask = 4
+
+[node name="SensorJugador" type="CollisionShape2D" parent="AreaDaño"]
+position = Vector2(9.7345e-08, 8.5)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_gxtbd")
+
+[node name="ParticulasSlime" parent="." instance=ExtResource("4_8vshj")]
+
+[node name="Node" type="Node" parent="."]
+
+[node name="RaySuelo" type="RayCast2D" parent="."]
+
+[node name="TimerRecuperacion" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="TimerMuerte" to="." method="_on_timer_muerte_timeout"]
+[connection signal="area_shape_entered" from="SensorPisoton" to="." method="_on_sensor_pisoton_area_shape_entered"]
+[connection signal="body_entered" from="SensorPisoton" to="." method="_on_sensor_pisoton_body_entered"]
+[connection signal="body_entered" from="AreaDaño" to="." method="_on_detector_jugador_body_entered"]
+[connection signal="timeout" from="TimerRecuperacion" to="." method="_on_timer_recuperacion_timeout"]

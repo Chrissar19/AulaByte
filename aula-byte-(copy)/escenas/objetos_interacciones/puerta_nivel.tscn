@@ -1,0 +1,93 @@
+[gd_scene load_steps=12 format=3 uid="uid://fva12xfahbpb"]
+
+[ext_resource type="Script" uid="uid://c5fqgpwvnxkjw" path="res://scripts/objetos/puerta_nivel.gd" id="1_o3bfo"]
+[ext_resource type="Texture2D" uid="uid://c0edkeqwhip1q" path="res://recursos/imagenes/objetos/PuertaAuto.png" id="2_yxvyc"]
+[ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="3_yxvyc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3bfo"]
+atlas = ExtResource("2_yxvyc")
+region = Rect2(43, 0, 43, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxvyc"]
+atlas = ExtResource("2_yxvyc")
+region = Rect2(86, 0, 43, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6snj7"]
+atlas = ExtResource("2_yxvyc")
+region = Rect2(129, 0, 43, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8pr2"]
+atlas = ExtResource("2_yxvyc")
+region = Rect2(172, 0, 43, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r51lu"]
+atlas = ExtResource("2_yxvyc")
+region = Rect2(215, 0, 43, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26b0p"]
+atlas = ExtResource("2_yxvyc")
+region = Rect2(0, 0, 43, 72)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ihpb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3bfo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxvyc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6snj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8pr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r51lu")
+}],
+"loop": false,
+"name": &"Abriendo",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26b0p")
+}],
+"loop": true,
+"name": &"Cerrada",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o3bfo"]
+size = Vector2(42, 64)
+
+[node name="PuertaNivel" type="Area2D" groups=["Z_PUERTAS"]]
+collision_layer = 256
+collision_mask = 4
+script = ExtResource("1_o3bfo")
+
+[node name="AnimacionPuerta" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5ihpb")
+animation = &"Abriendo"
+frame = 4
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_o3bfo")
+
+[node name="LblIndicadorInteraccion" type="Label" parent="."]
+visible = false
+offset_left = -24.0
+offset_top = -89.0
+offset_right = 24.0
+offset_bottom = -41.0
+theme_override_fonts/font = ExtResource("3_yxvyc")
+theme_override_font_sizes/font_size = 48
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

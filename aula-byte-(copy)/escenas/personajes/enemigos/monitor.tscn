@@ -1,0 +1,116 @@
+[gd_scene load_steps=13 format=3 uid="uid://bd3tvkqc3t15v"]
+
+[ext_resource type="Texture2D" uid="uid://d3ri1p6guwp1x" path="res://recursos/imagenes/personajes/enemigos/monitor.png" id="1_0dq5j"]
+[ext_resource type="Script" uid="uid://ofyiow0xm2vg" path="res://scripts/enemigos/monitor.gd" id="1_4siuf"]
+[ext_resource type="AudioStream" uid="uid://dix4e4onit5a4" path="res://recursos/Audio/Efectos/muerteSlime.wav" id="2_ce6np"]
+[ext_resource type="Script" uid="uid://des7dpc6t220a" path="res://scripts/enemigos/particulas_monitor.gd" id="3_udkuc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ce6np"]
+atlas = ExtResource("1_0dq5j")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udkuc"]
+atlas = ExtResource("1_0dq5j")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4siuf"]
+atlas = ExtResource("1_0dq5j")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2h6ye"]
+atlas = ExtResource("1_0dq5j")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ep3cj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ce6np")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udkuc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4siuf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2h6ye")
+}],
+"loop": true,
+"name": &"animacion_monitor",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6h0kv"]
+size = Vector2(40, 8.333333)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dq5j"]
+size = Vector2(75, 12.500006)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ce6np"]
+size = Vector2(81.94444, 119.44443)
+
+[node name="monitor" type="CharacterBody2D"]
+z_index = 1
+scale = Vector2(0.6, 0.6)
+collision_layer = 8
+collision_mask = 48
+script = ExtResource("1_4siuf")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ep3cj")
+animation = &"animacion_monitor"
+frame_progress = 0.026912369
+
+[node name="CollisionMonitor" type="CollisionShape2D" parent="."]
+position = Vector2(-6.953875e-07, 39.166664)
+shape = SubResource("RectangleShape2D_6h0kv")
+
+[node name="RayPared" type="RayCast2D" parent="."]
+position = Vector2(0, 25)
+target_position = Vector2(52, 0)
+
+[node name="TimerMuerte" type="Timer" parent="."]
+
+[node name="SensorPisoton" type="Area2D" parent="."]
+position = Vector2(5, -38.333332)
+collision_layer = 8
+collision_mask = 4
+
+[node name="SensorColision" type="CollisionShape2D" parent="SensorPisoton"]
+z_index = 3
+position = Vector2(-2.5000021, -10)
+scale = Vector2(0.6, 0.6)
+shape = SubResource("RectangleShape2D_0dq5j")
+
+[node name="AudioMuerte" type="AudioStreamPlayer2D" parent="SensorPisoton"]
+position = Vector2(18.333332, -1.666666)
+stream = ExtResource("2_ce6np")
+
+[node name="AreaDaño" type="Area2D" parent="." groups=["DMG"]]
+scale = Vector2(0.6, 0.6)
+collision_layer = 8
+collision_mask = 4
+
+[node name="SensorColision" type="CollisionShape2D" parent="AreaDaño"]
+position = Vector2(3.472222, 12.500003)
+scale = Vector2(1.0000001, 1.0000001)
+shape = SubResource("RectangleShape2D_ce6np")
+
+[node name="ParticulasMonitor" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 256
+script = ExtResource("3_udkuc")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="RaySuelo" type="RayCast2D" parent="."]
+position = Vector2(0, 25)
+scale = Vector2(0.6, 0.6)
+
+[node name="TimerRecuperacion" type="Timer" parent="."]
+
+[connection signal="timeout" from="TimerMuerte" to="." method="_on_timer_muerte_timeout"]
+[connection signal="area_shape_entered" from="SensorPisoton" to="." method="_on_sensor_pisoton_area_shape_entered"]
+[connection signal="body_entered" from="SensorPisoton" to="." method="_on_sensor_pisoton_body_entered"]
+[connection signal="timeout" from="TimerRecuperacion" to="." method="_on_timer_recuperacion_timeout"]

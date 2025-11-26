@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://ckai8femo32e4"]
+
+[ext_resource type="Script" uid="uid://c2tlsxq8nl3jt" path="res://scripts/jugador/jugador.gd" id="1_ki677"]
+[ext_resource type="AudioStream" uid="uid://cx2t6jxuxrwlq" path="res://recursos/Audio/efectos/jump.wav" id="3_i0x0m"]
+[ext_resource type="Script" uid="uid://to5dx5xoue0d" path="res://scripts/jugador/estados/estado.gd" id="3_tnr8s"]
+[ext_resource type="Script" uid="uid://rbkphyqr0tdk" path="res://scripts/jugador/estados/idle.gd" id="4_grd26"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_317ox"]
+
+[node name="Jugador" type="CharacterBody2D" groups=["Jugador"]]
+z_index = 10
+collision_layer = 4
+collision_mask = 57275
+script = ExtResource("1_ki677")
+nombre = null
+punto_reaparicion = null
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_317ox")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 8)
+
+[node name="SonidoSalto" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_i0x0m")
+
+[node name="EmpujeRay" type="RayCast2D" parent="."]
+
+[node name="Camara" type="Camera2D" parent="."]
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="TimerIntocable" type="Timer" parent="."]
+wait_time = 1.2
+one_shot = true
+
+[node name="AreaDaño" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 72
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaDaño"]
+
+[node name="MaquinaDeEstados" type="Node" parent="."]
+script = ExtResource("3_tnr8s")
+
+[node name="Estadoidle" type="Node" parent="MaquinaDeEstados"]
+script = ExtResource("4_grd26")
+
+[connection signal="timeout" from="TimerIntocable" to="." method="_on_timer_intocable_timeout"]
+[connection signal="area_shape_entered" from="AreaDaño" to="." method="_on_area_daño_area_shape_entered"]
+[connection signal="body_entered" from="AreaDaño" to="." method="_on_area_daño_body_entered"]

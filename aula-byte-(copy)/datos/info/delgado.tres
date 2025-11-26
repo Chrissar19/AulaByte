@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="personajeInfo" load_steps=4 format=3 uid="uid://ccrdi2p5nhd3m"]
+
+[ext_resource type="PackedScene" uid="uid://57wg0kv8rcf6" path="res://escenas/personajes/Delgado/delgado.tscn" id="1_18xl5"]
+[ext_resource type="Script" uid="uid://b2tv635ue2025" path="res://scripts/datos/personaje_info.gd" id="1_jyxmo"]
+[ext_resource type="Texture2D" uid="uid://dbtek4t1i8s6k" path="res://recursos/imagenes/personajes/CabezaDelgado.png" id="3_qceww"]
+
+[resource]
+script = ExtResource("1_jyxmo")
+id = 0
+nombre = "Leddoga"
+sprite = ExtResource("3_qceww")
+archivo_escena = ExtResource("1_18xl5")
+metadata/_custom_type_script = "uid://b2tv635ue2025"

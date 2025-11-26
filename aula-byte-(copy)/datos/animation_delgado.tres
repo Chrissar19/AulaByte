@@ -1,0 +1,164 @@
+[gd_resource type="SpriteFrames" load_steps=21 format=3 uid="uid://g345vwq0s2w4"]
+
+[ext_resource type="Texture2D" uid="uid://mhunl33k1gw1" path="res://recursos/imagenes/personajes/natalia Sheet.png" id="1_ap8wd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxfh6"]
+atlas = ExtResource("1_ap8wd")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4u442"]
+atlas = ExtResource("1_ap8wd")
+region = Rect2(64, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6i22"]
+atlas = ExtResource("1_ap8wd")
+region = Rect2(128, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s88ol"]
+atlas = ExtResource("1_ap8wd")
+region = Rect2(192, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lia4w"]
+atlas = ExtResource("1_ap8wd")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_colq5"]
+atlas = ExtResource("1_ap8wd")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygf4r"]
+atlas = ExtResource("1_ap8wd")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lelv"]
+atlas = ExtResource("1_ap8wd")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogjg4"]
+atlas = ExtResource("1_ap8wd")
+region = Rect2(0, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fpra"]
+atlas = ExtResource("1_ap8wd")
+region = Rect2(64, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kobhs"]
+atlas = ExtResource("1_ap8wd")
+region = Rect2(128, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5a4xx"]
+atlas = ExtResource("1_ap8wd")
+region = Rect2(192, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uj701"]
+atlas = ExtResource("1_ap8wd")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5ucy"]
+atlas = ExtResource("1_ap8wd")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_be40k"]
+atlas = ExtResource("1_ap8wd")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bthp2"]
+atlas = ExtResource("1_ap8wd")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t162j"]
+atlas = ExtResource("1_ap8wd")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hfmy"]
+atlas = ExtResource("1_ap8wd")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8rllv"]
+atlas = ExtResource("1_ap8wd")
+region = Rect2(192, 64, 64, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxfh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4u442")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6i22")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s88ol")
+}],
+"loop": true,
+"name": &"DelgadoDownNo",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lia4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_colq5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ygf4r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3lelv")
+}],
+"loop": true,
+"name": &"DelgadoIdleNo",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogjg4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fpra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kobhs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5a4xx")
+}],
+"loop": true,
+"name": &"DelgadoPushNo",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uj701")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5ucy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_be40k")
+}],
+"loop": true,
+"name": &"DelgadoUpNo",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bthp2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t162j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hfmy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8rllv")
+}],
+"loop": true,
+"name": &"DelgadoWalkNo",
+"speed": 8.0
+}]

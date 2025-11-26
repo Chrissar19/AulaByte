@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://6g5nk8p7wrse"]
+
+[ext_resource type="Texture2D" uid="uid://dj5bir4rmc6rq" path="res://recursos/imagenes/objetos/BitInfo.png" id="1_pgbe7"]
+[ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="2_nnwru"]
+
+[sub_resource type="GDScript" id="GDScript_dp65e"]
+script/source = "extends CanvasLayer
+
+@onready var lb_bits: Label = $lbBits
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	visible = true
+	var game_manager = get_node(\"%GameManager\")
+	game_manager.puntuacion_actualizada.connect(_on_puntuacion_actualizada)
+
+func _on_puntuacion_actualizada(puntuacion_actual: int) -> void:
+	lb_bits.text = str(puntuacion_actual)
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnwru"]
+atlas = ExtResource("1_pgbe7")
+region = Rect2(0, 0, 24, 24)
+
+[node name="InterfazGrafica" type="CanvasLayer"]
+scale = Vector2(0.8, 0.8)
+transform = Transform2D(0.8, 0, 0, 0.8, 0, 0)
+script = SubResource("GDScript_dp65e")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 25.0
+offset_top = 22.0
+offset_right = 89.0
+offset_bottom = 86.0
+scale = Vector2(0.7, 0.7)
+texture = SubResource("AtlasTexture_nnwru")
+
+[node name="lbBits" type="Label" parent="."]
+offset_left = 121.0
+offset_top = 35.0
+offset_right = 154.0
+offset_bottom = 67.0
+theme_override_fonts/font = ExtResource("2_nnwru")
+theme_override_font_sizes/font_size = 32
+text = "0"
+vertical_alignment = 1
+
+[node name="lbX" type="Label" parent="."]
+offset_left = 75.0
+offset_top = 34.0
+offset_right = 108.0
+offset_bottom = 66.0
+theme_override_fonts/font = ExtResource("2_nnwru")
+theme_override_font_sizes/font_size = 32
+text = "X"
+vertical_alignment = 1

@@ -1,0 +1,122 @@
+[gd_scene load_steps=24 format=3 uid="uid://bxfofh26uty1p"]
+
+[ext_resource type="Script" uid="uid://bde1215wojdor" path="res://scripts/niveles/intro.gd" id="1_a1g7d"]
+[ext_resource type="Texture2D" uid="uid://cxroesonpqyk7" path="res://recursos/imagenes/intro/Intro1.png" id="2_ixy36"]
+[ext_resource type="Texture2D" uid="uid://ddl0mgw28mxkb" path="res://recursos/imagenes/intro/Intro 2.png" id="3_ftjmw"]
+[ext_resource type="Texture2D" uid="uid://cjmajr0s3u05h" path="res://recursos/imagenes/intro/Intro3.png" id="4_g86wm"]
+[ext_resource type="Texture2D" uid="uid://dj730ct63prtc" path="res://recursos/imagenes/intro/Intro4.png" id="5_iwusb"]
+[ext_resource type="Texture2D" uid="uid://co6h4rgjuh5ok" path="res://recursos/imagenes/intro/Intro5.png" id="6_k5goc"]
+[ext_resource type="Texture2D" uid="uid://dwms1bbodkqyx" path="res://recursos/imagenes/intro/Intro6.png" id="7_p8utp"]
+[ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/Fuentes/Normal.ttf" id="8_ftjmw"]
+[ext_resource type="AudioStream" uid="uid://d1yb124m4812l" path="res://recursos/Audio/narraciones/01.wav" id="8_qsk8r"]
+[ext_resource type="AudioStream" uid="uid://bp0l6sae1uvge" path="res://recursos/Audio/narraciones/2.wav" id="9_kx5a5"]
+[ext_resource type="AudioStream" uid="uid://bkka0487gp7bw" path="res://recursos/Audio/narraciones/3.wav" id="10_w2dd5"]
+[ext_resource type="AudioStream" uid="uid://b88iwmdny75we" path="res://recursos/Audio/narraciones/4.wav" id="11_m83nb"]
+[ext_resource type="AudioStream" uid="uid://dqocxqffbt5g8" path="res://recursos/Audio/narraciones/5.wav" id="12_7vphg"]
+[ext_resource type="AudioStream" uid="uid://dwf015anjv8d3" path="res://recursos/Audio/narraciones/6.wav" id="13_5qfeo"]
+[ext_resource type="Texture2D" uid="uid://dbgbucujlvbm7" path="res://recursos/imagenes/intro/Delgado sombra (1).png" id="13_njy6h"]
+[ext_resource type="AudioStream" uid="uid://elea3kqy8qkw" path="res://recursos/Audio/narraciones/7.wav" id="14_e0yaj"]
+[ext_resource type="Texture2D" uid="uid://diml04sdng5xg" path="res://recursos/imagenes/intro/Insuasty sombra (1).png" id="14_qsk8r"]
+[ext_resource type="AudioStream" uid="uid://cj2m4dm4jb2qh" path="res://recursos/Audio/narraciones/8.wav" id="15_0f2re"]
+[ext_resource type="Texture2D" uid="uid://c2s83tuwcu07i" path="res://recursos/imagenes/intro/Jojoa sombra (1).png" id="15_desih"]
+[ext_resource type="Texture2D" uid="uid://3cg5k1nvl8m8" path="res://recursos/imagenes/intro/Romo sombra (1).png" id="16_bddhn"]
+[ext_resource type="AudioStream" uid="uid://b7v3q42rsid4k" path="res://recursos/Audio/narraciones/9.wav" id="16_vx50f"]
+[ext_resource type="Texture2D" uid="uid://kvcd8um3onhc" path="res://recursos/imagenes/intro/libro-abierto.png" id="18_desih"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hd364"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 0.501961)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="intro" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a1g7d")
+imagenes = Array[Texture2D]([ExtResource("2_ixy36"), ExtResource("3_ftjmw"), ExtResource("4_g86wm"), ExtResource("5_iwusb"), ExtResource("5_iwusb"), ExtResource("6_k5goc"), ExtResource("6_k5goc"), ExtResource("6_k5goc"), ExtResource("7_p8utp")])
+textos = Array[String](["En la hermosa ciudad de San Juan de Pasto, en la Universidad de Nariño, conviven cuatro grandes profesores, que dedicaban su vida a enseñar. ", "Un día, explorando los rincones olvidados del antiguo laboratorio de informática, buscando componentes viejos,  ", "descubrieron un extraño computador, que al encender cobró vida una inteligencia artificial llamada CUY, creada con propósitos de aprender, enseñar y evolucionar mediante la lógica.", "Los docentes, inspirados por su potencial, iniciaron el PROYECTO Jurguillas , una misión secreta para terminar de entrenar a CUY mediante ejercicios de razonamiento lógico,", "con el fin de implementarla como un sistema de seguridad y un asistente virtual para todo el edificio.", "Sin embargo, el Instituto TecnoIdiático descubrió el proyecto y...", "robo información para tener el control de la IA con un virus llamado “Yorasite”, transformando el edificio en un laberinto lleno de errores y trampas,", "CUY quedó atrapado entre líneas de código desordenado, sus funciones divididas y su memoria fragmentada.", "Ahora, los profesores deberán adentrarse en el edificio, resolver los desafíos lógicos y desinfectar el núcleo de CUY, antes de que sea controlada para siempre."])
+audios = Array[AudioStream]([ExtResource("8_qsk8r"), ExtResource("9_kx5a5"), ExtResource("10_w2dd5"), ExtResource("11_m83nb"), ExtResource("12_7vphg"), ExtResource("13_5qfeo"), ExtResource("14_e0yaj"), ExtResource("15_0f2re"), ExtResource("16_vx50f")])
+
+[node name="imagen_actual" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 640.0
+offset_bottom = 360.0
+expand_mode = 1
+
+[node name="DelgadoSombra" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(76, 117)
+texture = ExtResource("13_njy6h")
+
+[node name="InsuastySombra" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(549, 114)
+texture = ExtResource("14_qsk8r")
+
+[node name="JojoaSombra" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(218, 189)
+texture = ExtResource("15_desih")
+
+[node name="RomoSombra" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(398, 183)
+texture = ExtResource("16_bddhn")
+
+[node name="PanelTexto" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0375
+anchor_top = 0.6666667
+anchor_right = 0.8875
+anchor_bottom = 0.95555556
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hd364")
+metadata/_edit_use_anchors_ = true
+
+[node name="texto_narrativo" type="RichTextLabel" parent="PanelTexto"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 7.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("8_ftjmw")
+text = "1
+2
+3
+4
+5"
+scroll_active = false
+autowrap_mode = 2
+
+[node name="btn_siguiente" type="Button" parent="."]
+layout_mode = 0
+offset_left = 584.0
+offset_top = 296.0
+offset_right = 624.0
+offset_bottom = 336.0
+icon = ExtResource("18_desih")
+
+[node name="voz_narrador" type="AudioStreamPlayer" parent="."]
+bus = &"Narraciones"
+
+[node name="TemSiguiente" type="Timer" parent="."]
+
+[node name="TimerTexto" type="Timer" parent="."]
+wait_time = 0.06
