@@ -6,6 +6,7 @@ class_name Actividad8
 @onready var lbl_tiempo: Label = $UI/LblTiempo
 @onready var t_nivel: Timer = Timer.new()
 @onready var btn_salir: Button = $UI/BtnSalir
+@onready var aud_pista: AudioStreamPlayer = $AudPista
 
 @export var tiempo_segundos: int = 90
 
@@ -117,11 +118,11 @@ func _dispersar_en_grilla(piezas: Array) -> void:
 	for i in n:
 		var pieza := piezas[i] as Control
 		var target := slots[i]
-		var size := pieza.size
+		var tam := pieza.size
 		var cell_center := target + Vector2(cell_w, cell_h) * 0.5
-		var final_pos := cell_center - size * 0.5
-		final_pos.x = clamp(final_pos.x, 0.0, area.x - size.x)
-		final_pos.y = clamp(final_pos.y, 0.0, area.y - size.y)
+		var final_pos := cell_center - tam * 0.5
+		final_pos.x = clamp(final_pos.x, 0.0, area.x - tam.x)
+		final_pos.y = clamp(final_pos.y, 0.0, area.y - tam.y)
 		pieza.position = final_pos
 
 
@@ -141,3 +142,7 @@ func configurar_con_parametros(parametros: Dictionary) -> void:
 
 func _on_btn_salir_pressed() -> void:
 	cancelar_actividad()
+
+
+func _on_btn_pista_pressed() -> void:
+	aud_pista.play()

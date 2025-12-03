@@ -4,6 +4,7 @@ class_name Actividad7
 var asignaciones: Dictionary = {}
 var zonas_correctas := { "archivo": "archivo", "programa": "programa", "cpu": "cpu", "so": "so" }
 @onready var btn_salir: Button = $UI/BtnSalir
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 func _ready() -> void:
 	super._ready()
@@ -43,3 +44,7 @@ func _on_so_element_asigned(categoria: String, zona: String) -> void:
 	
 func _on_btn_salir_pressed() -> void:
 	cancelar_actividad()
+
+
+func _on_button_pressed() -> void:
+	audio_stream_player.play()

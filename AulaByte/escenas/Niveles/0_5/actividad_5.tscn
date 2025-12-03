@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dy3m6ci02csih"]
+[gd_scene load_steps=12 format=3 uid="uid://dy3m6ci02csih"]
 
 [ext_resource type="Script" uid="uid://dsu8enqkqb0e2" path="res://scripts/niveles/1_5/actividad_5.gd" id="1_ewnyt"]
 [ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="2_yrvsu"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://djbsm1epuy3sm" path="res://recursos/imagenes/niveles/nivel5/actividad5/escribir_texto.png" id="5_lgamn"]
 [ext_resource type="Texture2D" uid="uid://b78p03ef5ia24" path="res://recursos/imagenes/niveles/nivel5/actividad5/grabar_sonidos.png" id="6_lgamn"]
 [ext_resource type="Texture2D" uid="uid://cvcei1b0h3jkm" path="res://recursos/imagenes/niveles/nivel4/carta_frente.png" id="7_370m8"]
+[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/signo-de-interrogacion.png" id="9_f7oct"]
+[ext_resource type="AudioStream" uid="uid://dm3mvmb2me5dm" path="res://recursos/Audio/actividades/NIVEL5.ogg" id="10_f7oct"]
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="12_a1co2"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_tvwjn"]
@@ -165,10 +167,17 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("12_a1co2")
 text = "REINICIAR"
 
-[node name="VozGuia" type="AudioStreamPlayer" parent="."]
+[node name="BtnAyuda" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 552.0
+offset_top = -256.0
+offset_right = 592.0
+offset_bottom = -216.0
+icon = ExtResource("9_f7oct")
 
-[connection signal="carta_seleccionada" from="Fondo/ZonaCartas/mover_raton" to="." method="_on_mover_raton_carta_seleccionada"]
-[connection signal="carta_seleccionada" from="Fondo/ZonaCartas/escribir" to="." method="_on_escribir_carta_seleccionada"]
-[connection signal="carta_seleccionada" from="Fondo/ZonaCartas/sonido" to="." method="_on_sonido_carta_seleccionada"]
+[node name="VozGuia" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_f7oct")
+
 [connection signal="pressed" from="UI/BtnAceptar" to="." method="_on_btn_aceptar_pressed"]
 [connection signal="pressed" from="UI/BtnReiniciar" to="." method="_on_btn_reiniciar_pressed"]
+[connection signal="pressed" from="UI/BtnAyuda" to="." method="_on_btn_ayuda_pressed"]

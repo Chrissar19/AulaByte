@@ -13,6 +13,7 @@ class_name Actividad6
 @export var paso_rot_deg: float = 15.0
 @export var tolerancia_rot_deg: float = 8.0
 @onready var btn_salir: Button = $UI/BtnSalir
+@onready var aud_ayuda: AudioStreamPlayer = $AudAyuda
 
 @export var mascara_dg: bool:
 	set(value):
@@ -217,3 +218,7 @@ func cancelar_actividad() -> void:
 	if is_instance_valid(t_nivel):
 		t_nivel.stop()
 	super.cancelar_actividad()
+
+
+func _on_btn_ayuda_pressed() -> void:
+	aud_ayuda.play()

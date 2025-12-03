@@ -16,6 +16,7 @@ enum Fase { ELECCION, RESULTADO }
 @onready var mover_raton: CartaVolteable = $Fondo/ZonaCartas/mover_raton
 @onready var contenedor_imagen: Control = $Fondo/GeneraCartaAleatoria
 @onready var imagen_aleatoria: TextureRect = $Fondo/GeneraCartaAleatoria/ImagenAleatoria
+@onready var voz_guia: AudioStreamPlayer = $VozGuia
 
 var _cartas: Array = []
 var _seleccion: Node = null
@@ -40,6 +41,13 @@ func _ready() -> void:
 	if not btn_reiniciar.pressed.is_connected(_on_btn_reiniciar_pressed):
 		btn_reiniciar.pressed.connect(_on_btn_reiniciar_pressed)
 	btn_salir.pressed.connect(_on_btn_salir_pressed)
+	
+	if not mover_raton.carta_seleccionada.is_connected(_on_carta_seleccionada):
+		mover_raton.carta_seleccionada.connect(_on_carta_seleccionada)
+	if not escribir.carta_seleccionada.is_connected(_on_carta_seleccionada):
+		escribir.carta_seleccionada.connect(_on_carta_seleccionada)
+	if not sonido.carta_seleccionada.is_connected(_on_carta_seleccionada):
+		sonido.carta_seleccionada.connect(_on_carta_seleccionada)
 
 	_iniciar_secuencia()
 
@@ -96,23 +104,31 @@ func _on_btn_reiniciar_pressed() -> void:
 #------------------------------------------------
 #-- VALIDACIÓN DE CARTAS
 #-----------------------------------------------
-func _on_mover_raton_carta_seleccionada(carta: CartaVolteable) -> void:
-	if _imagen_actual and _imagen_actual["tipo"] == "mover_raton":
+#------------------------------------------------
+#-- VALIDACIÓN DE CARTAS
+#-----------------------------------------------
+func _on_carta_seleccionada(carta: CartaVolteable) -> void:
+	btn_aceptar.disabled = true
+	
+	var tipo_seleccionado: String = ""
+	
+	if carta == mover_raton:
+		tipo_seleccionado = "mover_raton"
+	elif carta == escribir:
+		tipo_seleccionado = "escribir"
+	elif carta == sonido:
+		tipo_seleccionado = "sonido"
+	
+	if _imagen_actual and _imagen_actual["tipo"] == tipo_seleccionado:
+		print("¡Correcto! Seleccionaste: " + tipo_seleccionado)
 		finalizar_exito()
 	else:
-		finalizar_fracaso()
-
-func _on_escribir_carta_seleccionada(carta: CartaVolteable) -> void:
-	if _imagen_actual and _imagen_actual["tipo"] == "escribir":
-		finalizar_exito()
-	else:
-		finalizar_fracaso()
-
-func _on_sonido_carta_seleccionada(carta: CartaVolteable) -> void:
-	if _imagen_actual and _imagen_actual["tipo"] == "sonido":
-		finalizar_exito()
-	else:
+		print("Incorrecto. Era: " + _imagen_actual["tipo"] + ", pero elegiste: " + tipo_seleccionado)
 		finalizar_fracaso()
 		
 func _on_btn_salir_pressed() -> void:
 	cancelar_actividad()
+
+
+func _on_btn_ayuda_pressed() -> void:
+	voz_guia.play()

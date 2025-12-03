@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ct6q8iwp7wni2"]
+[gd_scene load_steps=16 format=3 uid="uid://ct6q8iwp7wni2"]
 
 [ext_resource type="Script" uid="uid://df7ghgpbhadbt" path="res://scripts/niveles/6_10/actividad_6.gd" id="1_cufmi"]
 [ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="1_h4p5l"]
@@ -7,12 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://dhbsdfe4uetf0" path="res://recursos/imagenes/niveles/nivel6/pieza1verde.png" id="4_3owi0"]
 [ext_resource type="Texture2D" uid="uid://b1km7x86sbx5k" path="res://recursos/imagenes/niveles/nivel6/CoheteSombra.png" id="4_5pec8"]
 [ext_resource type="Script" uid="uid://bbebdd838lrmc" path="res://scripts/niveles/6_10/pieza_tangram.gd" id="5_84ncr"]
+[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/signo-de-interrogacion.png" id="5_gmokl"]
 [ext_resource type="Texture2D" uid="uid://c6ug5pnnotw7j" path="res://recursos/imagenes/niveles/nivel6/Pieza6Verde.png" id="8_btufc"]
 [ext_resource type="Texture2D" uid="uid://b16m06ayefqwn" path="res://recursos/imagenes/niveles/nivel6/Pieza7Amarilla.png" id="9_52262"]
 [ext_resource type="Texture2D" uid="uid://c3jq4mx24v182" path="res://recursos/imagenes/niveles/nivel6/pieza2Azul.png" id="10_gmokl"]
 [ext_resource type="Texture2D" uid="uid://brli7q1cxc20m" path="res://recursos/imagenes/niveles/nivel6/Pieza4Naranja.png" id="11_ejh48"]
 [ext_resource type="Texture2D" uid="uid://brejfoa75g8op" path="res://recursos/imagenes/niveles/nivel6/Pieza3Roja.png" id="12_2nrgl"]
 [ext_resource type="Texture2D" uid="uid://djubqompt8aan" path="res://recursos/imagenes/niveles/nivel6/Pieza5Azul.png" id="13_vgy3k"]
+[ext_resource type="AudioStream" uid="uid://dwf015anjv8d3" path="res://recursos/Audio/narraciones/6.wav" id="15_ejh48"]
 
 [node name="Actividad6" type="Control"]
 layout_mode = 3
@@ -75,6 +77,14 @@ vertical_alignment = 1
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="BtnAyuda" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 552.0
+offset_top = -232.0
+offset_right = 592.0
+offset_bottom = -192.0
+icon = ExtResource("5_gmokl")
 
 [node name="Silueta" type="TextureRect" parent="."]
 layout_mode = 0
@@ -146,3 +156,9 @@ color_objetivo = Color(1, 0, 1, 1)
 [node name="Area2D" type="Area2D" parent="Piezas/PiezaPaealelogramo"]
 
 [node name="TimerNivel" type="Timer" parent="."]
+
+[node name="AudAyuda" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_ejh48")
+bus = &"Narraciones"
+
+[connection signal="pressed" from="UI/BtnAyuda" to="." method="_on_btn_ayuda_pressed"]

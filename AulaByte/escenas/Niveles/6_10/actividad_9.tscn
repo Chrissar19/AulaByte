@@ -121,10 +121,11 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.032
 anchor_bottom = 0.38500002
-offset_left = -4.0
-offset_top = -260.0
-offset_right = 48.864
-offset_bottom = -206.48
+offset_left = -1.0
+offset_top = -258.0
+offset_right = 19.863998
+offset_bottom = -236.48
+scale = Vector2(0.8, 0.8)
 icon = ExtResource("4_tn6hg")
 
 [node name="Labels" type="Node" parent="."]
@@ -465,6 +466,7 @@ script = ExtResource("10_rk04y")
 
 [node name="AudioPista" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_pbqai")
+bus = &"Narraciones"
 
 [connection signal="pressed" from="UI/BtnPista" to="." method="_on_btn_pista_pressed"]
 [connection signal="element_asigned" from="ZonaJuego/ContenedorObjetos/Texto" to="." method="_on_texto_element_asigned"]
