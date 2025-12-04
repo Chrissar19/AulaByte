@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://c8f486kolklgt"]
+[gd_scene load_steps=12 format=3 uid="uid://c8f486kolklgt"]
 
 [ext_resource type="Script" uid="uid://c5co0tb6l3hqk" path="res://scripts/niveles/1_5/actividad_1.gd" id="1_twqsm"]
 [ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="2_pu1qq"]
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="3_mbatl"]
 [ext_resource type="Texture2D" uid="uid://d3vh0l5545dux" path="res://recursos/imagenes/objetos/TeclasPC.png" id="4_a3ce4"]
+[ext_resource type="AudioStream" uid="uid://d07bh7q5ynlr3" path="res://recursos/Audio/actividades/NIVEL1.ogg" id="5_2y0mf"]
+[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/signo-de-interrogacion.png" id="6_qggda"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_twqsm"]
 bg_color = Color(1, 1, 1, 1)
@@ -158,6 +160,7 @@ offset_left = 208.0
 offset_top = 176.0
 offset_right = 240.0
 offset_bottom = 208.0
+scale = Vector2(1.2, 1.2)
 texture_normal = SubResource("AtlasTexture_r8uex")
 stretch_mode = 5
 
@@ -167,6 +170,7 @@ offset_left = 128.0
 offset_top = 176.0
 offset_right = 160.0
 offset_bottom = 208.0
+scale = Vector2(1.2, 1.2)
 texture_normal = SubResource("AtlasTexture_0j8xr")
 stretch_mode = 5
 
@@ -176,6 +180,7 @@ offset_left = 168.0
 offset_top = 136.0
 offset_right = 200.0
 offset_bottom = 168.0
+scale = Vector2(1.2, 1.2)
 texture_normal = SubResource("AtlasTexture_lvkxs")
 stretch_mode = 5
 
@@ -185,6 +190,7 @@ offset_left = 168.0
 offset_top = 176.0
 offset_right = 200.0
 offset_bottom = 208.0
+scale = Vector2(1.2, 1.2)
 texture_normal = SubResource("AtlasTexture_r6bqd")
 stretch_mode = 5
 
@@ -197,6 +203,19 @@ offset_bottom = 256.0
 theme_override_fonts/font = ExtResource("3_mbatl")
 text = "Confirmar"
 
+[node name="AudioAyuda" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_2y0mf")
+
+[node name="BtnAyuda" type="Button" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 48.0
+offset_right = 104.0
+offset_bottom = 88.0
+scale = Vector2(0.7, 0.7)
+icon = ExtResource("6_qggda")
+
 [connection signal="pressed" from="BtnSalir" to="." method="_on_btn_salir_pressed"]
 [connection signal="pressed" from="BtnBorrar" to="." method="_on_btn_borrar_pressed"]
 [connection signal="pressed" from="BtnConfirmar" to="." method="_on_btn_confirmar_pressed"]
+[connection signal="pressed" from="BtnAyuda" to="." method="_on_button_pressed"]

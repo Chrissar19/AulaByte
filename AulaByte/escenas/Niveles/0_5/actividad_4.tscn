@@ -1,9 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://bxynr5uu8vrrc"]
+[gd_scene load_steps=18 format=3 uid="uid://bxynr5uu8vrrc"]
 
 [ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="1_8hpby"]
 [ext_resource type="Script" uid="uid://cbuqahwafoq5n" path="res://scripts/niveles/1_5/actividad_4.gd" id="1_noxnw"]
 [ext_resource type="Texture2D" uid="uid://q21bd3opyssi" path="res://recursos/imagenes/niveles/nivel4/bicicleta.png" id="2_1s2no"]
+[ext_resource type="AudioStream" uid="uid://otqofatyc31k" path="res://recursos/Audio/actividades/NIVEL4.1.ogg" id="2_niy4m"]
+[ext_resource type="AudioStream" uid="uid://dqe1calh02kv4" path="res://recursos/Audio/actividades/NIVEL4.2.ogg" id="3_2evjr"]
 [ext_resource type="Texture2D" uid="uid://bbmowyttpw64w" path="res://recursos/imagenes/niveles/nivel4/bus.png" id="3_ev2iq"]
+[ext_resource type="AudioStream" uid="uid://bwidu6pjbhsqp" path="res://recursos/Audio/actividades/NIVEL4.3 respuestas.ogg" id="4_0w5u0"]
 [ext_resource type="Texture2D" uid="uid://cutcuwqhf45df" path="res://recursos/imagenes/niveles/nivel4/camion.png" id="4_8tfsa"]
 [ext_resource type="Texture2D" uid="uid://cvcei1b0h3jkm" path="res://recursos/imagenes/niveles/nivel4/carta_frente.png" id="4_noxnw"]
 [ext_resource type="Texture2D" uid="uid://dkmccwoxwwela" path="res://recursos/imagenes/niveles/nivel4/Carro 6.png" id="6_etfqf"]
@@ -12,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://ddivg17ok2gdv" path="res://recursos/imagenes/niveles/nivel4/carro con piernas6.png" id="9_etfqf"]
 [ext_resource type="Texture2D" uid="uid://p5fdorrrxsds" path="res://recursos/imagenes/niveles/nivel4/carro con alas6.png" id="10_44ex8"]
 [ext_resource type="Texture2D" uid="uid://bwv10kn230h1o" path="res://recursos/imagenes/niveles/nivel4/Carro sin llantas6.png" id="11_ityl8"]
+[ext_resource type="AudioStream" uid="uid://b6nlwqhr53ru6" path="res://recursos/Audio/actividades/NIVEL4.ogg" id="15_0w5u0"]
+[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/signo-de-interrogacion.png" id="17_bm5ir"]
 
 [node name="Actividad4" type="Control"]
 layout_mode = 3
@@ -21,6 +26,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_noxnw")
+audio_intro_1 = ExtResource("2_niy4m")
+audio_intro_2 = ExtResource("3_2evjr")
+audio_eleccion = ExtResource("4_0w5u0")
 
 [node name="Fondo" type="Panel" parent="."]
 layout_mode = 1
@@ -147,7 +155,8 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("11_ityl8")
 
-[node name="VozGuia" type="AudioStreamPlayer" parent="."]
+[node name="VozAyuda" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_0w5u0")
 
 [node name="SFX" type="Node" parent="."]
 
@@ -218,5 +227,17 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("9_0d7u5")
 text = "REINICIAR"
 
+[node name="BtnAyuda" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 568.00006
+offset_top = -256.0
+offset_right = 608.00006
+offset_bottom = -216.0
+scale = Vector2(0.7, 0.7)
+icon = ExtResource("17_bm5ir")
+
+[node name="AudioGuia" type="AudioStreamPlayer" parent="."]
+
 [connection signal="pressed" from="UI/BtnAceptar" to="." method="_on_btn_aceptar_pressed"]
 [connection signal="pressed" from="UI/BtnReiniciar" to="." method="_on_btn_reiniciar_pressed"]
+[connection signal="pressed" from="UI/BtnAyuda" to="." method="_on_btn_ayuda_pressed"]

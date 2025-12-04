@@ -8,11 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://ckfo3mn0cmgxx" path="res://recursos/imagenes/niveles/nivel3/tecla_simbolos.png" id="5_mohg6"]
 
 [node name="TeclaArrastrable" type="TextureRect"]
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 24.0
-offset_bottom = 24.0
-scale = Vector2(1.5, 1.5)
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 32.0
+offset_bottom = 32.0
+scale = Vector2(2, 2)
 pivot_offset = Vector2(16, 16)
 texture = ExtResource("1_n08l3")
 stretch_mode = 5

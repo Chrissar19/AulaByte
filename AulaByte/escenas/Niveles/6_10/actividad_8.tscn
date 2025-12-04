@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://1qx7apwooy2l"]
+[gd_scene load_steps=33 format=3 uid="uid://1qx7apwooy2l"]
 
 [ext_resource type="Script" uid="uid://dwtehwpffxwpi" path="res://scripts/niveles/6_10/actividad_8.gd" id="1_ob2y3"]
 [ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="2_2jmfk"]
@@ -30,6 +30,8 @@
 [ext_resource type="Texture2D" uid="uid://cm0tc53qap8uy" path="res://recursos/imagenes/niveles/nivel8/fila-5-columna-3.png" id="26_8deea"]
 [ext_resource type="Texture2D" uid="uid://6skvsjl2uui2" path="res://recursos/imagenes/niveles/nivel8/fila-5-columna-4.png" id="27_suirn"]
 [ext_resource type="Texture2D" uid="uid://kf67lebk001p" path="res://recursos/imagenes/niveles/nivel8/fila-5-columna-5.png" id="28_1pmcy"]
+[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/signo-de-interrogacion.png" id="31_g6qs8"]
+[ext_resource type="AudioStream" uid="uid://b26ns4upg5pat" path="res://recursos/Audio/actividades/NIVEL8.ogg" id="32_ojhv0"]
 
 [node name="Actividad8" type="Control"]
 layout_mode = 3
@@ -589,3 +591,21 @@ offset_right = 612.0
 offset_bottom = -32.0
 theme_override_fonts/font = ExtResource("13_wd7hl")
 text = "SALIR"
+
+[node name="BtnPista" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.032
+anchor_bottom = 0.38500002
+offset_left = 24.0
+offset_top = 296.00003
+offset_right = 43.519997
+offset_bottom = 197.40002
+scale = Vector2(0.8, 0.8)
+icon = ExtResource("31_g6qs8")
+
+[node name="AudPista" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("32_ojhv0")
+bus = &"Narraciones"
+
+[connection signal="pressed" from="BtnPista" to="." method="_on_btn_pista_pressed"]

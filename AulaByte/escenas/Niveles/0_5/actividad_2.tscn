@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c24u4nrmigkg8"]
+[gd_scene load_steps=33 format=3 uid="uid://c24u4nrmigkg8"]
 
 [ext_resource type="Script" uid="uid://cqk0q45ielk7s" path="res://scripts/niveles/1_5/actividad_2.gd" id="1_1l3jw"]
 [ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="2_c4gbd"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://donmjcvkqhnhh" path="res://recursos/imagenes/niveles/carpetas n2.png" id="5_pfroo"]
 [ext_resource type="Texture2D" uid="uid://c4mntav8qaw5x" path="res://recursos/imagenes/niveles/nivel 2.png" id="6_ii7ix"]
 [ext_resource type="Script" uid="uid://b1bhshd481td2" path="res://scripts/niveles/1_5/objeto_arrastrable.gd" id="7_teo8n"]
+[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/signo-de-interrogacion.png" id="8_0nh87"]
+[ext_resource type="AudioStream" uid="uid://cgnknuklpas5a" path="res://recursos/Audio/actividades/NIVEL2.ogg" id="9_x5j6v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rqcxl"]
 atlas = ExtResource("5_pfroo")
@@ -213,10 +215,10 @@ script = ExtResource("7_teo8n")
 
 [node name="Obj_Perro" type="TextureRect" parent="ContenedorObjetos"]
 layout_mode = 0
-offset_left = 456.0
-offset_top = 8.0
-offset_right = 536.0
-offset_bottom = 88.0
+offset_left = 424.00003
+offset_top = 16.0
+offset_right = 504.00003
+offset_bottom = 96.0
 scale = Vector2(0.6, 0.6)
 mouse_default_cursor_shape = 2
 texture = SubResource("AtlasTexture_m46fc")
@@ -238,9 +240,9 @@ script = ExtResource("7_teo8n")
 
 [node name="Obj_Mause" type="TextureRect" parent="ContenedorObjetos"]
 layout_mode = 0
-offset_left = 280.0
+offset_left = 264.0
 offset_top = 16.0
-offset_right = 328.0
+offset_right = 312.0
 offset_bottom = 64.0
 mouse_default_cursor_shape = 2
 texture = SubResource("AtlasTexture_7m1i0")
@@ -249,9 +251,9 @@ script = ExtResource("7_teo8n")
 
 [node name="Obj_Raton" type="TextureRect" parent="ContenedorObjetos"]
 layout_mode = 0
-offset_left = 136.0
+offset_left = 96.0
 offset_top = 8.0
-offset_right = 184.0
+offset_right = 144.0
 offset_bottom = 56.0
 mouse_default_cursor_shape = 2
 texture = SubResource("AtlasTexture_7d7en")
@@ -284,9 +286,9 @@ script = ExtResource("7_teo8n")
 
 [node name="Obj_martillo" type="TextureRect" parent="ContenedorObjetos"]
 layout_mode = 0
-offset_left = 208.00003
+offset_left = 200.00002
 offset_top = 8.0
-offset_right = 261.33337
+offset_right = 253.33336
 offset_bottom = 79.111115
 scale = Vector2(0.9, 0.9)
 mouse_default_cursor_shape = 2
@@ -309,10 +311,10 @@ script = ExtResource("7_teo8n")
 
 [node name="Obj_Cuaderno" type="TextureRect" parent="ContenedorObjetos"]
 layout_mode = 0
-offset_left = 360.0
-offset_top = 16.0
-offset_right = 429.56522
-offset_bottom = 64.0
+offset_left = 328.0
+offset_top = 8.0
+offset_right = 397.56522
+offset_bottom = 56.0
 scale = Vector2(0.92, 1)
 mouse_default_cursor_shape = 2
 texture = SubResource("AtlasTexture_e5c64")
@@ -346,10 +348,10 @@ script = ExtResource("7_teo8n")
 
 [node name="Obj_Cuchara" type="TextureRect" parent="ContenedorObjetos"]
 layout_mode = 0
-offset_left = 496.0
-offset_top = 80.00001
-offset_right = 536.0
-offset_bottom = 160.0
+offset_left = 494.0
+offset_top = 64.0
+offset_right = 534.0
+offset_bottom = 144.0
 scale = Vector2(0.6, 0.6)
 mouse_default_cursor_shape = 2
 texture = SubResource("AtlasTexture_0o74e")
@@ -359,10 +361,9 @@ correct_category = "no-hardware"
 
 [node name="Obj_Balon" type="TextureRect" parent="ContenedorObjetos"]
 layout_mode = 0
-offset_left = 528.0
-offset_top = 8.0
-offset_right = 592.0
-offset_bottom = 72.0
+offset_left = 520.0
+offset_right = 584.0
+offset_bottom = 64.0
 mouse_default_cursor_shape = 2
 texture = SubResource("AtlasTexture_t3a2u")
 stretch_mode = 5
@@ -371,10 +372,10 @@ correct_category = "no-hardware"
 
 [node name="Obj_Monitor2" type="TextureRect" parent="ContenedorObjetos"]
 layout_mode = 0
-offset_left = 24.0
-offset_top = 8.0
-offset_right = 96.0
-offset_bottom = 79.111115
+offset_left = 461.0
+offset_top = 125.0
+offset_right = 533.0
+offset_bottom = 196.11111
 scale = Vector2(0.9, 0.9)
 mouse_default_cursor_shape = 2
 texture = SubResource("AtlasTexture_ckrm8")
@@ -450,3 +451,17 @@ offset_right = 164.0
 offset_bottom = 68.0
 theme_override_fonts/font = ExtResource("3_j6ush")
 text = "SALIR"
+
+[node name="BtnAyuda" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = -175.99998
+offset_top = -239.99998
+offset_right = -135.99998
+offset_bottom = -199.99998
+scale = Vector2(0.7, 0.7)
+icon = ExtResource("8_0nh87")
+
+[node name="AudioAyuda" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_x5j6v")
+
+[connection signal="pressed" from="UI/BtnAyuda" to="." method="_on_btn_ayuda_pressed"]

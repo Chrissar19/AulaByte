@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://x2g43rgbtgk8"]
+[gd_scene load_steps=22 format=3 uid="uid://x2g43rgbtgk8"]
 
 [ext_resource type="Script" uid="uid://j6nv5eoxs78u" path="res://scripts/niveles/actividad_9.gd" id="1_m652h"]
 [ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="2_hygnx"]
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="3_6m560"]
 [ext_resource type="Texture2D" uid="uid://gn7tiwhhd4vf" path="res://recursos/imagenes/niveles/nivel9/actividad9/caja_clasifica.png" id="4_8y32a"]
+[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/signo-de-interrogacion.png" id="4_tn6hg"]
 [ext_resource type="Texture2D" uid="uid://w3xgar7sst3k" path="res://recursos/imagenes/niveles/nivel7/actividad7/archivo.png" id="5_k7rnx"]
 [ext_resource type="Script" uid="uid://ce0f0t2hy0ov2" path="res://scripts/niveles/imagen_arrastrable_2.gd" id="6_8y32a"]
 [ext_resource type="Texture2D" uid="uid://c0g00dib8uwb6" path="res://recursos/imagenes/niveles/nivel9/actividad9/teclado.png" id="7_ugwav"]
@@ -19,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://dv6g1wfwyp8p1" path="res://recursos/imagenes/niveles/nivel9/actividad9/procesador.png" id="16_rtywy"]
 [ext_resource type="Texture2D" uid="uid://c15g4a65fipqn" path="res://recursos/imagenes/niveles/nivel9/actividad9/impresora.png" id="17_rk04y"]
 [ext_resource type="Texture2D" uid="uid://doqpatdiifqba" path="res://recursos/imagenes/niveles/nivel9/actividad9/audifonos.png" id="18_igk3y"]
+[ext_resource type="AudioStream" uid="uid://d4gnpgodvthf0" path="res://recursos/Audio/actividades/NIVEL9.ogg" id="21_pbqai"]
 
 [node name="Actividad9" type="Control"]
 layout_mode = 3
@@ -113,6 +115,18 @@ offset_right = 21.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="BtnPista" type="Button" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.032
+anchor_bottom = 0.38500002
+offset_left = -1.0
+offset_top = -258.0
+offset_right = 19.863998
+offset_bottom = -236.48
+scale = Vector2(0.8, 0.8)
+icon = ExtResource("4_tn6hg")
 
 [node name="Labels" type="Node" parent="."]
 
@@ -450,6 +464,11 @@ offset_right = 568.0
 offset_bottom = 80.0
 script = ExtResource("10_rk04y")
 
+[node name="AudioPista" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_pbqai")
+bus = &"Narraciones"
+
+[connection signal="pressed" from="UI/BtnPista" to="." method="_on_btn_pista_pressed"]
 [connection signal="element_asigned" from="ZonaJuego/ContenedorObjetos/Texto" to="." method="_on_texto_element_asigned"]
 [connection signal="element_asigned" from="ZonaJuego/ContenedorObjetos/Teclado" to="." method="_on_teclado_element_asigned"]
 [connection signal="element_asigned" from="ZonaJuego/ContenedorObjetos/Raton" to="." method="_on_raton_element_asigned"]
