@@ -6,6 +6,8 @@ class_name Actividad3
 @onready var teclado_zona: TecladoZona = $TecladoZona
 @onready var contenedor_objetos: Control = $ContenedorObjetos
 @onready var btn_salir: Button = $UI/BtnSalir
+@onready var btn_ayuda: Button = $UI/BtnAyuda
+@onready var audio_ayuda: AudioStreamPlayer = $AudioAyuda
 
 @export var intentos: int = 5
 var _total_objetos := 0
@@ -60,3 +62,7 @@ func configurar_con_parametros(parametros: Dictionary) -> void:
 		
 func _on_btn_salir_pressed() -> void:
 	cancelar_actividad()
+
+
+func _on_btn_ayuda_pressed() -> void:
+	audio_ayuda.play()

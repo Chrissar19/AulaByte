@@ -17,6 +17,8 @@ class_name Actividad1
 @onready var btn_confirmar: Button = $BtnConfirmar
 @onready var btn_salir: Button = $BtnSalir
 @onready var btn_borrar: Button = $BtnBorrar
+@onready var btn_ayuda: Button = $BtnAyuda
+@onready var audio_ayuda: AudioStreamPlayer = $AudioAyuda
 
 # ===========================
 # Variables
@@ -47,6 +49,40 @@ func _on_boton_numero_pressed(numero: int) -> void:
 	if contrasenna_ingresada.size() < 4:
 		contrasenna_ingresada.append(numero)
 		actualizar_pantalla()
+		
+#-----------------------------------------------------------
+#-- CONTROL POR TECLADO
+#-----------------------------------------------------------
+func _unhandled_input(event: InputEvent) -> void:
+	# Verificamos si la actividad ya terminó o está bloqueada
+	if not btn_confirmar.disabled and intentos > 0: 
+		
+		if event.is_action_pressed("ui_up"):
+			_on_boton_numero_pressed(1)
+			_animar_boton(btn_arriba) # Opcional: Feedback visual
+			
+		elif event.is_action_pressed("ui_left"):
+			_on_boton_numero_pressed(2)
+			_animar_boton(btn_izquierda) # Opcional: Feedback visual
+			
+		elif event.is_action_pressed("ui_down"):
+			_on_boton_numero_pressed(3)
+			_animar_boton(btn_abajo) # Opcional: Feedback visual
+			
+		elif event.is_action_pressed("ui_right"):
+			_on_boton_numero_pressed(4)
+			_animar_boton(btn_derecha) # Opcional: Feedback visual
+			
+		elif event.is_action_pressed("ui_accept"):
+			_on_btn_confirmar_pressed()
+
+# Función opcional para que el botón en pantalla "brille" al pulsar la tecla
+func _animar_boton(boton: TextureButton) -> void:
+
+	boton.modulate = Color(0.7, 0.7, 0.7) # Se oscurece un poco
+	await get_tree().create_timer(0.1).timeout
+	if is_instance_valid(boton):
+		boton.modulate = Color(1, 1, 1) # Vuelve a color normal
 
 
 func _on_btn_confirmar_pressed() -> void:
@@ -121,3 +157,7 @@ func configurar_con_parametros(parametros: Dictionary) -> void:
 	
 	if lbl_intentos:
 		lbl_intentos.text = "Intentos: %d" % intentos
+
+
+func _on_button_pressed() -> void:
+	audio_ayuda.play()

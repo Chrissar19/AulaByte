@@ -10,6 +10,8 @@ signal actividad_fallida
 @onready var contenedor_objetos: Control = $ContenedorObjetos
 @onready var contenedor_carpetas: Control = $ContenedorCarpetas
 @onready var btn_salir: Button = $UI/BtnSalir
+@onready var btn_ayuda: Button = $UI/BtnAyuda
+@onready var audio_ayuda: AudioStreamPlayer = $AudioAyuda
 
 @export var intentos: int = 5
 
@@ -106,3 +108,7 @@ func configurar_con_parametros(parametros: Dictionary) -> void:
 		
 func _on_btn_salir_pressed() -> void:
 	cancelar_actividad()
+
+
+func _on_btn_ayuda_pressed() -> void:
+	audio_ayuda.play()

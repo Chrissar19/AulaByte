@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b78p03ef5ia24" path="res://recursos/imagenes/niveles/nivel5/actividad5/grabar_sonidos.png" id="6_lgamn"]
 [ext_resource type="Texture2D" uid="uid://cvcei1b0h3jkm" path="res://recursos/imagenes/niveles/nivel4/carta_frente.png" id="7_370m8"]
 [ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/signo-de-interrogacion.png" id="9_f7oct"]
-[ext_resource type="AudioStream" uid="uid://dm3mvmb2me5dm" path="res://recursos/Audio/actividades/NIVEL5.ogg" id="10_f7oct"]
+[ext_resource type="AudioStream" uid="uid://d0cllhf4teep6" path="res://recursos/Audio/actividades/PNIVEL5.ogg" id="10_f7oct"]
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="12_a1co2"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_tvwjn"]

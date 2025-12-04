@@ -3,8 +3,13 @@ class_name Actividad4
 
 enum Fase {INTRO1, INTRO2, ELECCION, RESULTADO}
 
-@export var t_intro1 := 5.0
-@export var t_intro2 := 5.0
+@export_group("Audios Guía")
+@export var audio_intro_1: AudioStream
+@export var audio_intro_2: AudioStream
+@export var audio_eleccion: AudioStream
+
+@export_group("Configuración")
+@export var tiempo_espera_post_audio: float = 1.5 # Tiempo extra después de hablar
 
 @onready var zona_cartas: Control = $Fondo/ZonaCartas
 @onready var btn_aceptar: Button = $UI/BtnAceptar
@@ -15,6 +20,10 @@ enum Fase {INTRO1, INTRO2, ELECCION, RESULTADO}
 @onready var carta_carro: TextureRect = $Fondo/CartaCarro
 @onready var lbl_texto: Label = $UI/LblTexto
 @onready var btn_salir: Button = $UI/BtnSalir
+
+# Referencia al nuevo nodo de audio
+@onready var audio_guia: AudioStreamPlayer = $AudioGuia
+@onready var voz_ayuda: AudioStreamPlayer = $VozAyuda
 
 var _seleccion: CartaVolteable = null
 var _cartas: Array[CartaVolteable] = []
@@ -34,7 +43,6 @@ func _ready() -> void:
 		
 	_iniciar_secuencia()
 
-
 func _reunir_cartas() -> void:
 	_cartas.clear()
 	for n in zona_cartas.get_children():
@@ -47,15 +55,18 @@ func _reunir_cartas() -> void:
 				c.carta_seleccionada.connect(_on_carta_seleccionada)
 
 #-----------------------------------------------------------
-#-- SECUENCIA PARA EL SILOGISMO
+#-- SECUENCIA PARA EL SILOGISMO (MODIFICADA)
 #------------------------------------------------------------
 func _iniciar_secuencia() -> void:
+	# Detenemos cualquier audio anterior si se reinició rápido
+	audio_guia.stop() 
+	
 	_contador += 1
-	var i := _contador
+	var id_actual := _contador
 	
 	_interaccion_habilitada = false
 	btn_aceptar.disabled = true
-	_seleccion= null
+	_seleccion = null
 	for c in _cartas:
 		c.deseleccionar_y_cerrar()
 		
@@ -66,43 +77,71 @@ func _iniciar_secuencia() -> void:
 	carta_bus.visible = false
 	carta_camion.visible = false
 	
-	lbl_texto.text = "Todos los vehículos tienen ruedas."  
+	# --- FASE 1: PREMISA MAYOR ---
+	_fase = Fase.INTRO1
 	carta_bici.visible = true
 	carta_bus.visible = true
 	carta_camion.visible = true
-	_fase = Fase.INTRO1
-	await get_tree().create_timer(t_intro1).timeout
-	if i != _contador: return
 	
-	lbl_texto.text = "El carro es un vehículo."  
+	# Llamamos a la función que maneja Texto + Voz + Espera
+	await _narrar_fase("Todos los vehículos tienen ruedas.", audio_intro_1)
+	
+	# Chequeo de seguridad: Si el usuario reinició mientras hablaba, paramos aquí
+	if id_actual != _contador: return
+	
+	# --- FASE 2: PREMISA MENOR ---
+	_fase = Fase.INTRO2
 	carta_carro.visible = true
 	carta_bici.visible = false
 	carta_bus.visible = false
 	carta_camion.visible = false
-	_fase = Fase.INTRO2
-	await get_tree().create_timer(t_intro2).timeout
-	if i != _contador: return
 	
-	lbl_texto.text = "Elige la carta que completa el silogismo."
+	await _narrar_fase("El carro es un vehículo.", audio_intro_2)
+	
+	if id_actual != _contador: return
+	
+	# --- FASE 3: CONCLUSIÓN / ELECCIÓN ---
+	_fase = Fase.ELECCION
 	carta_carro.visible = false
 	zona_cartas.visible = true
-	_fase = Fase.ELECCION
+	
+	# Aquí no usamos await porque ya habilitamos el juego, 
+	# el audio suena de fondo mientras el niño ya puede empezar a mirar
+	_narrar_fase("Elige la carta que completa el silogismo.", audio_eleccion, false)
+	
 	_interaccion_habilitada = true
+
+
+# FUNCION AUXILIAR PARA MANEJAR LA NARRACION
+# Si 'esperar_terminar' es true, el código se pausa hasta que acabe el audio + delay
+func _narrar_fase(texto: String, audio: AudioStream, esperar_terminar: bool = true) -> void:
+	lbl_texto.text = texto
 	
-	
+	if audio:
+		audio_guia.stream = audio
+		audio_guia.play()
+		
+		if esperar_terminar:
+			# Espera a que termine el audio
+			await audio_guia.finished
+			# Espera el tiempo extra para que el niño procese la info
+			await get_tree().create_timer(tiempo_espera_post_audio).timeout
+	else:
+		# Si no hay audio asignado (fallback), esperamos un tiempo fijo por defecto
+		if esperar_terminar:
+			await get_tree().create_timer(3.0).timeout
+
 #--------------------------------------------------------
-#-- INTERACCION CON CARTAS
+#-- INTERACCION CON CARTAS (IGUAL)
 #-------------------------------------------------------    
 func _on_carta_volteada(carta: CartaVolteable) -> void:
 	if not _interaccion_habilitada: return
-	# Cierra las demás
 	for c in _cartas:
 		if c != carta:
 			c.forzar_cierre()
 
 func _on_carta_seleccionada(carta: CartaVolteable) -> void:
 	if not _interaccion_habilitada: return
-	# Solo una seleccionada
 	for c in _cartas:
 		if c != carta:
 			c.deseleccionar_y_cerrar()
@@ -116,6 +155,7 @@ func _on_carta_seleccionada(carta: CartaVolteable) -> void:
 func _on_btn_aceptar_pressed() -> void:
 	if _seleccion == null: return
 	_interaccion_habilitada = false
+	audio_guia.stop() # Detener instrucción si ya ganó
 	if _seleccion.es_correcta:
 		finalizar_exito()
 	else:
@@ -126,4 +166,10 @@ func _on_btn_reiniciar_pressed() -> void:
 	_iniciar_secuencia()
 	
 func _on_btn_salir_pressed() -> void:
+	# Aseguramos que el audio se calle al salir
+	audio_guia.stop()
 	cancelar_actividad()
+
+
+func _on_btn_ayuda_pressed() -> void:
+	voz_ayuda.play()
