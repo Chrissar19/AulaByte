@@ -1,17 +1,17 @@
 extends Control
 class_name MenuPrincipal
 
-const RUTA_INTRO       = "res://escenas/intro/Intro.tscn"
-const RUTA_SELECCION   = "res://escenas/menu/Seleccion_personaje/seleccion_personaje.tscn"
-const RUTA_OPCIONES    = "res://escenas/menu/opciones_menu.tscn"
-const RUTA_NUBE_SCN    = "res://escenas/menu/nubes.tscn"
+const RUTA_INTRO = "res://escenas/intro/Intro.tscn"
+const RUTA_SELECCION = "res://escenas/menu/Seleccion_personaje/seleccion_personaje.tscn"
+const RUTA_OPCIONES = "res://escenas/menu/opciones_menu.tscn"
+const RUTA_NUBE_SCN = "res://escenas/menu/nubes.tscn"
 const RUTA_MUSICA_MENU = "res://recursos/Audio/musica/MenuPrincipal.wav"
 
-@onready var fondo: Control         = $Fondo
-@onready var btn_jugar: Button      = $VBoxContainer/BtnJugar
-@onready var btn_opciones: Button   = $VBoxContainer/BtnOpciones
-@onready var btn_salir: Button      = $VBoxContainer/BtnSalir
-@onready var lbl_version: Label     = $LblVersion
+@onready var fondo: Control = $Fondo
+@onready var btn_jugar: Button = $VBoxContainer/BtnJugar
+@onready var btn_opciones: Button = $VBoxContainer/BtnOpciones
+@onready var btn_salir: Button = $VBoxContainer/BtnSalir
+@onready var lbl_version: Label = $LblVersion
 
 @onready var temporizador_nubes: Timer  = $temNubes
 @onready var temporizador_espera: Timer = $temEspera
@@ -143,3 +143,4 @@ func _on_jugar_pressed() -> void:
 	_detener_temporizador_intro()
 	GameManager.cambiar_estado(GameManager.EstadoJuego.SELECCION_PERSONAJE)
 	get_tree().change_scene_to_file(RUTA_SELECCION)
+	

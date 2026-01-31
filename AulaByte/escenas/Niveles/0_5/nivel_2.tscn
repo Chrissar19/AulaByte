@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://dv2rc1dwmstnh"]
+[gd_scene load_steps=29 format=4 uid="uid://dv2rc1dwmstnh"]
 
 [ext_resource type="Script" uid="uid://cmyl0o5rtivup" path="res://scripts/niveles/1_5/nivel_2.gd" id="1_38uqx"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_ekcxq"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dfr8bmdn5actv" path="res://escenas/personajes/enemigos/slime_azul.tscn" id="12_aa8u6"]
 [ext_resource type="PackedScene" uid="uid://fva12xfahbpb" path="res://escenas/objetos_interacciones/puerta_nivel.tscn" id="16_38uqx"]
 [ext_resource type="PackedScene" uid="uid://db7j3q20ljag8" path="res://escenas/ui/punto_inicio.tscn" id="17_1mak7"]
+[ext_resource type="PackedScene" uid="uid://jgf3xqgo0gm5" path="res://escenas/objetos_interacciones/saltarin.tscn" id="17_ny6w3"]
 [ext_resource type="PackedScene" uid="uid://bva0i33hhjmev" path="res://escenas/habilidades/item_velocidad.tscn" id="18_1mak7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5rite"]
@@ -519,6 +520,11 @@ autoplay = "new_animation"
 [node name="Avisos" type="Node" parent="."]
 
 [node name="saltarin" type="Node" parent="."]
+
+[node name="Saltarin" parent="saltarin" instance=ExtResource("17_ny6w3")]
+position = Vector2(1688.0001, -232.99998)
+scale = Vector2(0.6, 0.75)
+fuerza_rebote = -600.0
 
 [node name="Enemigos" type="Node" parent="."]
 

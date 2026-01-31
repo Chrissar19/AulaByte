@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7sb8bwt8jcps"
-path="res://.godot/imported/mapa1.0.png-72f950bbfd02ce7da6a35deeaa2624fb.ctex"
+uid="uid://6b0if1mgwnfm"
+path="res://.godot/imported/candado.png-e05e39708f78b877f877015e56ab3585.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/imagenes/ui/mapa1.0.png"
-dest_files=["res://.godot/imported/mapa1.0.png-72f950bbfd02ce7da6a35deeaa2624fb.ctex"]
+source_file="res://recursos/imagenes/objetos/candado.png"
+dest_files=["res://.godot/imported/candado.png-e05e39708f78b877f877015e56ab3585.ctex"]
 
 [params]
 

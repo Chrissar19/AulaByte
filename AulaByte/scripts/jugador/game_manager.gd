@@ -14,12 +14,19 @@ signal jugador_gana_puntos(puntos_totales: int)
 signal estado_cambiado(nuevo_estado: String)
 signal actividad_superada # FIX: faltaba declarar esta señal
 
+#---------------------------------------------------------------------
+# Guardar
+#================================================================
+const SAVE_PATH := "user://progreso_aulabyte.cfg"
+var nivel_max_desbloqueado: int = 0
+
 # ====================================================================
 # Estados (enum)
 # ====================================================================
 enum EstadoJuego {
 	MENU_PRINCIPAL,
 	SELECCION_PERSONAJE,
+	SELECCION_NIVEL,
 	CARGANDO,
 	JUGANDO,
 	PAUSA,
@@ -33,6 +40,7 @@ enum EstadoJuego {
 const NOMBRES_ESTADOS := [
 	"MENU_PRINCIPAL",
 	"SELECCION_PERSONAJE",
+	"SELECCION_NIVEL",
 	"CARGANDO",
 	"JUGANDO",
 	"PAUSA",
@@ -103,8 +111,9 @@ func _ready() -> void:
 		else:
 			push_warning("AudioManager no está configurado como Autoload o el nombre no coincide.")
 	
+	cargar_progreso()
 	cambiar_estado(estado_actual)
-
+	
 # -----------------------------------------------------------------------
 func _process(delta: float) -> void:
 	# El tiempo cuenta solo si el juego está corriendo
@@ -152,6 +161,11 @@ func _entrar_estado(estado: int) -> void:
 			print("Entrando a estado SELECCION_PERSONAJE")
 			get_tree().paused = false
 			tiempo_activo = false
+			
+		EstadoJuego.SELECCION_NIVEL:
+			print("Entrando a estado SELECCION_NIVEL")
+			tiempo_activo = false
+			get_tree().change_scene_to_file("res://escenas/menu/menu_niveles.tscn")
 			
 		EstadoJuego.JUGANDO:
 			print("Entrando a estado JUGANDO")
@@ -388,7 +402,6 @@ func cargar_nivel_actual() -> void:
 	if nivel:
 		get_tree().change_scene_to_packed(nivel)
 	else:
-		print("AQUI VAN LOS CREDITOS")
 		cambiar_estado(EstadoJuego.CREDITOS)
 
 func transicion_siguiente_nivel() -> void:
@@ -396,6 +409,9 @@ func transicion_siguiente_nivel() -> void:
 		cambiar_estado(EstadoJuego.CREDITOS)
 	else:
 		nivel_actual += 1
+		if nivel_actual > nivel_max_desbloqueado:
+			nivel_max_desbloqueado = nivel_actual
+			guardar_progreso()
 		cambiar_estado(EstadoJuego.CARGANDO)
 
 func siguiente_nivel() -> void:
@@ -435,6 +451,19 @@ func ir_a_menu_principal() -> void:
 	puntos_base_nivel = 0
 	cambiar_estado(EstadoJuego.MENU_PRINCIPAL)
 	get_tree().change_scene_to_file("res://escenas/menu/menu_principal.tscn")
+	
+func guardar_progreso() -> void:
+	var config = ConfigFile.new()
+	config.set_value("Progreso", "nivel_max", nivel_max_desbloqueado)
+	config.save(SAVE_PATH)
+	print("[GM] progreso guardado: Nivel ", nivel_max_desbloqueado)
+	
+func cargar_progreso() -> void:
+	var config = ConfigFile.new()
+	var err = config.load(SAVE_PATH)
+	if err == OK:
+		nivel_max_desbloqueado = config.get_value("Progreso", "nivel_max", 0)
+		print("[GM] Progreso cargado. Nivel maximo: ", nivel_max_desbloqueado)
 
 # =====================================================================
 # ACTIVIDAD / MINIJUEGO
