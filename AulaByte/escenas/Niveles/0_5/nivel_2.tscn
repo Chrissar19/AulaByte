@@ -532,7 +532,7 @@ fuerza_rebote = -600.0
 position = Vector2(225, 112)
 
 [node name="SlimeAzul2" parent="Enemigos" instance=ExtResource("12_aa8u6")]
-position = Vector2(815, -415)
+position = Vector2(760, -444)
 
 [node name="SlimeAzul3" parent="Enemigos" instance=ExtResource("12_aa8u6")]
 position = Vector2(658, -651)

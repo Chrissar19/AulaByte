@@ -98,6 +98,7 @@ size_flags_vertical = 4
 [node name="ChkFull" type="CheckButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_whpv3")
+action_mode = 0
 text = "Pantalla Completa"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]

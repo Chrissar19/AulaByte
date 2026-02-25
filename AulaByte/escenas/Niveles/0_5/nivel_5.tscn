@@ -297,7 +297,7 @@ position = Vector2(51, 396)
 [node name="puntos_control" type="Node" parent="."]
 
 [node name="PuntosInicio" parent="puntos_control" instance=ExtResource("6_5b2gf")]
-position = Vector2(1790, -148)
+position = Vector2(1792, -152)
 
 [node name="PuntosInicio2" parent="puntos_control" instance=ExtResource("6_5b2gf")]
 position = Vector2(3166, -532)
