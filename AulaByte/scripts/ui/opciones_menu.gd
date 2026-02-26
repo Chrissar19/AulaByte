@@ -14,7 +14,6 @@ const BUS_NARRACIONES := "Narraciones"
 @onready var sld_musica: HSlider = $MarginContainer/VBoxContainer/GridContainer/SldMusica
 @onready var sld_efectos: HSlider = $MarginContainer/VBoxContainer/GridContainer/SldEfectos
 @onready var sld_narraciones: HSlider = $MarginContainer/VBoxContainer/GridContainer/SldNarraciones
-@onready var cb_fullscreen: CheckButton = $MarginContainer/VBoxContainer/ChkFull
 @onready var btn_reset: Button = $MarginContainer/VBoxContainer/HBoxContainer/BtnRestablecer
 @onready var btn_volver: Button = $MarginContainer/VBoxContainer/HBoxContainer/BtnVolver
 
@@ -36,7 +35,6 @@ func _conectar_senales() -> void:
 	if sld_musica: sld_musica.value_changed.connect(func(v): _set_bus_db(BUS_MUSICA, v))
 	if sld_efectos: sld_efectos.value_changed.connect(func(v): _set_bus_db(BUS_EFECTOS, v))
 	if sld_narraciones: sld_narraciones.value_changed.connect(func(v): _set_bus_db(BUS_NARRACIONES, v))
-	if cb_fullscreen: cb_fullscreen.toggled.connect(_on_fullscreen_toggled)
 	if btn_volver: btn_volver.pressed.connect(_on_volver)
 	if btn_reset: btn_reset.pressed.connect(_on_reset)
 
@@ -63,7 +61,6 @@ func _on_reset() -> void:
 	if sld_musica: sld_musica.value = -6.0
 	if sld_efectos: sld_efectos.value = -6.0
 	if sld_narraciones: sld_narraciones.value = -6.0
-	if cb_fullscreen: cb_fullscreen.button_pressed = false
 	_guardar_config()
 
 func _on_volver() -> void:
@@ -96,7 +93,6 @@ func _cargar_y_aplicar_config() -> void:
 	if sld_musica: sld_musica.value = musica_v
 	if sld_efectos: sld_efectos.value = efectos_v
 	if sld_narraciones: sld_narraciones.value = narr_v
-	if cb_fullscreen: cb_fullscreen.button_pressed = is_full
 
 	_set_bus_db(BUS_MASTER, master_v)
 	_set_bus_db(BUS_MUSICA, musica_v)
@@ -112,5 +108,4 @@ func _guardar_config() -> void:
 	cfg.set_value("audio", "musica_db", sld_musica.value if sld_musica else -6.0)
 	cfg.set_value("audio", "efectos_db", sld_efectos.value if sld_efectos else -6.0)
 	cfg.set_value("audio", "narraciones_db", sld_narraciones.value if sld_narraciones else -6.0)
-	cfg.set_value("video", "fullscreen", cb_fullscreen.button_pressed if cb_fullscreen else false)
 	cfg.save(CFG_PATH)
