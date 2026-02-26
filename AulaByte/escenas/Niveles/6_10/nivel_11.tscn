@@ -23,7 +23,7 @@
 script = ExtResource("1_f02el")
 camara_alto = -400
 camara_izquierda = -880
-camara_derecha = 1110
+camara_derecha = 2086
 camara_abajo = 272
 cuenta_regresiva = 360.0
 id_nivel = 11

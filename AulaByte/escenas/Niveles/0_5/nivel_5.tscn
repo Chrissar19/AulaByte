@@ -79,7 +79,7 @@ _data = {
 
 [node name="Nivel5" type="Node2D"]
 script = ExtResource("1_5dphs")
-camara_alto = -848
+camara_alto = -864
 camara_izquierda = -24
 camara_derecha = 3472
 camara_abajo = 624

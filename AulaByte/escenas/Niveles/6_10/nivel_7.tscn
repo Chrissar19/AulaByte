@@ -315,10 +315,10 @@ sources/0 = SubResource("TileSetAtlasSource_7svhg")
 
 [node name="Nivel7" type="Node2D"]
 script = ExtResource("1_pbpmi")
-camara_alto = -778
-camara_izquierda = -833
-camara_derecha = 1288
-camara_abajo = 223
+camara_alto = -784
+camara_izquierda = -824
+camara_derecha = 1624
+camara_abajo = 224
 cuenta_regresiva = 360.0
 id_nivel = 7
 actividad = ExtResource("2_3kpqp")
