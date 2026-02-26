@@ -95,7 +95,6 @@ func _registrar_personaje(boton: TextureButton, info: personajeInfo) -> void:
 #==============================================================================
 #  UI: actualización y selección
 #==============================================================================
-
 func _on_personaje_seleccionado(indice: int) -> void:
 	if indice < 0 or indice >= lista_info.size():
 		return
@@ -141,7 +140,6 @@ func _get_info_actual() -> personajeInfo:
 		return lista_info[indice_seleccionado]
 	return null
 
-
 #==============================================================================
 #  Input por teclado
 #==============================================================================
@@ -150,7 +148,6 @@ func _accion_presionada(event: InputEvent, nombres: Array[String]) -> bool:
 		if InputMap.has_action(nombre) and event.is_action_pressed(nombre):
 			return true
 	return false
-
 
 func _unhandled_input(event: InputEvent) -> void:
 	if lista_info.is_empty():
@@ -189,7 +186,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("ui_cancel"):
 		_on_volver()
 
-
 #==============================================================================
 #  Confirmar selección y cambio de escena
 #==============================================================================
@@ -207,12 +203,9 @@ func _on_confirmar() -> void:
 	# Reiniciar estado de juego para una nueva partida
 	GameManager.reiniciar_puntos()
 	GameManager.reiniciar_vidas()
-	GameManager.nivel_actual = 0
 	GameManager.codigo_generado = false
 	GameManager.codigo_actividad_actual.clear()
-
-	# Pasar al estado de carga (pantalla_de_carga la maneja el GameManager)
-	GameManager.cambiar_estado(GameManager.EstadoJuego.CARGANDO)
+	GameManager.cambiar_estado(GameManager.EstadoJuego.SELECCION_NIVEL)
 
 
 func _on_volver() -> void:

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="AulaByte"
-config/version="1.0.2"
+config/version="1.1.7"
 run/main_scene="uid://bk4p6hke41s0k"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/bg_color=Color(0.99116415, 0.99116427, 0.99116415, 1)
@@ -29,7 +29,7 @@ AudioManager="*res://scripts/autoloads/audio_manager.gd"
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 
 [global_group]
 

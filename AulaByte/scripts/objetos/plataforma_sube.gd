@@ -1,4 +1,5 @@
-extends Node2D
+extends AnimatableBody2D
+class_name PlataformaSube
 
 @onready var area_2d: Area2D = $Area2D
 @onready var timer_subida: Timer = $TimerSubida
@@ -19,6 +20,7 @@ func _ready() -> void:
 	z_index = ZCapas.PLATAFORMAS
 	add_to_group("Z_PLATAFORMAS")
 	pos_inicial = global_position
+	
 	area_2d.body_entered.connect(_on_area_2d_body_entered)
 	area_2d.body_exited.connect(_on_area_2d_body_exited)
 	timer_subida.timeout.connect(_on_timer_subida_timeout)
@@ -29,18 +31,20 @@ func _ready() -> void:
 		sprite_2d.modulate = Color(0.792, 0.592, 0.208, 1.0)
 		bajando = true
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	var movimiento = Vector2.ZERO
+
 	if auto_play:
 		if bajando:
 			if desplazamiento > distancia_max:
-				global_position.y -= vel_subida * delta
+				movimiento.y = -vel_subida * delta
 				desplazamiento -= vel_subida * delta
 			else:
 				bajando = false
 				timer_subida.start()
 		elif subiendo:
 			if desplazamiento < 0:
-				global_position.y += vel_subida * delta
+				movimiento.y = vel_subida * delta
 				desplazamiento += vel_subida * delta
 			else:
 				subiendo = false
@@ -50,17 +54,19 @@ func _process(delta: float) -> void:
 	else:
 		if jugador_encima:
 			if desplazamiento > distancia_max:
-				global_position.y -= vel_subida * delta
+				movimiento.y = -vel_subida * delta
 				desplazamiento -= vel_subida * delta
 		elif subiendo:
 			if desplazamiento < 0:
-				global_position.y += vel_subida * delta
+				movimiento.y = vel_subida * delta
 				desplazamiento += vel_subida * delta
 			else:
 				subiendo = false
 				desplazamiento = 0.0
 				global_position = pos_inicial
 				timer_subida.stop()
+	
+	global_position += movimiento
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if !auto_play and body.is_in_group("Jugador"):

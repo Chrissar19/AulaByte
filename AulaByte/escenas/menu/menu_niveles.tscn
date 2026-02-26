@@ -1,0 +1,176 @@
+[gd_scene load_steps=7 format=3 uid="uid://k1rpnqlo12w7"]
+
+[ext_resource type="Script" uid="uid://yj2mwld41isf" path="res://scripts/ui/menu_niveles.gd" id="1_kepto"]
+[ext_resource type="Texture2D" uid="uid://b7sb8bwt8jcps" path="res://recursos/imagenes/ui/mapaniveles.png" id="1_ur4uy"]
+[ext_resource type="Texture2D" uid="uid://6b0if1mgwnfm" path="res://recursos/imagenes/objetos/candado.png" id="2_8g3ah"]
+[ext_resource type="Script" uid="uid://nd40hf7e4ynx" path="res://escenas/menu/btn_nivel.gd" id="4_t8bje"]
+[ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="5_1j500"]
+[ext_resource type="AudioStream" uid="uid://rv3tqp8mrdwm" path="res://recursos/Audio/efectos/click.wav" id="6_hguvk"]
+
+[node name="MenuNiveles" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_kepto")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(320, 180)
+texture = ExtResource("1_ur4uy")
+
+[node name="BotonesNivel" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BtnNivel0" type="Button" parent="BotonesNivel"]
+layout_mode = 0
+offset_left = 142.0
+offset_top = 272.0
+offset_right = 181.0
+offset_bottom = 304.0
+icon = ExtResource("2_8g3ah")
+script = ExtResource("4_t8bje")
+
+[node name="BtnNivel1" type="Button" parent="BotonesNivel"]
+layout_mode = 0
+offset_left = 202.0
+offset_top = 272.0
+offset_right = 241.0
+offset_bottom = 304.0
+icon = ExtResource("2_8g3ah")
+script = ExtResource("4_t8bje")
+numero_nivel = 1
+
+[node name="BtnNivel2" type="Button" parent="BotonesNivel"]
+layout_mode = 0
+offset_left = 392.0
+offset_top = 270.0
+offset_right = 431.0
+offset_bottom = 302.0
+icon = ExtResource("2_8g3ah")
+script = ExtResource("4_t8bje")
+numero_nivel = 2
+
+[node name="BtnNivel3" type="Button" parent="BotonesNivel"]
+layout_mode = 0
+offset_left = 452.0
+offset_top = 270.0
+offset_right = 491.0
+offset_bottom = 302.0
+icon = ExtResource("2_8g3ah")
+script = ExtResource("4_t8bje")
+numero_nivel = 3
+
+[node name="BtnNivel4" type="Button" parent="BotonesNivel"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 210.0
+offset_right = 97.0
+offset_bottom = 242.0
+icon = ExtResource("2_8g3ah")
+script = ExtResource("4_t8bje")
+numero_nivel = 4
+
+[node name="BtnNivel5" type="Button" parent="BotonesNivel"]
+layout_mode = 0
+offset_left = 118.0
+offset_top = 210.0
+offset_right = 157.0
+offset_bottom = 242.0
+icon = ExtResource("2_8g3ah")
+script = ExtResource("4_t8bje")
+numero_nivel = 5
+
+[node name="BtnNivel6" type="Button" parent="BotonesNivel"]
+layout_mode = 0
+offset_left = 490.0
+offset_top = 208.0
+offset_right = 529.0
+offset_bottom = 240.0
+icon = ExtResource("2_8g3ah")
+script = ExtResource("4_t8bje")
+numero_nivel = 6
+
+[node name="BtnNivel7" type="Button" parent="BotonesNivel"]
+layout_mode = 0
+offset_left = 550.0
+offset_top = 208.0
+offset_right = 589.0
+offset_bottom = 240.0
+icon = ExtResource("2_8g3ah")
+script = ExtResource("4_t8bje")
+numero_nivel = 7
+
+[node name="BtnNivel8" type="Button" parent="BotonesNivel"]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 148.0
+offset_right = 149.0
+offset_bottom = 180.0
+icon = ExtResource("2_8g3ah")
+script = ExtResource("4_t8bje")
+numero_nivel = 8
+
+[node name="BtnNivel9" type="Button" parent="BotonesNivel"]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 149.0
+offset_right = 209.0
+offset_bottom = 181.0
+icon = ExtResource("2_8g3ah")
+script = ExtResource("4_t8bje")
+numero_nivel = 9
+
+[node name="BtnNivel10" type="Button" parent="BotonesNivel"]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 150.0
+offset_right = 463.0
+offset_bottom = 182.0
+icon = ExtResource("2_8g3ah")
+script = ExtResource("4_t8bje")
+numero_nivel = 10
+
+[node name="BtnNivel11" type="Button" parent="BotonesNivel"]
+layout_mode = 0
+offset_left = 484.0
+offset_top = 150.0
+offset_right = 523.0
+offset_bottom = 182.0
+icon = ExtResource("2_8g3ah")
+script = ExtResource("4_t8bje")
+numero_nivel = 11
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 524.0
+offset_top = 324.0
+offset_right = 628.0
+offset_bottom = 348.0
+theme_override_fonts/font = ExtResource("5_1j500")
+text = "VOLVER"
+
+[node name="AudClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_hguvk")
+
+[connection signal="pressed" from="BotonesNivel/BtnNivel0" to="BotonesNivel/BtnNivel0" method="_on_pressed"]
+[connection signal="pressed" from="BotonesNivel/BtnNivel1" to="BotonesNivel/BtnNivel1" method="_on_pressed"]
+[connection signal="pressed" from="BotonesNivel/BtnNivel2" to="BotonesNivel/BtnNivel2" method="_on_pressed"]
+[connection signal="pressed" from="BotonesNivel/BtnNivel3" to="BotonesNivel/BtnNivel3" method="_on_pressed"]
+[connection signal="pressed" from="BotonesNivel/BtnNivel4" to="BotonesNivel/BtnNivel4" method="_on_pressed"]
+[connection signal="pressed" from="BotonesNivel/BtnNivel5" to="BotonesNivel/BtnNivel5" method="_on_pressed"]
+[connection signal="pressed" from="BotonesNivel/BtnNivel6" to="BotonesNivel/BtnNivel6" method="_on_pressed"]
+[connection signal="pressed" from="BotonesNivel/BtnNivel7" to="BotonesNivel/BtnNivel7" method="_on_pressed"]
+[connection signal="pressed" from="BotonesNivel/BtnNivel8" to="BotonesNivel/BtnNivel8" method="_on_pressed"]
+[connection signal="pressed" from="BotonesNivel/BtnNivel9" to="BotonesNivel/BtnNivel9" method="_on_pressed"]
+[connection signal="pressed" from="BotonesNivel/BtnNivel10" to="BotonesNivel/BtnNivel10" method="_on_pressed"]
+[connection signal="pressed" from="BotonesNivel/BtnNivel11" to="BotonesNivel/BtnNivel11" method="_on_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
