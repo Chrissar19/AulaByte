@@ -14,16 +14,21 @@ signal actividad_fallida
 @onready var audio_ayuda: AudioStreamPlayer = $AudioAyuda
 
 @export var intentos: int = 5
+@export var tiempo_mensaje: float = 2.0
 
 var _total_objetos: int = 0
 var _objeto_correcto: int = 0
+const MSJ_ORIGINAL := "Ordena los objetos"
 
 func _ready() -> void:
 	super._ready()
 	
 	btn_salir.pressed.connect(_on_btn_salir_pressed)
 	
-	lbl_ganar.visible = false
+	lbl_ganar.text = MSJ_ORIGINAL
+	lbl_ganar.scale = Vector2(1.0, 1.0)
+	lbl_ganar.visible = true
+	
 	_conectar_carpetas()
 	_contar_objetos()
 	_actualizar_intentos()
@@ -54,46 +59,53 @@ func _soltar_item(correct: bool) -> void:
 
 	if correct:
 		_objeto_correcto += 1
-		lbl_ganar.text = "¡Bien hecho!"
-		lbl_ganar.visible = true
+		_mostrar_feedback_temporal("¡Bien hecho!", Color.GREEN)
 		if _objeto_correcto >= _total_objetos:
 			_ganar()
 	else:
 		intentos -= 1
-		lbl_ganar.text = "UPS"
-		lbl_ganar.visible = true
+		_mostrar_feedback_temporal("¡Ups, sigue intentando!", Color.RED)
 		_actualizar_intentos()
 		if intentos <= 0:
 			_perder()
 
+func _mostrar_feedback_temporal(texto: String, color: Color) -> void:
+	lbl_ganar.text = texto
+	lbl_ganar.modulate = color
+	
+	await get_tree().create_timer(tiempo_mensaje).timeout
+	
+	if not _finalizado:
+		lbl_ganar.text = MSJ_ORIGINAL
+		lbl_ganar.modulate = Color.WHITE
 
 func _ganar() -> void:
 	if _finalizado:
 		return
 
-	lbl_ganar.text = "¡Bien hecho!"
+	lbl_ganar.text = "¡Excelente! Actividad superada"
+	lbl_ganar.modulate = Color.CYAN
 	lbl_ganar.visible = true
-
 	actividad_superada.emit()
 	_bloquear_objetos_arrastrables()
-
-	# Usa la API común de ActividadBase (emite resuelto(true))
 	finalizar_exito()
 
 
 func _perder() -> void:
 	if _finalizado:
 		return
-
-	lbl_ganar.text = "Sin intentos."
+	
+	if lbl_intentos:
+		lbl_intentos.text = "¡Sin intentos!"
+		lbl_intentos.modulate = Color.RED
+	lbl_ganar.text = "Sé que podrás en la próxima"
+	lbl_ganar.modulate = Color.ORANGE
+	lbl_ganar.scale = Vector2(0.85, 0.85)
 	lbl_ganar.visible = true
-
 	actividad_fallida.emit()
 	_bloquear_objetos_arrastrables()
-
-	# Usa la API común de ActividadBase (emite resuelto(false))
 	finalizar_fracaso()
-
+	
 
 func _bloquear_objetos_arrastrables() -> void:
 	for c in contenedor_objetos.get_children():
