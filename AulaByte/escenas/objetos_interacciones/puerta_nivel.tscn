@@ -68,6 +68,7 @@ collision_mask = 4
 script = ExtResource("1_o3bfo")
 
 [node name="AnimacionPuerta" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 36)
 sprite_frames = SubResource("SpriteFrames_5ihpb")
 animation = &"Abriendo"
 frame = 4

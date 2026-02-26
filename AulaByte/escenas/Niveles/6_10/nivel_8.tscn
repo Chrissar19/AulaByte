@@ -346,13 +346,10 @@ fuerza_rebote = -600.0
 [node name="PuntosControl" type="Node" parent="."]
 
 [node name="PuertaNivel2" parent="PuntosControl" instance=ExtResource("14_pcq15")]
-position = Vector2(3842, -916)
-
-[node name="PuntosInicio" parent="PuntosControl" instance=ExtResource("6_i3h1u")]
-position = Vector2(-257.00003, -246)
+position = Vector2(3848, -952)
 
 [node name="PuntosInicio2" parent="PuntosControl" instance=ExtResource("6_i3h1u")]
-position = Vector2(141.99997, -531)
+position = Vector2(152, -576)
 
 [node name="Enemigos" type="Node" parent="."]
 
@@ -381,4 +378,4 @@ position = Vector2(3486, -911)
 position = Vector2(1176, -400)
 
 [node name="PuntoInicio" parent="." instance=ExtResource("19_jn5oj")]
-position = Vector2(-947, -260)
+position = Vector2(-944, -296)

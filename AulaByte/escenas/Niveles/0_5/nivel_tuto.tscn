@@ -290,7 +290,7 @@ position = Vector2(643, -233)
 
 [node name="PuertaNivel" parent="." instance=ExtResource("19_e0mik")]
 z_index = 1
-position = Vector2(808, 96)
+position = Vector2(808, 56)
 
 [node name="ZonaMuerte" parent="." instance=ExtResource("6_k7v1a")]
 position = Vector2(1, 351)
@@ -300,4 +300,4 @@ collision_mask = 12
 [node name="HUD" parent="." instance=ExtResource("5_auyua")]
 
 [node name="PuntoInicio" parent="." groups=["Z_CHECKPOINT"] instance=ExtResource("16_hqkji")]
-position = Vector2(170, 124)
+position = Vector2(170, 88)

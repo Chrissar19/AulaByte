@@ -368,7 +368,7 @@ collision_layer = 17
 
 [node name="PuertaFinal" parent="puertas" instance=ExtResource("16_mhvy5")]
 z_index = 2
-position = Vector2(-972, -28)
+position = Vector2(-968, -56)
 
 [node name="trampas" type="Node" parent="."]
 
@@ -402,7 +402,7 @@ collision_layer = 64
 collision_mask = 12
 
 [node name="PuntoControl" parent="." instance=ExtResource("6_ono6s")]
-position = Vector2(1349, 98)
+position = Vector2(1352, 64)
 
 [node name="PuntoInicio" parent="." instance=ExtResource("18_xgcft")]
-position = Vector2(-73, 204)
+position = Vector2(-72, 168)

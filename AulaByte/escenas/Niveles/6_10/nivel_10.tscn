@@ -1596,7 +1596,7 @@ tile_map_data = PackedByteArray("AAAUAPn/AgAjAAcAAAAUAPr/AgAjAAgAAAAUAPv/AgAjAAk
 tile_set = SubResource("TileSet_j5fqs")
 
 [node name="PuntosInicio" parent="." instance=ExtResource("8_21x4d")]
-position = Vector2(2084, 0.999999)
+position = Vector2(2076, -46.999996)
 
 [node name="ZonaMuerte" parent="." instance=ExtResource("10_5y6kh")]
 position = Vector2(0, 256)
@@ -1910,7 +1910,7 @@ color_inter = "amarilla"
 position = Vector2(128, -600)
 
 [node name="PuntoInicio" parent="." instance=ExtResource("20_iqdo6")]
-position = Vector2(260.34836, 28.957405)
+position = Vector2(256, -7)
 
 [node name="PuertaNivel" parent="." instance=ExtResource("9_aayfq")]
-position = Vector2(202.80919, -1310.9923)
+position = Vector2(231, -1351)

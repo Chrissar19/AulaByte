@@ -292,18 +292,18 @@ collision_layer = 17
 
 [node name="PuertaSalida" parent="puertas" instance=ExtResource("21_4pd8g")]
 z_index = 1
-position = Vector2(51, 396)
+position = Vector2(52, 360)
 
 [node name="puntos_control" type="Node" parent="."]
 
 [node name="PuntosInicio" parent="puntos_control" instance=ExtResource("6_5b2gf")]
-position = Vector2(1792, -152)
+position = Vector2(1792, -192)
 
 [node name="PuntosInicio2" parent="puntos_control" instance=ExtResource("6_5b2gf")]
-position = Vector2(3166, -532)
+position = Vector2(3152, -576)
 
 [node name="PuntoInicio" parent="puntos_control" instance=ExtResource("19_4pd8g")]
-position = Vector2(1601, -196)
+position = Vector2(1600, -232)
 
 [node name="ItemVelocidad" parent="." instance=ExtResource("23_x43lx")]
 position = Vector2(1384, 488)

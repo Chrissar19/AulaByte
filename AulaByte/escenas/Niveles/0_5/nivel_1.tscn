@@ -605,7 +605,7 @@ position = Vector2(-263, -105)
 
 [node name="PuertaSalida" parent="puertas" instance=ExtResource("16_xcw0p")]
 z_index = 1
-position = Vector2(532, -537)
+position = Vector2(528, -568)
 
 [node name="trampas" type="Node" parent="."]
 
@@ -629,4 +629,4 @@ z_index = 4
 position = Vector2(-536, -311)
 
 [node name="PuntoInicio" parent="." instance=ExtResource("23_nk5c4")]
-position = Vector2(508, 123)
+position = Vector2(513, 87)

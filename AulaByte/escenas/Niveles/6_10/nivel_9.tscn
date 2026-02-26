@@ -336,19 +336,19 @@ position = Vector2(6052, -188)
 [node name="Puntos de control" type="Node" parent="."]
 
 [node name="PuntosInicio" parent="Puntos de control" instance=ExtResource("6_moonj")]
-position = Vector2(-600, -99)
+position = Vector2(-712, -144)
 
 [node name="PuntosInicio3" parent="Puntos de control" instance=ExtResource("6_moonj")]
-position = Vector2(307, -292)
+position = Vector2(288, -336)
 
 [node name="PuntosInicio2" parent="Puntos de control" instance=ExtResource("6_moonj")]
-position = Vector2(4664, -100)
+position = Vector2(4624, -144)
 
 [node name="PuertaNivel2" parent="Puntos de control" instance=ExtResource("19_x4brk")]
-position = Vector2(7385, -116)
+position = Vector2(7408, -152)
 
 [node name="ItemVelocidad" parent="." instance=ExtResource("21_nnawm")]
 position = Vector2(616, -640)
 
 [node name="PuntoInicio" parent="." instance=ExtResource("21_rmkif")]
-position = Vector2(-963, -117)
+position = Vector2(-976, -152)

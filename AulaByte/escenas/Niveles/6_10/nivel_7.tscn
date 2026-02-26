@@ -481,7 +481,7 @@ collision_layer = 17
 [node name="Puntos de Control" type="Node" parent="."]
 
 [node name="PuertaNivel" parent="Puntos de Control" instance=ExtResource("16_kumsu")]
-position = Vector2(-766, -566)
+position = Vector2(-764, -601)
 
 [node name="PuntoInicio" parent="Puntos de Control" instance=ExtResource("19_aoqgx")]
-position = Vector2(581, 155)
+position = Vector2(576, 119)

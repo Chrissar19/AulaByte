@@ -310,13 +310,13 @@ position = Vector2(583, 160)
 
 [node name="PuertaNivel2" parent="PuntosControl" instance=ExtResource("19_cls0v")]
 z_index = 2
-position = Vector2(1276, -676)
+position = Vector2(1272, -712)
 
 [node name="ItemVelocidad" parent="." instance=ExtResource("20_qmrxr")]
 position = Vector2(613, 169)
 
 [node name="PuntoInicio" parent="." instance=ExtResource("14_xdfqe")]
-position = Vector2(1248, 604)
+position = Vector2(1248, 568)
 
 [node name="BolaMuerte" parent="." instance=ExtResource("9_ekcxq")]
 position = Vector2(345, 195)

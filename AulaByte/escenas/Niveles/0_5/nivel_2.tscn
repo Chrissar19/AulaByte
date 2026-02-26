@@ -552,7 +552,7 @@ position = Vector2(478, -38)
 position = Vector2(672, -64)
 
 [node name="PuntoInicio" parent="." instance=ExtResource("17_1mak7")]
-position = Vector2(128, 315)
+position = Vector2(128, 279)
 
 [node name="PuertaNivel" parent="." instance=ExtResource("16_38uqx")]
-position = Vector2(1840, -661)
+position = Vector2(1840, -697)
