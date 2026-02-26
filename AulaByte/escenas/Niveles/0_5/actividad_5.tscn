@@ -130,13 +130,14 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 8.0
+offset_left = -3.0
 offset_top = -304.0
-offset_right = 88.0
+offset_right = 77.0
 offset_bottom = -281.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(40, 11)
 theme_override_fonts/font = ExtResource("12_a1co2")
 text = "TEXTO"
 horizontal_alignment = 1
@@ -169,10 +170,11 @@ text = "REINICIAR"
 
 [node name="BtnAyuda" type="Button" parent="UI"]
 layout_mode = 0
-offset_left = 552.0
+offset_left = 560.0
 offset_top = -256.0
-offset_right = 592.0
+offset_right = 600.0
 offset_bottom = -216.0
+scale = Vector2(0.8, 0.8)
 icon = ExtResource("9_f7oct")
 
 [node name="VozGuia" type="AudioStreamPlayer" parent="."]

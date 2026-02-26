@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://brli7q1cxc20m" path="res://recursos/imagenes/niveles/nivel6/Pieza4Naranja.png" id="11_ejh48"]
 [ext_resource type="Texture2D" uid="uid://brejfoa75g8op" path="res://recursos/imagenes/niveles/nivel6/Pieza3Roja.png" id="12_2nrgl"]
 [ext_resource type="Texture2D" uid="uid://djubqompt8aan" path="res://recursos/imagenes/niveles/nivel6/Pieza5Azul.png" id="13_vgy3k"]
-[ext_resource type="AudioStream" uid="uid://dwf015anjv8d3" path="res://recursos/Audio/narraciones/6.wav" id="15_ejh48"]
+[ext_resource type="AudioStream" uid="uid://buwuaelt3gdjn" path="res://recursos/Audio/actividades/NIVEL6.wav" id="15_gmokl"]
 
 [node name="Actividad6" type="Control"]
 layout_mode = 3
@@ -64,10 +64,11 @@ text = "SALIR"
 [node name="LblTiempo" type="Label" parent="UI"]
 editor_description = "ADFSADFSDF"
 layout_mode = 0
-offset_left = 248.0
+offset_left = 240.0
 offset_top = -232.0
-offset_right = 372.0
+offset_right = 364.0
 offset_bottom = -209.0
+pivot_offset = Vector2(62, 11.5)
 theme_override_fonts/font = ExtResource("3_3owi0")
 text = "INTENTOS"
 horizontal_alignment = 1
@@ -158,7 +159,7 @@ color_objetivo = Color(1, 0, 1, 1)
 [node name="TimerNivel" type="Timer" parent="."]
 
 [node name="AudAyuda" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("15_ejh48")
+stream = ExtResource("15_gmokl")
 bus = &"Narraciones"
 
 [connection signal="pressed" from="UI/BtnAyuda" to="." method="_on_btn_ayuda_pressed"]

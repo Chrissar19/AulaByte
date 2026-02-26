@@ -148,7 +148,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.4756844, 0.58027744, 0.819822, 1)
+color = Color(0.18039216, 0.5803922, 0.81960785, 0.54901963)
 
 [node name="PantallaNivel" type="Sprite2D" parent="."]
 position = Vector2(320, 180)
