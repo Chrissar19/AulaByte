@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://cqk82ixbb1sb0"]
+[gd_scene load_steps=22 format=4 uid="uid://cqk82ixbb1sb0"]
 
 [ext_resource type="Script" uid="uid://bl84y62aosyrq" path="res://scripts/niveles/nivel_tuto.gd" id="1_wwpym"]
 [ext_resource type="PackedScene" uid="uid://bf5jdpfiuhivo" path="res://escenas/Niveles/0_5/actividad_cero.tscn" id="2_hqkji"]
@@ -16,88 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://db7j3q20ljag8" path="res://escenas/ui/punto_inicio.tscn" id="16_hqkji"]
 [ext_resource type="PackedScene" uid="uid://cl1bwd6mofchq" path="res://escenas/objetos_interacciones/item_vida.tscn" id="18_128oc"]
 [ext_resource type="PackedScene" uid="uid://fva12xfahbpb" path="res://escenas/objetos_interacciones/puerta_nivel.tscn" id="19_e0mik"]
-
-[sub_resource type="Animation" id="Animation_1agg2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-477, -232)]
-}
-
-[sub_resource type="Animation" id="Animation_6d66m"]
-resource_name = "new_animation"
-length = 3.0
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-477, -246), Vector2(-477, -491)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_128oc"]
-_data = {
-&"RESET": SubResource("Animation_1agg2"),
-&"new_animation": SubResource("Animation_6d66m")
-}
-
-[sub_resource type="Curve2D" id="Curve2D_e0mik"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -467, 123, 0, 0, 0, 0, -467, -61)
-}
-point_count = 2
-
-[sub_resource type="Animation" id="Animation_vv2vj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:progress_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="Animation" id="Animation_ebm80"]
-resource_name = "Vertical"
-length = 3.0
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:progress_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_j5fqs"]
-_data = {
-&"RESET": SubResource("Animation_vv2vj"),
-&"Vertical": SubResource("Animation_ebm80")
-}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6d66m"]
 bg_color = Color(0.6, 0.6, 0.6, 0.6)
@@ -201,27 +119,14 @@ position = Vector2(-718, -457)
 [node name="Plataforma2" parent="Plataformas" groups=["Z_PLATAFORMAS"] instance=ExtResource("11_cn7c0")]
 z_index = 30
 position = Vector2(-477, -232)
+distancia = Vector2(0, -264)
+tiempo_espera = 0.5
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Plataformas/Plataforma2"]
-libraries = {
-&"": SubResource("AnimationLibrary_128oc")
-}
-autoplay = "new_animation"
-
-[node name="Path2D" type="Path2D" parent="Plataformas"]
-curve = SubResource("Curve2D_e0mik")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Plataformas/Path2D"]
+[node name="Plataforma" parent="Plataformas" instance=ExtResource("11_cn7c0")]
 position = Vector2(-467, 123)
-rotates = false
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Plataformas/Path2D/PathFollow2D"]
-libraries = {
-&"": SubResource("AnimationLibrary_j5fqs")
-}
-autoplay = "Vertical"
-
-[node name="Plataforma" parent="Plataformas/Path2D/PathFollow2D" instance=ExtResource("11_cn7c0")]
+distancia = Vector2(0, -120)
+duracion = 2.0
+tiempo_espera = 0.5
 
 [node name="Caja" parent="." instance=ExtResource("6_1g06v")]
 z_index = 1

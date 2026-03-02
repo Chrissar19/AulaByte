@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://cdwofmeuk46tn"]
+[gd_scene load_steps=20 format=4 uid="uid://cdwofmeuk46tn"]
 
 [ext_resource type="Script" uid="uid://dsyfork36rnyd" path="res://scripts/niveles/1_5/nivel_5.gd" id="1_5dphs"]
 [ext_resource type="PackedScene" uid="uid://dy3m6ci02csih" path="res://escenas/Niveles/0_5/actividad_5.tscn" id="2_pvtlr"]
@@ -19,63 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://bd3tvkqc3t15v" path="res://escenas/personajes/enemigos/monitor.tscn" id="20_5dphs"]
 [ext_resource type="PackedScene" uid="uid://fva12xfahbpb" path="res://escenas/objetos_interacciones/puerta_nivel.tscn" id="21_4pd8g"]
 [ext_resource type="PackedScene" uid="uid://bva0i33hhjmev" path="res://escenas/habilidades/item_velocidad.tscn" id="23_x43lx"]
-
-[sub_resource type="Animation" id="Animation_hc13m"]
-length = 3.0
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1904, 500)]
-}
-
-[sub_resource type="Animation" id="Animation_5dphs"]
-resource_name = "horizontal"
-length = 1.5
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.03, 1.4666667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1904, 500), Vector2(2254, 500)]
-}
-
-[sub_resource type="Animation" id="Animation_6ru7k"]
-resource_name = "new_animation"
-length = 2.5
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.46667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(2041, -527), Vector2(1746, -527)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_hwv7d"]
-_data = {
-&"RESET": SubResource("Animation_hc13m"),
-&"horizontal": SubResource("Animation_5dphs"),
-&"new_animation": SubResource("Animation_6ru7k")
-}
 
 [node name="Nivel5" type="Node2D"]
 script = ExtResource("1_5dphs")
@@ -182,14 +125,12 @@ position = Vector2(391, -551)
 [node name="Plataformas" type="Node" parent="."]
 
 [node name="Plataforma3" parent="Plataformas" instance=ExtResource("10_deic0")]
-position = Vector2(1904, 500)
+position = Vector2(1912, 552)
+distancia = Vector2(336, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Plataformas/Plataforma3"]
-libraries = {
-&"": SubResource("AnimationLibrary_hwv7d")
-}
-autoplay = "horizontal"
-speed_scale = 0.5
+[node name="PlataformaSube" parent="Plataformas" instance=ExtResource("17_mwolq")]
+position = Vector2(3368, 553)
+distancia_max = -400.0
 
 [node name="Avisos" type="Node" parent="."]
 
@@ -269,10 +210,6 @@ position = Vector2(582, -349)
 position = Vector2(779, -539)
 
 [node name="trampas" type="Node" parent="."]
-
-[node name="PlataformaSube" parent="trampas" instance=ExtResource("17_mwolq")]
-position = Vector2(3368, 553)
-distancia_max = -400.0
 
 [node name="Saltarin" parent="trampas" instance=ExtResource("19_5dphs")]
 position = Vector2(2436, -108)

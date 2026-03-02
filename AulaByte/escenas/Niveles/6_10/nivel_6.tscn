@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://cl561n5x8dihd"]
+[gd_scene load_steps=18 format=4 uid="uid://cl561n5x8dihd"]
 
 [ext_resource type="Script" uid="uid://bl84y62aosyrq" path="res://scripts/niveles/nivel_tuto.gd" id="1_73hpg"]
 [ext_resource type="TileSet" uid="uid://dbxx1jhbs275d" path="res://datos/pisos.tres" id="2_jjbt2"]
@@ -17,45 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://tkh75sw4tr42" path="res://escenas/habilidades/item_salto.tscn" id="15_vc3jh"]
 [ext_resource type="PackedScene" uid="uid://fva12xfahbpb" path="res://escenas/objetos_interacciones/puerta_nivel.tscn" id="16_rns2b"]
 [ext_resource type="PackedScene" uid="uid://cl1bwd6mofchq" path="res://escenas/objetos_interacciones/item_vida.tscn" id="18_cyj44"]
-
-[sub_resource type="Animation" id="Animation_73hpg"]
-length = 3.0
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1825, -475), Vector2(1608, -475)]
-}
-
-[sub_resource type="Animation" id="Animation_slady"]
-resource_name = "new_animation"
-length = 2.0
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1825, -475)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3hut5"]
-_data = {
-&"RESET": SubResource("Animation_73hpg"),
-&"new_animation": SubResource("Animation_slady")
-}
 
 [node name="NivelTuto" type="Node2D"]
 script = ExtResource("1_73hpg")
@@ -148,13 +109,10 @@ position = Vector2(216, -246)
 [node name="Plataformas" type="Node" parent="."]
 
 [node name="Plataforma" parent="Plataformas" instance=ExtResource("12_srw4k")]
-position = Vector2(1825, -475)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Plataformas/Plataforma"]
-libraries = {
-&"": SubResource("AnimationLibrary_3hut5")
-}
-autoplay = "RESET"
+position = Vector2(1595, -395)
+distancia = Vector2(0, -136)
+duracion = 2.0
+tiempo_espera = 0.5
 
 [node name="Saltarin" parent="Plataformas" instance=ExtResource("8_6guud")]
 position = Vector2(1376, 10)

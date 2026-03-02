@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://bfh1cti7h62ot"]
+[gd_scene load_steps=22 format=4 uid="uid://bfh1cti7h62ot"]
 
 [ext_resource type="Script" uid="uid://cgrxbfui28s7n" path="res://scripts/niveles/1_5/nivel_3.gd" id="1_xgcft"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_ubjym"]
@@ -174,45 +174,6 @@ texture = ExtResource("3_u4isy")
 sources/0 = SubResource("TileSetAtlasSource_5rite")
 sources/2 = SubResource("TileSetAtlasSource_ds2q0")
 
-[sub_resource type="Animation" id="Animation_e1xk3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(225, 239)]
-}
-
-[sub_resource type="Animation" id="Animation_mhvy5"]
-resource_name = "horizontal"
-length = 2.0
-loop_mode = 2
-step = 0.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(195, 239), Vector2(467, 239)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_kxpsx"]
-_data = {
-&"RESET": SubResource("Animation_e1xk3"),
-&"horizontal": SubResource("Animation_mhvy5")
-}
-
 [node name="Nivel_3" type="Node2D"]
 script = ExtResource("1_xgcft")
 camara_alto = -384
@@ -322,14 +283,10 @@ position = Vector2(405, 194)
 
 [node name="Plataforma" parent="Plataformas" instance=ExtResource("10_l4evq")]
 z_index = 1
-position = Vector2(225, 239)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Plataformas/Plataforma"]
-libraries = {
-&"": SubResource("AnimationLibrary_kxpsx")
-}
-autoplay = "horizontal"
-speed_scale = 0.7
+position = Vector2(200, 248)
+distancia = Vector2(248, 0)
+duracion = 2.0
+tiempo_espera = 0.3
 
 [node name="Caja" parent="." instance=ExtResource("11_hhley")]
 z_index = 1

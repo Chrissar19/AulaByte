@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://dv2rc1dwmstnh"]
+[gd_scene load_steps=23 format=4 uid="uid://dv2rc1dwmstnh"]
 
 [ext_resource type="Script" uid="uid://cmyl0o5rtivup" path="res://scripts/niveles/1_5/nivel_2.gd" id="1_38uqx"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_ekcxq"]
@@ -282,82 +282,6 @@ separation = Vector2i(1, 1)
 physics_layer_0/collision_layer = 33
 sources/0 = SubResource("TileSetAtlasSource_7svhg")
 
-[sub_resource type="Animation" id="Animation_3ful4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Plataforma2:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1307, -246)]
-}
-
-[sub_resource type="Animation" id="Animation_5jm11"]
-resource_name = "new_animation"
-length = 2.5
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Plataforma2:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.46667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1307, -246), Vector2(1585, -246)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3ful4"]
-_data = {
-&"RESET": SubResource("Animation_3ful4"),
-&"new_animation": SubResource("Animation_5jm11")
-}
-
-[sub_resource type="Animation" id="Animation_d4vgo"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Plataforma:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1063, -52)]
-}
-
-[sub_resource type="Animation" id="Animation_4jw1k"]
-resource_name = "new_animation"
-length = 2.0
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Plataforma:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1063, -52), Vector2(1271, -52)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_q1qsa"]
-_data = {
-&"RESET": SubResource("Animation_d4vgo"),
-&"new_animation": SubResource("Animation_4jw1k")
-}
-
 [node name="Nivel2" type="Node2D"]
 script = ExtResource("1_38uqx")
 camara_alto = -920
@@ -501,21 +425,15 @@ position = Vector2(1821, -240)
 
 [node name="Plataforma" parent="Plataformas" instance=ExtResource("10_8ob0r")]
 position = Vector2(1063, -52)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Plataformas/Plataforma"]
-libraries = {
-&"": SubResource("AnimationLibrary_3ful4")
-}
-autoplay = "new_animation"
+distancia = Vector2(168, 0)
+duracion = 1.5
+tiempo_espera = 0.2
 
 [node name="Plataforma2" parent="Plataformas" instance=ExtResource("10_8ob0r")]
-position = Vector2(1307, -246)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Plataformas/Plataforma2"]
-libraries = {
-&"": SubResource("AnimationLibrary_q1qsa")
-}
-autoplay = "new_animation"
+position = Vector2(1352, -200)
+distancia = Vector2(168, 0)
+duracion = 1.5
+tiempo_espera = 0.1
 
 [node name="Avisos" type="Node" parent="."]
 
