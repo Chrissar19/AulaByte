@@ -24,6 +24,7 @@ boot_splash/minimum_display_time=2000
 
 GameManager="*res://scripts/jugador/game_manager.gd"
 AudioManager="*res://scripts/audio_manager.gd"
+ControlesTactiles="*res://escenas/ui/controles_tactiles.tscn"
 
 [display]
 
@@ -97,6 +98,10 @@ reiniciar_nivel={
 ]
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [layer_names]
 
 2d_physics/layer_1="Mundo"
@@ -125,3 +130,4 @@ common/max_physics_steps_per_frame=4
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

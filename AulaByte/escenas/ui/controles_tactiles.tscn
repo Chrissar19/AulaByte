@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=3 uid="uid://cyeviwkv5a5ea"]
+
+[ext_resource type="Texture2D" uid="uid://bre1xrdpicn8h" path="res://recursos/imagenes/objetos/btns/boton movizq.png" id="1_1khat"]
+[ext_resource type="Script" uid="uid://bogqj4d2qd4ia" path="res://scripts/ui/controles_tactil.gd" id="1_8ag86"]
+[ext_resource type="Texture2D" uid="uid://dk02rjlpa5vff" path="res://recursos/imagenes/objetos/btns/boton movder.png" id="2_8ag86"]
+[ext_resource type="Texture2D" uid="uid://dcobsp1wpb0ds" path="res://recursos/imagenes/objetos/btns/boton movarr.png" id="3_a01yk"]
+[ext_resource type="Texture2D" uid="uid://yy215hrsf6sm" path="res://recursos/imagenes/objetos/btns/botonaccion.png" id="4_7iejk"]
+[ext_resource type="Texture2D" uid="uid://c1n3qjil3m6gs" path="res://recursos/imagenes/objetos/btns/btnpausa.png" id="5_tl8d1"]
+[ext_resource type="Texture2D" uid="uid://c85hd5vlkucew" path="res://recursos/imagenes/objetos/btns/btnreset.png" id="6_78n38"]
+
+[node name="ControlesTactiles" type="CanvasLayer"]
+script = ExtResource("1_8ag86")
+
+[node name="Base" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="padDireccion" type="Control" parent="Base"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -104.0
+offset_right = 192.0
+grow_vertical = 0
+
+[node name="BtnIquierda" type="TouchScreenButton" parent="Base/padDireccion"]
+position = Vector2(24, 16)
+texture_normal = ExtResource("1_1khat")
+action = "izquierda"
+
+[node name="BtnDerecha" type="TouchScreenButton" parent="Base/padDireccion"]
+position = Vector2(112, 16)
+texture_normal = ExtResource("2_8ag86")
+action = "derecha"
+
+[node name="Acciones" type="Control" parent="Base"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -168.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="BtnSalto" type="TouchScreenButton" parent="Base/Acciones"]
+position = Vector2(96, 0)
+texture_normal = ExtResource("3_a01yk")
+action = "saltar"
+
+[node name="BtnAccion" type="TouchScreenButton" parent="Base/Acciones"]
+position = Vector2(168, 80)
+texture_normal = ExtResource("4_7iejk")
+action = "Accion"
+
+[node name="Sistema" type="Control" parent="Base"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -384.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="BtnPausa" type="TouchScreenButton" parent="Base/Sistema"]
+position = Vector2(40, 24)
+texture_normal = ExtResource("5_tl8d1")
+action = "ui_cancel"
+
+[node name="BtnReset" type="TouchScreenButton" parent="Base/Sistema"]
+position = Vector2(336, 32)
+texture_normal = ExtResource("6_78n38")
+action = "reiniciar_nivel"
