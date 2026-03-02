@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://bdp4vuaodlgyi"]
+[gd_scene load_steps=16 format=4 uid="uid://bdp4vuaodlgyi"]
 
 [ext_resource type="Script" uid="uid://bv5rnpun0bjga" path="res://scripts/niveles/1_5/nivel_4.gd" id="1_ekcxq"]
 [ext_resource type="PackedScene" uid="uid://bxynr5uu8vrrc" path="res://escenas/Niveles/0_5/actividad_4.tscn" id="2_4pmdn"]
@@ -16,122 +16,12 @@
 [ext_resource type="PackedScene" uid="uid://fva12xfahbpb" path="res://escenas/objetos_interacciones/puerta_nivel.tscn" id="19_cls0v"]
 [ext_resource type="PackedScene" uid="uid://tkh75sw4tr42" path="res://escenas/habilidades/item_salto.tscn" id="20_qmrxr"]
 
-[sub_resource type="Animation" id="Animation_3so63"]
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-
-[sub_resource type="Animation" id="Animation_8avhw"]
-resource_name = "new_animation"
-length = 1.5
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.46667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(370, 600), Vector2(229, 600)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_k40d7"]
-_data = {
-&"RESET": SubResource("Animation_3so63"),
-&"new_animation": SubResource("Animation_8avhw")
-}
-
-[sub_resource type="Animation" id="Animation_camrd"]
-length = 3.5
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(810, -114), Vector2(972, -114)]
-}
-
-[sub_resource type="Animation" id="Animation_jcq6v"]
-resource_name = "mov_plat_horizontal"
-length = 2.0
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(346, 54), Vector2(694, 54)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_8avhw"]
-_data = {
-&"RESET": SubResource("Animation_camrd"),
-&"mov_plat_horizontal": SubResource("Animation_jcq6v")
-}
-
-[sub_resource type="Animation" id="Animation_sn0wd"]
-length = 2.5
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 0.466667, 2.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(386, -427), Vector2(386, -395), Vector2(654, -395)]
-}
-
-[sub_resource type="Animation" id="Animation_ttr5y"]
-resource_name = "plataforma final"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(618, -393)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_jvl1a"]
-_data = {
-&"RESET": SubResource("Animation_sn0wd"),
-&"plataforma final": SubResource("Animation_ttr5y")
-}
-
 [node name="Nivel4" type="Node2D"]
 script = ExtResource("1_ekcxq")
+camara_alto = -960
+camara_izquierda = -32
+camara_derecha = 1400
+camara_abajo = 696
 cuenta_regresiva = 360.0
 id_nivel = 4
 actividad = ExtResource("2_4pmdn")
@@ -164,32 +54,23 @@ hframes = 6
 [node name="plataformas" type="Node" parent="."]
 
 [node name="Plataforma2" parent="plataformas" instance=ExtResource("6_camrd")]
-position = Vector2(370, 600)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="plataformas/Plataforma2"]
-libraries = {
-&"": SubResource("AnimationLibrary_k40d7")
-}
-autoplay = "new_animation"
+position = Vector2(232, 648)
+distancia = Vector2(152, 0)
+duracion = 2.0
+tiempo_espera = 0.1
 
 [node name="Plataforma" parent="plataformas" instance=ExtResource("6_camrd")]
 z_index = 1
-position = Vector2(810, -114)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="plataformas/Plataforma"]
-libraries = {
-&"": SubResource("AnimationLibrary_8avhw")
-}
-autoplay = "RESET"
+position = Vector2(824, -56)
+distancia = Vector2(136, 0)
+duracion = 2.0
+tiempo_espera = 0.5
 
 [node name="Plataforma3" parent="plataformas" instance=ExtResource("6_camrd")]
-position = Vector2(386, -427)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="plataformas/Plataforma3"]
-libraries = {
-&"": SubResource("AnimationLibrary_jvl1a")
-}
-autoplay = "RESET"
+position = Vector2(632, -344)
+distancia = Vector2(-268, -128)
+duracion = 2.0
+tiempo_espera = 0.5
 
 [node name="ZonaMuerte" parent="." instance=ExtResource("7_iyvrh")]
 position = Vector2(7, 708)
@@ -230,10 +111,10 @@ position = Vector2(902, 409)
 position = Vector2(600, 571)
 
 [node name="BitsMoneda5" parent="puntos/sumar" instance=ExtResource("11_sac71")]
-position = Vector2(270, 503)
+position = Vector2(264, 544)
 
 [node name="BitsMoneda6" parent="puntos/sumar" instance=ExtResource("11_sac71")]
-position = Vector2(305, 503)
+position = Vector2(304, 544)
 
 [node name="BitsMoneda7" parent="puntos/sumar" instance=ExtResource("11_sac71")]
 position = Vector2(727, 235)
@@ -242,11 +123,11 @@ position = Vector2(727, 235)
 position = Vector2(756, 235)
 
 [node name="BitsMoneda9" parent="puntos/sumar" instance=ExtResource("11_sac71")]
-position = Vector2(337, 502)
+position = Vector2(344, 544)
 scale = Vector2(0.64, 0.64)
 
 [node name="BitsMoneda10" parent="puntos/sumar" instance=ExtResource("11_sac71")]
-position = Vector2(303, 472)
+position = Vector2(304, 504)
 scale = Vector2(0.64, 0.64)
 
 [node name="BitsMoneda11" parent="puntos/sumar" instance=ExtResource("11_sac71")]
@@ -310,13 +191,13 @@ position = Vector2(583, 160)
 
 [node name="PuertaNivel2" parent="PuntosControl" instance=ExtResource("19_cls0v")]
 z_index = 2
-position = Vector2(1276, -676)
+position = Vector2(1272, -712)
 
 [node name="ItemVelocidad" parent="." instance=ExtResource("20_qmrxr")]
 position = Vector2(613, 169)
 
 [node name="PuntoInicio" parent="." instance=ExtResource("14_xdfqe")]
-position = Vector2(1248, 604)
+position = Vector2(1248, 568)
 
 [node name="BolaMuerte" parent="." instance=ExtResource("9_ekcxq")]
 position = Vector2(345, 195)

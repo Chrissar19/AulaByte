@@ -4,32 +4,32 @@
 [ext_resource type="Texture2D" uid="uid://gmncndp47yyh" path="res://recursos/imagenes/objetos/Punto_control.png" id="2_nl8o7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wsous"]
-size = Vector2(300, 333.333)
+size = Vector2(400.00024, 533.33374)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sy4nt"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wsous"]
 atlas = ExtResource("2_nl8o7")
-region = Rect2(900, 0, 450, 350)
+region = Rect2(164, 0, 82, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nl8o7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_oycoi"]
 atlas = ExtResource("2_nl8o7")
-region = Rect2(1350, 0, 450, 350)
+region = Rect2(246, 0, 82, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_knmu7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bv1j"]
 atlas = ExtResource("2_nl8o7")
-region = Rect2(0, 0, 450, 350)
+region = Rect2(0, 0, 82, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5qala"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmcwa"]
 atlas = ExtResource("2_nl8o7")
-region = Rect2(450, 0, 450, 350)
+region = Rect2(82, 0, 82, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_f2e5p"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sy4nt")
+"texture": SubResource("AtlasTexture_wsous")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nl8o7")
+"texture": SubResource("AtlasTexture_oycoi")
 }],
 "loop": true,
 "name": &"Activado",
@@ -37,10 +37,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_knmu7")
+"texture": SubResource("AtlasTexture_8bv1j")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5qala")
+"texture": SubResource("AtlasTexture_xmcwa")
 }],
 "loop": true,
 "name": &"Idle",
@@ -55,16 +55,17 @@ collision_mask = 4
 script = ExtResource("1_sy4nt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2.68221e-06, -4.47035e-06)
-scale = Vector2(0.15, 0.15)
+position = Vector2(-2.9802305e-07, 39.99999)
+scale = Vector2(0.14999986, 0.14999986)
 shape = SubResource("RectangleShape2D_wsous")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.15, 0.15)
+position = Vector2(0, 9.536743e-07)
+scale = Vector2(0.9756098, 0.9374999)
 sprite_frames = SubResource("SpriteFrames_f2e5p")
-animation = &"Idle"
+animation = &"Activado"
 autoplay = "Idle"
-frame_progress = 0.175006
+offset = Vector2(3.1769275e-06, 53.33334)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 

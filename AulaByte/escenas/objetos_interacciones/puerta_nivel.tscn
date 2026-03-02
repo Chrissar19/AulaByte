@@ -60,7 +60,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o3bfo"]
-size = Vector2(42, 64)
+size = Vector2(42, 69)
 
 [node name="PuertaNivel" type="Area2D" groups=["Z_PUERTAS"]]
 collision_layer = 256
@@ -68,6 +68,7 @@ collision_mask = 4
 script = ExtResource("1_o3bfo")
 
 [node name="AnimacionPuerta" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 36)
 sprite_frames = SubResource("SpriteFrames_5ihpb")
 animation = &"Abriendo"
 frame = 4
@@ -75,6 +76,7 @@ frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
+position = Vector2(0, 37.5)
 shape = SubResource("RectangleShape2D_o3bfo")
 
 [node name="LblIndicadorInteraccion" type="Label" parent="."]

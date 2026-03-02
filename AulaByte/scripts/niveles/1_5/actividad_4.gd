@@ -20,6 +20,7 @@ enum Fase {INTRO1, INTRO2, ELECCION, RESULTADO}
 @onready var carta_carro: TextureRect = $Fondo/CartaCarro
 @onready var lbl_texto: Label = $UI/LblTexto
 @onready var btn_salir: Button = $UI/BtnSalir
+@onready var lbl_guia: Label = $UI/LblGuia
 
 # Referencia al nuevo nodo de audio
 @onready var audio_guia: AudioStreamPlayer = $AudioGuia
@@ -58,11 +59,12 @@ func _reunir_cartas() -> void:
 #-- SECUENCIA PARA EL SILOGISMO (MODIFICADA)
 #------------------------------------------------------------
 func _iniciar_secuencia() -> void:
-	# Detenemos cualquier audio anterior si se reinició rápido
 	audio_guia.stop() 
 	
 	_contador += 1
 	var id_actual := _contador
+	
+	lbl_guia.visible = false
 	
 	_interaccion_habilitada = false
 	btn_aceptar.disabled = true
@@ -83,7 +85,6 @@ func _iniciar_secuencia() -> void:
 	carta_bus.visible = true
 	carta_camion.visible = true
 	
-	# Llamamos a la función que maneja Texto + Voz + Espera
 	await _narrar_fase("Todos los vehículos tienen ruedas.", audio_intro_1)
 	
 	# Chequeo de seguridad: Si el usuario reinició mientras hablaba, paramos aquí
@@ -104,12 +105,9 @@ func _iniciar_secuencia() -> void:
 	_fase = Fase.ELECCION
 	carta_carro.visible = false
 	zona_cartas.visible = true
-	
-	# Aquí no usamos await porque ya habilitamos el juego, 
-	# el audio suena de fondo mientras el niño ya puede empezar a mirar
 	_narrar_fase("Elige la carta que completa el silogismo.", audio_eleccion, false)
-	
 	_interaccion_habilitada = true
+	_esperar_instruccion_doble_clic(id_actual)
 
 
 # FUNCION AUXILIAR PARA MANEJAR LA NARRACION
@@ -130,6 +128,19 @@ func _narrar_fase(texto: String, audio: AudioStream, esperar_terminar: bool = tr
 		# Si no hay audio asignado (fallback), esperamos un tiempo fijo por defecto
 		if esperar_terminar:
 			await get_tree().create_timer(3.0).timeout
+
+func _esperar_instruccion_doble_clic(id_en_curso: int) -> void:
+	# Si hay un audio sonando, esperamos a que termine
+	if audio_guia.playing:
+		await audio_guia.finished
+	
+	await get_tree().create_timer(0.5).timeout
+	
+	if id_en_curso == _contador and _fase == Fase.ELECCION and not _finalizado:
+		lbl_guia.text = "(Doble clic para elegir)"
+		lbl_guia.visible = true
+		lbl_guia.modulate = Color(0.8, 0.9, 1.0)
+		lbl_guia.scale = Vector2(0.9, 0.9) 
 
 #--------------------------------------------------------
 #-- INTERACCION CON CARTAS (IGUAL)
@@ -169,7 +180,6 @@ func _on_btn_salir_pressed() -> void:
 	# Aseguramos que el audio se calle al salir
 	audio_guia.stop()
 	cancelar_actividad()
-
 
 func _on_btn_ayuda_pressed() -> void:
 	voz_ayuda.play()

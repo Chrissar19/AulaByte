@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bxfofh26uty1p"]
+[gd_scene load_steps=25 format=3 uid="uid://bxfofh26uty1p"]
 
 [ext_resource type="Script" uid="uid://bde1215wojdor" path="res://scripts/niveles/intro.gd" id="1_a1g7d"]
 [ext_resource type="Texture2D" uid="uid://cxroesonpqyk7" path="res://recursos/imagenes/intro/Intro1.png" id="2_ixy36"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cjmajr0s3u05h" path="res://recursos/imagenes/intro/Intro3.png" id="4_g86wm"]
 [ext_resource type="Texture2D" uid="uid://dj730ct63prtc" path="res://recursos/imagenes/intro/Intro4.png" id="5_iwusb"]
 [ext_resource type="Texture2D" uid="uid://co6h4rgjuh5ok" path="res://recursos/imagenes/intro/Intro5.png" id="6_k5goc"]
+[ext_resource type="Texture2D" uid="uid://bvgbduin4vaun" path="res://recursos/imagenes/intro/Intro7.png" id="6_w2dd5"]
 [ext_resource type="Texture2D" uid="uid://dwms1bbodkqyx" path="res://recursos/imagenes/intro/Intro6.png" id="7_p8utp"]
 [ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/Fuentes/Normal.ttf" id="8_ftjmw"]
 [ext_resource type="AudioStream" uid="uid://d1yb124m4812l" path="res://recursos/Audio/narraciones/01.wav" id="8_qsk8r"]
@@ -42,8 +43,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_a1g7d")
-imagenes = Array[Texture2D]([ExtResource("2_ixy36"), ExtResource("3_ftjmw"), ExtResource("4_g86wm"), ExtResource("5_iwusb"), ExtResource("5_iwusb"), ExtResource("6_k5goc"), ExtResource("6_k5goc"), ExtResource("6_k5goc"), ExtResource("7_p8utp")])
-textos = Array[String](["En la hermosa ciudad de San Juan de Pasto, en la Universidad de Nariño, conviven cuatro grandes profesores, que dedicaban su vida a enseñar. ", "Un día, explorando los rincones olvidados del antiguo laboratorio de informática, buscando componentes viejos,  ", "descubrieron un extraño computador, que al encender cobró vida una inteligencia artificial llamada CUY, creada con propósitos de aprender, enseñar y evolucionar mediante la lógica.", "Los docentes, inspirados por su potencial, iniciaron el PROYECTO Jurguillas , una misión secreta para terminar de entrenar a CUY mediante ejercicios de razonamiento lógico,", "con el fin de implementarla como un sistema de seguridad y un asistente virtual para todo el edificio.", "Sin embargo, el Instituto TecnoIdiático descubrió el proyecto y...", "robo información para tener el control de la IA con un virus llamado “Yorasite”, transformando el edificio en un laberinto lleno de errores y trampas,", "CUY quedó atrapado entre líneas de código desordenado, sus funciones divididas y su memoria fragmentada.", "Ahora, los profesores deberán adentrarse en el edificio, resolver los desafíos lógicos y desinfectar el núcleo de CUY, antes de que sea controlada para siempre."])
+imagenes = Array[Texture2D]([ExtResource("2_ixy36"), ExtResource("3_ftjmw"), ExtResource("4_g86wm"), ExtResource("5_iwusb"), ExtResource("6_w2dd5"), ExtResource("6_k5goc"), ExtResource("6_k5goc"), ExtResource("6_k5goc"), ExtResource("7_p8utp")])
+textos = Array[String](["En la hermosa ciudad de San Juan de Pasto, en la Universidad de Nariño, conviven cuatro grandes profesores, que dedicaban su vida a enseñar. ", "Un día, explorando los rincones olvidados del laboratorio de informática en busca de componentes antiguos,", "descubrieron un extraño computador que, al encenderlo, activó una inteligencia artificial llamada Cuy, creada con el propósito de enseñar y evolucionar mediante la lógica.", "Los docentes, inspirados por su potencial, iniciaron el PROYECTO Jurguillas , una misión secreta para terminar de entrenar a CUY mediante ejercicios de razonamiento lógico,", "con el fin de implementarla como un sistema de seguridad y un asistente virtual para todo el edificio.", "Sin embargo, el Instituto TecnoIdiático descubrió el proyecto y...", "robó información para tener el control de la IA con un virus llamado Yorasite, transformando el edificio en un laberinto lleno de errores y trampas,", "CUY quedó atrapado entre líneas de código desordenado, sus funciones divididas y su memoria fragmentada.", "Ahora, los profesores deberán entrar en eledificio, resolver los desafíos lógicos y desinfectar el núcleo de Cuy, antes de que sea controlada por Yorasite."])
 audios = Array[AudioStream]([ExtResource("8_qsk8r"), ExtResource("9_kx5a5"), ExtResource("10_w2dd5"), ExtResource("11_m83nb"), ExtResource("12_7vphg"), ExtResource("13_5qfeo"), ExtResource("14_e0yaj"), ExtResource("15_0f2re"), ExtResource("16_vx50f")])
 
 [node name="imagen_actual" type="TextureRect" parent="."]

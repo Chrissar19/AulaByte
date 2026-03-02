@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://ce4psiq5ll2ou"]
+[gd_scene load_steps=25 format=4 uid="uid://ce4psiq5ll2ou"]
 
 [ext_resource type="Script" uid="uid://coe5412e75vcn" path="res://scripts/niveles/1_5/nivel_1.gd" id="1_68m43"]
 [ext_resource type="PackedScene" uid="uid://c8f486kolklgt" path="res://escenas/Niveles/0_5/actividad_1.tscn" id="2_4pfxj"]
@@ -180,18 +180,24 @@ texture = ExtResource("5_x8ajn")
 separation = Vector2i(1, 1)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/0/physics_layer_0/polygon_0/one_way = true
 1:0/0 = 0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0/physics_layer_0/polygon_0/one_way = true
 2:0/0 = 0
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0/physics_layer_0/polygon_0/one_way = true
 3:0/0 = 0
 3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0/physics_layer_0/polygon_0/one_way = true
 4:0/0 = 0
 4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:0/0/physics_layer_0/polygon_0/one_way = true
 5:0/0 = 0
 5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:0/0 = 0
 6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:0/0/physics_layer_0/polygon_0/one_way = true
 7:0/0 = 0
 7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:0/0 = 0
@@ -200,22 +206,30 @@ separation = Vector2i(1, 1)
 9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 10:0/0 = 0
 10:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+10:0/0/physics_layer_0/polygon_0/one_way = true
 11:0/0 = 0
 11:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+11:0/0/physics_layer_0/polygon_0/one_way = true
 0:1/0 = 0
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0/physics_layer_0/polygon_0/one_way = true
 1:1/0 = 0
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0/physics_layer_0/polygon_0/one_way = true
 2:1/0 = 0
 2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0/physics_layer_0/polygon_0/one_way = true
 3:1/0 = 0
 3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0/physics_layer_0/polygon_0/one_way = true
 4:1/0 = 0
 4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:1/0/physics_layer_0/polygon_0/one_way = true
 5:1/0 = 0
 5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:1/0 = 0
 6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:1/0/physics_layer_0/polygon_0/one_way = true
 7:1/0 = 0
 7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:1/0 = 0
@@ -282,6 +296,7 @@ separation = Vector2i(1, 1)
 14:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 15:0/0 = 0
 15:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+15:0/0/physics_layer_0/polygon_0/one_way = true
 16:0/0 = 0
 16:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 16:1/0 = 0
@@ -312,50 +327,6 @@ separation = Vector2i(1, 1)
 [sub_resource type="TileSet" id="TileSet_6d66m"]
 physics_layer_0/collision_layer = 33
 sources/0 = SubResource("TileSetAtlasSource_7svhg")
-
-[sub_resource type="Curve2D" id="Curve2D_wq1ut"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 31, 0, 0, 0, 0, 0, 257.5065, -2)
-}
-point_count = 2
-
-[sub_resource type="Animation" id="Animation_xcw0p"]
-resource_name = "Movimiento_plataorma"
-length = 3.0
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:progress_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-
-[sub_resource type="Animation" id="Animation_wf7ch"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:progress_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1lge7"]
-_data = {
-&"Movimiento_plataorma": SubResource("Animation_xcw0p"),
-&"RESET": SubResource("Animation_wf7ch")
-}
 
 [node name="Nivel_1" type="Node2D"]
 script = ExtResource("1_68m43")
@@ -533,25 +504,22 @@ position = Vector2(626.3125, -370.25)
 
 [node name="Plataformas" type="Node" parent="."]
 
-[node name="Path2D" type="Path2D" parent="Plataformas"]
-z_index = 1
-position = Vector2(-450.163, 80)
+[node name="Plataforma2" parent="Plataformas" instance=ExtResource("10_1jmp3")]
+position = Vector2(-449, 80)
 scale = Vector2(1.0375, 1)
-curve = SubResource("Curve2D_wq1ut")
+distancia = Vector2(304, 0)
+duracion = 2.5
+tiempo_espera = 0.3
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Plataformas/Path2D"]
-position = Vector2(31, 0)
-rotates = false
-loop = false
+[node name="PlataformaSube" parent="Plataformas" instance=ExtResource("23_nlh1x")]
+z_index = 4
+position = Vector2(-536, -311)
 
-[node name="Plataforma2" parent="Plataformas/Path2D/PathFollow2D" instance=ExtResource("10_1jmp3")]
-position = Vector2(-29.879042, 0)
+[node name="PlataformaCae" parent="Plataformas" instance=ExtResource("21_nlh1x")]
+position = Vector2(-168, 167)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Plataformas/Path2D/PathFollow2D"]
-libraries = {
-&"": SubResource("AnimationLibrary_1lge7")
-}
-autoplay = "Movimiento_plataorma"
+[node name="PlataformaCae2" parent="Plataformas" instance=ExtResource("21_nlh1x")]
+position = Vector2(-358, 168)
 
 [node name="Cuadros" type="Node" parent="."]
 
@@ -605,7 +573,7 @@ position = Vector2(-263, -105)
 
 [node name="PuertaSalida" parent="puertas" instance=ExtResource("16_xcw0p")]
 z_index = 1
-position = Vector2(532, -537)
+position = Vector2(528, -568)
 
 [node name="trampas" type="Node" parent="."]
 
@@ -618,15 +586,5 @@ fuerza_rebote = -700.0
 z_index = 1
 position = Vector2(198, -713)
 
-[node name="PlataformaCae" parent="trampas" instance=ExtResource("21_nlh1x")]
-position = Vector2(-168, 167)
-
-[node name="PlataformaCae2" parent="trampas" instance=ExtResource("21_nlh1x")]
-position = Vector2(-358, 168)
-
-[node name="PlataformaSube" parent="trampas" instance=ExtResource("23_nlh1x")]
-z_index = 4
-position = Vector2(-536, -311)
-
 [node name="PuntoInicio" parent="." instance=ExtResource("23_nk5c4")]
-position = Vector2(508, 123)
+position = Vector2(513, 87)

@@ -42,7 +42,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.72549, 0.72549, 0.72549, 0.470588)
+color = Color(0.18039216, 0.18039216, 0.18039216, 0.54901963)
 
 [node name="Fondo" type="TextureRect" parent="."]
 layout_mode = 1
