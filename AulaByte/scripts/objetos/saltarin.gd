@@ -1,52 +1,51 @@
 extends Node2D
 
-# =============================================================================
-# TRAMPOLÍN - Rebota al jugador cuando cae sobre él
-# =============================================================================
-
 # ============================================================================
 # VARIABLES
 # ============================================================================
-@export var fuerza_rebote: float = -400.0        # Fuerza de impulso vertical
+@export var fuerza_rebote: float = -700.0  
+@onready var saltarin: AudioStreamPlayer = $Saltarin
 
-var jugador: CharacterBody2D = null              # Referencia al jugador
-var verificar_salto: bool = false                # Estado de rebote activo
-
+var jugador: CharacterBody2D = null
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer: Timer = $Timer
 
-# ============================================================================
-# READY - Inicializa animación y conecta señales
-# ============================================================================
 func _ready() -> void:
-	sprite.animation = "salto"
+	if sprite.sprite_frames.has_animation("salto"):
+		sprite.animation = "salto"
 	sprite.stop()
-	timer.timeout.connect(_on_timer_timeout)
+	if not timer.timeout.is_connected(_on_timer_timeout):
+		timer.timeout.connect(_on_timer_timeout)
 
 # ============================================================================
-# REBOTE - Al entrar el jugador en contacto
+# REBOTE
 # ============================================================================
 func _on_activacion_salto_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Jugador") and not body.is_on_floor():
-		jugador = body
-		verificar_salto = true
-		
-		# Rebote solo si el jugador está cayendo
-		if jugador.velocity.y >= 0:
-			jugador.velocity.y = fuerza_rebote
+	if body.is_in_group("Jugador"):
+		var p = body 
+
+		if p.velocity.y > 0:
+			p.velocity.y = fuerza_rebote
+			if p.has_method("cambiar_estado"):
+				p.cambiar_estado("saltar")
+			
+			if "ha_saltado" in p:
+				p.ha_saltado = true 
+			
+			saltarin.play()
+
 			sprite.play("salto")
-			timer.start(1.5)
+			timer.start(0.4)
+		else:
+			# Si el jugador está en el suelo o subiendo, no hacemos nada.
+			print("Jugador cruzando sin caer: Trampolín desactivado")
 
-# ============================================================================
-# SALIDA - Se detiene el rebote al salir del trampolín
-# ============================================================================
 func _on_body_exited(body: Node2D) -> void:
-	if body == jugador:
+	if body.is_in_group("Jugador"):
 		jugador = null
-		verificar_salto = false
 
-# ============================================================================
-# TIMER - Después de 1.5 seg cambia la animación
-# ============================================================================
 func _on_timer_timeout() -> void:
-	sprite.play("encoger")
+	if sprite.sprite_frames.has_animation("encoger"):
+		sprite.play("encoger")
+	else:
+		sprite.stop()
