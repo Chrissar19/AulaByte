@@ -53,10 +53,10 @@ layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 23.749962
-offset_top = -35.000004
-offset_right = 151.74997
-offset_bottom = 189.0
+offset_left = -20.0
+offset_top = -41.250004
+offset_right = 108.0
+offset_bottom = 182.75
 textura_frente = ExtResource("4_rmb52")
 
 [node name="escribir" parent="Fondo/ZonaCartas" instance=ExtResource("3_dphv0")]
@@ -64,10 +64,10 @@ layout_mode = 1
 anchor_left = -0.039
 anchor_right = -0.039
 anchor_bottom = 0.0
-offset_left = 203.49371
-offset_top = -33.75
-offset_right = 331.4937
-offset_bottom = 190.25
+offset_left = 129.74376
+offset_top = -41.25
+offset_right = 257.74377
+offset_bottom = 182.75
 textura_frente = ExtResource("5_lgamn")
 
 [node name="sonido" parent="Fondo/ZonaCartas" instance=ExtResource("3_dphv0")]
@@ -75,27 +75,27 @@ layout_mode = 1
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 340.0
-offset_top = -34.999992
-offset_right = 468.00003
-offset_bottom = 189.0
+offset_left = 240.0
+offset_top = -41.25
+offset_right = 368.00003
+offset_bottom = 182.75
 textura_frente = ExtResource("6_lgamn")
 
 [node name="GeneraCartaAleatoria" type="TextureRect" parent="Fondo"]
 layout_mode = 0
-offset_left = 44.0
-offset_top = 87.0
-offset_right = 173.99997
-offset_bottom = 311.0
+offset_left = 40.0
+offset_top = 72.0
+offset_right = 169.99997
+offset_bottom = 296.0
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("7_370m8")
 
 [node name="ImagenAleatoria" type="TextureRect" parent="Fondo/GeneraCartaAleatoria"]
 layout_mode = 0
-offset_left = 7.5000005
-offset_top = 2.5
-offset_right = 128.74998
-offset_bottom = 219.99997
+offset_left = 5.000001
+offset_top = 1.2500001
+offset_right = 126.249985
+offset_bottom = 218.74997
 texture = SubResource("ImageTexture_tvwjn")
 
 [node name="SFX" type="Node" parent="."]

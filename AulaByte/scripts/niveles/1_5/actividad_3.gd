@@ -8,9 +8,12 @@ class_name Actividad3
 @onready var btn_salir: Button = $UI/BtnSalir
 @onready var btn_ayuda: Button = $UI/BtnAyuda
 @onready var audio_ayuda: AudioStreamPlayer = $AudioAyuda
+@onready var timer_limite: Timer = $TimerLimite
+@onready var lbl_tiempo: Label = $LblTiempo
 
 @export var intentos: int = 5
 @export var tiempo_mensaje: float = 2.0
+@export var tiempo_maximo: float = 60.0
 
 var _total_objetos := 0
 var _aciertos := 0
@@ -28,9 +31,36 @@ func _ready() -> void:
 	lbl_ganar.scale = Vector2(1.0, 1.0)
 	lbl_ganar.visible = true
 	
+	timer_limite.one_shot = true
+	timer_limite.timeout.connect(_on_tiempo_agotado)
+	
 	_contar_objetos()
 	_actualizar_intentos()
 	teclado_zona.soltar_item.connect(_on_item_dropped)
+	
+	reiniciar_tiempo()
+	
+func _process(_delta: float) -> void:
+	if not _cerrado and not timer_limite.is_stopped():
+		var tiempo_restante = timer_limite.time_left
+		lbl_tiempo.text = "Tiempo: %d" % ceil(tiempo_restante)
+		
+		# Feedback de urgencia (rojo y parpadeo)
+		if tiempo_restante < 10.0:
+			lbl_tiempo.modulate = Color.RED
+			lbl_tiempo.visible = (Engine.get_frames_drawn() % 40 < 20)
+		else:
+			lbl_tiempo.visible = true
+			lbl_tiempo.modulate = Color.WHITE
+
+func reiniciar_tiempo() -> void:
+	timer_limite.start(tiempo_maximo)
+
+func _on_tiempo_agotado() -> void:
+	if not _cerrado:
+		_cerrado = true
+		lbl_ganar.text = "¡Tiempo agotado!"
+		_perder()
 
 func _contar_objetos() -> void:
 	_total_objetos = 0
@@ -54,6 +84,7 @@ func _on_item_dropped(correcto: bool) -> void:
 		
 		if _aciertos >= _total_objetos:
 			_cerrado = true
+			timer_limite.stop()
 			_ganar()
 	else:
 		intentos -= 1
@@ -61,6 +92,7 @@ func _on_item_dropped(correcto: bool) -> void:
 		
 		if intentos <= 0:
 			_cerrado = true
+			timer_limite.stop()
 			_perder()
 		else:
 			# Elegimos una frase de apoyo al azar
@@ -83,7 +115,8 @@ func _mostrar_feedback_temporal(texto: String, color: Color) -> void:
 func _ganar() -> void:
 	lbl_ganar.text = "¡Excelente! Teclado completado"
 	lbl_ganar.modulate = Color.CYAN
-	await get_tree().create_timer(0.4).timeout
+	_bloquear_teclas()
+	await get_tree().create_timer(1.0).timeout
 	finalizar_exito()
 
 func _perder() -> void:
@@ -93,16 +126,26 @@ func _perder() -> void:
 	
 	lbl_ganar.text = "Sé que podrás la próxima"
 	lbl_ganar.modulate = Color.ORANGE
+	_bloquear_teclas()
 	# Reducimos escala para que quepa perfecto
 	lbl_ganar.scale = Vector2(0.85, 0.85) 
 	
 	await get_tree().create_timer(0.4).timeout
 	finalizar_fracaso()
 
+func _bloquear_teclas() -> void:
+	for c in contenedor_objetos.get_children():
+		if c is TeclaArrastrable:
+			c.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
 func configurar_con_parametros(parametros: Dictionary) -> void:
 	if parametros.has("intentos"):
 		intentos = max(1, int(parametros["intentos"]))
 		_actualizar_intentos()
+		
+	if parametros.has("tiempo"):
+		tiempo_maximo = float(parametros["tiempo"])
+		reiniciar_tiempo()
 		
 func _on_btn_salir_pressed() -> void:
 	cancelar_actividad()

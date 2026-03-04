@@ -19,13 +19,18 @@ class_name Actividad1
 @onready var btn_borrar: Button = $BtnBorrar
 @onready var btn_ayuda: Button = $BtnAyuda
 @onready var audio_ayuda: AudioStreamPlayer = $AudioAyuda
+@onready var timer_limite: Timer = $TimerLimite
+@onready var lbl_tiempo: Label = $LblTiempo
 
 # ===========================
 # Variables
 # ===========================
 var contrasenna_correcta: Array[int] = []
 var contrasenna_ingresada: Array[int] = []
-var intentos: int = 3   # se puede sobreescribir por parámetros
+var intentos: int = 3
+@export var tiempo_maximo: float = 30.0
+var tiempo_restante: float = 0.0
+var actividad_activa: bool = true
 
 func _ready() -> void:
 	btn_arriba.pressed.connect(_on_boton_numero_pressed.bind(1))
@@ -37,6 +42,10 @@ func _ready() -> void:
 	btn_confirmar.pressed.connect(_on_btn_confirmar_pressed)
 	btn_salir.pressed.connect(_on_btn_salir_pressed)
 	
+	timer_limite.one_shot = true
+	timer_limite.timeout.connect(_on_tiempo_agotado)
+	
+	reiniciar_tiempo()
 	# Texto inicial
 	if lbl_intentos:
 		lbl_intentos.text = "Intentos: %d" % intentos
@@ -44,6 +53,13 @@ func _ready() -> void:
 	
 	actualizar_pantalla()
 
+func _process(delta: float) -> void:
+	if actividad_activa and not timer_limite.is_stopped():
+		tiempo_restante = timer_limite.time_left
+		lbl_tiempo.text = "Tiempo: %d" % ceil(tiempo_restante)
+		
+		if tiempo_restante < 5.0:
+			lbl_tiempo.modulate = Color.RED
 
 func _on_boton_numero_pressed(numero: int) -> void:
 	if contrasenna_ingresada.size() < 4:
@@ -89,6 +105,12 @@ func _on_btn_confirmar_pressed() -> void:
 	if contrasenna_ingresada.size() < 4:
 		salida_texto.text = "Contraseña incompleta"
 		return
+	if contrasenna_ingresada == contrasenna_correcta:
+		actividad_activa = false
+		timer_limite.stop()
+		salida_texto.text = "¡Contraseña correcta!"
+		await get_tree().create_timer(1.0).timeout
+		finalizar_exito()
 		
 	var acierto := contrasenna_ingresada == contrasenna_correcta
 	
@@ -105,8 +127,7 @@ func _on_btn_confirmar_pressed() -> void:
 			salida_texto.text = "Contraseña incorrecta."
 			
 			await get_tree().create_timer(1.5).timeout
-			# ❌ Avisamos fracaso -> GameManager quita una vida y cierra actividad
-			finalizar_fracaso()  # <- viene de ActividadBase
+			finalizar_fracaso()
 		else:
 			salida_texto.text = "Contraseña incorrecta"
 			if lbl_intentos:
@@ -143,7 +164,6 @@ func _on_btn_borrar_pressed() -> void:
 func _on_btn_salir_pressed() -> void:
 	cancelar_actividad()
 
-
 #-- Recibir parámetros desde GameManager / puerta
 func configurar_con_parametros(parametros: Dictionary) -> void:
 	if parametros.has("codigo"):
@@ -157,7 +177,22 @@ func configurar_con_parametros(parametros: Dictionary) -> void:
 	
 	if lbl_intentos:
 		lbl_intentos.text = "Intentos: %d" % intentos
-
+		
+	if parametros.has("tiempo"):
+		tiempo_maximo = float(parametros["tiempo"])
+		reiniciar_tiempo()
+		
+func reiniciar_tiempo() -> void:
+	tiempo_restante = tiempo_maximo
+	timer_limite.start(tiempo_maximo)
+	
+func _on_tiempo_agotado() -> void:
+	actividad_activa = false
+	salida_texto.text = "¡Se acabó el tiempo!"
+	btn_confirmar.disabled = true
+	
+	await get_tree().create_timer(1.5).timeout
+	finalizar_fracaso()
 
 func _on_button_pressed() -> void:
 	audio_ayuda.play()

@@ -21,6 +21,9 @@ enum Fase {INTRO1, INTRO2, ELECCION, RESULTADO}
 @onready var lbl_texto: Label = $UI/LblTexto
 @onready var btn_salir: Button = $UI/BtnSalir
 @onready var lbl_guia: Label = $UI/LblGuia
+@onready var lbl_tiempo: Label = $LblTiempo
+@onready var timer_limite: Timer = $TimerLimite
+@onready var btn_ayuda: Button = $UI/BtnAyuda
 
 # Referencia al nuevo nodo de audio
 @onready var audio_guia: AudioStreamPlayer = $AudioGuia
@@ -32,6 +35,10 @@ var _fase: int = Fase.INTRO1
 var _contador: int = 0
 var _interaccion_habilitada := false
 
+@export var tiempo_maximo: float = 20.0
+var _tiempo_restante: float = 0.0
+var _cronometro_activo: bool = false
+
 func _ready() -> void:
 	super._ready()
 	_reunir_cartas()
@@ -41,8 +48,33 @@ func _ready() -> void:
 	if not btn_reiniciar.pressed.is_connected(_on_btn_reiniciar_pressed):
 		btn_reiniciar.pressed.connect(_on_btn_reiniciar_pressed)
 	btn_salir.pressed.connect(_on_btn_salir_pressed)
-		
+	
+	timer_limite.one_shot = true
+	timer_limite.timeout.connect(_on_tiempo_agotado)
+	lbl_tiempo.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	
+	_reunir_cartas()
 	_iniciar_secuencia()
+	
+func _process(_delta: float) -> void:
+	if _cronometro_activo and not timer_limite.is_stopped():
+		_tiempo_restante = timer_limite.time_left
+		_actualizar_label_vertical(ceil(_tiempo_restante))
+		
+func _actualizar_label_vertical(valor: int) -> void:
+	var texto_numero = str(valor)
+	var vertical = ""
+	for i in range(texto_numero.length()):
+		vertical += texto_numero[i]
+		if i < texto_numero.length() - 1:
+			vertical += "\n"
+	lbl_tiempo.text = vertical
+	
+	# Color de alerta
+	if valor <= 5:
+		lbl_tiempo.modulate = Color.RED
+	else:
+		lbl_tiempo.modulate = Color.WHITE
 
 func _reunir_cartas() -> void:
 	_cartas.clear()
@@ -59,8 +91,8 @@ func _reunir_cartas() -> void:
 #-- SECUENCIA PARA EL SILOGISMO (MODIFICADA)
 #------------------------------------------------------------
 func _iniciar_secuencia() -> void:
+	_detener_y_limpiar_timer()
 	audio_guia.stop() 
-	
 	_contador += 1
 	var id_actual := _contador
 	
@@ -105,10 +137,29 @@ func _iniciar_secuencia() -> void:
 	_fase = Fase.ELECCION
 	carta_carro.visible = false
 	zona_cartas.visible = true
-	_narrar_fase("Elige la carta que completa el silogismo.", audio_eleccion, false)
-	_interaccion_habilitada = true
-	_esperar_instruccion_doble_clic(id_actual)
+	
+	await _narrar_fase("Elige la carta que completa el silogismo.", audio_eleccion, true)
+	if id_actual == _contador and _fase == Fase.ELECCION:
+		_iniciar_conteo_tiempo()
+		_interaccion_habilitada = true
+		_esperar_instruccion_doble_clic(id_actual)
 
+func _iniciar_conteo_tiempo() -> void:
+	_cronometro_activo = true
+	timer_limite.start(tiempo_maximo)
+	lbl_tiempo.visible = true
+
+func _detener_y_limpiar_timer() -> void:
+	_cronometro_activo = false
+	timer_limite.stop()
+	lbl_tiempo.text = ""
+	lbl_tiempo.visible = false
+
+func _on_tiempo_agotado() -> void:
+	if not _finalizado:
+		_interaccion_habilitada = false
+		lbl_texto.text = "¡Se acabó el tiempo!"
+		finalizar_fracaso()
 
 # FUNCION AUXILIAR PARA MANEJAR LA NARRACION
 # Si 'esperar_terminar' es true, el código se pausa hasta que acabe el audio + delay
@@ -165,6 +216,7 @@ func _on_carta_seleccionada(carta: CartaVolteable) -> void:
 #-----------------------------------------------
 func _on_btn_aceptar_pressed() -> void:
 	if _seleccion == null: return
+	_detener_y_limpiar_timer()
 	_interaccion_habilitada = false
 	audio_guia.stop() # Detener instrucción si ya ganó
 	if _seleccion.es_correcta:
@@ -172,6 +224,9 @@ func _on_btn_aceptar_pressed() -> void:
 	else:
 		finalizar_fracaso()
 		
+func configurar_con_parametros(parametros: Dictionary) -> void:
+	if parametros.has("tiempo"):
+		tiempo_maximo = float(parametros["tiempo"])
 
 func _on_btn_reiniciar_pressed() -> void:
 	_iniciar_secuencia()
@@ -182,4 +237,18 @@ func _on_btn_salir_pressed() -> void:
 	cancelar_actividad()
 
 func _on_btn_ayuda_pressed() -> void:
+	if voz_ayuda.playing: 
+		return
+	
+	var id_al_presionar = _contador
+	
+	timer_limite.paused = true
+	btn_ayuda.disabled = true 
+	
 	voz_ayuda.play()
+	
+	await voz_ayuda.finished
+	
+	if id_al_presionar == _contador and not _finalizado and _fase == Fase.ELECCION:
+		timer_limite.paused = false # ¡Reanudamos exactamente donde quedó!
+		btn_ayuda.disabled = false
