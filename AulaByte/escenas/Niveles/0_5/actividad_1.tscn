@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="3_mbatl"]
 [ext_resource type="Texture2D" uid="uid://d3vh0l5545dux" path="res://recursos/imagenes/objetos/TeclasPC.png" id="4_a3ce4"]
 [ext_resource type="AudioStream" uid="uid://d07bh7q5ynlr3" path="res://recursos/Audio/actividades/NIVEL1.ogg" id="5_2y0mf"]
-[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/signo-de-interrogacion.png" id="6_qggda"]
+[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/sig_ayuda.png" id="6_qggda"]
 [ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/Fuentes/Normal.ttf" id="7_qggda"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_twqsm"]

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dm6ickdbevse2"
-path="res://.godot/imported/signo-de-interrogacion.png-b2d2a1a5b6c728593c9203e48798ddfe.ctex"
+path="res://.godot/imported/sig_ayuda.png-3d0f9d3ebccad111b6962ebc330bd10b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/imagenes/objetos/signo-de-interrogacion.png"
-dest_files=["res://.godot/imported/signo-de-interrogacion.png-b2d2a1a5b6c728593c9203e48798ddfe.ctex"]
+source_file="res://recursos/imagenes/objetos/sig_ayuda.png"
+dest_files=["res://.godot/imported/sig_ayuda.png-3d0f9d3ebccad111b6962ebc330bd10b.ctex"]
 
 [params]
 

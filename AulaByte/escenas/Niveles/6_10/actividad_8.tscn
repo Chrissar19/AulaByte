@@ -30,7 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://cm0tc53qap8uy" path="res://recursos/imagenes/niveles/nivel8/fila-5-columna-3.png" id="26_8deea"]
 [ext_resource type="Texture2D" uid="uid://6skvsjl2uui2" path="res://recursos/imagenes/niveles/nivel8/fila-5-columna-4.png" id="27_suirn"]
 [ext_resource type="Texture2D" uid="uid://kf67lebk001p" path="res://recursos/imagenes/niveles/nivel8/fila-5-columna-5.png" id="28_1pmcy"]
-[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/signo-de-interrogacion.png" id="31_g6qs8"]
+[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/sig_ayuda.png" id="31_g6qs8"]
 [ext_resource type="AudioStream" uid="uid://b26ns4upg5pat" path="res://recursos/Audio/actividades/NIVEL8.ogg" id="32_ojhv0"]
 
 [node name="Actividad8" type="Control"]

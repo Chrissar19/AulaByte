@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="2_hygnx"]
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="3_6m560"]
 [ext_resource type="Texture2D" uid="uid://gn7tiwhhd4vf" path="res://recursos/imagenes/niveles/nivel9/actividad9/caja_clasifica.png" id="4_8y32a"]
-[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/signo-de-interrogacion.png" id="4_tn6hg"]
+[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/sig_ayuda.png" id="4_tn6hg"]
 [ext_resource type="Texture2D" uid="uid://w3xgar7sst3k" path="res://recursos/imagenes/niveles/nivel7/actividad7/archivo.png" id="5_k7rnx"]
 [ext_resource type="Script" uid="uid://ce0f0t2hy0ov2" path="res://scripts/niveles/imagen_arrastrable_2.gd" id="6_8y32a"]
 [ext_resource type="Texture2D" uid="uid://c0g00dib8uwb6" path="res://recursos/imagenes/niveles/nivel9/actividad9/teclado.png" id="7_ugwav"]

@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://donmjcvkqhnhh" path="res://recursos/imagenes/niveles/carpetas n2.png" id="5_pfroo"]
 [ext_resource type="Texture2D" uid="uid://c4mntav8qaw5x" path="res://recursos/imagenes/niveles/nivel 2.png" id="6_ii7ix"]
 [ext_resource type="Script" uid="uid://b1bhshd481td2" path="res://scripts/niveles/1_5/objeto_arrastrable.gd" id="7_teo8n"]
-[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/signo-de-interrogacion.png" id="8_0nh87"]
+[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/sig_ayuda.png" id="8_0nh87"]
 [ext_resource type="AudioStream" uid="uid://cgnknuklpas5a" path="res://recursos/Audio/actividades/NIVEL2.ogg" id="9_x5j6v"]
 [ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/Fuentes/Normal.ttf" id="10_x5j6v"]
 

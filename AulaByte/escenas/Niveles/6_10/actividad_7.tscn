@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="3_8l3je"]
 [ext_resource type="Texture2D" uid="uid://w3xgar7sst3k" path="res://recursos/imagenes/niveles/nivel7/actividad7/archivo.png" id="4_s8vlc"]
 [ext_resource type="Texture2D" uid="uid://vygope1h88ft" path="res://recursos/imagenes/niveles/nivel7/actividad7/programa.png" id="5_d3j5y"]
-[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/signo-de-interrogacion.png" id="5_mwbn5"]
+[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/sig_ayuda.png" id="5_mwbn5"]
 [ext_resource type="Script" uid="uid://14loxckvh48r" path="res://scripts/niveles/imagen_arrastrable.gd" id="5_wyxi7"]
 [ext_resource type="Texture2D" uid="uid://b1nxihiljkxy3" path="res://recursos/imagenes/niveles/nivel7/actividad7/cpu.png" id="6_ena3j"]
 [ext_resource type="Texture2D" uid="uid://c24lojgqn0jh6" path="res://recursos/imagenes/niveles/nivel7/actividad7/SO.png" id="7_iehws"]

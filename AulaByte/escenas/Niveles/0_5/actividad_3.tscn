@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://larkjkghmili" path="res://recursos/imagenes/niveles/nivel3/mascara_teclado.png" id="5_gexh0"]
 [ext_resource type="PackedScene" uid="uid://chbe70iu5ss65" path="res://escenas/Niveles/0_5/tecla_arrastrable.tscn" id="5_orqk2"]
 [ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/Fuentes/Normal.ttf" id="8_gexh0"]
-[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/signo-de-interrogacion.png" id="9_bjcmq"]
+[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/sig_ayuda.png" id="9_bjcmq"]
 [ext_resource type="AudioStream" uid="uid://cdq6yu6xemqvr" path="res://recursos/Audio/actividades/NIVEL3.ogg" id="10_6745o"]
 
 [node name="actividad_tercer_nivel" type="Control"]

@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dhbsdfe4uetf0" path="res://recursos/imagenes/niveles/nivel6/pieza1verde.png" id="4_3owi0"]
 [ext_resource type="Texture2D" uid="uid://b1km7x86sbx5k" path="res://recursos/imagenes/niveles/nivel6/CoheteSombra.png" id="4_5pec8"]
 [ext_resource type="Script" uid="uid://bbebdd838lrmc" path="res://scripts/niveles/6_10/pieza_tangram.gd" id="5_84ncr"]
-[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/signo-de-interrogacion.png" id="5_gmokl"]
+[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/sig_ayuda.png" id="5_gmokl"]
 [ext_resource type="Texture2D" uid="uid://c6ug5pnnotw7j" path="res://recursos/imagenes/niveles/nivel6/Pieza6Verde.png" id="8_btufc"]
 [ext_resource type="Texture2D" uid="uid://b16m06ayefqwn" path="res://recursos/imagenes/niveles/nivel6/Pieza7Amarilla.png" id="9_52262"]
 [ext_resource type="Texture2D" uid="uid://c3jq4mx24v182" path="res://recursos/imagenes/niveles/nivel6/pieza2Azul.png" id="10_gmokl"]

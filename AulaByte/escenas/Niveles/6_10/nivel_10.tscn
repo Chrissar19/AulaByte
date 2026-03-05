@@ -1716,4 +1716,4 @@ position = Vector2(256, -7)
 position = Vector2(231, -1351)
 
 [node name="Romo" parent="." instance=ExtResource("21_iqdo6")]
-position = Vector2(444, -44)
+position = Vector2(324, -1360)
