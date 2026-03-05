@@ -152,6 +152,12 @@ func _physics_process(delta: float) -> void:
 
 	if current_state:
 		current_state.actualizar_fisicas(delta)
+	
+	if not is_on_floor():
+		if velocity.y < 0 and current_state.name == "caer":
+			cambiar_estado("saltar")
+		elif velocity.y > 0 and current_state.name == "saltar":
+			cambiar_estado("caer")
 
 	reproducir_animacion()
 	move_and_slide()

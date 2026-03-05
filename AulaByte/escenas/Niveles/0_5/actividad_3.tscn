@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b36qfb650v6sr"]
+[gd_scene load_steps=12 format=3 uid="uid://b36qfb650v6sr"]
 
 [ext_resource type="Script" uid="uid://b8rh4btqfdevo" path="res://scripts/niveles/1_5/actividad_3.gd" id="1_3gb8d"]
 [ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="1_mnkbi"]
@@ -8,8 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://larkjkghmili" path="res://recursos/imagenes/niveles/nivel3/mascara_teclado.png" id="5_gexh0"]
 [ext_resource type="PackedScene" uid="uid://chbe70iu5ss65" path="res://escenas/Niveles/0_5/tecla_arrastrable.tscn" id="5_orqk2"]
 [ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/Fuentes/Normal.ttf" id="8_gexh0"]
-[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/signo-de-interrogacion.png" id="9_bjcmq"]
+[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/sig_ayuda.png" id="9_bjcmq"]
 [ext_resource type="AudioStream" uid="uid://cdq6yu6xemqvr" path="res://recursos/Audio/actividades/NIVEL3.ogg" id="10_6745o"]
+[ext_resource type="PackedScene" uid="uid://c6yaub6uwq80o" path="res://escenas/ui/control_tiempo.tscn" id="10_pf5cs"]
 
 [node name="actividad_tercer_nivel" type="Control"]
 layout_mode = 3
@@ -19,6 +20,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3gb8d")
+tiempo_maximo = 90.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -56,13 +58,13 @@ color = Color(0.199169, 0.270564, 0.304483, 0.85098)
 
 [node name="descripcion act" type="Label" parent="ColorRect/pantalla"]
 layout_mode = 0
-offset_left = 68.0
-offset_top = 35.0
-offset_right = 594.0
-offset_bottom = 70.0
+offset_left = 56.0
+offset_top = 40.0
+offset_right = 582.0
+offset_bottom = 75.0
 theme_override_colors/font_color = Color(0.141176, 0.623529, 0.396078, 1)
 theme_override_fonts/font = ExtResource("2_vjo3q")
-text = "¿Sabes dónde va cada pieza?"
+text = "¿Sabes en que grupo va cada pieza?"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -231,6 +233,13 @@ offset_right = 40.0
 offset_bottom = 64.0
 scale = Vector2(0.7, 0.7)
 icon = ExtResource("9_bjcmq")
+
+[node name="ControlTiempo" parent="UI" instance=ExtResource("10_pf5cs")]
+layout_mode = 0
+offset_left = 168.0
+offset_top = -264.0
+offset_right = 424.0
+offset_bottom = -248.0
 
 [node name="AudioAyuda" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_6745o")

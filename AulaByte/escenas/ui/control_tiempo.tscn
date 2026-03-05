@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6yaub6uwq80o"]
+
+[ext_resource type="Script" uid="uid://dmr5t8tsikvr1" path="res://scripts/ui/control_tiempo.gd" id="1_k6chm"]
+
+[node name="ControlTiempo" type="ProgressBar"]
+offset_left = -128.0
+offset_right = 128.0
+offset_bottom = 16.0
+pivot_offset = Vector2(128, 8)
+show_percentage = false
+script = ExtResource("1_k6chm")

@@ -440,10 +440,11 @@ func reiniciar_nivel() -> void:
 	cambiar_estado(EstadoJuego.JUGANDO)
 	
 func preparar_nivel() -> void:
+	print("[GM] Preparando nuevo nivel: Limpiando parámetros.")
 	tiempo_nivel_actual = 0.0
 	parametros_actividad.clear()
-	codigo_generado = false
 	codigo_actividad_actual.clear()
+	codigo_generado = false
 	causa_muerte = ""
 
 func ir_a_menu_principal() -> void:
@@ -547,27 +548,30 @@ func _on_minijuego_cancelado() -> void:
 	if estado_actual == EstadoJuego.MINIJUEGO:
 		cambiar_estado(EstadoJuego.JUGANDO)
 
-func establecer_parametros_actividad(parametros: Dictionary) -> void:
-	if parametros.has("codigo"):
-		var codigo = parametros["codigo"]
-		if codigo is Array:
-			codigo_actividad_actual = codigo.duplicate()
-		else:
-			codigo_actividad_actual = []
-		
-		parametros_actividad = parametros
+# En GameManager.gd
+
+func establecer_parametros_actividad(nuevos_parametros: Dictionary) -> void:
+	# 1. Si recibimos un diccionario vacío, no hacemos nada para no borrar datos previos
+	if nuevos_parametros.is_empty():
 		return
+
+	# 2. Si los nuevos parámetros traen un "codigo", actualizamos la variable interna
+	if nuevos_parametros.has("codigo"):
+		var nuevo_cod = nuevos_parametros["codigo"]
+		if nuevo_cod is Array:
+			codigo_actividad_actual = nuevo_cod.duplicate()
+			codigo_generado = true # Marcamos como generado para que no cree uno aleatorio
 	
-	if codigo_actividad_actual.is_empty():
-		var codigo_gen = generar_codigo()
-		parametros["codigo"] = codigo_gen
-	else:
-		parametros["codigo"] = codigo_actividad_actual
+	# 3. FUSIÓN: Agregamos o actualizamos las claves una por una
+	# Esto permite que el Nivel mande el código y la Puerta mande los intentos
+	for clave in nuevos_parametros.keys():
+		parametros_actividad[clave] = nuevos_parametros[clave]
 	
-	parametros_actividad = parametros
+	print("[GM] Parámetros Universales actualizados: ", parametros_actividad)
 
 func generar_codigo(longitud: int = 4) -> Array[int]:
-	if not codigo_generado or codigo_actividad_actual.is_empty() or codigo_actividad_actual.size() != longitud:
+	# Solo generamos si no hay un código ya establecido por el nivel
+	if not codigo_generado or codigo_actividad_actual.is_empty():
 		var num_random = RandomNumberGenerator.new()
 		num_random.randomize()
 
@@ -576,7 +580,10 @@ func generar_codigo(longitud: int = 4) -> Array[int]:
 			codigo_actividad_actual.append(num_random.randi_range(1, 4))
 
 		codigo_generado = true
-		print("Codigo generado para el nivel: ", codigo_actividad_actual)
+		# También lo guardamos en el diccionario de parámetros para la actividad
+		parametros_actividad["codigo"] = codigo_actividad_actual
+		print("[GM] Código aleatorio generado: ", codigo_actividad_actual)
+	
 	return codigo_actividad_actual
 
 func terminar_juego() -> void:

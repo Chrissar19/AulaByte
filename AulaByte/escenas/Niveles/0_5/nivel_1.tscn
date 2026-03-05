@@ -580,7 +580,7 @@ position = Vector2(528, -568)
 [node name="Saltarin" parent="trampas" instance=ExtResource("13_qw6dd")]
 z_index = 1
 position = Vector2(556, -115)
-fuerza_rebote = -700.0
+fuerza_rebote = -705.0
 
 [node name="BolaMuerte" parent="trampas" instance=ExtResource("17_5bg0a")]
 z_index = 1

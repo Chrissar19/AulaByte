@@ -1,12 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://cn2r1imis185w"]
+[gd_scene load_steps=15 format=3 uid="uid://cn2r1imis185w"]
 
 [ext_resource type="Script" uid="uid://dvw6vhrvh0o2v" path="res://scripts/niveles/actividad_7.gd" id="1_iehws"]
 [ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="2_6ad5l"]
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="3_8l3je"]
 [ext_resource type="Texture2D" uid="uid://w3xgar7sst3k" path="res://recursos/imagenes/niveles/nivel7/actividad7/archivo.png" id="4_s8vlc"]
+[ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/Fuentes/Normal.ttf" id="5_5nbuw"]
 [ext_resource type="Texture2D" uid="uid://vygope1h88ft" path="res://recursos/imagenes/niveles/nivel7/actividad7/programa.png" id="5_d3j5y"]
-[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/signo-de-interrogacion.png" id="5_mwbn5"]
+[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/sig_ayuda.png" id="5_mwbn5"]
 [ext_resource type="Script" uid="uid://14loxckvh48r" path="res://scripts/niveles/imagen_arrastrable.gd" id="5_wyxi7"]
+[ext_resource type="PackedScene" uid="uid://c6yaub6uwq80o" path="res://escenas/ui/control_tiempo.tscn" id="6_0hykg"]
 [ext_resource type="Texture2D" uid="uid://b1nxihiljkxy3" path="res://recursos/imagenes/niveles/nivel7/actividad7/cpu.png" id="6_ena3j"]
 [ext_resource type="Texture2D" uid="uid://c24lojgqn0jh6" path="res://recursos/imagenes/niveles/nivel7/actividad7/SO.png" id="7_iehws"]
 [ext_resource type="Texture2D" uid="uid://basxagvkd4p0w" path="res://recursos/imagenes/niveles/nivel7/actividad7/consola.png" id="8_rw8vp"]
@@ -55,19 +57,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.199169, 0.270564, 0.304483, 0.85098)
-
-[node name="descripcion act" type="Label" parent="ColorRect/pantalla"]
-layout_mode = 0
-offset_left = 52.0
-offset_top = 33.0
-offset_right = 578.0
-offset_bottom = 68.0
-theme_override_colors/font_color = Color(0.141176, 0.623529, 0.396078, 1)
-theme_override_fonts/font = ExtResource("3_8l3je")
-text = "Arrastra cada eleménto para
-reparar la cpu."
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Consola" type="TextureRect" parent="."]
 layout_mode = 0
@@ -122,12 +111,16 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -19.0
-offset_top = -24.0
-offset_right = 21.0
-offset_bottom = -1.0
+offset_left = -23.0
+offset_top = -300.0
+offset_right = 17.0
+offset_bottom = -273.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("5_5nbuw")
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Button" type="Button" parent="UI"]
 layout_mode = 0
@@ -136,23 +129,44 @@ offset_right = 40.0
 offset_bottom = 52.0
 icon = ExtResource("5_mwbn5")
 
+[node name="ControlTiempo" parent="UI" instance=ExtResource("6_0hykg")]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 32.0
+offset_right = 424.0
+offset_bottom = 48.0
+
+[node name="descripcion act" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = -220.0
+offset_right = 558.0
+offset_bottom = -185.0
+theme_override_colors/font_color = Color(0.141176, 0.623529, 0.396078, 1)
+theme_override_fonts/font = ExtResource("3_8l3je")
+text = "Arrastra cada eleménto para
+reparar la cpu."
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ZonaJuego" type="Node" parent="."]
 
 [node name="ContenedorObjetos" type="Control" parent="ZonaJuego"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 146.0
-offset_top = 88.0
+offset_top = 100.0
 offset_right = 489.0
 offset_bottom = 180.0
 
 [node name="Archivo" type="TextureRect" parent="ZonaJuego/ContenedorObjetos"]
 layout_mode = 0
-offset_left = 22.0
-offset_top = 22.0
-offset_right = 97.0
-offset_bottom = 106.0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 81.0
+offset_bottom = 88.0
 scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(37, 42)
 texture = ExtResource("4_s8vlc")
 script = ExtResource("5_wyxi7")
 
@@ -180,11 +194,12 @@ categoria = "cpu"
 
 [node name="SO" type="TextureRect" parent="ZonaJuego/ContenedorObjetos"]
 layout_mode = 0
-offset_left = 280.0
-offset_top = 22.0
-offset_right = 360.0
-offset_bottom = 106.0
+offset_left = 278.0
+offset_top = 4.0
+offset_right = 358.0
+offset_bottom = 88.0
 scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(40, 42)
 texture = ExtResource("7_iehws")
 script = ExtResource("5_wyxi7")
 categoria = "so"

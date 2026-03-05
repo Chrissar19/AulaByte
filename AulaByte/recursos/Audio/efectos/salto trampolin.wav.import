@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cy7noplm7x5pa"
+path="res://.godot/imported/salto trampolin.wav-f52f264a5e56e07322111ffd98af61c1.sample"
+
+[deps]
+
+source_file="res://recursos/Audio/efectos/salto trampolin.wav"
+dest_files=["res://.godot/imported/salto trampolin.wav-f52f264a5e56e07322111ffd98af61c1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

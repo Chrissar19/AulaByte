@@ -15,6 +15,8 @@ class_name PlataformaUniversal
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
+signal arrancado(color: String)
+
 var pos_inicio: Vector2
 var pos_final: Vector2
 var activa: bool = false
@@ -71,6 +73,8 @@ func chequear_combinacion() -> void:
 	if todo_listo and not activa:
 		activa = true
 		iluminar_interruptores_vinculados()
+		# PASAMOS EL COLOR AQUÍ
+		emit_signal("arrancado", color_plataforma) 
 		iniciar_ciclo()
 		
 func iluminar_interruptores_vinculados() -> void:

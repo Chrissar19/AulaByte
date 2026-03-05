@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://jgf3xqgo0gm5"]
+[gd_scene load_steps=13 format=3 uid="uid://jgf3xqgo0gm5"]
 
 [ext_resource type="Script" uid="uid://cr74q71aqver3" path="res://scripts/objetos/saltarin.gd" id="1_l3ecv"]
 [ext_resource type="Texture2D" uid="uid://dppekgh3lmhv2" path="res://recursos/imagenes/objetos/saltarin.png" id="2_cwrbs"]
+[ext_resource type="AudioStream" uid="uid://cy7noplm7x5pa" path="res://recursos/Audio/efectos/salto trampolin.wav" id="3_60pan"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_60pan"]
 atlas = ExtResource("2_cwrbs")
@@ -66,6 +67,7 @@ size = Vector2(45, 21)
 
 [node name="Saltarin" type="Node2D"]
 script = ExtResource("1_l3ecv")
+fuerza_rebote = -800.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_105oy")
@@ -88,6 +90,9 @@ shape = SubResource("RectangleShape2D_6nikp")
 position = Vector2(-0.5, 21.5)
 shape = SubResource("RectangleShape2D_wjy8a")
 one_way_collision = true
+
+[node name="Saltarin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_60pan")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="ActivacionSalto" to="." method="_on_activacion_salto_body_entered"]
