@@ -58,14 +58,9 @@ func _get_drag_data(at_position: Vector2) -> Variant:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_DRAG_END:
-		if not _drag_activo:
-			return
-		
+		if not _drag_activo: return
 		_drag_activo = false
 		_posicion_final_drag = get_viewport().get_mouse_position()
-
-		if is_queued_for_deletion():
-			return
 
 		var zonas = {
 			"ElementoSalida": zona_elementos_salida,
@@ -80,10 +75,7 @@ func _notification(what: int) -> void:
 
 		for nombre_zona in zonas.keys():
 			var zona = zonas[nombre_zona]
-			if not zona:
-				continue
-
-			if _esta_sobre_zona(zona):
+			if zona and _esta_sobre_zona(zona):
 				zona_correcta = nombre_zona
 				zona_destino = zona
 				break
@@ -91,11 +83,16 @@ func _notification(what: int) -> void:
 		if zona_correcta != "" and zona_destino:
 			var id_elemento := str(name)
 			if not zona_destino.has_element(id_elemento):
-				_clonar_en_zona(zona_destino)
-				zona_destino.add_element(id_elemento)
-				emit_signal("element_asigned", categorias, zona_correcta)
+				# 1. Clonamos el objeto
+				var clon = _clonar_en_zona(zona_destino)
+				# 2. Emitimos la señal y capturamos si la actividad lo aceptó
+				# Nota: En Godot 4, emit_signal no devuelve el retorno de las funciones conectadas directamente.
+				# Por eso, usaremos la referencia a la actividad directamente o validaremos después.
+				
+				# CAMBIO CLAVE: Vamos a dejar que la actividad borre el clon si falla.
+				# Para que la actividad pueda borrarlo, se lo pasamos en la señal:
+				emit_signal("element_asigned", categorias, zona_correcta, clon)
 			else:
-				print("⚠️ El elemento ya existe en esta zona.")
 				volver_a_empezar()
 		else:
 			volver_a_empezar()
@@ -111,16 +108,16 @@ func _esta_sobre_zona(zona: Control) -> bool:
 	var rect_zona = zona.get_global_rect()
 	return rect_zona.has_point(_posicion_final_drag)
 
-func _clonar_en_zona(zona: Control) -> void:
+func _clonar_en_zona(zona: Control) -> Node:
 	var copia := duplicate() as ImagenArrastrable2
 	zona.add_child(copia)
-
-	await get_tree().process_frame
+	copia.owner = zona # Importante para la jerarquía
 	
 	var preview_size: Vector2 = copia.size * copia.scale
 	copia.global_position = _posicion_final_drag - (preview_size * 0.5)
 	copia.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	copia.visible = true
+	return copia
 
 func ocultar_elemento() -> void:
 	visible = false

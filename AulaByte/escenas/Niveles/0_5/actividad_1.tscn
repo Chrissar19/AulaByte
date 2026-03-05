@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d3vh0l5545dux" path="res://recursos/imagenes/objetos/TeclasPC.png" id="4_a3ce4"]
 [ext_resource type="AudioStream" uid="uid://d07bh7q5ynlr3" path="res://recursos/Audio/actividades/NIVEL1.ogg" id="5_2y0mf"]
 [ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/sig_ayuda.png" id="6_qggda"]
-[ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/Fuentes/Normal.ttf" id="7_qggda"]
+[ext_resource type="PackedScene" uid="uid://c6yaub6uwq80o" path="res://escenas/ui/control_tiempo.tscn" id="8_71bpd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_twqsm"]
 bg_color = Color(1, 1, 1, 1)
@@ -57,22 +57,6 @@ offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_pu1qq")
-
-[node name="BtnSalir" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 160.0
-offset_top = 100.0
-offset_right = 244.0
-offset_bottom = 124.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_mbatl")
-text = "SALIR"
 
 [node name="SalidaTexto" type="Label" parent="."]
 layout_mode = 0
@@ -219,22 +203,35 @@ icon = ExtResource("6_qggda")
 [node name="TimerLimite" type="Timer" parent="."]
 one_shot = true
 
-[node name="LblTiempo" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -32.0
-offset_top = 296.0
-offset_right = 24.0
-offset_bottom = 319.0
-grow_horizontal = 2
-theme_override_fonts/font = ExtResource("7_qggda")
-text = "0212"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="UI" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[connection signal="pressed" from="BtnSalir" to="." method="_on_btn_salir_pressed"]
+[node name="BtnSalir" type="Button" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 460.0
+offset_top = 260.0
+offset_right = 544.0
+offset_bottom = 284.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_mbatl")
+text = "SALIR"
+
+[node name="ControlTiempo" parent="UI" instance=ExtResource("8_71bpd")]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 40.0
+offset_right = 448.0
+offset_bottom = 56.0
+
 [connection signal="pressed" from="BtnBorrar" to="." method="_on_btn_borrar_pressed"]
 [connection signal="pressed" from="BtnConfirmar" to="." method="_on_btn_confirmar_pressed"]
 [connection signal="pressed" from="BtnAyuda" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="UI/BtnSalir" to="." method="_on_btn_salir_pressed"]

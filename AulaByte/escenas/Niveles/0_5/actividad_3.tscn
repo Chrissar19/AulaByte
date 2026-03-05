@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b36qfb650v6sr"]
+[gd_scene load_steps=12 format=3 uid="uid://b36qfb650v6sr"]
 
 [ext_resource type="Script" uid="uid://b8rh4btqfdevo" path="res://scripts/niveles/1_5/actividad_3.gd" id="1_3gb8d"]
 [ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="1_mnkbi"]
@@ -10,6 +10,7 @@
 [ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/Fuentes/Normal.ttf" id="8_gexh0"]
 [ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/sig_ayuda.png" id="9_bjcmq"]
 [ext_resource type="AudioStream" uid="uid://cdq6yu6xemqvr" path="res://recursos/Audio/actividades/NIVEL3.ogg" id="10_6745o"]
+[ext_resource type="PackedScene" uid="uid://c6yaub6uwq80o" path="res://escenas/ui/control_tiempo.tscn" id="10_pf5cs"]
 
 [node name="actividad_tercer_nivel" type="Control"]
 layout_mode = 3
@@ -19,6 +20,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3gb8d")
+tiempo_maximo = 90.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -232,24 +234,14 @@ offset_bottom = 64.0
 scale = Vector2(0.7, 0.7)
 icon = ExtResource("9_bjcmq")
 
+[node name="ControlTiempo" parent="UI" instance=ExtResource("10_pf5cs")]
+layout_mode = 0
+offset_left = 168.0
+offset_top = -264.0
+offset_right = 424.0
+offset_bottom = -248.0
+
 [node name="AudioAyuda" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_6745o")
-
-[node name="TimerLimite" type="Timer" parent="."]
-
-[node name="LblTiempo" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -32.0
-offset_top = 16.0
-offset_right = 24.0
-offset_bottom = 39.0
-grow_horizontal = 2
-theme_override_fonts/font = ExtResource("8_gexh0")
-text = "0000"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [connection signal="pressed" from="UI/BtnAyuda" to="." method="_on_btn_ayuda_pressed"]

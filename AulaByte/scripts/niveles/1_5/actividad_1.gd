@@ -6,33 +6,48 @@ class_name Actividad1
 # ===========================
 @onready var lbl_intentos: Label = $LblIntentos
 @onready var salida_texto: Label = $SalidaTexto
-@onready var dato_1: Label = $HBoxClaves/Dato1
-@onready var dato_2: Label = $HBoxClaves/Dato2
-@onready var dato_3: Label = $HBoxClaves/Dato3
-@onready var dato_4: Label = $HBoxClaves/Dato4
-@onready var btn_derecha: TextureButton = $BtnDerecha
-@onready var btn_izquierda: TextureButton = $BtnIzquierda
+@onready var datos_ui: Array = [$HBoxClaves/Dato1, $HBoxClaves/Dato2, $HBoxClaves/Dato3, $HBoxClaves/Dato4]
+
 @onready var btn_arriba: TextureButton = $BtnArriba
+@onready var btn_izquierda: TextureButton = $BtnIzquierda
 @onready var btn_abajo: TextureButton = $BtnAbajo
+@onready var btn_derecha: TextureButton = $BtnDerecha
+
 @onready var btn_confirmar: Button = $BtnConfirmar
-@onready var btn_salir: Button = $BtnSalir
 @onready var btn_borrar: Button = $BtnBorrar
 @onready var btn_ayuda: Button = $BtnAyuda
+@onready var btn_salir: Button = $UI/BtnSalir
+
 @onready var audio_ayuda: AudioStreamPlayer = $AudioAyuda
-@onready var timer_limite: Timer = $TimerLimite
-@onready var lbl_tiempo: Label = $LblTiempo
+@onready var ctrl_tiempo: ControlTiempo = $UI/ControlTiempo # El nuevo componente
 
 # ===========================
-# Variables
+# Variables de Estado
 # ===========================
-var contrasenna_correcta: Array[int] = []
-var contrasenna_ingresada: Array[int] = []
+var contrasenna_correcta: Array = []
+var contrasenna_ingresada: Array = []
 var intentos: int = 3
 @export var tiempo_maximo: float = 30.0
-var tiempo_restante: float = 0.0
-var actividad_activa: bool = true
+var _texto_pendiente: String = "Ingresa la contraseña"
 
+# ===========================
+# Ciclo de Vida
+# ===========================
 func _ready() -> void:
+	super._ready()
+	
+	# 1. Configuración UI inicial
+	if lbl_intentos: lbl_intentos.text = "Intentos: %d" % intentos
+	salida_texto.text = _texto_pendiente
+	actualizar_pantalla()
+	
+	# 2. VINCULAR COMPONENTE DE TIEMPO
+	# Vinculamos: Label de mensajes, Botón de salir y el callback para habilitar/deshabilitar ESC
+	ctrl_tiempo.vincular_ui(salida_texto, btn_salir, func(h): habilitar_esc = h)
+	ctrl_tiempo.tiempo_agotado.connect(_al_morir_por_tiempo)
+	ctrl_tiempo.iniciar(tiempo_maximo)
+	
+	# 3. Conectar Botones
 	btn_arriba.pressed.connect(_on_boton_numero_pressed.bind(1))
 	btn_izquierda.pressed.connect(_on_boton_numero_pressed.bind(2))
 	btn_abajo.pressed.connect(_on_boton_numero_pressed.bind(3))
@@ -40,159 +55,126 @@ func _ready() -> void:
 	
 	btn_borrar.pressed.connect(_on_btn_borrar_pressed)
 	btn_confirmar.pressed.connect(_on_btn_confirmar_pressed)
-	btn_salir.pressed.connect(_on_btn_salir_pressed)
-	
-	timer_limite.one_shot = true
-	timer_limite.timeout.connect(_on_tiempo_agotado)
-	
-	reiniciar_tiempo()
-	# Texto inicial
-	if lbl_intentos:
-		lbl_intentos.text = "Intentos: %d" % intentos
-	salida_texto.text = "Ingresa la contraseña"
-	
-	actualizar_pantalla()
+	btn_salir.pressed.connect(_on_salir_pressed)
+	if btn_ayuda: btn_ayuda.pressed.connect(_on_btn_ayuda_pressed)
 
-func _process(delta: float) -> void:
-	if actividad_activa and not timer_limite.is_stopped():
-		tiempo_restante = timer_limite.time_left
-		lbl_tiempo.text = "Tiempo: %d" % ceil(tiempo_restante)
-		
-		if tiempo_restante < 5.0:
-			lbl_tiempo.modulate = Color.RED
-
+# ===========================
+# Lógica de Entrada
+# ===========================
 func _on_boton_numero_pressed(numero: int) -> void:
 	if contrasenna_ingresada.size() < 4:
 		contrasenna_ingresada.append(numero)
 		actualizar_pantalla()
-		
-#-----------------------------------------------------------
-#-- CONTROL POR TECLADO
-#-----------------------------------------------------------
+
 func _unhandled_input(event: InputEvent) -> void:
-	# Verificamos si la actividad ya terminó o está bloqueada
 	if not btn_confirmar.disabled and intentos > 0: 
-		
 		if event.is_action_pressed("ui_up"):
 			_on_boton_numero_pressed(1)
-			_animar_boton(btn_arriba) # Opcional: Feedback visual
-			
+			_animar_boton(btn_arriba)
 		elif event.is_action_pressed("ui_left"):
 			_on_boton_numero_pressed(2)
-			_animar_boton(btn_izquierda) # Opcional: Feedback visual
-			
+			_animar_boton(btn_izquierda)
 		elif event.is_action_pressed("ui_down"):
 			_on_boton_numero_pressed(3)
-			_animar_boton(btn_abajo) # Opcional: Feedback visual
-			
+			_animar_boton(btn_abajo)
 		elif event.is_action_pressed("ui_right"):
 			_on_boton_numero_pressed(4)
-			_animar_boton(btn_derecha) # Opcional: Feedback visual
-			
+			_animar_boton(btn_derecha)
 		elif event.is_action_pressed("ui_accept"):
 			_on_btn_confirmar_pressed()
 
-# Función opcional para que el botón en pantalla "brille" al pulsar la tecla
 func _animar_boton(boton: TextureButton) -> void:
-
-	boton.modulate = Color(0.7, 0.7, 0.7) # Se oscurece un poco
+	boton.modulate = Color(0.7, 0.7, 0.7)
 	await get_tree().create_timer(0.1).timeout
 	if is_instance_valid(boton):
-		boton.modulate = Color(1, 1, 1) # Vuelve a color normal
+		boton.modulate = Color(1, 1, 1)
 
-
+# ===========================
+# Lógica de Validación
+# ===========================
 func _on_btn_confirmar_pressed() -> void:
 	if contrasenna_ingresada.size() < 4:
-		salida_texto.text = "Contraseña incompleta"
+		_mostrar_mensaje_temporal("Contraseña incompleta", 2.0, Color.ORANGE)
 		return
-	if contrasenna_ingresada == contrasenna_correcta:
-		actividad_activa = false
-		timer_limite.stop()
-		salida_texto.text = "¡Contraseña correcta!"
-		await get_tree().create_timer(1.0).timeout
-		finalizar_exito()
-		
-	var acierto := contrasenna_ingresada == contrasenna_correcta
 	
-	if acierto:
+	if contrasenna_ingresada == contrasenna_correcta:
+		ctrl_tiempo.detener()
 		salida_texto.text = "¡Contraseña correcta!"
-		await get_tree().create_timer(1.0).timeout
 		finalizar_exito()
 	else:
-		intentos -= 1
-		
-		if intentos <= 0:
-			if lbl_intentos:
-				lbl_intentos.text = "Sin intentos"
-			salida_texto.text = "Contraseña incorrecta."
-			
-			await get_tree().create_timer(1.5).timeout
-			finalizar_fracaso()
-		else:
-			salida_texto.text = "Contraseña incorrecta"
-			if lbl_intentos:
-				lbl_intentos.text = "Intentos restantes: %d" % intentos
-			contrasenna_ingresada.clear()
-			actualizar_pantalla()
+		_manejar_error()
 
-
-func actualizar_pantalla() -> void:
-	var datos := [dato_1, dato_2, dato_3, dato_4]
+func _manejar_error():
+	intentos -= 1
+	if lbl_intentos: lbl_intentos.text = "Intentos: %d" % intentos
 	
-	for i in range(datos.size()):
+	if intentos <= 0:
+		ctrl_tiempo.detener()
+		salida_texto.text = "¡SIN INTENTOS!"
+		btn_confirmar.disabled = true
+		await get_tree().create_timer(1.0).timeout
+		finalizar_fracaso()
+	else:
+		_mostrar_mensaje_temporal("Contraseña incorrecta", 2.0, Color.BROWN)
+		contrasenna_ingresada.clear()
+		actualizar_pantalla()
+
+# ===========================
+# Helpers y UI
+# ===========================
+func actualizar_pantalla() -> void:
+	for i in range(datos_ui.size()):
 		if i < contrasenna_ingresada.size():
-			var valor := contrasenna_ingresada[i]  # 1,2,3,4
-			match valor:
-				1:
-					datos[i].text = "↑"
-				2:
-					datos[i].text = "←"
-				3:
-					datos[i].text = "↓"
-				4:
-					datos[i].text = "→"
+			datos_ui[i].text = _get_flecha_simbolo(contrasenna_ingresada[i])
 		else:
-			datos[i].text = "*"
+			datos_ui[i].text = "*"
 
+func _get_flecha_simbolo(id: int) -> String:
+	match id:
+		1: return "↑"
+		2: return "←"
+		3: return "↓"
+		4: return "→"
+	return "?"
 
-func _on_btn_borrar_pressed() -> void:
-	contrasenna_ingresada.clear()
-	actualizar_pantalla()
-	salida_texto.text = "Ingresa la contraseña"
+func _on_btn_ayuda_pressed():
+	if audio_ayuda:
+		audio_ayuda.play()
+		_mostrar_mensaje_temporal("¡Escucha las flechas!", 3.0, Color.AQUA)
 
+func _mostrar_mensaje_temporal(nuevo_texto: String, duracion: float = 3.0, color: Color = Color.WHITE) -> void:
+	if salida_texto:
+		var color_orig = salida_texto.modulate
+		salida_texto.text = nuevo_texto
+		salida_texto.modulate = color
+		await get_tree().create_timer(duracion).timeout
+		if not _finalizado and salida_texto:
+			salida_texto.text = _texto_pendiente
+			salida_texto.modulate = color_orig
 
-func _on_btn_salir_pressed() -> void:
-	cancelar_actividad()
-
-#-- Recibir parámetros desde GameManager / puerta
+# ===========================
+# Callbacks de Sistema
+# ===========================
 func configurar_con_parametros(parametros: Dictionary) -> void:
 	if parametros.has("codigo"):
 		contrasenna_correcta = []
 		for elemento in parametros["codigo"]:
 			contrasenna_correcta.append(int(elemento))
-		print("Código correcto establecido desde parámetros: ", contrasenna_correcta)
 	
 	if parametros.has("intentos"):
 		intentos = int(parametros["intentos"])
-	
-	if lbl_intentos:
-		lbl_intentos.text = "Intentos: %d" % intentos
+		if lbl_intentos: lbl_intentos.text = "Intentos: %d" % intentos
 		
 	if parametros.has("tiempo"):
 		tiempo_maximo = float(parametros["tiempo"])
-		reiniciar_tiempo()
-		
-func reiniciar_tiempo() -> void:
-	tiempo_restante = tiempo_maximo
-	timer_limite.start(tiempo_maximo)
-	
-func _on_tiempo_agotado() -> void:
-	actividad_activa = false
-	salida_texto.text = "¡Se acabó el tiempo!"
-	btn_confirmar.disabled = true
-	
-	await get_tree().create_timer(1.5).timeout
+		ctrl_tiempo.iniciar(tiempo_maximo)
+
+func _al_morir_por_tiempo():
 	finalizar_fracaso()
 
-func _on_button_pressed() -> void:
-	audio_ayuda.play()
+func _on_btn_borrar_pressed() -> void:
+	contrasenna_ingresada.clear()
+	actualizar_pantalla()
+
+func _on_salir_pressed() -> void:
+	cancelar_actividad()

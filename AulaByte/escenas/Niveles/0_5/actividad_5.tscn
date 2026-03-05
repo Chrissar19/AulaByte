@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dy3m6ci02csih"]
+[gd_scene load_steps=13 format=3 uid="uid://dy3m6ci02csih"]
 
 [ext_resource type="Script" uid="uid://dsu8enqkqb0e2" path="res://scripts/niveles/1_5/actividad_5.gd" id="1_ewnyt"]
 [ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="2_yrvsu"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cvcei1b0h3jkm" path="res://recursos/imagenes/niveles/nivel4/carta_frente.png" id="7_370m8"]
 [ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/sig_ayuda.png" id="9_f7oct"]
 [ext_resource type="AudioStream" uid="uid://d0cllhf4teep6" path="res://recursos/Audio/actividades/PNIVEL5.ogg" id="10_f7oct"]
+[ext_resource type="PackedScene" uid="uid://c6yaub6uwq80o" path="res://escenas/ui/control_tiempo.tscn" id="10_tvwjn"]
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="12_a1co2"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_tvwjn"]
@@ -21,6 +22,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ewnyt")
+tiempo_maximo = 40.0
 
 [node name="Fondo" type="Panel" parent="."]
 layout_mode = 1
@@ -176,6 +178,14 @@ offset_right = 600.0
 offset_bottom = -216.0
 scale = Vector2(0.8, 0.8)
 icon = ExtResource("9_f7oct")
+
+[node name="ControlTiempo" parent="UI" instance=ExtResource("10_tvwjn")]
+layout_mode = 0
+offset_left = 568.0
+offset_top = -192.0
+offset_right = 584.0
+offset_bottom = -24.0
+fill_mode = 3
 
 [node name="VozGuia" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_f7oct")
