@@ -1,0 +1,109 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8syq7egleyvx"]
+
+[ext_resource type="Script" uid="uid://bp7ijdj3n6xxa" path="res://scripts/niveles/6_10/actividad_10.gd" id="1_67wpe"]
+[ext_resource type="FontFile" uid="uid://61t7afss7gsj" path="res://recursos/Fuentes/Normal.ttf" id="1_w858v"]
+[ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="2_67wpe"]
+
+[node name="Actividad10" type="Control"]
+layout_direction = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(320, 180)
+script = ExtResource("1_67wpe")
+
+[node name="ContenedorBotones" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 232.0
+offset_right = 384.0
+offset_bottom = 272.0
+columns = 7
+
+[node name="Btn_azul" type="Button" parent="ContenedorBotones"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="Btn_amarilla" type="Button" parent="ContenedorBotones"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="Btn_roja" type="Button" parent="ContenedorBotones"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="Btn_morada" type="Button" parent="ContenedorBotones"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="Btn_verde" type="Button" parent="ContenedorBotones"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="Btn_rosa" type="Button" parent="ContenedorBotones"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="Btn_naranja" type="Button" parent="ContenedorBotones"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="EtiquetaMensaje" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 12.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(320, 8)
+theme_override_fonts/font = ExtResource("1_w858v")
+text = "Reproduce la secuencia de X colores"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slots" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_top = 128.0
+offset_right = 640.0
+offset_bottom = 168.0
+pivot_offset = Vector2(320, 20)
+alignment = 1
+
+[node name="UI" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BtnCancelar" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 320.0
+offset_right = 624.0
+offset_bottom = 344.0
+theme_override_fonts/font = ExtResource("2_67wpe")
+text = "Salir"
+
+[node name="BtnConfirmar" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 320.0
+offset_right = 156.0
+offset_bottom = 351.0
+theme_override_fonts/font = ExtResource("2_67wpe")
+text = "Confirmar"
+
+[node name="BtnBorrar" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 320.0
+offset_right = 368.0
+offset_bottom = 351.0
+theme_override_fonts/font = ExtResource("2_67wpe")
+text = "Borrar"

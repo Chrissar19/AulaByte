@@ -60,21 +60,23 @@ func _process(delta: float) -> void:
 	if not jugador_en_puerta:
 		return
 
+	# Modificación en PuertaNivel.gd dentro de _process o donde detectes la tecla "E"
+
 	if Input.is_action_just_pressed("Accion"):
-		print("Presionó E en la puerta")
-
 		if GameManager.estado_actual == GameManager.EstadoJuego.JUGANDO:
-			# Registrar esta puerta como la activa
+			# 1. Registrar esta puerta como activa
 			GameManager.puerta_actual = self
-
+		
+			# 2. SOLO llamar a establecer_parametros si la puerta TIENE datos.
+			# Si 'parametros_actividad' está vacío en el Inspector, no borramos lo del Nivel.
 			if not parametros_actividad.is_empty():
 				GameManager.establecer_parametros_actividad(parametros_actividad)
-
+		
+			# 3. Feedback visual
 			if lbl_indicador_interaccion:
 				lbl_indicador_interaccion.visible = false
-				lbl_indicador_interaccion.scale = Vector2.ONE
-				lbl_indicador_interaccion.modulate = color_base
-
+				
+			print("PUERTA: Abriendo minijuego...")
 			GameManager.solicitar_minijuego()
 
 func _on_body_entered(body: Node) -> void:

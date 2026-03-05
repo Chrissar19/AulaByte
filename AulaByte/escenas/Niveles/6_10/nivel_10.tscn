@@ -1,6 +1,7 @@
-[gd_scene load_steps=29 format=4 uid="uid://dcrxsoxpi4gwj"]
+[gd_scene load_steps=31 format=4 uid="uid://dcrxsoxpi4gwj"]
 
 [ext_resource type="Script" uid="uid://wpxeklo0qb7c" path="res://scripts/niveles/6-10/nivel_10.gd" id="1_2mcb4"]
+[ext_resource type="PackedScene" uid="uid://c8syq7egleyvx" path="res://escenas/Niveles/6_10/actividad_10.tscn" id="2_dwdbr"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_t5ix2"]
 [ext_resource type="TileSet" uid="uid://dbxx1jhbs275d" path="res://datos/pisos.tres" id="3_aayfq"]
 [ext_resource type="Texture2D" uid="uid://dr3bkmou477j5" path="res://recursos/imagenes/TileSets/FondoSheet.png" id="3_ihbbq"]
@@ -20,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://b555un3jiwkeg" path="res://escenas/Niveles/6_10/interruptor.tscn" id="18_ne6iv"]
 [ext_resource type="PackedScene" uid="uid://tkh75sw4tr42" path="res://escenas/habilidades/item_salto.tscn" id="19_5t652"]
 [ext_resource type="PackedScene" uid="uid://db7j3q20ljag8" path="res://escenas/ui/punto_inicio.tscn" id="20_iqdo6"]
+[ext_resource type="PackedScene" uid="uid://bn26h8nuu10nr" path="res://escenas/personajes/Romo/Romo.tscn" id="21_iqdo6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5rite"]
 texture = ExtResource("2_t5ix2")
@@ -1394,6 +1396,7 @@ camara_derecha = 3420
 camara_abajo = 148
 cuenta_regresiva = 360.0
 id_nivel = 10
+actividad = ExtResource("2_dwdbr")
 
 [node name="HUD" parent="." instance=ExtResource("9_nnd1k")]
 visible = false
@@ -1711,3 +1714,6 @@ position = Vector2(256, -7)
 
 [node name="PuertaNivel" parent="." instance=ExtResource("9_aayfq")]
 position = Vector2(231, -1351)
+
+[node name="Romo" parent="." instance=ExtResource("21_iqdo6")]
+position = Vector2(444, -44)
