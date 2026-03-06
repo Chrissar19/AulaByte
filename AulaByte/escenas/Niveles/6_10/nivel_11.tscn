@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://42madykfvlwl"]
+[gd_scene load_steps=20 format=4 uid="uid://42madykfvlwl"]
 
 [ext_resource type="Script" uid="uid://b23jvap86p60m" path="res://scripts/niveles/nivel_11.gd" id="1_f02el"]
 [ext_resource type="TileSet" uid="uid://dbxx1jhbs275d" path="res://datos/pisos.tres" id="2_rhdrk"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cl1bwd6mofchq" path="res://escenas/objetos_interacciones/item_vida.tscn" id="15_0tpo5"]
 [ext_resource type="PackedScene" uid="uid://bh53eu0ttba8f" path="res://escenas/personajes/enemigos/jefe_final.tscn" id="15_wrice"]
 [ext_resource type="Texture2D" uid="uid://bcqr84us07yuj" path="res://recursos/imagenes/personajes/enemigos/JefeFinal.png" id="16_rhdrk"]
+[ext_resource type="PackedScene" uid="uid://bn26h8nuu10nr" path="res://escenas/personajes/Romo/Romo.tscn" id="19_cwqqt"]
 [ext_resource type="PackedScene" uid="uid://db7j3q20ljag8" path="res://escenas/ui/punto_inicio.tscn" id="19_dxj43"]
 [ext_resource type="PackedScene" uid="uid://cey7572ttsbym" path="res://escenas/objetos_interacciones/pared.tscn" id="19_f02el"]
 [ext_resource type="PackedScene" uid="uid://tkh75sw4tr42" path="res://escenas/habilidades/item_salto.tscn" id="20_dxj43"]
@@ -97,10 +98,10 @@ numero_bloques_horizontal = 4
 [node name="Enemigos" type="Node" parent="."]
 
 [node name="monitor2" parent="Enemigos" instance=ExtResource("13_nqmyv")]
-position = Vector2(1588.0001, 178)
+position = Vector2(1588, 170)
 
 [node name="monitor3" parent="Enemigos" instance=ExtResource("13_nqmyv")]
-position = Vector2(1247, 179)
+position = Vector2(1247, 163)
 
 [node name="jefe_final" parent="Enemigos" groups=["Enemigos"] instance=ExtResource("15_wrice")]
 position = Vector2(476.00003, 146)
@@ -127,6 +128,9 @@ position = Vector2(-752, 24)
 [node name="PuertaNivel" parent="." instance=ExtResource("13_ndqse")]
 z_index = 1
 position = Vector2(2000, 136)
+
+[node name="Romo" parent="." instance=ExtResource("19_cwqqt")]
+position = Vector2(-632, -8)
 
 [connection signal="ondead" from="Enemigos/jefe_final" to="." method="_on_jefe_final_ondead"]
 [connection signal="on_cuy_liberado" from="Puntos Control/JaulaCuy" to="." method="_on_jaula_cuy_on_cuy_liberado"]

@@ -63,7 +63,7 @@ func actualizar_puntos(puntos: int) -> void:
 # TIEMPO
 # ============================================================================	
 func _on_tiempo_actualizado(segundos: int) -> void:
-	lbl_tiempo_restante.text = "Tiempo: %s" % _mm_ss(segundos)
+	lbl_tiempo_restante.text = "T: %s" % _mm_ss(segundos)
 
 func _on_tiempo_terminado() -> void:
 	emit_signal("tiempo_terminado")
@@ -84,6 +84,6 @@ func _actualizar_nivel() -> void:
 		numero_nivel = GameManager.nivel_actual
 
 	if numero_nivel <= 0:
-		lbl_nivel.text = "Nivel: 0"
+		lbl_nivel.text = "NV: 0"
 	else:
-		lbl_nivel.text = "Nivel: %d" % numero_nivel
+		lbl_nivel.text = "NV: %d" % numero_nivel

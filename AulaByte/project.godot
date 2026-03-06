@@ -115,6 +115,7 @@ reiniciar_nivel={
 2d_physics/layer_14="Piezas"
 2d_physics/layer_15="Interruptores"
 2d_physics/layer_16="PowerUp"
+2d_physics/layer_17="Proyectiles"
 
 [physics]
 
