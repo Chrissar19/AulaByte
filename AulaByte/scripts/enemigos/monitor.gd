@@ -63,7 +63,7 @@ func _actualizar_animaciones() -> void:
 		if sprite.animation != "anim_walk":
 			sprite.play("anim_walk")
 	else:
-		if sprite.has_animation("anim_idle"):
+		if sprite.sprite_frames.has_animation("anim_idle"):
 			sprite.play("anim_idle")
 		else:
 			sprite.stop()

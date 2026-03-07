@@ -96,7 +96,7 @@ animations = [{
 size = Vector2(27, 8.333333)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0dq5j"]
-size = Vector2(27, 14.583334)
+size = Vector2(27, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ce6np"]
 size = Vector2(46.66666, 73.33331)
@@ -106,7 +106,7 @@ offsets = PackedFloat32Array(0, 0.2784091, 0.97159094)
 colors = PackedColorArray(0, 1, 1, 1, 1, 0, 1, 1, 0.6, 1, 0.2, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ybcv4"]
-size = Vector2(408, 68)
+size = Vector2(408, 55)
 
 [node name="monitor" type="CharacterBody2D" groups=["Z_ENEMIGOS"]]
 z_index = 50
@@ -136,7 +136,7 @@ collision_mask = 4
 
 [node name="SensorColision" type="CollisionShape2D" parent="SensorPisoton"]
 z_index = 3
-position = Vector2(-4.5000005, -6.708332)
+position = Vector2(-4.5000005, -7)
 shape = SubResource("RectangleShape2D_0dq5j")
 
 [node name="AudioMuerte" type="AudioStreamPlayer2D" parent="SensorPisoton"]
@@ -181,7 +181,7 @@ collision_layer = 8
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaVision"]
-position = Vector2(180, -2)
+position = Vector2(180, 4.5)
 shape = SubResource("RectangleShape2D_ybcv4")
 
 [node name="TimerAtaque" type="Timer" parent="."]

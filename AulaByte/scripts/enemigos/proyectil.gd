@@ -15,16 +15,13 @@ func _process(delta: float) -> void:
 
 # Se activa al tocar el CUERPO del jugador (CharacterBody2D)
 func _on_body_entered(body: Node2D) -> void:
+	# 1. Si toca al jugador, le hace daño y desaparece
 	if body.is_in_group("Jugador"):
-		# Cambiamos "recibir_danio" por la función real de tu jugador
 		if body.has_method("recibir_golpe_desde"):
 			body.recibir_golpe_desde(global_position, 1)
-		
-		# Se destruye al tocar al jugador
 		queue_free()
 	
-	# Si toca el suelo o paredes (TileMap/Cajas)
-	elif body.is_in_group("Suelo") or body.is_in_group("Pisos") or body is TileMap:
+	else:
 		queue_free()
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
