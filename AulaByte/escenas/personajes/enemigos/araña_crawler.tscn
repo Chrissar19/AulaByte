@@ -261,7 +261,7 @@ sprite_frames = SubResource("SpriteFrames_t1gwu")
 animation = &"araña_ataque"
 
 [node name="DeteccionSuelo" type="RayCast2D" parent="."]
-target_position = Vector2(0, 360)
+target_position = Vector2(0, 500)
 collision_mask = 4
 
 [node name="DeteccionTecho" type="RayCast2D" parent="."]

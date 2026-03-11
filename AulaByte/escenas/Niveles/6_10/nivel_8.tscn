@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://c820bpkqmqupo"]
+[gd_scene load_steps=23 format=4 uid="uid://c820bpkqmqupo"]
 
 [ext_resource type="Script" uid="uid://bl84y62aosyrq" path="res://scripts/niveles/nivel_tuto.gd" id="1_mba44"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_ixpke"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://fva12xfahbpb" path="res://escenas/objetos_interacciones/puerta_nivel.tscn" id="14_pcq15"]
 [ext_resource type="PackedScene" uid="uid://bd3tvkqc3t15v" path="res://escenas/personajes/enemigos/monitor.tscn" id="16_77hwh"]
 [ext_resource type="PackedScene" uid="uid://cl1bwd6mofchq" path="res://escenas/objetos_interacciones/item_vida.tscn" id="18_remnt"]
+[ext_resource type="PackedScene" uid="uid://c7v68xu1t1txx" path="res://escenas/personajes/enemigos/araña_crawler.tscn" id="19_gfcm2"]
 [ext_resource type="PackedScene" uid="uid://db7j3q20ljag8" path="res://escenas/ui/punto_inicio.tscn" id="19_jn5oj"]
 [ext_resource type="PackedScene" uid="uid://tkh75sw4tr42" path="res://escenas/habilidades/item_salto.tscn" id="19_liqpc"]
 
@@ -301,3 +302,6 @@ position = Vector2(1176, -400)
 
 [node name="PuntoInicio" parent="." instance=ExtResource("19_jn5oj")]
 position = Vector2(-944, -296)
+
+[node name="ArañaCrawler" parent="." instance=ExtResource("19_gfcm2")]
+position = Vector2(2664, -984)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://sh3ta4dsapqi"]
+[gd_scene load_steps=24 format=4 uid="uid://sh3ta4dsapqi"]
 
 [ext_resource type="Script" uid="uid://brmd5eakk7mu8" path="res://scripts/niveles/6-10/nivel_7.gd" id="1_pbpmi"]
 [ext_resource type="PackedScene" uid="uid://cn2r1imis185w" path="res://escenas/Niveles/6_10/actividad_7.tscn" id="2_3kpqp"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://fva12xfahbpb" path="res://escenas/objetos_interacciones/puerta_nivel.tscn" id="16_kumsu"]
 [ext_resource type="PackedScene" uid="uid://bqyt6lm4d2ydo" path="res://escenas/objetos_interacciones/plataforma_sube.tscn" id="17_kumsu"]
 [ext_resource type="PackedScene" uid="uid://cl1bwd6mofchq" path="res://escenas/objetos_interacciones/item_vida.tscn" id="18_mtrbv"]
+[ext_resource type="PackedScene" uid="uid://c7v68xu1t1txx" path="res://escenas/personajes/enemigos/araña_crawler.tscn" id="18_pbpmi"]
 [ext_resource type="PackedScene" uid="uid://db7j3q20ljag8" path="res://escenas/ui/punto_inicio.tscn" id="19_aoqgx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5rite"]
@@ -501,3 +502,6 @@ position = Vector2(-768, -600)
 
 [node name="PuntoInicio" parent="Puntos de Control" instance=ExtResource("19_aoqgx")]
 position = Vector2(576, 120)
+
+[node name="ArañaCrawler" parent="." instance=ExtResource("18_pbpmi")]
+position = Vector2(240, -448)
