@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://c24u4nrmigkg8"]
+[gd_scene load_steps=34 format=3 uid="uid://c24u4nrmigkg8"]
 
 [ext_resource type="Script" uid="uid://cqk0q45ielk7s" path="res://scripts/niveles/1_5/actividad_2.gd" id="1_1l3jw"]
 [ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="2_c4gbd"]
@@ -7,7 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://donmjcvkqhnhh" path="res://recursos/imagenes/niveles/carpetas n2.png" id="5_pfroo"]
 [ext_resource type="Texture2D" uid="uid://c4mntav8qaw5x" path="res://recursos/imagenes/niveles/nivel 2.png" id="6_ii7ix"]
 [ext_resource type="Script" uid="uid://b1bhshd481td2" path="res://scripts/niveles/1_5/objeto_arrastrable.gd" id="7_teo8n"]
-[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/signo-de-interrogacion.png" id="8_0nh87"]
+[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/sig_ayuda.png" id="8_0nh87"]
+[ext_resource type="PackedScene" uid="uid://c6yaub6uwq80o" path="res://escenas/ui/control_tiempo.tscn" id="9_limqq"]
 [ext_resource type="AudioStream" uid="uid://cgnknuklpas5a" path="res://recursos/Audio/actividades/NIVEL2.ogg" id="9_x5j6v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rqcxl"]
@@ -140,6 +141,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1l3jw")
+tiempo_maximo = 90.0
 
 [node name="Fondo" type="ColorRect" parent="."]
 layout_mode = 1
@@ -365,9 +367,10 @@ correct_category = "no-hardware"
 
 [node name="Obj_Balon" type="TextureRect" parent="ContenedorObjetos"]
 layout_mode = 0
-offset_left = 520.0
-offset_right = 584.0
-offset_bottom = 64.0
+offset_left = 216.0
+offset_top = 152.0
+offset_right = 280.0
+offset_bottom = 216.0
 scale = Vector2(0.98, 0.98)
 mouse_default_cursor_shape = 2
 texture = SubResource("AtlasTexture_t3a2u")
@@ -453,10 +456,10 @@ vertical_alignment = 1
 
 [node name="BtnSalir" type="Button" parent="UI"]
 layout_mode = 0
-offset_left = 80.0
-offset_top = 44.0
-offset_right = 164.0
-offset_bottom = 68.0
+offset_left = 328.0
+offset_top = -240.0
+offset_right = 412.0
+offset_bottom = -216.0
 theme_override_fonts/font = ExtResource("3_j6ush")
 text = "SALIR"
 
@@ -469,7 +472,17 @@ offset_bottom = -199.99998
 scale = Vector2(0.7, 0.7)
 icon = ExtResource("8_0nh87")
 
+[node name="ControlTiempo" parent="UI" instance=ExtResource("9_limqq")]
+layout_mode = 0
+offset_left = -8.0
+offset_top = 48.0
+offset_right = 248.0
+offset_bottom = 64.0
+tiempo_total = 3.0
+
 [node name="AudioAyuda" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_x5j6v")
+
+[node name="TimerLimite" type="Timer" parent="."]
 
 [connection signal="pressed" from="UI/BtnAyuda" to="." method="_on_btn_ayuda_pressed"]

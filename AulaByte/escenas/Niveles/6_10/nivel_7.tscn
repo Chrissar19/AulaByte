@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://sh3ta4dsapqi"]
+[gd_scene load_steps=24 format=4 uid="uid://sh3ta4dsapqi"]
 
 [ext_resource type="Script" uid="uid://brmd5eakk7mu8" path="res://scripts/niveles/6-10/nivel_7.gd" id="1_pbpmi"]
 [ext_resource type="PackedScene" uid="uid://cn2r1imis185w" path="res://escenas/Niveles/6_10/actividad_7.tscn" id="2_3kpqp"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://fva12xfahbpb" path="res://escenas/objetos_interacciones/puerta_nivel.tscn" id="16_kumsu"]
 [ext_resource type="PackedScene" uid="uid://bqyt6lm4d2ydo" path="res://escenas/objetos_interacciones/plataforma_sube.tscn" id="17_kumsu"]
 [ext_resource type="PackedScene" uid="uid://cl1bwd6mofchq" path="res://escenas/objetos_interacciones/item_vida.tscn" id="18_mtrbv"]
+[ext_resource type="PackedScene" uid="uid://c7v68xu1t1txx" path="res://escenas/personajes/enemigos/araña_crawler.tscn" id="18_pbpmi"]
 [ext_resource type="PackedScene" uid="uid://db7j3q20ljag8" path="res://escenas/ui/punto_inicio.tscn" id="19_aoqgx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5rite"]
@@ -358,57 +359,75 @@ position = Vector2(587, -334)
 
 [node name="BitsMoneda" parent="Puntos" instance=ExtResource("9_04v0x")]
 position = Vector2(27, 146)
+script = null
 
 [node name="BitsMoneda2" parent="Puntos" instance=ExtResource("9_04v0x")]
 position = Vector2(63.000004, 146)
+script = null
 
 [node name="BitsMoneda3" parent="Puntos" instance=ExtResource("9_04v0x")]
 position = Vector2(99.0001, 146)
+script = null
 
 [node name="BitsMoneda10" parent="Puntos" instance=ExtResource("9_04v0x")]
 position = Vector2(397.99997, -281.99997)
+script = null
 
 [node name="BitsMoneda11" parent="Puntos" instance=ExtResource("9_04v0x")]
 position = Vector2(433.99997, -281.99997)
+script = null
 
 [node name="BitsMoneda12" parent="Puntos" instance=ExtResource("9_04v0x")]
 position = Vector2(470.00006, -281.99997)
+script = null
 
 [node name="BitsMoneda13" parent="Puntos" instance=ExtResource("9_04v0x")]
 position = Vector2(769, -179)
+script = null
 
 [node name="BitsMoneda14" parent="Puntos" instance=ExtResource("9_04v0x")]
 position = Vector2(805, -179)
+script = null
 
 [node name="BitsMoneda15" parent="Puntos" instance=ExtResource("9_04v0x")]
 position = Vector2(841.00006, -179)
+script = null
 
 [node name="BitsMoneda16" parent="Puntos" instance=ExtResource("9_04v0x")]
 position = Vector2(1163, -327)
+script = null
 
 [node name="BitsMoneda17" parent="Puntos" instance=ExtResource("9_04v0x")]
 position = Vector2(1199, -327)
+script = null
 
 [node name="BitsMoneda18" parent="Puntos" instance=ExtResource("9_04v0x")]
 position = Vector2(1235, -327)
+script = null
 
 [node name="BitsMoneda7" parent="Puntos" instance=ExtResource("9_04v0x")]
 position = Vector2(-365, 145)
+script = null
 
 [node name="BitsMoneda8" parent="Puntos" instance=ExtResource("9_04v0x")]
 position = Vector2(-329, 145)
+script = null
 
 [node name="BitsMoneda9" parent="Puntos" instance=ExtResource("9_04v0x")]
 position = Vector2(-292.9999, 145)
+script = null
 
 [node name="BitsMoneda4" parent="Puntos" instance=ExtResource("9_04v0x")]
 position = Vector2(749, -584)
+script = null
 
 [node name="BitsMoneda5" parent="Puntos" instance=ExtResource("9_04v0x")]
 position = Vector2(715, -584)
+script = null
 
 [node name="BitsMoneda6" parent="Puntos" instance=ExtResource("9_04v0x")]
 position = Vector2(679, -584)
+script = null
 
 [node name="Plataformas" type="Node" parent="."]
 
@@ -446,17 +465,16 @@ position = Vector2(1033, 189)
 position = Vector2(699, -550)
 
 [node name="monitor" parent="Enemigos" instance=ExtResource("13_y0leq")]
-position = Vector2(-285, -19)
+position = Vector2(-304, -40)
 
 [node name="monitor2" parent="Enemigos" instance=ExtResource("13_y0leq")]
-position = Vector2(-59, -667)
+position = Vector2(-64, -688)
 
 [node name="Trampas" type="Node" parent="."]
 
 [node name="Saltarin" parent="Trampas" instance=ExtResource("13_mjgca")]
 z_index = 1
 position = Vector2(1541, -379)
-fuerza_rebote = -800.0
 
 [node name="Saltarin3" parent="Trampas" instance=ExtResource("13_mjgca")]
 z_index = 1
@@ -484,3 +502,6 @@ position = Vector2(-768, -600)
 
 [node name="PuntoInicio" parent="Puntos de Control" instance=ExtResource("19_aoqgx")]
 position = Vector2(576, 120)
+
+[node name="ArañaCrawler" parent="." instance=ExtResource("18_pbpmi")]
+position = Vector2(240, -448)

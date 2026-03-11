@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cl561n5x8dihd"]
+[gd_scene load_steps=19 format=4 uid="uid://cl561n5x8dihd"]
 
 [ext_resource type="Script" uid="uid://bl84y62aosyrq" path="res://scripts/niveles/nivel_tuto.gd" id="1_73hpg"]
 [ext_resource type="TileSet" uid="uid://dbxx1jhbs275d" path="res://datos/pisos.tres" id="2_jjbt2"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://brfxoes3nrqbr" path="res://escenas/ui/hud.tscn" id="9_8ml5x"]
 [ext_resource type="PackedScene" uid="uid://mher13w4mave" path="res://escenas/trampas/zona_muerte.tscn" id="10_pvklx"]
 [ext_resource type="PackedScene" uid="uid://cydd1023br6iv" path="res://escenas/objetos_interacciones/bits_moneda.tscn" id="11_ew55n"]
+[ext_resource type="PackedScene" uid="uid://c7v68xu1t1txx" path="res://escenas/personajes/enemigos/araña_crawler.tscn" id="11_x0uxo"]
 [ext_resource type="PackedScene" uid="uid://dkm0atk4qawk3" path="res://escenas/objetos_interacciones/plataforma.tscn" id="12_srw4k"]
 [ext_resource type="PackedScene" uid="uid://1eeeqekb3ych" path="res://escenas/objetos_interacciones/caja.tscn" id="13_xlm6l"]
 [ext_resource type="PackedScene" uid="uid://dfr8bmdn5actv" path="res://escenas/personajes/enemigos/slime_azul.tscn" id="14_qi2e3"]
@@ -121,6 +122,12 @@ fuerza_rebote = -500.0
 [node name="Saltarin2" parent="Plataformas" instance=ExtResource("8_6guud")]
 position = Vector2(1467, -292)
 fuerza_rebote = -500.0
+
+[node name="ArañaCrawler" parent="Plataformas" instance=ExtResource("11_x0uxo")]
+position = Vector2(787, -1187)
+
+[node name="ArañaCrawler2" parent="Plataformas" instance=ExtResource("11_x0uxo")]
+position = Vector2(1043, -187)
 
 [node name="ItemVida" parent="." instance=ExtResource("18_cyj44")]
 z_index = 1

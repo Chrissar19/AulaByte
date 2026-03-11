@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://brfxoes3nrqbr"]
+[gd_scene load_steps=6 format=3 uid="uid://brfxoes3nrqbr"]
 
 [ext_resource type="Script" uid="uid://cva06k4uqrnqp" path="res://scripts/ui/hud.gd" id="1_gwluo"]
 [ext_resource type="Texture2D" uid="uid://dj5bir4rmc6rq" path="res://recursos/imagenes/objetos/BitInfo.png" id="2_n8i4h"]
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="3_6jpwg"]
+[ext_resource type="LabelSettings" uid="uid://d1fjsw1jnhvx8" path="res://escenas/ui/hud.tres" id="3_oebmy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1dl12"]
 atlas = ExtResource("2_n8i4h")
@@ -28,17 +29,17 @@ columns = 4
 [node name="LblNivel" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
-theme_override_colors/font_color = Color(0.32156864, 0.41960785, 1, 1)
 theme_override_fonts/font = ExtResource("3_6jpwg")
 text = "LV: 0"
+label_settings = ExtResource("3_oebmy")
 vertical_alignment = 1
 
 [node name="lblVidas" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
-theme_override_colors/font_color = Color(0.32156864, 0.41960785, 1, 1)
 theme_override_fonts/font = ExtResource("3_6jpwg")
-text = "Vidas:"
+text = " "
+label_settings = ExtResource("3_oebmy")
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -53,9 +54,9 @@ alignment = 2
 
 [node name="lblTiempoRestante" type="Label" parent="MarginContainer/HBoxContainer/HBoxTiempo"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.32156864, 0.41960785, 1, 1)
 theme_override_fonts/font = ExtResource("3_6jpwg")
 text = "Tiempo"
+label_settings = ExtResource("3_oebmy")
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -71,8 +72,9 @@ stretch_mode = 4
 
 [node name="lblPuntos" type="Label" parent="MarginContainer/HBoxContainer/HBoxPuntos" groups=["HUD"]]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.32156864, 0.41960785, 1, 1)
 theme_override_fonts/font = ExtResource("3_6jpwg")
+text = "100"
+label_settings = ExtResource("3_oebmy")
 
 [node name="LblVacio" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2

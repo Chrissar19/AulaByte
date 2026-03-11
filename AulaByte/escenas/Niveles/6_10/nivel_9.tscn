@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://dbiaf3ojvsxus"]
+[gd_scene load_steps=23 format=4 uid="uid://dbiaf3ojvsxus"]
 
 [ext_resource type="Script" uid="uid://dwgm0k3l87k50" path="res://scripts/niveles/nivel_9.gd" id="1_52svh"]
 [ext_resource type="Texture2D" uid="uid://dto4s5nn7kjhi" path="res://recursos/imagenes/TileSets/pared ladrillo.png" id="2_2k4on"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bqyt6lm4d2ydo" path="res://escenas/objetos_interacciones/plataforma_sube.tscn" id="13_52svh"]
 [ext_resource type="PackedScene" uid="uid://jgf3xqgo0gm5" path="res://escenas/objetos_interacciones/saltarin.tscn" id="13_lw3qs"]
 [ext_resource type="PackedScene" uid="uid://bd3tvkqc3t15v" path="res://escenas/personajes/enemigos/monitor.tscn" id="14_hypxm"]
+[ext_resource type="PackedScene" uid="uid://c7v68xu1t1txx" path="res://escenas/personajes/enemigos/araña_crawler.tscn" id="15_x4brk"]
 [ext_resource type="PackedScene" uid="uid://cl1bwd6mofchq" path="res://escenas/objetos_interacciones/item_vida.tscn" id="18_hinw2"]
 [ext_resource type="PackedScene" uid="uid://fva12xfahbpb" path="res://escenas/objetos_interacciones/puerta_nivel.tscn" id="19_x4brk"]
 [ext_resource type="PackedScene" uid="uid://bva0i33hhjmev" path="res://escenas/habilidades/item_velocidad.tscn" id="21_nnawm"]
@@ -226,48 +227,63 @@ position = Vector2(5031, -143)
 
 [node name="BitsMoneda" parent="Puntos" instance=ExtResource("9_jisrt")]
 position = Vector2(2073.9998, -492)
+script = null
 
 [node name="BitsMoneda2" parent="Puntos" instance=ExtResource("9_jisrt")]
 position = Vector2(2044.9999, -491)
+script = null
 
 [node name="BitsMoneda3" parent="Puntos" instance=ExtResource("9_jisrt")]
 position = Vector2(2013, -490)
+script = null
 
 [node name="BitsMoneda4" parent="Puntos" instance=ExtResource("9_jisrt")]
 position = Vector2(2892.9998, -325)
+script = null
 
 [node name="BitsMoneda5" parent="Puntos" instance=ExtResource("9_jisrt")]
 position = Vector2(2863.9998, -324)
+script = null
 
 [node name="BitsMoneda6" parent="Puntos" instance=ExtResource("9_jisrt")]
 position = Vector2(2832, -323)
+script = null
 
 [node name="BitsMoneda7" parent="Puntos" instance=ExtResource("9_jisrt")]
 position = Vector2(3279.9998, -331)
+script = null
 
 [node name="BitsMoneda8" parent="Puntos" instance=ExtResource("9_jisrt")]
 position = Vector2(3250.9998, -330)
+script = null
 
 [node name="BitsMoneda9" parent="Puntos" instance=ExtResource("9_jisrt")]
 position = Vector2(3219, -329)
+script = null
 
 [node name="BitsMoneda10" parent="Puntos" instance=ExtResource("9_jisrt")]
 position = Vector2(3688.9998, -333)
+script = null
 
 [node name="BitsMoneda11" parent="Puntos" instance=ExtResource("9_jisrt")]
 position = Vector2(3659.9998, -332)
+script = null
 
 [node name="BitsMoneda12" parent="Puntos" instance=ExtResource("9_jisrt")]
 position = Vector2(3628, -331)
+script = null
 
 [node name="BitsMoneda13" parent="Puntos" instance=ExtResource("9_jisrt")]
 position = Vector2(4087.9998, -328)
+script = null
 
 [node name="BitsMoneda14" parent="Puntos" instance=ExtResource("9_jisrt")]
 position = Vector2(4058.9998, -327)
+script = null
 
 [node name="BitsMoneda15" parent="Puntos" instance=ExtResource("9_jisrt")]
 position = Vector2(4027, -326)
+script = null
 
 [node name="Plataformas" type="Node" parent="."]
 
@@ -291,11 +307,9 @@ distancia_max = -300.0
 
 [node name="Saltarin" parent="Plataformas" instance=ExtResource("13_lw3qs")]
 position = Vector2(5179, -111)
-fuerza_rebote = -800.0
 
 [node name="Saltarin2" parent="Plataformas" instance=ExtResource("13_lw3qs")]
 position = Vector2(6184, -192)
-fuerza_rebote = -800.0
 
 [node name="Enemigos" type="Node" parent="."]
 
@@ -312,31 +326,34 @@ position = Vector2(71, -246)
 position = Vector2(317, -294)
 
 [node name="monitor" parent="Enemigos" instance=ExtResource("14_hypxm")]
-position = Vector2(1054, -562)
+position = Vector2(1056, -568)
 
 [node name="monitor2" parent="Enemigos" instance=ExtResource("14_hypxm")]
-position = Vector2(1561, -559)
+position = Vector2(1568, -584)
 
 [node name="monitor3" parent="Enemigos" instance=ExtResource("14_hypxm")]
-position = Vector2(1051, -382)
+position = Vector2(1056, -400)
 
 [node name="monitor4" parent="Enemigos" instance=ExtResource("14_hypxm")]
-position = Vector2(1566, -381)
+position = Vector2(1560, -400)
 
 [node name="monitor5" parent="Enemigos" instance=ExtResource("14_hypxm")]
-position = Vector2(1046.0001, -207)
+position = Vector2(1048, -216)
 
 [node name="monitor6" parent="Enemigos" instance=ExtResource("14_hypxm")]
-position = Vector2(1573, -206.00002)
+position = Vector2(1576, -216)
 
 [node name="monitor7" parent="Enemigos" instance=ExtResource("14_hypxm")]
-position = Vector2(4737, -110)
+position = Vector2(4736, -120)
 
 [node name="monitor8" parent="Enemigos" instance=ExtResource("14_hypxm")]
-position = Vector2(5533, -380)
+position = Vector2(5536, -392)
 
 [node name="monitor9" parent="Enemigos" instance=ExtResource("14_hypxm")]
-position = Vector2(6052, -188)
+position = Vector2(6056, -200)
+
+[node name="ArañaCrawler" parent="Enemigos" instance=ExtResource("15_x4brk")]
+position = Vector2(3080, -696)
 
 [node name="Puntos de control" type="Node" parent="."]
 

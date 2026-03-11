@@ -1,0 +1,121 @@
+[gd_scene load_steps=15 format=3 uid="uid://b75k2etr2srng"]
+
+[ext_resource type="Script" uid="uid://tlwx5gvuy5c5" path="res://scripts/enemigos/proyectil.gd" id="1_1kb8u"]
+[ext_resource type="Texture2D" uid="uid://c13nw0feku52o" path="res://recursos/imagenes/personajes/enemigos/Proyectil.png" id="1_2rjfy"]
+[ext_resource type="Texture2D" uid="uid://c7sa4aimnhese" path="res://recursos/imagenes/personajes/enemigos/proyectilParticulas.png" id="3_8g2tt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kb8u"]
+atlas = ExtResource("1_2rjfy")
+region = Rect2(0, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8g2tt"]
+atlas = ExtResource("1_2rjfy")
+region = Rect2(9, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pckl7"]
+atlas = ExtResource("1_2rjfy")
+region = Rect2(18, 0, 9, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hbey3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kb8u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8g2tt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pckl7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="Animation" id="Animation_dakkp"]
+resource_name = "Bala"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
+}
+
+[sub_resource type="Animation" id="Animation_e7dtd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hv6yu"]
+_data = {
+&"Bala": SubResource("Animation_dakkp"),
+&"RESET": SubResource("Animation_e7dtd")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2rjfy"]
+radius = 4.0
+
+[sub_resource type="Gradient" id="Gradient_8g2tt"]
+offsets = PackedFloat32Array(0.007352941, 1)
+colors = PackedColorArray(0, 0.8372043, 0.5274458, 1, 0, 0.877238, 0.73150444, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pckl7"]
+gradient = SubResource("Gradient_8g2tt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pckl7"]
+particle_flag_disable_z = true
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+color = Color(0.89048684, 0.895126, 0.9027904, 1)
+color_ramp = SubResource("GradientTexture1D_pckl7")
+hue_variation_min = 0.49999997
+hue_variation_max = 0.49999997
+
+[node name="Proyectil" type="Area2D" groups=["DMG"]]
+collision_layer = 65536
+collision_mask = 4149
+script = ExtResource("1_1kb8u")
+velocidad = 200.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hbey3")
+autoplay = "default"
+frame_progress = 0.2392067
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_hv6yu")
+}
+autoplay = "Bala"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2rjfy")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-5, -5, 10, 10)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 20
+texture = ExtResource("3_8g2tt")
+process_material = SubResource("ParticleProcessMaterial_pckl7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

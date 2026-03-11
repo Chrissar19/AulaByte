@@ -1,10 +1,13 @@
 extends Control
 class_name MenuNiveles
 
+const RUTA_SELECCION = "res://escenas/menu/Seleccion_personaje/seleccion_personaje.tscn"
+
 @onready var aud_click: AudioStreamPlayer = $AudClick
 
 func _on_button_pressed() -> void:
 	GameManager.cambiar_estado(GameManager.EstadoJuego.SELECCION_PERSONAJE)
+	get_tree().change_scene_to_file(RUTA_SELECCION)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):

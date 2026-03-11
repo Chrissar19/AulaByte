@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dy3m6ci02csih"]
+[gd_scene load_steps=13 format=3 uid="uid://dy3m6ci02csih"]
 
 [ext_resource type="Script" uid="uid://dsu8enqkqb0e2" path="res://scripts/niveles/1_5/actividad_5.gd" id="1_ewnyt"]
 [ext_resource type="Texture2D" uid="uid://5qhxol8oagfm" path="res://recursos/imagenes/objetos/pantallaNivel.png" id="2_yrvsu"]
@@ -7,8 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://djbsm1epuy3sm" path="res://recursos/imagenes/niveles/nivel5/actividad5/escribir_texto.png" id="5_lgamn"]
 [ext_resource type="Texture2D" uid="uid://b78p03ef5ia24" path="res://recursos/imagenes/niveles/nivel5/actividad5/grabar_sonidos.png" id="6_lgamn"]
 [ext_resource type="Texture2D" uid="uid://cvcei1b0h3jkm" path="res://recursos/imagenes/niveles/nivel4/carta_frente.png" id="7_370m8"]
-[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/signo-de-interrogacion.png" id="9_f7oct"]
+[ext_resource type="Texture2D" uid="uid://dm6ickdbevse2" path="res://recursos/imagenes/objetos/sig_ayuda.png" id="9_f7oct"]
 [ext_resource type="AudioStream" uid="uid://d0cllhf4teep6" path="res://recursos/Audio/actividades/PNIVEL5.ogg" id="10_f7oct"]
+[ext_resource type="PackedScene" uid="uid://c6yaub6uwq80o" path="res://escenas/ui/control_tiempo.tscn" id="10_tvwjn"]
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="12_a1co2"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_tvwjn"]
@@ -21,6 +22,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ewnyt")
+tiempo_maximo = 40.0
 
 [node name="Fondo" type="Panel" parent="."]
 layout_mode = 1
@@ -53,10 +55,10 @@ layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 23.749962
-offset_top = -35.000004
-offset_right = 151.74997
-offset_bottom = 189.0
+offset_left = -20.0
+offset_top = -41.250004
+offset_right = 108.0
+offset_bottom = 182.75
 textura_frente = ExtResource("4_rmb52")
 
 [node name="escribir" parent="Fondo/ZonaCartas" instance=ExtResource("3_dphv0")]
@@ -64,10 +66,10 @@ layout_mode = 1
 anchor_left = -0.039
 anchor_right = -0.039
 anchor_bottom = 0.0
-offset_left = 203.49371
-offset_top = -33.75
-offset_right = 331.4937
-offset_bottom = 190.25
+offset_left = 129.74376
+offset_top = -41.25
+offset_right = 257.74377
+offset_bottom = 182.75
 textura_frente = ExtResource("5_lgamn")
 
 [node name="sonido" parent="Fondo/ZonaCartas" instance=ExtResource("3_dphv0")]
@@ -75,27 +77,27 @@ layout_mode = 1
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 340.0
-offset_top = -34.999992
-offset_right = 468.00003
-offset_bottom = 189.0
+offset_left = 240.0
+offset_top = -41.25
+offset_right = 368.00003
+offset_bottom = 182.75
 textura_frente = ExtResource("6_lgamn")
 
 [node name="GeneraCartaAleatoria" type="TextureRect" parent="Fondo"]
 layout_mode = 0
-offset_left = 44.0
-offset_top = 87.0
-offset_right = 173.99997
-offset_bottom = 311.0
+offset_left = 40.0
+offset_top = 72.0
+offset_right = 169.99997
+offset_bottom = 296.0
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("7_370m8")
 
 [node name="ImagenAleatoria" type="TextureRect" parent="Fondo/GeneraCartaAleatoria"]
 layout_mode = 0
-offset_left = 7.5000005
-offset_top = 2.5
-offset_right = 128.74998
-offset_bottom = 219.99997
+offset_left = 5.000001
+offset_top = 1.2500001
+offset_right = 126.249985
+offset_bottom = 218.74997
 texture = SubResource("ImageTexture_tvwjn")
 
 [node name="SFX" type="Node" parent="."]
@@ -176,6 +178,14 @@ offset_right = 600.0
 offset_bottom = -216.0
 scale = Vector2(0.8, 0.8)
 icon = ExtResource("9_f7oct")
+
+[node name="ControlTiempo" parent="UI" instance=ExtResource("10_tvwjn")]
+layout_mode = 0
+offset_left = 568.0
+offset_top = -192.0
+offset_right = 584.0
+offset_bottom = -24.0
+fill_mode = 3
 
 [node name="VozGuia" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_f7oct")

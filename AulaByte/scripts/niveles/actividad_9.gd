@@ -1,22 +1,22 @@
 extends ActividadBase
 class_name Actividad9
 
-@onready var ram: ImagenArrastrable2 = $ZonaJuego/ContenedorObjetos/Ram
-@onready var video: ImagenArrastrable2 = $ZonaJuego/ContenedorObjetos/Video
-@onready var raton: ImagenArrastrable2 = $ZonaJuego/ContenedorObjetos/Raton
-@onready var texto: ImagenArrastrable2 = $ZonaJuego/ContenedorObjetos/Texto
-@onready var imagen: ImagenArrastrable2 = $ZonaJuego/ContenedorObjetos/Imagen
-@onready var video_2: ImagenArrastrable2 = $ZonaJuego/ContenedorObjetos/Video2
-@onready var teclado: ImagenArrastrable2 = $ZonaJuego/ContenedorObjetos/Teclado
-@onready var imagen_2: ImagenArrastrable2 = $ZonaJuego/ContenedorObjetos/Imagen2
-@onready var microfono: ImagenArrastrable2 = $ZonaJuego/ContenedorObjetos/Microfono
-@onready var impresora: ImagenArrastrable2 = $ZonaJuego/ContenedorObjetos/Impresora
-@onready var audifonos: ImagenArrastrable2 = $ZonaJuego/ContenedorObjetos/Audifonos
-@onready var disco_duro: ImagenArrastrable2 = $ZonaJuego/ContenedorObjetos/DiscoDuro
-@onready var procesador: ImagenArrastrable2 = $ZonaJuego/ContenedorObjetos/Procesador
+# --- Referencias UI ---
 @onready var btn_salir: Button = $UI/BtnSalir
 @onready var btn_pista: Button = $UI/BtnPista
 @onready var audio_pista: AudioStreamPlayer = $AudioPista
+@onready var ctrl_tiempo: ControlTiempo = $UI/ControlTiempo
+@onready var lbl_intentos: Label = $UI/LblIntentos
+@onready var descripcion_act: Label = $"UI/descripcion act"
+
+# --- Referencias de Objetos ---
+@onready var contenedor_objetos: Control = $ZonaJuego/ContenedorObjetos
+
+# --- Configuración y Estado ---
+@export var tiempo_maximo: float = 120.0 
+@export var intentos: int = 3
+
+const MSJ_ORIGINAL := "Clasifica los componentes en\nsus zonas correspondientes."
 
 var zonas_correctas: Dictionary = {
 	"texto": ["ArchivosDigitales"],
@@ -36,97 +36,127 @@ var zonas_correctas: Dictionary = {
 
 var asignaciones: Dictionary = {}
 
+# --- Ciclo de Vida ---
 func _ready() -> void:
 	super._ready()
 	
-	btn_salir.pressed.connect(_on_btn_salir_pressed)
-
-func on_element_asigned(element: String, categorias: Array[String], zona: String, image: ImagenArrastrable2) -> void:
-	if not zonas_correctas.has(element):
-		finalizar_fracaso()
-		return
-
-	var zonas_validas: Array = zonas_correctas[element]
-	if not zona in zonas_validas:
-		finalizar_fracaso()
-		return
-		
-	if not asignaciones.has(element):
-		asignaciones[element] = []
-		
-	if zona in asignaciones[element]:
-		return
-		
-	asignaciones[element].append(zona)
+	descripcion_act.text = MSJ_ORIGINAL
+	lbl_intentos.text = "Intentos: %d" % intentos
 	
-	if _asignacion_completa(element):
-		if image and image.has_method("ocultar_elemento"):
-			image.ocultar_elemento()
+	ctrl_tiempo.vincular_ui(descripcion_act, btn_salir, func(h): habilitar_esc = h)
+	ctrl_tiempo.tiempo_agotado.connect(_on_tiempo_agotado)
+	ctrl_tiempo.iniciar(tiempo_maximo)
+	
+	btn_salir.pressed.connect(_on_salir_pressed)
+	if btn_pista:
+		btn_pista.pressed.connect(_on_btn_pista_pressed)
+	
+	_conectar_senales_objetos()
+
+func _conectar_senales_objetos() -> void:
+	for obj in contenedor_objetos.get_children():
+		if obj.has_signal("element_asigned"):
+			# Conectamos la señal que ahora recibe el clon
+			obj.element_asigned.connect(_on_any_element_asigned.bind(obj.name.to_lower(), obj))
+
+# --- Lógica de Juego ---
+func _on_any_element_asigned(categorias: Array, zona: String, clon: Node, element_name: String, obj_ref: Node) -> void:
+	if _finalizado: return
+	
+	var clave_busqueda = element_name
+	for k in zonas_correctas.keys():
+		if k.replace("_", "") == element_name.replace("_", ""):
+			clave_busqueda = k
+			break
+
+	if not zonas_correctas.has(clave_busqueda): return
+
+	var zonas_validas: Array = zonas_correctas[clave_busqueda]
+	
+	# --- VALIDACIÓN DE ERROR ---
+	if not zona in zonas_validas:
+		_manejar_error_clasificacion()
+		if is_instance_valid(clon):
+			clon.queue_free() # Borramos el clon intruso
+		return
+	
+	# --- VALIDACIÓN DE ÉXITO ---
+	if not asignaciones.has(clave_busqueda):
+		asignaciones[clave_busqueda] = []
+		
+	if zona in asignaciones[clave_busqueda]:
+		return
+		
+	asignaciones[clave_busqueda].append(zona)
+	
+	if _asignacion_completa(clave_busqueda):
+		if obj_ref.has_method("ocultar_elemento"):
+			obj_ref.ocultar_elemento()
 			
 	if _todas_asignaciones_correctas():
-		finalizar_exito()
+		_ganar()
+
+func _manejar_error_clasificacion() -> void:
+	intentos -= 1
+	lbl_intentos.text = "Intentos: %d" % intentos
+	
+	if intentos <= 0:
+		_perder()
+	else:
+		_mostrar_mensaje_temporal("¡Zona incorrecta!", 2.0, Color.TOMATO)
 
 func _asignacion_completa(element: String) -> bool:
-	if not asignaciones.has(element):
-		return false
-		
-	var zonas_validas = zonas_correctas[element]
-	var zonas_asignadas = asignaciones[element]
-	return zonas_asignadas.size() == zonas_validas.size()
+	if not asignaciones.has(element): return false
+	return asignaciones[element].size() == zonas_correctas[element].size()
 
 func _todas_asignaciones_correctas() -> bool:
-	if asignaciones.size() < zonas_correctas.size():
-		return false
-
+	if asignaciones.size() < zonas_correctas.size(): return false
 	for element in zonas_correctas.keys():
-		if not _asignacion_completa(element):
-			return false
-
+		if not _asignacion_completa(element): return false
 	return true
 
-func _on_texto_element_asigned(categorias: Array[String], zona: String) -> void:
-	on_element_asigned("texto", categorias, zona, texto)
+# --- Finalización ---
+func _ganar() -> void:
+	ctrl_tiempo.detener()
+	descripcion_act.text = "¡Excelente clasificación!"
+	descripcion_act.modulate = Color.CYAN
+	finalizar_exito()
 
-func _on_disco_duro_element_asigned(categorias: Array[String], zona: String) -> void:
-	on_element_asigned("disco_duro", categorias, zona, disco_duro)
+func _perder() -> void:
+	ctrl_tiempo.detener()
+	lbl_intentos.text = "¡Sin intentos!"
+	lbl_intentos.modulate = Color.RED
+	finalizar_fracaso()
 
-func _on_teclado_element_asigned(categorias: Array[String], zona: String) -> void:
-	on_element_asigned("teclado", categorias, zona, teclado)
+func _on_tiempo_agotado() -> void:
+	_perder()
 
-func _on_raton_element_asigned(categorias: Array[String], zona: String) -> void:
-	on_element_asigned("raton", categorias, zona, raton)
+# --- Helpers ---
+func _mostrar_mensaje_temporal(nuevo_texto: String, duracion: float, color: Color) -> void:
+	if descripcion_act:
+		var color_original = descripcion_act.modulate
+		descripcion_act.text = nuevo_texto
+		descripcion_act.modulate = color
+		await get_tree().create_timer(duracion).timeout
+		if not _finalizado and descripcion_act:
+			descripcion_act.text = MSJ_ORIGINAL
+			descripcion_act.modulate = color_original
 
-func _on_microfono_element_asigned(categorias: Array[String], zona: String) -> void:
-	on_element_asigned("microfono", categorias, zona, microfono)
-
-func _on_imagen_element_asigned(categorias: Array[String], zona: String) -> void:
-	on_element_asigned("imagen", categorias, zona, imagen)
-
-func _on_imagen_2_element_asigned(categorias: Array[String], zona: String) -> void:
-	on_element_asigned("imagen_2", categorias, zona, imagen_2)
-
-func _on_video_element_asigned(categorias: Array[String], zona: String) -> void:
-	on_element_asigned("video", categorias, zona, video)
-
-func _on_video_2_element_asigned(categorias: Array[String], zona: String) -> void:
-	on_element_asigned("video_2", categorias, zona, video_2)
-
-func _on_ram_element_asigned(categorias: Array[String], zona: String) -> void:
-	on_element_asigned("ram", categorias, zona, ram)
-
-func _on_procesador_element_asigned(categorias: Array[String], zona: String) -> void:
-	on_element_asigned("procesador", categorias, zona, procesador)
-
-func _on_impresora_element_asigned(categorias: Array[String], zona: String) -> void:
-	on_element_asigned("impresora", categorias, zona, impresora)
-
-func _on_audifonos_element_asigned(categorias: Array[String], zona: String) -> void:
-	on_element_asigned("audifonos", categorias, zona, audifonos)
-
-func _on_btn_salir_pressed() -> void:
+func _on_salir_pressed():
+	ctrl_tiempo.detener()
 	cancelar_actividad()
 
-
-func _on_btn_pista_pressed() -> void:
-	if audio_pista:
+func _on_btn_pista_pressed():
+	if audio_pista and not audio_pista.playing:
+		ctrl_tiempo.pausar(true)
 		audio_pista.play()
+		await audio_pista.finished
+		if not _finalizado: ctrl_tiempo.pausar(false)
+
+func configurar_con_parametros(parametros: Dictionary) -> void:
+	if parametros.has("intentos"):
+		intentos = int(parametros["intentos"])
+		lbl_intentos.text = "Intentos: %d" % intentos
+	if parametros.has("tiempo"):
+		tiempo_maximo = float(parametros["tiempo"])
+		ctrl_tiempo.init_tiempo(tiempo_maximo)

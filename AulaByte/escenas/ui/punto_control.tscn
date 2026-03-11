@@ -8,19 +8,19 @@ size = Vector2(400.00024, 533.33374)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wsous"]
 atlas = ExtResource("2_nl8o7")
-region = Rect2(164, 0, 82, 64)
+region = Rect2(144, 0, 72, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oycoi"]
 atlas = ExtResource("2_nl8o7")
-region = Rect2(246, 0, 82, 64)
+region = Rect2(216, 0, 72, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8bv1j"]
 atlas = ExtResource("2_nl8o7")
-region = Rect2(0, 0, 82, 64)
+region = Rect2(0, 0, 72, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xmcwa"]
 atlas = ExtResource("2_nl8o7")
-region = Rect2(82, 0, 82, 64)
+region = Rect2(72, 0, 72, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_f2e5p"]
 animations = [{
