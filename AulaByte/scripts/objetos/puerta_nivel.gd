@@ -14,7 +14,7 @@ class_name PuertaNivel
 @export var color_resaltado: Color = Color(1, 1, 0.5)  # blanco-amarillo suave
 
 @onready var animacion_puerta: AnimatedSprite2D = $AnimacionPuerta
-@onready var lbl_indicador_interaccion: Label = $LblIndicadorInteraccion
+@onready var lbl_indicador_interaccion: TextureRect = $LblIndicadorInteraccion
 
 var jugador_en_puerta := false
 var _t_pulso := 0.0
@@ -67,8 +67,6 @@ func _process(delta: float) -> void:
 			# 1. Registrar esta puerta como activa
 			GameManager.puerta_actual = self
 		
-			# 2. SOLO llamar a establecer_parametros si la puerta TIENE datos.
-			# Si 'parametros_actividad' está vacío en el Inspector, no borramos lo del Nivel.
 			if not parametros_actividad.is_empty():
 				GameManager.establecer_parametros_actividad(parametros_actividad)
 		
