@@ -210,6 +210,7 @@ position = Vector2(1494, -253)
 
 [node name="BitsMoneda3" parent="Vidas" instance=ExtResource("9_sa070")]
 position = Vector2(-889, 126)
+script = null
 
 [node name="Puntos" type="Node" parent="."]
 
@@ -267,17 +268,17 @@ position = Vector2(925, -104)
 [node name="BitsMoneda30" parent="Puntos" instance=ExtResource("9_sa070")]
 position = Vector2(973, -102)
 
-[node name="BitsMoneda19" parent="Puntos" instance=ExtResource("9_sa070")]
-position = Vector2(270, 192)
+[node name="BitsMoneda5" parent="Puntos" instance=ExtResource("9_sa070")]
+position = Vector2(256, 192)
 
-[node name="BitsMoneda20" parent="Puntos" instance=ExtResource("9_sa070")]
-position = Vector2(312, 192)
+[node name="BitsMoneda6" parent="Puntos" instance=ExtResource("9_sa070")]
+position = Vector2(448, 192)
 
-[node name="BitsMoneda21" parent="Puntos" instance=ExtResource("9_sa070")]
-position = Vector2(357, 192)
+[node name="BitsMoneda9" parent="Puntos" instance=ExtResource("9_sa070")]
+position = Vector2(384, 192)
 
-[node name="BitsMoneda22" parent="Puntos" instance=ExtResource("9_sa070")]
-position = Vector2(405, 194)
+[node name="BitsMoneda10" parent="Puntos" instance=ExtResource("9_sa070")]
+position = Vector2(320, 192)
 
 [node name="Plataformas" type="Node" parent="."]
 
@@ -346,7 +347,7 @@ position = Vector2(1184, 162)
 position = Vector2(1460, 99)
 
 [node name="monitor" parent="enemigos" instance=ExtResource("17_kxpsx")]
-position = Vector2(-18, -195.00002)
+position = Vector2(-32, -216)
 
 [node name="texto" type="Node" parent="."]
 

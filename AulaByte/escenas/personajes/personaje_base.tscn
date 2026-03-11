@@ -10,7 +10,7 @@
 [node name="Jugador" type="CharacterBody2D" groups=["Jugador"]]
 z_index = 60
 collision_layer = 4
-collision_mask = 57275
+collision_mask = 122811
 script = ExtResource("1_ki677")
 nombre = null
 punto_reaparicion = null
