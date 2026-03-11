@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://byf33mp3qpwe2"]
+[gd_scene load_steps=11 format=4 uid="uid://byf33mp3qpwe2"]
 
 [ext_resource type="Script" uid="uid://doybx36etmog2" path="res://scripts/ui/creditos.gd" id="1_7mcal"]
 [ext_resource type="TileSet" uid="uid://i5ue5h42c5s8" path="res://datos/fondos.tres" id="1_trfkp"]
@@ -7,50 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://co4isa7j68asm" path="res://recursos/imagenes/objetos/CUADRO_CODI.png" id="4_7mcal"]
 [ext_resource type="Texture2D" uid="uid://c32w8mojgthif" path="res://recursos/logos/Logo6.png" id="5_ikcsm"]
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="6_2gmg0"]
-
-[sub_resource type="Animation" id="Animation_7mcal"]
-resource_name = "show_credits"
-length = 24.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3, 6, 9, 12),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(320, 180), Vector2(960, 180), Vector2(1600, 180), Vector2(2264, 180), Vector2(2880, 180)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Pantalla/TechnicalCredits:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(12, 24),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(2728, 360), Vector2(2728, -1656)]
-}
-
-[sub_resource type="Animation" id="Animation_ikcsm"]
-resource_name = "technical_scroll"
-length = 15.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pantalla/TechnicalCredits:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 15),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(2728, 0), Vector2(2728, -1608)]
-}
 
 [sub_resource type="Animation" id="Animation_2gmg0"]
 length = 0.001
@@ -69,7 +25,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Pantalla/TechnicalCredits:position")
+tracks/1/path = NodePath("TechnicalCredits:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -78,12 +34,63 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(2728, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TechnicalCredits:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(278, 2461)]
+}
+
+[sub_resource type="Animation" id="Animation_7mcal"]
+resource_name = "show_credits"
+length = 60.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 40.000336),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(320, 180), Vector2(2880, 180)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TechnicalCredits:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(39.98045, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2728, 368), Vector2(2728, -2464)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TechnicalCredits:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(59.973095),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(278, 2461)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2gmg0"]
 _data = {
 &"RESET": SubResource("Animation_2gmg0"),
-&"show_credits": SubResource("Animation_7mcal"),
-&"technical_scroll": SubResource("Animation_ikcsm")
+&"show_credits": SubResource("Animation_7mcal")
 }
 
 [node name="Creditos" type="Node2D"]
@@ -146,43 +153,42 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label12" type="Label" parent="."]
-offset_left = 2088.0
-offset_top = 96.0
-offset_right = 2348.0
-offset_bottom = 119.0
+offset_left = 2032.0
+offset_top = 88.0
+offset_right = 2292.0
+offset_bottom = 111.0
 theme_override_fonts/font = ExtResource("6_2gmg0")
 text = "CUY: LEIDY COSTAIN"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label14" type="Label" parent="."]
-offset_left = 1968.0
-offset_top = 136.0
-offset_right = 2476.0
-offset_bottom = 159.0
+offset_left = 2032.0
+offset_top = 120.0
+offset_right = 2540.0
+offset_bottom = 143.0
 theme_override_fonts/font = ExtResource("6_2gmg0")
 text = "VOZ INTRODUCCIÓN: FERNANDA HERRERA"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label17" type="Label" parent="."]
-offset_left = 2024.0
-offset_top = 256.0
-offset_right = 2538.0
-offset_bottom = 279.0
+offset_left = 2016.0
+offset_top = 264.0
+offset_right = 2530.0
+offset_bottom = 287.0
 theme_override_fonts/font = ExtResource("6_2gmg0")
 text = "JOSE LUIS ROMO, ASESOR DEL PROYECTO"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label16" type="Label" parent="."]
-offset_left = 2056.0
-offset_top = 224.0
-offset_right = 2410.0
-offset_bottom = 247.0
+offset_left = 2016.0
+offset_top = 232.0
+offset_right = 2370.0
+offset_bottom = 255.0
 theme_override_fonts/font = ExtResource("6_2gmg0")
 text = "FERNANDA HERRERA"
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label6" type="Label" parent="."]
@@ -210,8 +216,9 @@ offset_left = 720.0
 offset_top = 64.0
 offset_right = 844.0
 offset_bottom = 87.0
+theme_override_colors/font_color = Color(0.783954, 0.0011118203, 0.87646776, 1)
 theme_override_fonts/font = ExtResource("6_2gmg0")
-text = "GUION"
+text = "GUION:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -220,8 +227,9 @@ offset_left = 997.0
 offset_top = 162.0
 offset_right = 1187.0
 offset_bottom = 185.0
+theme_override_colors/font_color = Color(0.07016479, 1, 0.29748532, 1)
 theme_override_fonts/font = ExtResource("6_2gmg0")
-text = "PROGRAMACIÓN"
+text = "PROGRAMACIÓN:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -237,20 +245,23 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label11" type="Label" parent="."]
-offset_left = 2103.0
+offset_left = 2047.0
 offset_top = 18.0
-offset_right = 2381.0
+offset_right = 2325.0
 offset_bottom = 41.0
+theme_override_colors/font_color = Color(0.90408784, 0.0006597763, 0.9040819, 1)
 theme_override_fonts/font = ExtResource("6_2gmg0")
 text = "VOCES:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label15" type="Label" parent="."]
-offset_left = 2088.0
-offset_top = 192.0
-offset_right = 2366.0
-offset_bottom = 215.0
+offset_left = 1984.0
+offset_top = 184.0
+offset_right = 2262.0
+offset_bottom = 207.0
+scale = Vector2(1.2, 1.2)
+theme_override_colors/font_color = Color(1, 1, 0.26006752, 1)
 theme_override_fonts/font = ExtResource("6_2gmg0")
 text = "AGRADECIMIENTOS:"
 horizontal_alignment = 1
@@ -277,10 +288,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label13" type="Label" parent="."]
-offset_left = 2192.0
-offset_top = 64.0
-offset_right = 2508.0
-offset_bottom = 87.0
+offset_left = 2032.0
+offset_top = 56.0
+offset_right = 2348.0
+offset_bottom = 79.0
 theme_override_fonts/font = ExtResource("6_2gmg0")
 text = "VOZ GUIA: DIANA CORTES"
 horizontal_alignment = 1
@@ -296,10 +307,31 @@ libraries = {
 
 [node name="Pantalla" type="CanvasLayer" parent="."]
 
-[node name="TechnicalCredits" type="RichTextLabel" parent="Pantalla"]
+[node name="SkipUI" type="Control" parent="Pantalla"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ProgressBar" type="ProgressBar" parent="Pantalla/SkipUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 1.4000001
+anchor_bottom = 1.0
+offset_left = 156.0
+offset_top = 272.0
+offset_right = 342.0
+offset_bottom = 299.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TechnicalCredits" type="RichTextLabel" parent="."]
+z_index = 4
 offset_left = 2728.0
 offset_right = 3006.0
-offset_bottom = 1656.0
+offset_bottom = 2461.0
 bbcode_enabled = true
 text = "MÚSICA:
 
@@ -344,29 +376,34 @@ Nombre: Snap.
 Efecto de sonido de MARCELLO from Pixabay https:// pixabay.com/es/sound-effects/snap-274158/
 
 
+Enemigos:
+
+Disparo enemigo final: Nombre:Sci Fi Gun Shot
+
+Efecto de sonido de: Jurij from Pixabay https://pixabay.com/ es/sound-effects/sci-fi-gun-shot-312659/
+
+Muere un enemigo:
+
+Nombre:
+
+UserInterface
+
+Efecto de sonido de: freesound_community from Pixabay
+
+https://pixabay.com/es/sound-effec
+
+﻿
+Actividad:
+
+Pasar una actividad: Nombre: Winner game sound.
+
+Efecto de sonido de: Sophia Conceição from Pixabay https:// pixabay.com/es/sound-effects/winner-game-sound-404167/
+
+Fallar actividad:
+
 
 FIN
 "
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="SkipUI" type="Control" parent="Pantalla"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ProgressBar" type="ProgressBar" parent="Pantalla/SkipUI"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 1.4000001
-anchor_bottom = 1.0
-offset_left = 156.0
-offset_top = 272.0
-offset_right = 342.0
-offset_bottom = 299.0
-grow_horizontal = 2
-grow_vertical = 0
