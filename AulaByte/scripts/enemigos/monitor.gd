@@ -79,27 +79,42 @@ func _logica_patrulla() -> void:
 
 func _logica_persecucion() -> void:
 	if jugador_objetivo:
-		var dir_hacia_jugador = sign(jugador_objetivo.global_position.x - global_position.x)
+		var diff_x = jugador_objetivo.global_position.x - global_position.x
 		
-		if dir_hacia_jugador != direccion:
-			_girar()
+		# Solo gira si el jugador está a más de 10 píxeles a los lados
+		if abs(diff_x) > 10:
+			var dir_hacia_jugador = sign(diff_x)
+			if dir_hacia_jugador != direccion:
+				_girar()
 			
 		velocity.x = direccion * velocidad_persecucion
 		
-		if not ray_suelo.is_colliding() and is_on_floor():
-			velocity.x = 0 
+		# Evitar que se caiga persiguiendo
+		if is_on_floor() and not ray_suelo.is_colliding():
+			velocity.x = 0
 
 func _girar() -> void:
 	direccion *= -1
 	sprite.flip_h = direccion < 0
 	
-	# Girar los RayCasts (esto ya lo tenías)
+	# --- EL SECRETO: Empujón de seguridad ---
+	# Movemos al monitor 2 píxeles en la nueva dirección para que el 
+	# rayo deje de tocar la pared/borde inmediatamente.
+	global_position.x += direccion * 2 
+	
+	# Girar los RayCasts
 	ray_pared.target_position.x = abs(ray_pared.target_position.x) * direccion
 	if ray_suelo:
 		ray_suelo.target_position.x = distancia_deteccion_borde * direccion
+		
+	# --- IMPORTANTE: Forzar actualización ---
+	# Por defecto, los RayCasts esperan al final del frame. 
+	# Con esto, le decimos a Godot: "¡Mira de nuevo ahora mismo!"
+	ray_pared.force_raycast_update()
+	if ray_suelo:
+		ray_suelo.force_raycast_update()
 	
 	area_vision.scale.x = direccion
-	
 	marker_disparo.position.x = abs(marker_disparo.position.x) * direccion
 # ============================================================================
 # COMBATE Y DETECCIÓN

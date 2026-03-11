@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://tlwx5gvuy5c5" path="res://scripts/enemigos/proyectil.gd" id="1_1kb8u"]
 [ext_resource type="Texture2D" uid="uid://c13nw0feku52o" path="res://recursos/imagenes/personajes/enemigos/Proyectil.png" id="1_2rjfy"]
-[ext_resource type="Texture2D" uid="uid://bboltcoka3qu0" path="res://recursos/imagenes/personajes/enemigos/SlimeParticulas.png" id="3_8g2tt"]
+[ext_resource type="Texture2D" uid="uid://c7sa4aimnhese" path="res://recursos/imagenes/personajes/enemigos/proyectilParticulas.png" id="3_8g2tt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1kb8u"]
 atlas = ExtResource("1_2rjfy")
@@ -74,8 +74,8 @@ _data = {
 radius = 4.0
 
 [sub_resource type="Gradient" id="Gradient_8g2tt"]
-offsets = PackedFloat32Array(0, 0.4852941, 1)
-colors = PackedColorArray(0, 1, 1, 1, 1, 0, 1, 1, 0.5882353, 0, 1, 1)
+offsets = PackedFloat32Array(0.007352941, 1)
+colors = PackedColorArray(0, 0.8372043, 0.5274458, 1, 0, 0.877238, 0.73150444, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_pckl7"]
 gradient = SubResource("Gradient_8g2tt")
@@ -85,7 +85,7 @@ particle_flag_disable_z = true
 initial_velocity_min = 10.0
 initial_velocity_max = 10.0
 gravity = Vector3(0, 0, 0)
-color = Color(0, 1, 1, 1)
+color = Color(0.89048684, 0.895126, 0.9027904, 1)
 color_ramp = SubResource("GradientTexture1D_pckl7")
 hue_variation_min = 0.49999997
 hue_variation_max = 0.49999997
