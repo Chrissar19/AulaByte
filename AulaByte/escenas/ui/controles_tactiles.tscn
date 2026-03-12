@@ -31,12 +31,12 @@ offset_right = 192.0
 grow_vertical = 0
 
 [node name="BtnIquierda" type="TouchScreenButton" parent="Base/padDireccion"]
-position = Vector2(24, 16)
+position = Vector2(16, 16)
 texture_normal = ExtResource("1_1khat")
 action = "izquierda"
 
 [node name="BtnDerecha" type="TouchScreenButton" parent="Base/padDireccion"]
-position = Vector2(112, 16)
+position = Vector2(104, 16)
 texture_normal = ExtResource("2_8ag86")
 action = "derecha"
 
@@ -53,12 +53,12 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="BtnSalto" type="TouchScreenButton" parent="Base/Acciones"]
-position = Vector2(96, 0)
+position = Vector2(96, 32)
 texture_normal = ExtResource("3_a01yk")
 action = "saltar"
 
 [node name="BtnAccion" type="TouchScreenButton" parent="Base/Acciones"]
-position = Vector2(168, 80)
+position = Vector2(176, 88)
 texture_normal = ExtResource("4_7iejk")
 action = "Accion"
 

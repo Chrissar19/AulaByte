@@ -182,11 +182,13 @@ func _entrar_estado(estado: int) -> void:
 			
 		EstadoJuego.CARGANDO:
 			print("Entrando a estado CARGANDO")
+			get_tree().paused = false
 			precargar_nivel()
 			pantalla_de_carga()
 			
 		EstadoJuego.TRANSICION_NIVEL:
 			print("Entrando a estado TRANSICION_NIVEL")
+			get_tree().paused = false
 			transicion_siguiente_nivel()
 			
 		EstadoJuego.GAME_OVER:

@@ -9,12 +9,14 @@ signal soltar(global_pos: Vector2)
 
 var _arrastrando := false
 var _offset := Vector2.ZERO
-var _actividad: Actividad6
+# Cambiamos Actividad6 por Node o ActividadBase para evitar el error circular
+var _actividad: Node 
 
 func _ready() -> void:
-	_actividad = get_tree().get_first_node_in_group("Actividad6") as Actividad6
+	# Al quitar "as Actividad6", Godot ya no busca esa clase específica al compilar este script
+	_actividad = get_tree().get_first_node_in_group("Actividad6")
 	if _actividad == null:
-		_actividad = get_parent().get_parent() as Actividad6
+		_actividad = get_parent().get_parent()
 
 func _input(event: InputEvent) -> void:
 	if not draggable:
@@ -22,42 +24,44 @@ func _input(event: InputEvent) -> void:
 		
 	if event is InputEventMouseButton:
 		var mb := event as InputEventMouseButton
-		# Solo procesar si el mouse está sobre esta pieza
+		
 		if not _sobre_mi():
 			return
 			
 		if mb.button_index == MOUSE_BUTTON_LEFT:
+			if mb.double_click:
+				_ejecutar_rotacion()
+				return 
+
 			if mb.pressed:
 				_arrastrando = true
 				_offset = global_position - get_global_mouse_position()
 				z_index = 50
-				# Marcar como manejado para que otras piezas no lo capturen
 				get_viewport().set_input_as_handled()
 			elif not mb.pressed and _arrastrando:
 				_arrastrando = false
-				if is_instance_valid(_actividad):
+				# Godot buscará el método "intentar_colocar" en tiempo de ejecución
+				if is_instance_valid(_actividad) and _actividad.has_method("intentar_colocar"):
 					_actividad.intentar_colocar(self, color_objetivo)
-
 				get_viewport().set_input_as_handled()
 		
-		# Rotación con rueda del mouse
 		elif mb.pressed and (mb.button_index == MOUSE_BUTTON_WHEEL_UP or mb.button_index == MOUSE_BUTTON_WHEEL_DOWN):
 			var dir := 1.0 if mb.button_index == MOUSE_BUTTON_WHEEL_UP else -1.0
-			rotation_degrees = round((rotation_degrees + dir * rot_step_deg) / rot_step_deg) * rot_step_deg
+			rotation_degrees += dir * rot_step_deg
 			get_viewport().set_input_as_handled()
 	
-	# Rotación con teclado (E para sentido horario)
 	elif event is InputEventKey:
-		# Solo procesar si el mouse está sobre esta pieza
 		if not _sobre_mi():
 			return
-			
 		if event.pressed and not event.echo:
 			if event.keycode == KEY_E:
-				var nueva_rot = round((rotation_degrees + rot_step_deg) / rot_step_deg) * rot_step_deg
-				var tween = create_tween()
-				tween.tween_property(self, "rotation_degrees", nueva_rot, 0.1).set_trans(Tween.TRANS_SINE)
+				_ejecutar_rotacion()
 				get_viewport().set_input_as_handled()
+
+func _ejecutar_rotacion() -> void:
+	var nueva_rot = round((rotation_degrees + rot_step_deg) / rot_step_deg) * rot_step_deg
+	var tween = create_tween()
+	tween.tween_property(self, "rotation_degrees", nueva_rot, 0.1).set_trans(Tween.TRANS_SINE)
 
 func _process(_dt: float) -> void:
 	if _arrastrando:
@@ -68,7 +72,6 @@ func _sobre_mi() -> bool:
 	var mouse := vp.get_mouse_position()
 	var lp := to_local(mouse)
 	
-	# Usar el area del sprite
 	var tam_texture := Vector2.ZERO
 	if texture != null:
 		tam_texture = texture.get_size() * scale
