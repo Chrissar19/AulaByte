@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=3 uid="uid://bdvs3t4yd5lfr"]
+
+[ext_resource type="Script" uid="uid://cl1n5yurw4wlb" path="res://scripts/enemigos/laser.gd" id="1_glkqy"]
+[ext_resource type="Texture2D" uid="uid://ffpbrmtweoti" path="res://recursos/imagenes/personajes/enemigos/Laser-sheet.png" id="2_glkqy"]
+[ext_resource type="Texture2D" uid="uid://ds8xur4yid8kk" path="res://recursos/imagenes/personajes/enemigos/laserparticulas.png" id="3_glkqy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1xq7"]
+atlas = ExtResource("2_glkqy")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60uqn"]
+atlas = ExtResource("2_glkqy")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42g7e"]
+atlas = ExtResource("2_glkqy")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hbey3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1xq7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60uqn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42g7e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5qhl"]
+size = Vector2(32, 12)
+
+[sub_resource type="Gradient" id="Gradient_xs6ew"]
+colors = PackedColorArray(0.08534912, 0.09549295, 0.0890136, 1, 0.29777175, 0, 0.56434965, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lacmb"]
+gradient = SubResource("Gradient_xs6ew")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pckl7"]
+particle_flag_disable_z = true
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+scale_over_velocity_max = 60.0
+color = Color(14.403402, 14.413181, 14.402389, 1)
+color_initial_ramp = SubResource("GradientTexture1D_lacmb")
+hue_variation_min = 0.49999997
+hue_variation_max = 0.49999997
+
+[node name="Proyectil" type="Area2D" groups=["DMG"]]
+collision_layer = 65536
+collision_mask = 4149
+script = ExtResource("1_glkqy")
+velocidad = 450.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hbey3")
+autoplay = "default"
+frame_progress = 0.09869664
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_x5qhl")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-5, -5, 10, 10)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 30
+texture = ExtResource("3_glkqy")
+process_material = SubResource("ParticleProcessMaterial_pckl7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

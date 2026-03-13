@@ -216,91 +216,69 @@ script = null
 
 [node name="BitsMoneda" parent="Puntos" instance=ExtResource("9_sa070")]
 position = Vector2(751, -214)
-script = null
 
 [node name="BitsMoneda2" parent="Puntos" instance=ExtResource("9_sa070")]
 position = Vector2(752, -257)
-script = null
 
 [node name="BitsMoneda3" parent="Puntos" instance=ExtResource("9_sa070")]
 position = Vector2(752, -296)
-script = null
 
 [node name="BitsMoneda7" parent="Puntos" instance=ExtResource("9_sa070")]
 position = Vector2(-856, 127)
-script = null
 
 [node name="BitsMoneda8" parent="Puntos" instance=ExtResource("9_sa070")]
 position = Vector2(-824, 127)
-script = null
 
 [node name="BitsMoneda4" parent="Puntos" instance=ExtResource("9_sa070")]
 position = Vector2(-791, 127)
-script = null
 
 [node name="BitsMoneda12" parent="Puntos" instance=ExtResource("9_sa070")]
 position = Vector2(1422, 52.999996)
-script = null
 
 [node name="BitsMoneda13" parent="Puntos" instance=ExtResource("9_sa070")]
 position = Vector2(1464, 52.999996)
-script = null
 
 [node name="BitsMoneda17" parent="Puntos" instance=ExtResource("9_sa070")]
 position = Vector2(1509, 52.999996)
-script = null
 
 [node name="BitsMoneda18" parent="Puntos" instance=ExtResource("9_sa070")]
 position = Vector2(1557, 54.999996)
-script = null
 
 [node name="BitsMoneda23" parent="Puntos" instance=ExtResource("9_sa070")]
 position = Vector2(1124, -160.99998)
-script = null
 
 [node name="BitsMoneda24" parent="Puntos" instance=ExtResource("9_sa070")]
 position = Vector2(1166, -160.99998)
-script = null
 
 [node name="BitsMoneda25" parent="Puntos" instance=ExtResource("9_sa070")]
 position = Vector2(1211, -160.99998)
-script = null
 
 [node name="BitsMoneda26" parent="Puntos" instance=ExtResource("9_sa070")]
 position = Vector2(1259, -158.99998)
-script = null
 
 [node name="BitsMoneda27" parent="Puntos" instance=ExtResource("9_sa070")]
 position = Vector2(838, -104)
-script = null
 
 [node name="BitsMoneda28" parent="Puntos" instance=ExtResource("9_sa070")]
 position = Vector2(880, -104)
-script = null
 
 [node name="BitsMoneda29" parent="Puntos" instance=ExtResource("9_sa070")]
 position = Vector2(925, -104)
-script = null
 
 [node name="BitsMoneda30" parent="Puntos" instance=ExtResource("9_sa070")]
 position = Vector2(973, -102)
-script = null
 
-[node name="BitsMoneda19" parent="Puntos" instance=ExtResource("9_sa070")]
-position = Vector2(270, 192)
-script = null
+[node name="BitsMoneda5" parent="Puntos" instance=ExtResource("9_sa070")]
+position = Vector2(256, 192)
 
-[node name="BitsMoneda20" parent="Puntos" instance=ExtResource("9_sa070")]
-position = Vector2(312, 192)
-script = null
+[node name="BitsMoneda6" parent="Puntos" instance=ExtResource("9_sa070")]
+position = Vector2(448, 192)
 
-[node name="BitsMoneda21" parent="Puntos" instance=ExtResource("9_sa070")]
-position = Vector2(357, 192)
-script = null
+[node name="BitsMoneda9" parent="Puntos" instance=ExtResource("9_sa070")]
+position = Vector2(384, 192)
 
-[node name="BitsMoneda22" parent="Puntos" instance=ExtResource("9_sa070")]
-position = Vector2(405, 194)
-script = null
+[node name="BitsMoneda10" parent="Puntos" instance=ExtResource("9_sa070")]
+position = Vector2(320, 192)
 
 [node name="Plataformas" type="Node" parent="."]
 

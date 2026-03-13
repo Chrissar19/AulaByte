@@ -12,7 +12,7 @@ signal jugador_gana_puntos(puntos: int)
 # CONSTANTES Y VARIABLES
 # ============================================================================
 const RETROCESO_X := 200.0
-const RETROCESO_Y := -200.0
+const RETROCESO_Y := -350.0
 const VEL_HORIZONTAL := 150.0
 const FUERZA_SALTO := -420.0
 const FUERZA_EMPUJE := 500.0

@@ -1,27 +1,27 @@
 extends Area2D
-class_name Proyectil
+class_name DisparoLaser
 
-@export var velocidad: float = 250.0
+@export var velocidad: float = 500.0 # Más rápido que el monitor
+@export var danio: int = 1       
 var direccion: Vector2 = Vector2.RIGHT
-@onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
-@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 func _ready() -> void:
-	# Fundamental: el jugador busca proyectiles en este grupo
 	add_to_group("DMG")
+	# Efecto visual: el láser nace pequeño y se estira
+	scale.x = 0.1
+	var tween = create_tween()
+	tween.tween_property(self, "scale:x", 1.0, 0.1)
 
 func _process(delta: float) -> void:
 	global_position += direccion * velocidad * delta
 
-# Se activa al tocar el CUERPO del jugador (CharacterBody2D)
 func _on_body_entered(body: Node2D) -> void:
-	# 1. Si toca al jugador, le hace daño y desaparece
 	if body.is_in_group("Jugador"):
 		if body.has_method("recibir_golpe_desde"):
-			body.recibir_golpe_desde(global_position, 1)
+			body.recibir_golpe_desde(global_position, danio)
 		queue_free()
 	
-	else:
+	elif body.is_in_group("Suelo") or body is TileMap:
 		queue_free()
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
