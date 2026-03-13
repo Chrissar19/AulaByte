@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://r7yx0sdnwdd3"]
+
+[ext_resource type="Script" uid="uid://bb6pfijg60rw1" path="res://scripts/enemigos/laser_arana.gd" id="1_ooolb"]
+[ext_resource type="Texture2D" uid="uid://dpyf8df22ubcp" path="res://recursos/imagenes/personajes/enemigos/Laser.png" id="2_jrxcu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ph43h"]
+radius = 8.0
+height = 31.99735
+
+[node name="LaserArana" type="Area2D"]
+collision_layer = 65536
+collision_mask = 53
+script = ExtResource("1_ooolb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_jrxcu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.5836715
+shape = SubResource("CapsuleShape2D_ph43h")
+
+[node name="TimerVida" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="TimerVida" to="." method="_on_timer_vida_timeout"]

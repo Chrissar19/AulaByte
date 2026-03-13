@@ -19,6 +19,7 @@ z_index = 1
 collision_layer = 8
 collision_mask = 48
 script = ExtResource("1_gxtbd")
+metadata/_custom_type_script = "uid://fyql0aj0pgry"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_t3s4k")
@@ -71,5 +72,4 @@ one_shot = true
 [connection signal="timeout" from="TimerMuerte" to="." method="_on_timer_muerte_timeout"]
 [connection signal="area_shape_entered" from="SensorPisoton" to="." method="_on_sensor_pisoton_area_shape_entered"]
 [connection signal="body_entered" from="SensorPisoton" to="." method="_on_sensor_pisoton_body_entered"]
-[connection signal="body_entered" from="AreaDaño" to="." method="_on_detector_jugador_body_entered"]
 [connection signal="timeout" from="TimerRecuperacion" to="." method="_on_timer_recuperacion_timeout"]

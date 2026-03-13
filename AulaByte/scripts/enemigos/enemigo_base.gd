@@ -139,8 +139,12 @@ func _on_sensor_pisoton_body_entered(body: Node2D) -> void:
 			timer_recuperacion.stop()
 			
 		# Impulsa al jugador (rebote sobre el enemigo)
-		if "velocity" in body:
-			body.velocity.y += impulso_salto
+		if body.has_method("salto"):
+			body.salto()
+			if body.has_method("cambiar_estado"):
+				body.cambiar_estado("saltar")
+		elif "velocity" in body:
+			body.velocity.y = impulso_salto
 			
 		if vida <= 1:
 			_morir(body)

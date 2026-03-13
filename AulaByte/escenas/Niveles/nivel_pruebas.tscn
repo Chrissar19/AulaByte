@@ -21,10 +21,11 @@ position = Vector2(-120, 216)
 collision_mask = 73723
 
 [node name="ArañaCrowler" parent="." instance=ExtResource("4_241ie")]
-position = Vector2(-536, 208)
+position = Vector2(-160, 48)
 
 [node name="SlimeAzul" parent="." instance=ExtResource("5_tkbm7")]
 position = Vector2(-384, 200)
 
 [node name="ZonaMuerte" parent="." instance=ExtResource("6_mbpcl")]
-position = Vector2(-296, 640)
+position = Vector2(-112, 856)
+collision_mask = 5

@@ -93,33 +93,35 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6h0kv"]
-size = Vector2(27, 8.333333)
+size = Vector2(27, 43.166664)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0dq5j"]
 size = Vector2(27, 14.583334)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ce6np"]
-size = Vector2(46.66666, 73.33331)
+size = Vector2(48.33333, 61.66665)
 
 [sub_resource type="Gradient" id="Gradient_ep3cj"]
 offsets = PackedFloat32Array(0, 0.2784091, 0.97159094)
 colors = PackedColorArray(0, 1, 1, 1, 1, 0, 1, 1, 0.6, 1, 0.2, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ybcv4"]
-size = Vector2(408, 68)
+size = Vector2(405, 59)
 
-[node name="monitor" type="CharacterBody2D" groups=["Z_ENEMIGOS"]]
+[node name="Monitorkernel" type="CharacterBody2D" groups=["Z_ENEMIGOS"]]
 z_index = 50
 collision_layer = 8
 collision_mask = 48
 script = ExtResource("1_4siuf")
+vida_maxima = 2
+metadata/_custom_type_script = "uid://fyql0aj0pgry"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ep3cj")
 animation = &"anim_laser"
 
 [node name="CollisionMonitor" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 27)
+position = Vector2(0.5, 9.583334)
 shape = SubResource("RectangleShape2D_6h0kv")
 
 [node name="RayPared" type="RayCast2D" parent="."]
@@ -139,17 +141,13 @@ z_index = 3
 position = Vector2(-4.5000005, -6.708332)
 shape = SubResource("RectangleShape2D_0dq5j")
 
-[node name="AudioMuerte" type="AudioStreamPlayer2D" parent="SensorPisoton"]
-position = Vector2(18.333332, -1.666666)
-stream = ExtResource("2_ce6np")
-
 [node name="AreaDaño" type="Area2D" parent="." groups=["DMG"]]
 scale = Vector2(0.6, 0.6)
 collision_layer = 8
 collision_mask = 4
 
 [node name="SensorColision" type="CollisionShape2D" parent="AreaDaño"]
-position = Vector2(0, 14.999996)
+position = Vector2(0.8333332, 20.833332)
 scale = Vector2(1.0000001, 1.0000001)
 shape = SubResource("RectangleShape2D_ce6np")
 
@@ -181,7 +179,7 @@ collision_layer = 8
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaVision"]
-position = Vector2(180, -2)
+position = Vector2(181.5, 2.5)
 shape = SubResource("RectangleShape2D_ybcv4")
 
 [node name="TimerAtaque" type="Timer" parent="."]
@@ -190,8 +188,11 @@ one_shot = true
 [node name="PuntoDisparo" type="Marker2D" parent="."]
 position = Vector2(26, 10)
 
+[node name="AudioMuerte" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(23.333332, -11.666666)
+stream = ExtResource("2_ce6np")
+
 [connection signal="timeout" from="TimerMuerte" to="." method="_on_timer_muerte_timeout"]
-[connection signal="area_shape_entered" from="SensorPisoton" to="." method="_on_sensor_pisoton_area_shape_entered"]
 [connection signal="body_entered" from="SensorPisoton" to="." method="_on_sensor_pisoton_body_entered"]
 [connection signal="timeout" from="TimerRecuperacion" to="." method="_on_timer_recuperacion_timeout"]
 [connection signal="body_entered" from="AreaVision" to="." method="_on_area_vision_body_entered"]

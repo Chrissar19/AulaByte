@@ -1,8 +1,9 @@
-[gd_scene load_steps=31 format=3 uid="uid://bpqmjd7rk4nnf"]
+[gd_scene load_steps=34 format=3 uid="uid://bpqmjd7rk4nnf"]
 
 [ext_resource type="PackedScene" uid="uid://cilp8ny3qqerk" path="res://escenas/personajes/enemigos/enemigo_base.tscn" id="1_7u8qj"]
 [ext_resource type="Texture2D" uid="uid://csvjwk3fmw2jt" path="res://recursos/imagenes/personajes/enemigos/ArañaRobotSheet.png" id="2_8pgy2"]
 [ext_resource type="Script" uid="uid://db0ekyliyv5v2" path="res://scripts/enemigos/araña_crowler.gd" id="2_mwrs5"]
+[ext_resource type="PackedScene" uid="uid://r7yx0sdnwdd3" path="res://escenas/personajes/enemigos/laser_arana.tscn" id="3_mwrs5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mwrs5"]
 size = Vector2(61, 29)
@@ -13,6 +14,10 @@ size = Vector2(38, 27)
 [sub_resource type="AtlasTexture" id="AtlasTexture_7ksnf"]
 atlas = ExtResource("2_8pgy2")
 region = Rect2(144, 192, 72, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8pgy2"]
+atlas = ExtResource("2_8pgy2")
+region = Rect2(288, 192, 72, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hurds"]
 atlas = ExtResource("2_8pgy2")
@@ -110,6 +115,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_8pgy2")
+}],
+"loop": true,
+"name": &"araña_caida",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_hurds")
 }, {
 "duration": 1.0,
@@ -158,7 +171,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_atay3")
 }],
-"loop": true,
+"loop": false,
 "name": &"araña_descarga",
 "speed": 8.0
 }, {
@@ -181,7 +194,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_edk4l")
 }],
-"loop": true,
+"loop": false,
 "name": &"araña_destruida",
 "speed": 12.0
 }, {
@@ -203,10 +216,20 @@ size = Vector2(66, 33)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tgnty"]
 size = Vector2(40, 8)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ksnf"]
+size = Vector2(394, 20)
+
 [node name="ArañaCrowler" instance=ExtResource("1_7u8qj")]
 collision_mask = 49
 script = ExtResource("2_mwrs5")
+proyectil_laser = ExtResource("3_mwrs5")
 vida_maxima = 3
+monedas = 3
+velocidad = 30.0
+gravedad = 400.0
+impulso_salto = -250.0
+impulso_impacto = 900.0
+distancia_deteccion_borde = 32.0
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2(0.5, 9.5)
@@ -219,7 +242,6 @@ shape = SubResource("RectangleShape2D_8pgy2")
 [node name="Sprite" parent="." index="2"]
 sprite_frames = SubResource("SpriteFrames_ucjqm")
 animation = &"araña_ataque"
-frame_progress = 0.03898453
 
 [node name="RayPared" parent="." index="3"]
 target_position = Vector2(40, 0)
@@ -237,3 +259,33 @@ shape = SubResource("RectangleShape2D_k0yeh")
 [node name="CollisionShape2D" parent="SensorPisoton" index="0"]
 position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_tgnty")
+
+[node name="RayTecho" type="RayCast2D" parent="." index="9"]
+target_position = Vector2(0, -24)
+
+[node name="RayDeteccionJugador" type="RayCast2D" parent="." index="10"]
+target_position = Vector2(0, 350)
+collision_mask = 4
+
+[node name="AreaVision" type="Area2D" parent="." index="11"]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaVision" index="0"]
+position = Vector2(187, 0)
+shape = SubResource("RectangleShape2D_7ksnf")
+
+[node name="TimerCarga" type="Timer" parent="." index="12"]
+one_shot = true
+
+[node name="TimerReposo" type="Timer" parent="." index="13"]
+one_shot = true
+
+[node name="TimerSuelo" type="Timer" parent="." index="14"]
+one_shot = true
+
+[connection signal="body_entered" from="AreaVision" to="." method="_on_area_vision_body_entered"]
+[connection signal="body_exited" from="AreaVision" to="." method="_on_area_vision_body_exited"]
+[connection signal="timeout" from="TimerCarga" to="." method="_on_timer_carga_timeout"]
+[connection signal="timeout" from="TimerReposo" to="." method="_on_timer_reposo_timeout"]
+[connection signal="timeout" from="TimerSuelo" to="." method="_on_timer_suelo_timeout"]
