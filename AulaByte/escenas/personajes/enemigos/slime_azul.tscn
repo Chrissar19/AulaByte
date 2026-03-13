@@ -6,10 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://b18ryctxwv5mu" path="res://escenas/personajes/enemigos/particulas_slime.tscn" id="4_8vshj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8vshj"]
-size = Vector2(12, 24)
+size = Vector2(15.999984, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_adcx4"]
-size = Vector2(10, 26)
+size = Vector2(10, 25.99999)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gxtbd"]
 size = Vector2(15, 30)
@@ -22,11 +22,11 @@ script = ExtResource("1_gxtbd")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_t3s4k")
-animation = &"slime_walk_blue"
+animation = &"slime_death_blue"
 autoplay = "slime_walk_blue"
 
 [node name="ColisionSlime" type="CollisionShape2D" parent="."]
-position = Vector2(-7.56391e-06, 4.00002)
+position = Vector2(-1.4803861e-05, 6.000012)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_8vshj")
 
@@ -42,7 +42,7 @@ collision_mask = 4
 
 [node name="ColisionSensor" type="CollisionShape2D" parent="SensorPisoton"]
 z_index = 10
-position = Vector2(-1.00001, -5)
+position = Vector2(-1.0000052, -5)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_adcx4")
 

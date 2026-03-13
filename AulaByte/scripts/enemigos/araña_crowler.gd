@@ -1,0 +1,2 @@
+extends EnemigoBase
+class_name ArañaCrowler

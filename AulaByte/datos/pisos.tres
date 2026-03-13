@@ -278,6 +278,7 @@ texture = ExtResource("1_7vacn")
 
 [resource]
 physics_layer_0/collision_layer = 33
+physics_layer_0/collision_mask = 9
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Pisos"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
