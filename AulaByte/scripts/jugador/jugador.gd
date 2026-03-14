@@ -197,7 +197,6 @@ func salto() -> void:
 	sonido_salto.play()
 
 func saltar_ahora() -> bool:
-	# Evitar saltos dobles mientras dure el mismo salto
 	if ha_saltado:
 		return false
 
@@ -250,7 +249,6 @@ func reproducir_animacion() -> void:
 	#--Nombre del estado actual
 	var estado = current_state.name
 	
-	#-- Mapeo de animacion
 	match estado:
 		"idle":
 			animated_sprite_player.play(nombre_animacion("Idle"))

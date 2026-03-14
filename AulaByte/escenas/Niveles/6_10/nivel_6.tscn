@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cl561n5x8dihd"]
+[gd_scene load_steps=19 format=4 uid="uid://cl561n5x8dihd"]
 
 [ext_resource type="Script" uid="uid://bl84y62aosyrq" path="res://scripts/niveles/nivel_tuto.gd" id="1_73hpg"]
 [ext_resource type="TileSet" uid="uid://dbxx1jhbs275d" path="res://datos/pisos.tres" id="2_jjbt2"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dkm0atk4qawk3" path="res://escenas/objetos_interacciones/plataforma.tscn" id="12_srw4k"]
 [ext_resource type="PackedScene" uid="uid://1eeeqekb3ych" path="res://escenas/objetos_interacciones/caja.tscn" id="13_xlm6l"]
 [ext_resource type="PackedScene" uid="uid://dfr8bmdn5actv" path="res://escenas/personajes/enemigos/slime_azul.tscn" id="14_qi2e3"]
+[ext_resource type="PackedScene" uid="uid://bpqmjd7rk4nnf" path="res://escenas/personajes/enemigos/araña_crowler.tscn" id="14_x0uxo"]
 [ext_resource type="PackedScene" uid="uid://db7j3q20ljag8" path="res://escenas/ui/punto_inicio.tscn" id="15_orxrp"]
 [ext_resource type="PackedScene" uid="uid://tkh75sw4tr42" path="res://escenas/habilidades/item_salto.tscn" id="15_vc3jh"]
 [ext_resource type="PackedScene" uid="uid://fva12xfahbpb" path="res://escenas/objetos_interacciones/puerta_nivel.tscn" id="16_rns2b"]
@@ -137,6 +138,16 @@ position = Vector2(225, 112)
 [node name="SlimeAzul2" parent="enemigos" instance=ExtResource("14_qi2e3")]
 position = Vector2(712, 217)
 
+[node name="ArañaCrowler" parent="enemigos" instance=ExtResource("14_x0uxo")]
+position = Vector2(464, 8)
+
+[node name="PuertaNivel" parent="enemigos" instance=ExtResource("16_rns2b")]
+position = Vector2(1930, -1096)
+
+[node name="ArañaCrowler2" parent="enemigos" instance=ExtResource("14_x0uxo")]
+z_index = 5
+position = Vector2(1456, -1208)
+
 [node name="SlimeAzul" parent="." instance=ExtResource("14_qi2e3")]
 z_index = 2
 position = Vector2(609, -272)
@@ -146,9 +157,6 @@ position = Vector2(406, -484)
 
 [node name="PuntoInicio" parent="." instance=ExtResource("15_orxrp")]
 position = Vector2(140, 168)
-
-[node name="PuertaNivel" parent="." instance=ExtResource("16_rns2b")]
-position = Vector2(1930, -1096)
 
 [node name="PlataformaCae" parent="." instance=ExtResource("6_x0uxo")]
 position = Vector2(1154, 251)

@@ -99,6 +99,9 @@ func _verificar_colisiones() -> void:
 		ray_pared.force_raycast_update()
 		if ray_pared.is_colliding():
 			cambio_direccion = true
+			
+	if is_on_wall():
+		cambio_direccion = true
 	
 	if ray_suelo:
 		ray_suelo.force_raycast_update()

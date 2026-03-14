@@ -26,7 +26,6 @@ func _ready() -> void:
 	if id_nivel >= 0:
 		GameManager.nivel_actual = id_nivel
 
-	# Registrar checkpoint por seguridad (si entras directo al nivel)
 	if GameManager.has_method("registrar_checkpoint_nivel"):
 		GameManager.registrar_checkpoint_nivel()
 	

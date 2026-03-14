@@ -217,9 +217,9 @@ size = Vector2(66, 33)
 size = Vector2(40, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ksnf"]
-size = Vector2(394, 20)
+size = Vector2(394, 16)
 
-[node name="ArañaCrowler" instance=ExtResource("1_7u8qj")]
+[node name="ArañaCrowler" groups=["Z_ENEMIGOS"] instance=ExtResource("1_7u8qj")]
 collision_mask = 49
 script = ExtResource("2_mwrs5")
 proyectil_laser = ExtResource("3_mwrs5")
@@ -244,7 +244,9 @@ sprite_frames = SubResource("SpriteFrames_ucjqm")
 animation = &"araña_ataque"
 
 [node name="RayPared" parent="." index="3"]
-target_position = Vector2(40, 0)
+position = Vector2(0, 8)
+target_position = Vector2(48, 0)
+collision_mask = 33
 
 [node name="RaySuelo" parent="." index="4"]
 position = Vector2(32, 24)
@@ -272,7 +274,7 @@ collision_layer = 8
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaVision" index="0"]
-position = Vector2(187, 0)
+position = Vector2(187, -8)
 shape = SubResource("RectangleShape2D_7ksnf")
 
 [node name="TimerCarga" type="Timer" parent="." index="12"]

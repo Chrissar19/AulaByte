@@ -4,12 +4,14 @@ class_name MenuPrincipal
 const RUTA_INTRO = "res://escenas/intro/Intro.tscn"
 const RUTA_SELECCION = "res://escenas/menu/Seleccion_personaje/seleccion_personaje.tscn"
 const RUTA_OPCIONES = "res://escenas/menu/opciones_menu.tscn"
+const RUTA_CREDITOS = "res://escenas/menu/creditos.tscn"
 const RUTA_NUBE_SCN = "res://escenas/menu/nubes.tscn"
 const RUTA_MUSICA_MENU = "res://recursos/Audio/musica/MenuPrincipal.wav"
 
 @onready var fondo: Control = $Fondo
 @onready var btn_jugar: Button = $VBoxContainer/BtnJugar
 @onready var btn_opciones: Button = $VBoxContainer/BtnOpciones
+@onready var btn_creditos: Button = $VBoxContainer/BtnCreditos
 @onready var btn_salir: Button = $VBoxContainer/BtnSalir
 @onready var lbl_version: Label = $LblVersion
 
@@ -40,16 +42,20 @@ func _ready() -> void:
 		btn_jugar.pressed.connect(_on_jugar_pressed)
 	if btn_opciones:
 		btn_opciones.pressed.connect(_on_opciones_pressed)
+	if btn_creditos:
+		btn_creditos.pressed.connect(_on_creditos_pressed)
 	if btn_salir:
 		btn_salir.pressed.connect(_on_salir_pressed)
 
 	# Foco teclado
-	if btn_jugar and btn_opciones and btn_salir:
+	if btn_jugar and btn_opciones and btn_creditos and btn_salir:
 		btn_jugar.grab_focus()
 		btn_jugar.focus_neighbor_bottom = btn_opciones.get_path()
 		btn_opciones.focus_neighbor_top = btn_jugar.get_path()
-		btn_opciones.focus_neighbor_bottom = btn_salir.get_path()
-		btn_salir.focus_neighbor_top = btn_opciones.get_path()
+		btn_opciones.focus_neighbor_bottom = btn_creditos.get_path()
+		btn_creditos.focus_neighbor_top = btn_opciones.get_path()
+		btn_creditos.focus_neighbor_bottom = btn_salir.get_path()
+		btn_salir.focus_neighbor_top = btn_creditos.get_path()
 
 	# Timers
 	if temporizador_espera:
@@ -137,6 +143,11 @@ func _on_opciones_pressed() -> void:
 		get_tree().change_scene_to_file(RUTA_OPCIONES)
 	else:
 		push_warning("Escena de opciones no implementada aún.")
+
+func _on_creditos_pressed() -> void:
+	print("[MenuPrincipal] BtnCreditos PRESSED")
+	_detener_temporizador_intro()
+	get_tree().change_scene_to_file(RUTA_CREDITOS)
 
 func _on_jugar_pressed() -> void:
 	print("[MenuPrincipal] BtnJugar PRESSED")
