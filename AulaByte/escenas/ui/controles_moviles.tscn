@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://cx6adx6ahk6kl"]
+
+[ext_resource type="Texture2D" uid="uid://b511qreunr8sw" path="res://recursos/imagenes/ui/controles_android/boton movder.png" id="1_jrv6f"]
+[ext_resource type="Texture2D" uid="uid://cs3b57g25aiwv" path="res://recursos/imagenes/ui/controles_android/boton movizq.png" id="2_1ei4m"]
+[ext_resource type="Texture2D" uid="uid://cxe45rbojuhtc" path="res://recursos/imagenes/ui/controles_android/boton movarr.png" id="3_tx2qe"]
+[ext_resource type="Texture2D" uid="uid://bjviiubgyymly" path="res://recursos/imagenes/ui/controles_android/botonaccion.png" id="4_h51ky"]
+[ext_resource type="Texture2D" uid="uid://b5kfbiablpr6d" path="res://recursos/imagenes/ui/controles_android/btnpausa.png" id="5_b6g7c"]
+[ext_resource type="Texture2D" uid="uid://cf8pnbul3wk7l" path="res://recursos/imagenes/ui/controles_android/btnreset.png" id="6_l8jxv"]
+
+[node name="ControlesMoviles" type="CanvasLayer"]
+
+[node name="TouchDerecha" type="TouchScreenButton" parent="."]
+position = Vector2(112, 280)
+texture_normal = ExtResource("1_jrv6f")
+action = "derecha"
+
+[node name="TouchIzquierda" type="TouchScreenButton" parent="."]
+position = Vector2(16, 280)
+texture_normal = ExtResource("2_1ei4m")
+action = "izquierda"
+
+[node name="TouchSalto" type="TouchScreenButton" parent="."]
+position = Vector2(472, 248)
+texture_normal = ExtResource("3_tx2qe")
+action = "saltar"
+
+[node name="TouchAccion" type="TouchScreenButton" parent="."]
+position = Vector2(552, 272)
+texture_normal = ExtResource("4_h51ky")
+action = "Accion"
+
+[node name="TouchPausa" type="TouchScreenButton" parent="."]
+position = Vector2(304, 32)
+texture_normal = ExtResource("5_b6g7c")
+action = "ui_cancel"
+
+[node name="TouchReiniciar" type="TouchScreenButton" parent="."]
+position = Vector2(568, 32)
+texture_normal = ExtResource("6_l8jxv")
+action = "reiniciar_nivel"

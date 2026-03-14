@@ -17,7 +17,7 @@ signal desactivado(id: String)
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var t_feedback: Timer = $Timer
-@onready var lbl_indicador_interaccion: Label = $LblIndicadorInteraccion
+@onready var lbl_indicador_interaccion: TextureRect = $LblIndicadorInteraccion
 
 var jugador_en_rango: bool = false
 var fijado: bool = false

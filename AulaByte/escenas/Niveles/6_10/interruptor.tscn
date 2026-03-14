@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d1klijdl20hi7" path="res://scripts/niveles/6_10/interruptor.gd" id="1_bwcyo"]
 [ext_resource type="Texture2D" uid="uid://b4ju4vaqhmtrq" path="res://recursos/imagenes/niveles/nivel10/Palanca_blanca.png" id="1_u12ep"]
-[ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="3_caqkx"]
+[ext_resource type="Texture2D" uid="uid://dlutrt4ajxy6d" path="res://recursos/imagenes/ui/controles_android/accionimg.png" id="4_mfeof"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bwcyo"]
 atlas = ExtResource("1_u12ep")
@@ -78,17 +78,14 @@ shape = SubResource("RectangleShape2D_o0cn8")
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="LblIndicadorInteraccion" type="Label" parent="."]
-offset_left = -16.0
-offset_top = -88.0
-offset_right = 16.0
-offset_bottom = -56.0
-pivot_offset = Vector2(16, 16)
-theme_override_fonts/font = ExtResource("3_caqkx")
-theme_override_font_sizes/font_size = 32
-text = "E"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="LblIndicadorInteraccion" type="TextureRect" parent="."]
+offset_left = -36.0
+offset_top = -104.0
+offset_right = 36.0
+offset_bottom = -32.0
+pivot_offset = Vector2(36, 36)
+texture = ExtResource("4_mfeof")
+stretch_mode = 5
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

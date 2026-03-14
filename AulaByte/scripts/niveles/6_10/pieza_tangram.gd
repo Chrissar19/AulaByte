@@ -20,7 +20,27 @@ func _input(event: InputEvent) -> void:
 	if not draggable:
 		return
 		
-	if event is InputEventMouseButton:
+	if event is InputEventScreenTouch:
+		var touch := event as InputEventScreenTouch
+		if not _sobre_mi():
+			return
+			
+		if touch.pressed:
+			if touch.double_tap:
+				_rotar_pieza()
+				_arrastrando = false
+			else:
+				_arrastrando = true
+				_offset = global_position - get_global_mouse_position()
+				z_index = 50
+			get_viewport().set_input_as_handled()
+		elif not touch.pressed and _arrastrando:
+			_arrastrando = false
+			if is_instance_valid(_actividad):
+				_actividad.intentar_colocar(self, color_objetivo)
+			get_viewport().set_input_as_handled()
+			
+	elif event is InputEventMouseButton:
 		var mb := event as InputEventMouseButton
 		# Solo procesar si el mouse está sobre esta pieza
 		if not _sobre_mi():
@@ -28,9 +48,13 @@ func _input(event: InputEvent) -> void:
 			
 		if mb.button_index == MOUSE_BUTTON_LEFT:
 			if mb.pressed:
-				_arrastrando = true
-				_offset = global_position - get_global_mouse_position()
-				z_index = 50
+				if mb.double_click:
+					_rotar_pieza()
+					_arrastrando = false
+				else:
+					_arrastrando = true
+					_offset = global_position - get_global_mouse_position()
+					z_index = 50
 				# Marcar como manejado para que otras piezas no lo capturen
 				get_viewport().set_input_as_handled()
 			elif not mb.pressed and _arrastrando:
@@ -43,7 +67,7 @@ func _input(event: InputEvent) -> void:
 		# Rotación con rueda del mouse
 		elif mb.pressed and (mb.button_index == MOUSE_BUTTON_WHEEL_UP or mb.button_index == MOUSE_BUTTON_WHEEL_DOWN):
 			var dir := 1.0 if mb.button_index == MOUSE_BUTTON_WHEEL_UP else -1.0
-			rotation_degrees = round((rotation_degrees + dir * rot_step_deg) / rot_step_deg) * rot_step_deg
+			_rotar_pieza(dir, false) # Falso para no usar tween si no se desea, pero con tween es mejor
 			get_viewport().set_input_as_handled()
 	
 	# Rotación con teclado (E para sentido horario)
@@ -54,10 +78,17 @@ func _input(event: InputEvent) -> void:
 			
 		if event.pressed and not event.echo:
 			if event.keycode == KEY_E:
-				var nueva_rot = round((rotation_degrees + rot_step_deg) / rot_step_deg) * rot_step_deg
-				var tween = create_tween()
-				tween.tween_property(self, "rotation_degrees", nueva_rot, 0.1).set_trans(Tween.TRANS_SINE)
+				_rotar_pieza()
 				get_viewport().set_input_as_handled()
+
+func _rotar_pieza(dir: float = 1.0, usar_tween: bool = true) -> void:
+	var nueva_rot = round((rotation_degrees + dir * rot_step_deg) / rot_step_deg) * rot_step_deg
+	if usar_tween:
+		var tween = create_tween()
+		tween.tween_property(self, "rotation_degrees", nueva_rot, 0.1).set_trans(Tween.TRANS_SINE)
+	else:
+		rotation_degrees = nueva_rot
+
 
 func _process(_dt: float) -> void:
 	if _arrastrando:

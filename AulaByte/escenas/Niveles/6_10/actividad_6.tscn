@@ -70,7 +70,7 @@ offset_top = -240.0
 offset_right = 402.0
 offset_bottom = -217.0
 theme_override_fonts/font = ExtResource("5_2nrgl")
-text = "\"E\" para rotar pieza"
+text = "Toca 2 veces para rotar"
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://brfxoes3nrqbr"]
+[gd_scene load_steps=7 format=3 uid="uid://brfxoes3nrqbr"]
 
 [ext_resource type="Script" uid="uid://cva06k4uqrnqp" path="res://scripts/ui/hud.gd" id="1_gwluo"]
 [ext_resource type="Texture2D" uid="uid://dj5bir4rmc6rq" path="res://recursos/imagenes/objetos/BitInfo.png" id="2_n8i4h"]
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="3_6jpwg"]
 [ext_resource type="LabelSettings" uid="uid://d1fjsw1jnhvx8" path="res://escenas/ui/hud.tres" id="3_oebmy"]
+[ext_resource type="PackedScene" uid="uid://cx6adx6ahk6kl" path="res://escenas/ui/controles_moviles.tscn" id="5_oebmy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1dl12"]
 atlas = ExtResource("2_n8i4h")
@@ -84,3 +85,5 @@ layout_mode = 2
 
 [node name="Lblvacio3" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
+
+[node name="ControlesMoviles" parent="." instance=ExtResource("5_oebmy")]

@@ -12,9 +12,9 @@ class_name PuertaNivel
 @export var usar_cambio_color: bool = true
 @export var color_base: Color = Color(1, 1, 1, 1)      # blanco
 @export var color_resaltado: Color = Color(1, 1, 0.5)  # blanco-amarillo suave
+@onready var lbl_indicador_interaccion: TextureRect = $LblIndicadorInteraccion
 
 @onready var animacion_puerta: AnimatedSprite2D = $AnimacionPuerta
-@onready var lbl_indicador_interaccion: Label = $LblIndicadorInteraccion
 
 var jugador_en_puerta := false
 var _t_pulso := 0.0
