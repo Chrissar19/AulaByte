@@ -3,15 +3,12 @@ extends Node2D
 @onready var video_player: VideoStreamPlayer = $VideoStreamPlayer
 
 func _ready() -> void:
-	# Pausamos la música a través del AudioManager global
 	if AudioManager:
 		AudioManager.pausar_musica()
 	
-	# Aseguramos que ocupe la pantalla, por si el editor lo desconfiguró
 	video_player.expand = true
 	video_player.size = get_viewport_rect().size 
 	
-	# Conectamos la señal en código por si se desconectó en el editor
 	if not video_player.finished.is_connected(_on_video_stream_player_finished):
 		video_player.finished.connect(_on_video_stream_player_finished)
 	
@@ -27,7 +24,7 @@ func _on_video_stream_player_finished() -> void:
 	_terminar_creditos()
 
 func _terminar_creditos() -> void:
-	# Reanudamos el AudioManager al regresar al menú
+	# Reanuda el AudioManager al regresar al menú
 	if AudioManager:
 		AudioManager.reanudar_musica()
 		

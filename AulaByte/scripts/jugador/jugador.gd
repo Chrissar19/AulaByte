@@ -102,13 +102,10 @@ func _ready() -> void:
 # PHYSICS PROCESS
 # ============================================================================
 func _physics_process(delta: float) -> void:
-	# --- COYOTE TIME: gestionar ventana después de salir del suelo ---
 	if is_on_floor():
-		# Siempre que toca suelo, reseteamos ventana de coyote
 		tiempo_coyote = COYOTE_TIME
 		ha_saltado = false
 	else:
-		# Si está en el aire, el tiempo de coyote se va agotando
 		tiempo_coyote = max(tiempo_coyote - delta, 0.0)
 	
 	# -- HABILIDADES
@@ -184,7 +181,6 @@ func mov_horizontal(dir: float) -> void:
 	if dir != 0.0:
 		velocity.x = dir * velocidad_base
 	else:
-		# Suavizar hasta detener usando la misma escala
 		velocity.x = move_toward(velocity.x, 0, velocidad_base)
 
 func gravedad(delta: float) -> void:
@@ -281,12 +277,11 @@ func recibir_golpe_desde(origen: Vector2, dmg: int = 1) -> void:
 	if dirx == 0.0:
 		dirx = 1.0 if ultima_dir >= 0.0 else -1.0
 
-	#-- retroceso (≈45°): usa tus mismas constantes
 	esta_en_retroceso = true
 	contador_retroceso = tiempo_retroceso
 	velocity = Vector2(dirx * RETROCESO_X, RETROCESO_Y)
 
-	#-- invulnerable + feedback visual
+	#-- invulnerable
 	intocable = true
 	modulate = Color(1, 1, 1, 0.5)
 	timer_intocable.start()

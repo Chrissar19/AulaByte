@@ -7,7 +7,8 @@
 radius = 8.0
 height = 31.99735
 
-[node name="LaserArana" type="Area2D"]
+[node name="LaserArana" type="Area2D" groups=["Z_FX_PARTICULAS"]]
+z_index = 65
 collision_layer = 65536
 collision_mask = 53
 script = ExtResource("1_ooolb")

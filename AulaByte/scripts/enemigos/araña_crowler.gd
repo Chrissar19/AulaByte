@@ -1,3 +1,7 @@
+# ====================================================================
+# ENEMIGO: ARANIA CROWLER (AVANZADO)
+# ====================================================================
+## IA de arania que alterna entre techo y suelo, usa ataques laser y telarania de neon.
 extends EnemigoBase
 class_name ArañaCrowler
 
@@ -6,8 +10,8 @@ class_name ArañaCrowler
 # ============================================================================
 enum Estado { TECHO, CAER, SUELO, PERSEGUIR, CARGAR, ATACAR, REPOSO, SUBIR, IDLE }
 var estado_actual = Estado.TECHO
-var mascara_original: int = 1 # Para guardar la máscara física de mundo
-var capa_original: int = 1 # Para guardar la posición en las capas de físicas
+var mascara_original: int = 1 # Guarda la máscara física de mundo
+var capa_original: int = 1
 
 # ============================================================================
 # NODOS ESPECÍFICOS DE LA ARAÑA
@@ -32,33 +36,28 @@ var punto_anclaje_techo: Vector2 = Vector2.ZERO
 # INICIALIZACIÓN
 # ============================================================================
 func _inicializar_enemigo() -> void:
-	# Como empieza en el techo, su sprite debe estar boca abajo (invertido verticalmente)
+	# Como empieza en el techo, su sprite debe estar invertido
 	if sprite:
 		sprite.flip_v = true
-		# Forzamos que la animación de descarga no sea un loop para que se quede estática al acabar
 		if sprite.sprite_frames and sprite.sprite_frames.has_animation("araña_descarga"):
 			sprite.sprite_frames.set_animation_loop("araña_descarga", false)
 	
-	# Aseguramos que el RaySuelo que usamos en EnemigoBase apunte HACA ARRIBA para detectar "techo"
-	# Lo estiramos a 50.0 para que no falle flotaciones e irrites
+	# El raycast cambia de direccion para subir al techo
 	if ray_suelo:
 		ray_suelo.target_position = Vector2(distancia_deteccion_borde * direccion, -50.0)
 		
-	# Y el RayPared apunte normalmente hacia el frente, un poco más lejos
 	if ray_pared:
 		ray_pared.target_position = Vector2(30 * direccion, 0.0)
 		
-	# Configuramos un RayCast largo hacia arriba para buscar escapes al techo (Fase 4)
 	if ray_techo:
 		ray_techo.target_position = Vector2(0, -350.0)
 
 # ============================================================================
 # MODIFICANDO PATRONES DE ENEMIGO BASE
 # ============================================================================
-
 func _aplicar_gravedad(delta: float) -> void:
 	if estado_actual == Estado.TECHO:
-		# GRAVEDAD INVERTIDA: Atraído hacia arriba (techo)
+		# GRAVEDAD INVERTIDA
 		if not is_on_ceiling():
 			velocity.y -= gravedad * delta
 		else:
@@ -82,7 +81,7 @@ func _verificar_colisiones() -> void:
 		if is_on_wall():
 			cambio_direccion = true
 		
-		# Detectar "precipicios invertidos" (techo que se acaba)
+		# Detectar bordes del techo
 		if ray_suelo:
 			ray_suelo.force_raycast_update()
 			if is_on_ceiling() and not cambio_direccion and not ray_suelo.is_colliding():
@@ -123,12 +122,10 @@ func _actualizar_raycast() -> void:
 	super._actualizar_raycast()
 	if ray_suelo:
 		if estado_actual == Estado.TECHO:
-			# Sobreescribimos la dirección vertical que la clase Base forzó a positiva
 			ray_suelo.target_position = Vector2(distancia_deteccion_borde * direccion, -50.0)
 		else:
 			ray_suelo.target_position = Vector2(distancia_deteccion_borde * direccion, 50.0)
 			
-	# Girar visión y punto de disparo con la araña
 	if area_vision:
 		area_vision.scale.x = direccion
 	if marker_disparo:
@@ -137,7 +134,7 @@ func _actualizar_raycast() -> void:
 var jugador_objetivo: Node2D = null
 
 # ============================================================================
-# LECTURA DE JUGADOR (PRÓXIMA FASE)
+# LECTURA DE JUGADOR
 # ============================================================================
 func _iniciar_caida(objetivo: Node2D) -> void:
 	estado_actual = Estado.CAER
@@ -147,13 +144,11 @@ func _iniciar_caida(objetivo: Node2D) -> void:
 	if sprite:
 		sprite.flip_v = false
 	
-	# Guardar colisiones actuales del cuerpo rígido para ser "intangibles" físicamente
-	# y no empujar al jugador a través del suelo al caerle velozmente encima.
 	mascara_original = collision_mask
 	capa_original = collision_layer
 	
-	collision_mask = 1 # Que ella solo choque con la capa 1 (Mundo/Suelo)
-	collision_layer = 0 # Que absolutamente nadie choque con ella como pared
+	collision_mask = 1
+	collision_layer = 0
 	
 	_iniciar_telarana()
 		
@@ -176,7 +171,7 @@ func _iniciar_caida(objetivo: Node2D) -> void:
 			collision_layer = capa_original
 			estado_actual = Estado.PERSEGUIR
 			
-			# Orientar inmediatamente la araña hacia donde está el jugador registrado
+			# Orienta inmediatamente la araña hacia donde está el jugador registrado
 			if jugador_objetivo:
 				var dir_hacia_jugador = sign(jugador_objetivo.global_position.x - global_position.x)
 				if dir_hacia_jugador != 0 and dir_hacia_jugador != direccion:
@@ -184,47 +179,41 @@ func _iniciar_caida(objetivo: Node2D) -> void:
 					
 			if timer_suelo:
 				timer_suelo.start(15.0) # 15 Segundos de paciencia intentando matar
+				
 # ============================================================================
 # LÓGICA TERRESTRE Y COMBATE
 # ============================================================================
-
 func _manejar_movimiento() -> void:
 	match estado_actual:
 		Estado.TECHO, Estado.SUELO:
 			velocity.x = direccion * velocidad
 			
 		Estado.PERSEGUIR:
-			# Extra: Si el jugador objetivo se guardó pero se perdió, aseguramos que gire dinámicamente
 			if jugador_objetivo:
 				var dir_hacia_jugador = sign(jugador_objetivo.global_position.x - global_position.x)
 				if dir_hacia_jugador != 0 and dir_hacia_jugador != direccion:
 					_girar()
 					
-			velocity.x = direccion * (velocidad * 1.5) # Un poco más rápida al perseguir
+			velocity.x = direccion * (velocidad * 1.5)
 			
 		Estado.CARGAR, Estado.ATACAR, Estado.REPOSO, Estado.SUBIR, Estado.IDLE:
-			velocity.x = move_toward(velocity.x, 0, 10.0) # Frenado
+			velocity.x = move_toward(velocity.x, 0, 10.0)
 
-# LÓGICA DE EVENTOS EXTERNOS (SEÑALES)
-# Asume que tendrás un AreaVision conectada a estas funciones (igual que el Monitor)
 func _on_area_vision_body_entered(body: Node2D) -> void:
 	if esta_muerto: return
 	if body.is_in_group("Jugador"):
-		jugador_objetivo = body # Guardamos quién es para el láser
+		jugador_objetivo = body
 		if estado_actual in [Estado.SUELO, Estado.PERSEGUIR, Estado.IDLE]:
 			estado_actual = Estado.CARGAR
 		velocity.x = 0
 		if timer_carga:
-			timer_carga.start(1.0) # Toma 1 segundo preparar el láser
+			timer_carga.start(1.0)
 			
 func _on_area_vision_body_exited(body: Node2D) -> void:
 	if esta_muerto: return
 	
 	if body == jugador_objetivo:
-		jugador_objetivo = null # Lo perdió de vista
-
-	# ELIMINADO: La araña ya no cancela su láser si el jugador escapa.
-	# Una vez iniciada la CARGA, el ataque es definitivo e ininterrumpible.
+		jugador_objetivo = null 
 
 func _on_timer_carga_timeout() -> void:
 	if esta_muerto or estado_actual != Estado.CARGAR: return
@@ -232,7 +221,6 @@ func _on_timer_carga_timeout() -> void:
 	estado_actual = Estado.ATACAR
 	_disparar_laser()
 	
-	# Le damos un instante al ataque antes de sobrecalentarse
 	await get_tree().create_timer(0.5).timeout
 	if esta_muerto: return
 	
@@ -248,7 +236,7 @@ func _disparar_laser() -> void:
 	# Instanciar el rayo láser
 	var instancia = proyectil_laser.instantiate()
 	
-	# Usar pos de disparo, o la global si Mark2D no existe
+	# Usar pos de disparo o la global si Mark2D no existe
 	if marker_disparo:
 		instancia.global_position = marker_disparo.global_position
 	else:
@@ -258,18 +246,17 @@ func _disparar_laser() -> void:
 	var dir_recta = Vector2(direccion, 0)
 	instancia.set("direccion", dir_recta)
 	
-	# Si la araña está en el techo (gravedad inversa), el láser puede verse raro, ajustamos rotación
 	instancia.rotation = dir_recta.angle()
 	if estado_actual == Estado.TECHO:
 		instancia.rotation_degrees += 180
 	
-	# Añadir el láser a la escena
+	# Añade el láser a la escena
 	get_tree().current_scene.add_child(instancia)
 	
 func _on_timer_reposo_timeout() -> void:
 	if esta_muerto or estado_actual != Estado.REPOSO: return
 	
-	# Verificamos si, tras el reposo, el jugador sigue en la mira. Si sí, volvemos a atacar en bucle.
+	# Verifica si, tras el reposo, el jugador sigue en la mira. Si sí, volvemos a atacar en bucle.
 	if jugador_objetivo != null:
 		estado_actual = Estado.CARGAR
 		velocity.x = 0
@@ -284,7 +271,7 @@ func _on_timer_suelo_timeout() -> void:
 		if timer_suelo: timer_suelo.start(3.0) # Lo intenta de nuevo en 3 segs
 		return
 		
-	# Escaneamos si realmente hay techo arriba antes de intentar subir
+	# Escanea si realmente hay techo arriba antes de intentar subir
 	if ray_techo:
 		ray_techo.force_raycast_update()
 		if not ray_techo.is_colliding():
@@ -292,7 +279,6 @@ func _on_timer_suelo_timeout() -> void:
 			if timer_suelo: timer_suelo.start(15.0) 
 			return
 		else:
-			# Registramos el punto exacto del techo para anclar la telaraña
 			punto_anclaje_techo = ray_techo.get_collision_point()
 			
 	# Si hay techo, inicia el ascenso y estira el hilo hacia arriba
@@ -305,8 +291,6 @@ func _on_timer_suelo_timeout() -> void:
 func _process(_delta: float) -> void:
 	_actualizar_animaciones()
 	if linea_neon and is_instance_valid(linea_neon):
-		# El punto 0 es fijo en el mundo (techo)
-		# El punto 1 sigue en tiempo real a la araña, 6 píxeles más arriba para centrarse mejor visualmente
 		var punto_sigue = global_position
 		punto_sigue.y -= 6.0
 		linea_neon.set_point_position(1, linea_neon.to_local(punto_sigue))
@@ -316,22 +300,20 @@ func _iniciar_telarana(anclaje_personalizado: Vector2 = Vector2.ZERO) -> void:
 		
 	linea_neon = Line2D.new()
 	linea_neon.width = 2.0
-	linea_neon.default_color = Color(0.0, 1.0, 1.0, 0.8) # Cyan Neón transparente
+	linea_neon.default_color = Color(0.0, 1.0, 1.0, 0.8)
 	
-	# Registramos el punto inicial al techo en coordenadas globales
+	# Registra el punto inicial al techo en coordenadas globales
 	if anclaje_personalizado != Vector2.ZERO:
 		punto_anclaje_techo = anclaje_personalizado
 	else:
 		punto_anclaje_techo = global_position
 		
-	# Lo adjuntamos a la raíz del nivel para que no siga a la araña como padre local
 	get_tree().current_scene.call_deferred("add_child", linea_neon)
-	
-	linea_neon.add_point(linea_neon.to_local(punto_anclaje_techo)) # P0 (Techo fijo)
+	linea_neon.add_point(linea_neon.to_local(punto_anclaje_techo))
 	
 	var punto_inicio = global_position
 	punto_inicio.y -= 6.0
-	linea_neon.add_point(linea_neon.to_local(punto_inicio))   # P1 (Sigue a la araña)
+	linea_neon.add_point(linea_neon.to_local(punto_inicio))
 
 func _borrar_telarana() -> void:
 	if linea_neon and is_instance_valid(linea_neon):
@@ -370,19 +352,17 @@ func _morir(jugador: Node2D) -> void:
 # ============================================================================
 func _physics_process(delta: float) -> void:
 	if estado_actual == Estado.SUBIR:
-		# Ignoramos rutina base. Subimos en Y ignorando gravedad
 		velocity.x = 0
 		velocity.y = - (velocidad * 1.5)
 		if sprite: sprite.flip_v = true
 		move_and_slide()
 		if is_on_ceiling():
 			estado_actual = Estado.TECHO
-			_borrar_telarana() # Corta la telaraña
+			_borrar_telarana()
 		return
 
 	# Ejecuta la rutina base
 	super._physics_process(delta)
-	
 	if esta_muerto: return
 	
 	# Recicla la IA original de física
@@ -398,12 +378,11 @@ func _physics_process(delta: float) -> void:
 		# Bloqueo horizontal al caer
 		velocity.x = 0
 		if is_on_floor():
-			# Aterrizamos.
 			_borrar_telarana()
 			collision_mask = mascara_original
 			estado_actual = Estado.PERSEGUIR
 			
-			# Orientar inmediatamente la araña hacia donde está el jugador registrado
+			# Orienta inmediatamente la araña hacia donde está el jugador registrado
 			if jugador_objetivo:
 				var dir_hacia_jugador = sign(jugador_objetivo.global_position.x - global_position.x)
 				if dir_hacia_jugador != 0 and dir_hacia_jugador != direccion:

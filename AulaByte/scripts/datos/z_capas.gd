@@ -24,8 +24,7 @@ const AVISOS := 5
 # GAMEPLAY (ENTIDADES / ÍTEMS)
 # --------------------------
 const ITEMS := 40    # Vida, monedas, poderes, habilidaes
-const ENEMIGOS := 50    # Enemigos
-
+const ENEMIGOS := 50  
 const FX_POLVO_SOMBRA := 55    # Polvo del suelo, sombra bajo el jugador (detrás del jugador)
 const JUGADOR := 60 
 const FX_PARTICULAS := 65    # Golpes, disparos, efectos que van por delante del jugador

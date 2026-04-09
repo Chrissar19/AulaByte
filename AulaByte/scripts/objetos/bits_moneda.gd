@@ -22,13 +22,12 @@ func _on_body_entered(body: Node2D) -> void:
 	if not body.is_in_group("Jugador"):
 		return
 
-	# Sumar puntos al jugador
+	# Suma puntos al jugador
 	GameManager.agregar_puntos(valor)
 
-	#-- Desactivar colisioes
+	#-- Desactiva colisioes
 	colision.call_deferred("set", "disabled", true)
 	
-	# Reproducir sonido
 	sonido_moneda.play()
 	
 	#-- Efectos visuales

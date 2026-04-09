@@ -12,7 +12,7 @@ const VELOCIDAD_ESCRITURA := 0.06       # Velocidad del efecto máquina de escri
 # ============================================================================
 @export var imagenes: Array[Texture2D] = []
 @export var textos: Array[String] = []
-@export var audios: Array[AudioStream] = []  # Versión pro: idealmente 1 audio por texto
+@export var audios: Array[AudioStream] = []
 
 # --- Referencias a nodos ---
 @onready var img_escena: TextureRect = $imagen_actual
@@ -76,14 +76,12 @@ func mostrar_escena() -> void:
 		audio_voz.stream = audios[indice_escena]
 		audio_voz.play()
 	else:
-		# Si no hay audio, puedes decidir si quieres auto-avance o no
-		# Por ahora solo esperamos ESPERA_POST_AUDIO y luego llamamos a _al_presionar_siguiente
 		timer_espera.start(ESPERA_POST_AUDIO)
 
 # --- Manejo del botón siguiente ---
 func _al_presionar_siguiente() -> void:
 	if escribiendo:
-		# Terminar de escribir TODO de golpe
+		# Terminar de escribir todo de golpe
 		timer_texto.stop()
 		texto_visible = texto_completo
 		texto_narrativo.text = texto_visible
@@ -94,9 +92,7 @@ func _al_presionar_siguiente() -> void:
 		indice_escena += 1
 		mostrar_escena()
 
-# --- Al finalizar la narración ---
 func _al_terminar_audio() -> void:
-	# Después del audio, esperamos un poco y luego actuamos como si se hubiera presionado "siguiente"
 	timer_espera.start(ESPERA_POST_AUDIO)
 
 # --- Efecto de escritura progresiva ---
@@ -118,11 +114,11 @@ func cambiar_a_menu_principal() -> void:
 	AudioManager.detener_musica()
 	GameManager.ir_a_menu_principal()
 
-# --- Conexión vieja del TimerTexto (si la tenías desde el editor) ---
+# --- Conexión vieja del TimerTexto ---
 func _on_timer_texto_timeout() -> void:
 	_al_escribir_texto()
 
-# --- Saltar intro completa con ESC (ui_cancel) ---
+# --- Saltar intro completa con ESC ---
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		cambiar_a_menu_principal()

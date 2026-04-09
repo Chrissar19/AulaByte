@@ -43,7 +43,7 @@ func _ready() -> void:
 		if inter is Interruptor:
 			if inter.id in ids_requeridos:
 				inter.activado.connect(_al_recibir_activacion)
-				inter.desactivado.connect(_al_recibir_desactivacion) # Nueva conexión
+				inter.desactivado.connect(_al_recibir_desactivacion)
 	
 	if auto_iniciar:
 		activa = true
@@ -56,10 +56,9 @@ func _al_recibir_activacion(id_emisor: String, _ref: Node) -> void:
 	chequear_combinacion()
 
 func _al_recibir_desactivacion(id_emisor: String) -> void:
-	# Si la plataforma ya arrancó, ignoramos que el interruptor se apague
 	if activa: return 
 	
-	# Si no ha arrancado, "olvidamos" este interruptor
+	# Si no ha arrancado, "olvida" este interruptor
 	if id_emisor in interruptores_completados:
 		interruptores_completados[id_emisor] = false
 
@@ -78,7 +77,7 @@ func chequear_combinacion() -> void:
 		iniciar_ciclo()
 		
 func iluminar_interruptores_vinculados() -> void:
-	# Buscamos en el grupo de interruptores
+	# Analiza el grupo de interruptores
 	var todos = get_tree().get_nodes_in_group("Interruptores")
 	for inter in todos:
 		if inter is Interruptor and inter.id in ids_requeridos:

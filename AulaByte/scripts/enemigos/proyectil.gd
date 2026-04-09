@@ -7,15 +7,13 @@ var direccion: Vector2 = Vector2.RIGHT
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 func _ready() -> void:
-	# Fundamental: el jugador busca proyectiles en este grupo
 	add_to_group("DMG")
 
 func _process(delta: float) -> void:
 	global_position += direccion * velocidad * delta
 
-# Se activa al tocar el CUERPO del jugador (CharacterBody2D)
 func _on_body_entered(body: Node2D) -> void:
-	# 1. Si toca al jugador, le hace daño y desaparece
+	# Si toca al jugador, le causa daño y desaparece
 	if body.is_in_group("Jugador"):
 		if body.has_method("recibir_golpe_desde"):
 			body.recibir_golpe_desde(global_position, 1)

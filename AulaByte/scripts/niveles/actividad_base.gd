@@ -29,7 +29,7 @@ func _ready() -> void:
 		_btn_salir.pressed.connect(_on_btn_salir_pressed)
 
 # =========================================================
-# API p/ minijuegos (llama a estos desde tus scripts)
+# ESTADOS DE VICTORIA O FALLA
 # =========================================================
 func finalizar_exito() -> void:
 	if _finalizado: return
@@ -45,11 +45,8 @@ func cancelar_actividad() -> void:
 	if _finalizado: return
 	_finalizado = true
 	cancelado.emit()
-	cancelar.emit() # alias por compatibilidad
+	cancelar.emit()
 
-# =========================================================
-# Input (ESC)
-# =========================================================
 func _unhandled_input(event: InputEvent) -> void:
 	if habilitar_esc and not _finalizado and event.is_action_pressed("ui_cancel"):
 		cancelar_actividad()

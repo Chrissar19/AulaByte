@@ -38,11 +38,11 @@ var _interaccion_habilitada := false
 func _ready() -> void:
 	super._ready()
 	
-	# 1. VINCULACIÓN DEL COMPONENTE
+	# VINCULACIÓN DEL COMPONENTE
 	ctrl_tiempo.vincular_ui(lbl_texto, btn_salir, func(h): habilitar_esc = h)
 	ctrl_tiempo.tiempo_agotado.connect(_on_tiempo_agotado)
 	
-	# 2. CONEXIÓN DE BOTONES
+	# CONEXIÓN DE BOTONES
 	btn_aceptar.pressed.connect(_on_btn_aceptar_pressed)
 	btn_reiniciar.pressed.connect(_on_btn_reiniciar_pressed)
 	btn_salir.pressed.connect(_on_salir_pressed) # Corregido el nombre aquí
@@ -52,7 +52,7 @@ func _ready() -> void:
 	_reunir_cartas()
 	_iniciar_secuencia()
 
-# --- FUNCIONES DE APOYO VISUAL (Corrigiendo errores de "Function not found") ---
+# --- FUNCIONES DE APOYO VISUAL---
 
 func _limpiar_escena_visual() -> void:
 	zona_cartas.visible = false
@@ -95,7 +95,7 @@ func _iniciar_secuencia() -> void:
 		
 	_limpiar_escena_visual()
 	
-	# --- FASE 1: PREMISA MAYOR ---
+	# --- PREMISA 1 ---
 	_fase = Fase.INTRO1
 	carta_bici.visible = true
 	carta_bus.visible = true
@@ -103,13 +103,13 @@ func _iniciar_secuencia() -> void:
 	await _narrar_fase("Todos los vehículos tienen ruedas.", audio_intro_1)
 	if id_actual != _contador: return
 	
-	# --- FASE 2: PREMISA MENOR ---
+	# --- PREMISA 2 ---
 	_fase = Fase.INTRO2
 	_cambiar_fase_visual(true) 
 	await _narrar_fase("El carro es un vehículo.", audio_intro_2)
 	if id_actual != _contador: return
 	
-	# --- FASE 3: CONCLUSIÓN ---
+	# --- CONCLUSIÓN ---
 	_fase = Fase.ELECCION
 	carta_carro.visible = false
 	zona_cartas.visible = true

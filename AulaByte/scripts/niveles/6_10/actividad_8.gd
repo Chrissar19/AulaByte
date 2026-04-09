@@ -6,7 +6,7 @@ class_name Actividad8
 @onready var piezas_root: Control = $Piezas
 @onready var btn_salir: Button = $UI/BtnSalir
 @onready var aud_pista: AudioStreamPlayer = $AudPista
-@onready var ctrl_tiempo: ControlTiempo = $UI/ControlTiempo # El nuevo componente maestro
+@onready var ctrl_tiempo: ControlTiempo = $UI/ControlTiempo 
 
 # --- Configuración y Estado ---
 @export var tiempo_segundos: int = 90
@@ -17,16 +17,15 @@ var _total_piezas: int = 0
 func _ready() -> void:
 	super._ready()
 	
-	# 1. VINCULACIÓN DEL COMPONENTE DE TIEMPO
-	# Vinculamos: null (si no quieres label extra), btn_salir y el callback de ESC
+	# TIEMPO
 	ctrl_tiempo.vincular_ui(null, btn_salir, func(h): habilitar_esc = h)
 	ctrl_tiempo.tiempo_agotado.connect(_on_tiempo_agotado)
 	ctrl_tiempo.iniciar(tiempo_segundos)
 	
-	# 2. Conexiones
+	# Conexiones
 	btn_salir.pressed.connect(_on_salir_pressed)
 	
-	# 3. Inicializar piezas
+	# Inicializar piezas
 	_inicializar_piezas()
 	_barajar_piezas()
 
@@ -35,7 +34,7 @@ func _inicializar_piezas() -> void:
 	for pieza in piezas_root.get_children():
 		if pieza is PiezaPuzzle:
 			_total_piezas += 1
-			# Conectamos la señal de la pieza a nuestra lógica
+			# Conecta la señal de la pieza a la lógica
 			if not pieza.colocada.is_connected(_on_pieza_colocada):
 				pieza.colocada.connect(_on_pieza_colocada)
 
@@ -53,15 +52,12 @@ func _on_tiempo_agotado() -> void:
 # --- Finalización ---
 func _ganar() -> void:
 	ctrl_tiempo.detener()
-	# print("¡Rompecabezas completado!")
 	finalizar_exito()
 
 func _perder() -> void:
 	ctrl_tiempo.detener()
-	# print("Tiempo agotado.")
 	finalizar_fracaso()
 
-# --- Helpers de Sistema ---
 func _on_salir_pressed() -> void:
 	ctrl_tiempo.detener()
 	cancelar_actividad()
@@ -69,7 +65,7 @@ func _on_salir_pressed() -> void:
 func _on_btn_pista_pressed() -> void:
 	if aud_pista.playing: return
 	
-	ctrl_tiempo.pausar(true) # Pausamos el tiempo mientras escucha la pista
+	ctrl_tiempo.pausar(true)
 	aud_pista.play()
 	
 	await aud_pista.finished
@@ -81,7 +77,7 @@ func configurar_con_parametros(parametros: Dictionary) -> void:
 		tiempo_segundos = max(1, int(parametros["tiempo"]))
 		ctrl_tiempo.iniciar(tiempo_segundos)
 
-# --- Lógica de Mezcla (Sin cambios significativos) ---
+# --- Lógica de Mezcla---
 func _barajar_piezas() -> void:
 	var piezas: Array = []
 	var posiciones: Array[Vector2] = []
@@ -92,7 +88,6 @@ func _barajar_piezas() -> void:
 
 	if posiciones.is_empty(): return
 
-	# Si todas están en el mismo sitio, usamos grilla, si no, barajamos
 	var unicas := {}
 	for p in posiciones: unicas[p] = true
 	

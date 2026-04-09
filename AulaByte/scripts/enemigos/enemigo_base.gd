@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name EnemigoBase
 
 # ============================================================================
-# EXPORTS GLOBALES (disponibles para todos los hijos)
+# EXPORTS GLOBALES
 # ============================================================================
 @export var vida_maxima: int = 1
 @export var monedas: int = 3
@@ -23,7 +23,6 @@ var puede_girar: bool = true
 
 # ============================================================================
 # REFERENCIAS A NODOS
-# (Se asignan si existen en la escena hija, con tolerancia a fallos)
 # ============================================================================
 @onready var ray_pared: RayCast2D = $RayPared if has_node("RayPared") else null
 @onready var ray_suelo: RayCast2D = $RaySuelo if has_node("RaySuelo") else null
@@ -33,7 +32,7 @@ var puede_girar: bool = true
 @onready var area_daño: Area2D = $AreaDaño if has_node("AreaDaño") else null
 @onready var audio_muerte: AudioStreamPlayer2D = $SensorPisoton/AudioMuerte if has_node("SensorPisoton/AudioMuerte") else null
 
-# Intentamos detectar cualquier sistema de partículas que tenga el hijo
+# Detectar cualquier sistema de partículas que tenga el hijo
 @onready var particulas: CPUParticles2D = _buscar_particulas()
 
 # ============================================================================
@@ -117,7 +116,7 @@ func _girar() -> void:
 		sprite.flip_h = direccion < 0
 	_actualizar_raycast()
 	
-	# Evita que el enemigo intente girar repetidamente en el mismo frame (corrige el temblor paralizante)
+	# Evita que el enemigo intente girar repetidamente en el mismo frame
 	puede_girar = false
 	await get_tree().create_timer(0.2).timeout
 	puede_girar = true
@@ -171,11 +170,11 @@ func _morir(jugador: Node2D) -> void:
 	esta_muerto = true
 	set_physics_process(false)
 	
-	# Desactivamos sus capas de colisión para que el jugador lo atraviese y no "flote" en él
+	# Desactiva las capas de colisión para que el jugador lo atraviese y no "flote" en él
 	collision_layer = 0
 	collision_mask = 0
 	
-	# Desactivar daños y pisotones póstumos
+	# Desactivar daños y pisotones
 	if area_daño:
 		area_daño.set_deferred("monitoring", false)
 		area_daño.set_deferred("monitorable", false)

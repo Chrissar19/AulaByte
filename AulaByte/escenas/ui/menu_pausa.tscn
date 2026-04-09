@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://omchjti0qivp"]
 
-[ext_resource type="Script" uid="uid://c35cl8map6272" path="res://scripts/menu_pausa.gd" id="1_78awn"]
+[ext_resource type="Script" uid="uid://c35cl8map6272" path="res://scripts/ui/menu_pausa.gd" id="1_78awn"]
 [ext_resource type="FontFile" uid="uid://cqpyvmpwwbql2" path="res://recursos/Fuentes/Titulos.ttf" id="2_fy3xb"]
 
 [node name="MenuPausa" type="CanvasLayer"]

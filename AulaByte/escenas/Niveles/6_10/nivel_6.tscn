@@ -127,9 +127,6 @@ fuerza_rebote = -500.0
 z_index = 1
 position = Vector2(1894, 167)
 
-[node name="Caja" parent="." instance=ExtResource("13_xlm6l")]
-position = Vector2(452, -99)
-
 [node name="enemigos" type="Node" parent="."]
 
 [node name="SlimeAzul" parent="enemigos" instance=ExtResource("14_qi2e3")]
@@ -164,3 +161,6 @@ position = Vector2(1154, 251)
 [node name="Saltarin" parent="." instance=ExtResource("8_6guud")]
 position = Vector2(1486, 157)
 fuerza_rebote = -550.0
+
+[node name="Caja" parent="." instance=ExtResource("13_xlm6l")]
+position = Vector2(448, -112)

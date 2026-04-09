@@ -14,8 +14,6 @@ func _inicializar_enemigo() -> void:
 # ============================================================================
 # MUERTE ESPECÍFICA POR CAJAS PESADAS
 # ============================================================================
-# Conservamos esta función única del Slime Azul:
-# Si un área rígida (como una caja) le cae encima, muere aplastado
 func _on_sensor_pisoton_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
 	if area.is_in_group("Cajas") and area.is_in_group("Pisos"):
 		if esta_muerto: return
@@ -30,8 +28,6 @@ func _on_sensor_pisoton_area_shape_entered(_area_rid: RID, area: Area2D, _area_s
 		if particulas:
 			particulas.emitting = true
 			
-		# En lugar de desaparecer en el acto, podríamos darle un par de décimas de segundo 
-		# para que se vea la animación y las partículas, igual que al pisarlo.
 		if timer_muerte:
 			timer_muerte.start(0.4)
 		else:

@@ -23,24 +23,26 @@ const MSJ_ORIGINAL := "Ordena los objetos"
 var _total_objetos: int = 0
 var _objeto_correcto: int = 0
 
-# --- Ciclo de Vida ---
+# ===============================================================
+# INICIALIZACIÓN Y CONFIGURACIÓN
+# ====================================================================
 func _ready() -> void:
 	super._ready()
 	
-	# 1. Configuración UI inicial
+	# Configuración UI inicial
 	salida_texto.text = MSJ_ORIGINAL
 	if lbl_intentos: lbl_intentos.text = "Intentos: %d" % intentos
 	
-	# 2. VINCULAR COMPONENTE DE TIEMPO
+	# VINCULAR COMPONENTE DE TIEMPO
 	ctrl_tiempo.vincular_ui(salida_texto, btn_salir, func(h): habilitar_esc = h)
 	ctrl_tiempo.tiempo_agotado.connect(_on_tiempo_agotado)
 	ctrl_tiempo.iniciar(tiempo_maximo)
 	
-	# 3. Preparar Mecánicas
+	# Preparar Mecánicas
 	_conectar_carpetas()
 	_contar_objetos()
 	
-	# 4. Conectar Botones
+	# Conectar Botones
 	btn_salir.pressed.connect(_on_salir_pressed)
 	if btn_ayuda: btn_ayuda.pressed.connect(_on_ayuda_pressed)
 
@@ -104,7 +106,6 @@ func _bloquear_objetos_arrastrables() -> void:
 		if c.has_method("set_mouse_filter"):
 			c.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
-# --- Helpers de Sistema ---
 func configurar_con_parametros(parametros: Dictionary) -> void:
 	if parametros.has("intentos"):
 		intentos = max(1, int(parametros["intentos"]))

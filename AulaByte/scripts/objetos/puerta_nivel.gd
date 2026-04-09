@@ -1,17 +1,17 @@
 extends Area2D
 class_name PuertaNivel
 
-@export var parametros_actividad: Dictionary = {}  # aquí configuras cosas por puerta (opcional)
+@export var parametros_actividad: Dictionary = {}
 
 # --- Opciones de efecto visual ---
 @export var usar_efecto_pulso: bool = true
 @export var escala_min: float = 0.9
 @export var escala_max: float = 1.1
-@export var velocidad_pulso: float = 4.0  # más alto = más rápido
+@export var velocidad_pulso: float = 4.0
 
 @export var usar_cambio_color: bool = true
-@export var color_base: Color = Color(1, 1, 1, 1)      # blanco
-@export var color_resaltado: Color = Color(1, 1, 0.5)  # blanco-amarillo suave
+@export var color_base: Color = Color(1, 1, 1, 1)   
+@export var color_resaltado: Color = Color(1, 1, 0.5)
 
 @onready var animacion_puerta: AnimatedSprite2D = $AnimacionPuerta
 @onready var lbl_indicador_interaccion: Label = $LblIndicadorInteraccion
@@ -25,7 +25,6 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 
-	# Asegurarnos de que el indicador empiece oculto
 	if lbl_indicador_interaccion:
 		lbl_indicador_interaccion.visible = false
 		lbl_indicador_interaccion.scale = Vector2.ONE
@@ -38,7 +37,7 @@ func _process(delta: float) -> void:
 	if lbl_indicador_interaccion and lbl_indicador_interaccion.visible and usar_efecto_pulso:
 		_t_pulso += delta * velocidad_pulso
 
-		# t oscila entre 0 y 1 usando una sinusoide
+		# t oscila entre 0 y 1
 		var t := (sin(_t_pulso) + 1.0) * 0.5
 
 		# Escala pulsante
@@ -64,11 +63,10 @@ func _process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("Accion"):
 		if GameManager.estado_actual == GameManager.EstadoJuego.JUGANDO:
-			# 1. Registrar esta puerta como activa
+			# Registrar esta puerta como activa
 			GameManager.puerta_actual = self
 		
-			# 2. SOLO llamar a establecer_parametros si la puerta TIENE datos.
-			# Si 'parametros_actividad' está vacío en el Inspector, no borramos lo del Nivel.
+			# SOLO llamar a establecer_parametros si la puerta tiene datos.
 			if not parametros_actividad.is_empty():
 				GameManager.establecer_parametros_actividad(parametros_actividad)
 		

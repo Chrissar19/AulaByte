@@ -22,7 +22,7 @@ class_name NivelBase
 func _ready() -> void:
 	_configurar_z_fondos()
 	
-	# Para testeo: si corres el nivel directo desde el editor
+	# Para testeo
 	if id_nivel >= 0:
 		GameManager.nivel_actual = id_nivel
 
@@ -43,7 +43,7 @@ func get_actividad() -> PackedScene:
 	return actividad
 	
 func _cargar_personaje() -> void:
-	var info_personaje: personajeInfo = GameManager.get_personaje()
+	var info_personaje: personajeInfo = GameManager.obtener_personaje()
 	
 	if info_personaje and info_personaje.archivo_escena:
 		var jugador = info_personaje.archivo_escena.instantiate()

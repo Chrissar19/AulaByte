@@ -219,7 +219,6 @@ func _aplicar_estilo_boton_color(btn:Button, id:int):
 
 	btn.add_theme_stylebox_override("hover", estilo_h)
 
-
 # --------------------------------------------------
 # SEÑALES
 # --------------------------------------------------
@@ -235,18 +234,15 @@ func _on_btn_ayuda_pressed():
 		Color.AQUA
 	)
 
-
 func _on_borrar_pressed():
 
 	entrada_actual.clear()
 	actualizar_visual_entrada()
 
-
 func _on_salir_pressed():
 
 	ctrl_tiempo.detener()
 	cancelar_actividad()
-
 
 func _al_morir_por_tiempo():
 
@@ -254,7 +250,6 @@ func _al_morir_por_tiempo():
 		etiqueta_mensaje.text = "¡TIEMPO AGOTADO!"
 
 	finalizar_fracaso()
-
 
 # --------------------------------------------------
 # MENSAJES

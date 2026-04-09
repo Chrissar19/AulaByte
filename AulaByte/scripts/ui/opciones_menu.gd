@@ -48,14 +48,6 @@ func _set_bus_db(bus_name: String, db: float) -> void:
 		AudioServer.set_bus_volume_db(idx, db)
 		AudioServer.set_bus_mute(idx, db <= -39.5)
 
-# --- Manejadores ---
-func _on_fullscreen_toggled(is_pressed: bool) -> void:
-	if is_pressed:
-		# "Exclusive" suele ser más compatible para juegos
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-
 func _on_reset() -> void:
 	if sld_master: sld_master.value = 0.0
 	if sld_musica: sld_musica.value = -6.0
@@ -74,12 +66,10 @@ func _on_volver() -> void:
 		gm.cambiar_estado(gm.EstadoJuego.MENU_PRINCIPAL)
 	get_tree().change_scene_to_file(RUTA_MENU)
 
-# --- Persistencia ---
 func _cargar_y_aplicar_config() -> void:
 	var cfg := ConfigFile.new()
 	var err := cfg.load(CFG_PATH)
 	
-	# Aquí corregimos la advertencia (UNUSED_VARIABLE)
 	if err != OK:
 		push_warning("Archivo de config no encontrado o corrupto. Cargando defaults.")
 
@@ -87,7 +77,6 @@ func _cargar_y_aplicar_config() -> void:
 	var musica_v = cfg.get_value("audio", "musica_db", -6.0)
 	var efectos_v = cfg.get_value("audio", "efectos_db", -6.0)
 	var narr_v = cfg.get_value("audio", "narraciones_db", -6.0)
-	var is_full = cfg.get_value("video", "fullscreen", false)
 
 	if sld_master: sld_master.value = master_v
 	if sld_musica: sld_musica.value = musica_v
@@ -98,9 +87,6 @@ func _cargar_y_aplicar_config() -> void:
 	_set_bus_db(BUS_MUSICA, musica_v)
 	_set_bus_db(BUS_EFECTOS, efectos_v)
 	_set_bus_db(BUS_NARRACIONES, narr_v)
-	
-	# Aplicamos el estado de la pantalla
-	_on_fullscreen_toggled(is_full)
 
 func _guardar_config() -> void:
 	var cfg := ConfigFile.new()

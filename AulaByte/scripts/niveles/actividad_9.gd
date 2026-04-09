@@ -77,7 +77,7 @@ func _on_any_element_asigned(categorias: Array, zona: String, clon: Node, elemen
 	if not zona in zonas_validas:
 		_manejar_error_clasificacion()
 		if is_instance_valid(clon):
-			clon.queue_free() # Borramos el clon intruso
+			clon.queue_free() # Borra el clon intruso
 		return
 	
 	# --- VALIDACIÓN DE ÉXITO ---
@@ -131,7 +131,6 @@ func _perder() -> void:
 func _on_tiempo_agotado() -> void:
 	_perder()
 
-# --- Helpers ---
 func _mostrar_mensaje_temporal(nuevo_texto: String, duracion: float, color: Color) -> void:
 	if descripcion_act:
 		var color_original = descripcion_act.modulate

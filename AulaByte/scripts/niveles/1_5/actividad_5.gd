@@ -15,7 +15,7 @@ class_name Actividad5
 @onready var contenedor_imagen: Control = $Fondo/GeneraCartaAleatoria
 @onready var imagen_aleatoria: TextureRect = $Fondo/GeneraCartaAleatoria/ImagenAleatoria
 @onready var voz_guia: AudioStreamPlayer = $VozGuia
-@onready var ctrl_tiempo: ControlTiempo = $UI/ControlTiempo # El componente maestro
+@onready var ctrl_tiempo: ControlTiempo = $UI/ControlTiempo
 
 # --- Configuración y Estado ---
 const IMAGENES := [
@@ -26,7 +26,7 @@ const IMAGENES := [
 
 var _cartas: Array = []
 var _imagen_actual: Dictionary
-@export var tiempo_maximo: float = 15.0 # Un poco más rápido para este nivel
+@export var tiempo_maximo: float = 15.0
 
 #-----------------------------------------------------------
 #-- CICLO DE VIDA
@@ -34,18 +34,15 @@ var _imagen_actual: Dictionary
 func _ready() -> void:
 	super._ready()
 	
-	# 1. Vinculación del Componente de Tiempo
-	# Usamos la barra vertical si la configuraste así en el editor
+	# Vinculación del Componente de Tiempo
 	ctrl_tiempo.vincular_ui(lbl_texto, btn_salir, func(h): habilitar_esc = h)
 	ctrl_tiempo.tiempo_agotado.connect(_al_morir_por_tiempo)
 	
-	# 2. Conexión de Botones
+	# Conexión de Botones
 	btn_salir.pressed.connect(_on_salir_pressed)
 	btn_reiniciar.pressed.connect(_on_reiniciar_pressed)
-	# Nota: btn_aceptar no parece tener lógica de confirmación manual, 
-	# la validación ocurre al tocar la carta.
 	
-	# 3. Conexión de Cartas
+	# Conexión de Cartas
 	mover_raton.carta_seleccionada.connect(_on_carta_seleccionada)
 	escribir.carta_seleccionada.connect(_on_carta_seleccionada)
 	sonido.carta_seleccionada.connect(_on_carta_seleccionada)
@@ -56,7 +53,7 @@ func _ready() -> void:
 #-- LÓGICA DE SECUENCIA
 #-----------------------------------------------------------
 func _iniciar_secuencia() -> void:
-	ctrl_tiempo.detener() # Paramos por si venimos de un reinicio
+	ctrl_tiempo.detener()
 	lbl_texto.text = "Selecciona la carta correcta según la imagen."
 	lbl_texto.modulate = Color.WHITE
 	
@@ -64,15 +61,14 @@ func _iniciar_secuencia() -> void:
 	_cargar_imagen_aleatoria()
 	_reunir_cartas()
 	
-	# Iniciamos el tiempo
+	# Inicia el tiempo
 	ctrl_tiempo.iniciar(tiempo_maximo)
 
 func _cargar_imagen_aleatoria() -> void:
-	_imagen_actual = IMAGENES.pick_random() # Usamos pick_random() que es más limpio
+	_imagen_actual = IMAGENES.pick_random()
 	var textura := load(_imagen_actual["ruta"])
 	if textura:
 		imagen_aleatoria.texture = textura
-		# (Mantenemos tu lógica de centrado y tamaño)
 		imagen_aleatoria.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED 
 	else:
 		push_warning("No se pudo cargar la imagen: " + _imagen_actual["ruta"])
@@ -90,7 +86,6 @@ func _reunir_cartas() -> void:
 func _on_carta_seleccionada(carta: CartaVolteable) -> void:
 	if _finalizado: return
 	
-	# Detenemos el tiempo apenas el niño toma una decisión
 	ctrl_tiempo.detener()
 	
 	var tipo_seleccionado: String = ""
@@ -105,7 +100,6 @@ func _on_carta_seleccionada(carta: CartaVolteable) -> void:
 	else:
 		lbl_texto.text = "Incorrecto. Intenta de nuevo"
 		lbl_texto.modulate = Color.ORANGE
-		# Podríamos dar otra oportunidad o fallar directo según tu diseño:
 		finalizar_fracaso()
 
 func _al_morir_por_tiempo():
@@ -125,12 +119,12 @@ func _on_salir_pressed() -> void:
 func _on_btn_ayuda_pressed() -> void:
 	if voz_guia.playing: return
 	
-	ctrl_tiempo.pausar(true) # Pausamos el tiempo mientras escucha la ayuda
+	ctrl_tiempo.pausar(true)
 	voz_guia.play()
 	
 	await voz_guia.finished
 	if not _finalizado:
-		ctrl_tiempo.pausar(false) # Reanudamos
+		ctrl_tiempo.pausar(false)
 
 func configurar_con_parametros(parametros: Dictionary) -> void:
 	if parametros.has("tiempo"):

@@ -50,11 +50,11 @@ func _manejar_error() -> void:
 	if intentos <= 0:
 		_perder()
 	else:
-		# 1. Reseteamos registro interno PRIMERO
+		# Resetea el registro interno
 		asignaciones.clear()
-		# 2. Reseteamos OBJETOS FISICAMENTE
+		# Reseteamos OBJETOS FISICAMENTE
 		get_tree().call_group("elementos_act7", "reset_position")
-		# 3. Mostramos mensaje
+		# Muestra el mensaje
 		_mostrar_mensaje_temporal("Orden incorrecto", 2.0, Color.TOMATO)
 
 # --- FIN ALIZACIÓN ---
@@ -73,7 +73,6 @@ func _perder():
 func _on_tiempo_agotado():
 	_perder()
 
-# --- HELPERS ---
 func _mostrar_mensaje_temporal(nuevo_texto: String, duracion: float, color: Color) -> void:
 	if descripcion_act:
 		var color_original = descripcion_act.modulate

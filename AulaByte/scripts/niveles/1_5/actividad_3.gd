@@ -27,20 +27,20 @@ var _aciertos := 0
 func _ready() -> void:
 	super._ready()
 	
-	# 1. Configuración UI inicial
+	# Configuración UI inicial
 	salida_texto.text = MSJ_ORIGINAL
 	if lbl_intentos: lbl_intentos.text = "Intentos: %d" % intentos
 	
-	# 2. VINCULAR COMPONENTE DE TIEMPO
+	# VINCULAR COMPONENTE DE TIEMPO
 	ctrl_tiempo.vincular_ui(salida_texto, btn_salir, func(h): habilitar_esc = h)
 	ctrl_tiempo.tiempo_agotado.connect(_on_tiempo_agotado)
 	ctrl_tiempo.iniciar(tiempo_maximo)
 	
-	# 3. Preparar Mecánicas
+	# Preparar Mecánicas
 	_contar_objetos()
 	teclado_zona.soltar_item.connect(_on_item_dropped)
 	
-	# 4. Conectar Botones
+	# Conectar Botones
 	btn_salir.pressed.connect(_on_salir_pressed)
 	if btn_ayuda: btn_ayuda.pressed.connect(_on_ayuda_pressed)
 
@@ -102,7 +102,6 @@ func _bloquear_teclas() -> void:
 		if c is TeclaArrastrable:
 			c.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
-# --- Helpers de Sistema ---
 func configurar_con_parametros(parametros: Dictionary) -> void:
 	if parametros.has("intentos"):
 		intentos = max(1, int(parametros["intentos"]))

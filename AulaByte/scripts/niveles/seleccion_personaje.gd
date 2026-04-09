@@ -1,10 +1,6 @@
 #-- SelectorPersonaje
 extends Control
 
-#==============================================================================
-#  Selector de personaje para un jugador (preparado para multijugador futuro)
-#==============================================================================
-
 const RUTA_INFO: String = "res://datos/info/" # Carpeta con archivos .tres
 
 #-- Referencias a nodos UI
@@ -28,17 +24,15 @@ const RUTA_INFO: String = "res://datos/info/" # Carpeta con archivos .tres
 var lista_info: Array[personajeInfo] = []
 var indice_seleccionado: int = -1
 
-
 #==============================================================================
-#  Ciclo de vida
+#  INICIALIZACION
 #==============================================================================
-
 func _ready() -> void:
 
 	_aplicar_estilo_boton(btn_confirmar)
 	_aplicar_estilo_boton(btn_volver)
 
-	# Opcional: enviar sonidos al bus "Efectos"
+	# sonido
 	if audio_click:
 		audio_click.bus = "Efectos"
 	if audio_cambio:
@@ -68,13 +62,11 @@ func _configurar_botones_personajes() -> void:
 	_registrar_personaje(btn_insuasty, info_insuasty)
 	_registrar_personaje(btn_jojoa, info_jojoa)
 
-
 func _registrar_personaje(boton: TextureButton, info: personajeInfo) -> void:
 	if boton == null:
 		return
 
 	if info == null:
-		# Si no asignaste info para este botón, lo ocultamos
 		boton.visible = false
 		return
 
@@ -102,7 +94,6 @@ func _on_personaje_seleccionado(indice: int) -> void:
 	indice_seleccionado = indice
 	await _reproducir_sonido(audio_cambio)
 	_actualizar_ui()
-
 
 func _actualizar_ui() -> void:
 	if lista_info.is_empty():

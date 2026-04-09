@@ -83,14 +83,9 @@ func _notification(what: int) -> void:
 		if zona_correcta != "" and zona_destino:
 			var id_elemento := str(name)
 			if not zona_destino.has_element(id_elemento):
-				# 1. Clonamos el objeto
+
 				var clon = _clonar_en_zona(zona_destino)
-				# 2. Emitimos la señal y capturamos si la actividad lo aceptó
-				# Nota: En Godot 4, emit_signal no devuelve el retorno de las funciones conectadas directamente.
-				# Por eso, usaremos la referencia a la actividad directamente o validaremos después.
-				
-				# CAMBIO CLAVE: Vamos a dejar que la actividad borre el clon si falla.
-				# Para que la actividad pueda borrarlo, se lo pasamos en la señal:
+
 				emit_signal("element_asigned", categorias, zona_correcta, clon)
 			else:
 				volver_a_empezar()

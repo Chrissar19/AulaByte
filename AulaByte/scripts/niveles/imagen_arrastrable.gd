@@ -27,7 +27,7 @@ func _ready() -> void:
 
 # --- FUNCIÓN DE RESET (MÁS AGRESIVA) ---
 func reset_position() -> void:
-	_bloqueado = false # Desbloqueamos primero
+	_bloqueado = false
 	_drag_activo = false
 	
 	# 1. Si está en una zona, liberarla
@@ -42,8 +42,6 @@ func reset_position() -> void:
 	visible = true
 	position = _posicion_inicial
 	size = _size_inicial
-	
-	#print("SISTEMA: Objeto ", categoria, " reseteado correctamente.")
 
 func _get_drag_data(at_position: Vector2) -> Variant:
 	if _bloqueado: return null
@@ -91,16 +89,14 @@ func volver_a_empezar() -> void:
 func _esta_sobre_zona(zona: Control) -> bool:
 	return zona.get_global_rect().has_point(_posicion_final_drag)
 
-# --- FUNCIÓN CON SEGURIDAD EXTRA ---
 func _fijar_en_zona(zona: Control) -> void:
 	var pos_global_actual = global_position
 	get_parent().remove_child(self)
 	zona.add_child(self)
 
-	# Esperamos un frame para que Godot actualice posiciones
+	# Espera un frame para que Godot actualice posiciones
 	await get_tree().process_frame
 
-	# SEGURIDAD: Si durante la espera la actividad nos reseteó, salimos inmediatamente
 	if _bloqueado or get_parent() != zona: 
 		#print("DEBUG: Abortando fijado de ", categoria, " por reset externo.")
 		return 

@@ -37,7 +37,7 @@ func _on_activacion_salto_body_entered(body: Node2D) -> void:
 			sprite.play("salto")
 			timer.start(0.4)
 		else:
-			# Si el jugador está en el suelo o subiendo, no hacemos nada.
+			# Si el jugador está en el suelo o subiendo, no hace nada
 			print("Jugador cruzando sin caer: Trampolín desactivado")
 
 func _on_body_exited(body: Node2D) -> void:

@@ -28,11 +28,10 @@ func _ready() -> void:
 
 	rng.randomize()
 
-	# Música del menú (si tienes autoload "Musica")
+	# Música del menú
 	if has_node("/root/Musica"):
 		get_node("/root/Musica").call("reproducir", musica_menu, true)
 
-	# Versión del proyecto (opcional)
 	if lbl_version:
 		var ver = ProjectSettings.get_setting("application/config/version", "v0.1")
 		lbl_version.text = str(ver)
@@ -60,7 +59,6 @@ func _ready() -> void:
 	# Timers
 	if temporizador_espera:
 		temporizador_espera.timeout.connect(_on_tem_espera_timeout)
-		# IMPORTANTE: solo se inicia una vez; que tenga wait_time = 45 en el editor
 		temporizador_espera.start()
 	if temporizador_nubes:
 		temporizador_nubes.timeout.connect(_on_tem_nubes_timeout)
@@ -84,7 +82,6 @@ func _crear_nube(z: int, alto_min: int, alto_max: int, tam_min: float, tam_max: 
 	var altura := rng.randi_range(alto_min, alto_max)
 	nube.position = Vector2(-50.0, float(altura))
 
-	# Asumimos que la escena de la nube tiene una variable 'velocidad'
 	if "velocidad" in nube:
 		nube.velocidad = rng.randf_range(vel_min, vel_max)
 
@@ -115,11 +112,9 @@ func _on_tem_nubes_timeout() -> void:
 		_crear_nube_fondo()
 
 # ---------------------------------------------------------
-# ESPERA FIJA → INTRO
+# INTRO
 # ---------------------------------------------------------
 func _on_tem_espera_timeout() -> void:
-	print("[MenuPrincipal] Tiempo límite alcanzado → Intro")
-	# Si aún seguimos en el menú (no se ha pulsado nada importante), pasamos a la intro
 	get_tree().change_scene_to_file(RUTA_INTRO)
 
 # ---------------------------------------------------------

@@ -15,21 +15,19 @@ var codigo_actividad: Array[int] = []
 #---------------------------------------------------------------------------------------------------
 
 func _ready() -> void:
-	#-- Llama a _ready de la nivel_base
 	super._ready()
 	
-	# 1) Si el GameManager ya tiene un código (por reintento, volver a entrar, etc.), lo reutilizamos
 	if GameManager.parametros_actividad.has("codigo"):
 		codigo_actividad = GameManager.parametros_actividad["codigo"]
 	else:
-		# 2) Este nivel genera SU propio código de flechas
+		# 2) Genera su propio código de flechas
 		codigo_actividad = _generar_codigo_nivel1(4)
 		
 		var parametros_actividad = {
 			"codigo": codigo_actividad,
 			"intentos": 3
 		}
-		# 3) Solo guardamos los parámetros en el GameManager (ya no genera nada él)
+		# Solo guarda los parámetros en el GameManager
 		GameManager.establecer_parametros_actividad(parametros_actividad)
 		
 	#-- Mostrar Cuadros

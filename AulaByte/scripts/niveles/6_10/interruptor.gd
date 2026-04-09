@@ -76,7 +76,7 @@ func activar_con_tiempo() -> void:
 	if anim.sprite_frames.has_animation("activado"):
 		anim.play("activado")
 	
-	# Ocultamos el indicador inmediatamente al activar
+	# Oculta el indicador inmediatamente al activar
 	if lbl_indicador_interaccion:
 		lbl_indicador_interaccion.visible = false
 		

@@ -6,7 +6,7 @@ class_name Actividad6
 @onready var piezas_root: Node = $Piezas
 @onready var btn_salir: Button = $UI/BtnSalir
 @onready var aud_ayuda: AudioStreamPlayer = $AudAyuda
-@onready var ctrl_tiempo: ControlTiempo = $UI/ControlTiempo # El componente maestro
+@onready var ctrl_tiempo: ControlTiempo = $UI/ControlTiempo
 
 # --- Configuración del Puzzle ---
 @export var tiempo_segundos: int = 120
@@ -49,13 +49,11 @@ var mascara_debug: TextureRect
 	],
 }
 
-# --- Ciclo de Vida ---
 func _ready() -> void:
 	super._ready()
 	add_to_group("Actividad6")
 	
-	# 1. VINCULACIÓN DEL COMPONENTE DE TIEMPO
-	# No pasamos Label de texto si prefieres que solo se vea la barra
+	# Tiempo
 	ctrl_tiempo.vincular_ui(null, btn_salir, func(h): habilitar_esc = h)
 	ctrl_tiempo.tiempo_agotado.connect(_on_tiempo_agotado)
 	ctrl_tiempo.iniciar(tiempo_segundos)
@@ -127,7 +125,6 @@ func _ganar():
 func _on_tiempo_agotado():
 	finalizar_fracaso()
 
-# --- Helpers de Sistema ---
 func _on_salir_pressed():
 	ctrl_tiempo.detener()
 	cancelar_actividad()
@@ -141,7 +138,7 @@ func _on_btn_ayuda_pressed() -> void:
 	if not _finalizado:
 		ctrl_tiempo.pausar(false)
 
-# --- Métodos Matemáticos (Sin cambios) ---
+# --- Métodos Matemáticos ---
 func _global_to_mask_uv(gpos: Vector2) -> Vector2:
 	var inv_transform: Transform2D = silueta.get_global_transform_with_canvas().affine_inverse()
 	var lp: Vector2 = inv_transform * gpos

@@ -1,5 +1,4 @@
 extends Node2D
-
 # =============================================================================
 # BOLA COLGANTE - Cae hasta detectar suelo y crea cadenas entre el punto inicial y el suelo
 # =============================================================================
@@ -7,7 +6,7 @@ extends Node2D
 # ============================================================================
 # PARÁMETROS EXPORTADOS
 # ============================================================================
-@export var distancia_cadena := 0         # Longitud fija (opcional)
+@export var distancia_cadena := 0 # Longitud fija (opcional)
 @export var tamano_bola := 1.0  # Escala del sprite
 @export var dmg: int = 2        
 
@@ -47,7 +46,6 @@ func _process(delta: float) -> void:
 			ray_cast_suelo.target_position.y -= 6
 			longitud_cadena()
 			
-
 # ============================================================================
 # CREACIÓN DE CADENAS
 # ============================================================================

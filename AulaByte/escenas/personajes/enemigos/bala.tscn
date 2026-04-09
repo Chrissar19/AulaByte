@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n2bxl"]
 size = Vector2(30.826822, 30)
 
-[node name="bala" type="CharacterBody2D"]
+[node name="bala" type="CharacterBody2D" groups=["Z_FX_PARTICULAS"]]
 scale = Vector2(0.6, 0.6)
 collision_layer = 0
 collision_mask = 0

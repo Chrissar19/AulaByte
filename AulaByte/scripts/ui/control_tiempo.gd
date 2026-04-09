@@ -17,20 +17,17 @@ var _callback_habilitar_esc: Callable
 func _ready():
 	process_mode = PROCESS_MODE_ALWAYS
 	
-	# --- BLINDAJE TÉCNICO ---
-	step = 0.0  # Permite que la barra baje suavemente con decimales (delta)
+	step = 0.0
 	allow_greater = false
 	allow_lesser = false
 	
 	_preparar_estilo_base()
 	
-	# Sincronización inicial de seguridad
 	reajustar_limites(tiempo_total)
 	
 	if activar_al_inicio:
 		iniciar()
 
-# Nueva función interna para asegurar que la barra entienda los nuevos números
 func reajustar_limites(nuevo_maximo: float):
 	tiempo_total = nuevo_maximo
 	max_value = tiempo_total
@@ -61,7 +58,7 @@ func _process(delta: float):
 	if not tiempo_activo: return
 	
 	tiempo_restante -= delta
-	value = tiempo_restante # Esto ahora será fluido por el step = 0
+	value = tiempo_restante
 	
 	# Cálculo de porcentaje para colores
 	var porcentaje = tiempo_restante / tiempo_total
@@ -73,7 +70,6 @@ func _process(delta: float):
 		modulate = Color.YELLOW
 		_gestionar_bloqueo(false)
 	else:
-		# Rojo con parpadeo
 		var parpadeo = abs(sin(Time.get_ticks_msec() * 0.01))
 		modulate = Color.RED.lerp(Color(1, 0.5, 0.5), parpadeo)
 		_gestionar_bloqueo(true)

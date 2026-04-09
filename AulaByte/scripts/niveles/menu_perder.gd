@@ -10,7 +10,7 @@ func _ready() -> void:
 	get_tree().paused = false
 
 	if GameManager:
-		lbl_puntos.text = "Puntos: " + str(GameManager.get_puntos())
+		lbl_puntos.text = "Puntos: " + str(GameManager.obtener_puntos())
 
 		if GameManager.has_method("get_causa_muerte"):
 			var causa := GameManager.get_causa_muerte()

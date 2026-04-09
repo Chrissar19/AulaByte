@@ -36,18 +36,17 @@ var _texto_pendiente: String = "Ingresa la contraseña"
 func _ready() -> void:
 	super._ready()
 	
-	# 1. Configuración UI inicial
+	# Configuración UI inicial
 	if lbl_intentos: lbl_intentos.text = "Intentos: %d" % intentos
 	salida_texto.text = _texto_pendiente
 	actualizar_pantalla()
 	
-	# 2. VINCULAR COMPONENTE DE TIEMPO
-	# Vinculamos: Label de mensajes, Botón de salir y el callback para habilitar/deshabilitar ESC
+	# VINCULAR COMPONENTE DE TIEMPO
 	ctrl_tiempo.vincular_ui(salida_texto, btn_salir, func(h): habilitar_esc = h)
 	ctrl_tiempo.tiempo_agotado.connect(_al_morir_por_tiempo)
 	ctrl_tiempo.iniciar(tiempo_maximo)
 	
-	# 3. Conectar Botones
+	# Conectar Botones
 	btn_arriba.pressed.connect(_on_boton_numero_pressed.bind(1))
 	btn_izquierda.pressed.connect(_on_boton_numero_pressed.bind(2))
 	btn_abajo.pressed.connect(_on_boton_numero_pressed.bind(3))
