@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://eoemjxt3hrtf"]
+
+[ext_resource type="Script" uid="uid://bmj6f40clgd5c" path="res://scripts/ui/control_movil.gd" id="1_jvift"]
+[ext_resource type="Script" uid="uid://b5aepktxrc0y5" path="res://scripts/ui/joystick_base.gd" id="1_ope6i"]
+[ext_resource type="Texture2D" uid="uid://y2oek28eh1hc" path="res://recursos/imagenes/objetos/controles_movil/fondojoystick.png" id="2_n26y3"]
+[ext_resource type="Texture2D" uid="uid://456ilsek5als" path="res://recursos/imagenes/objetos/controles_movil/joystick.png" id="3_qvkuj"]
+[ext_resource type="Texture2D" uid="uid://b6yyes1v7lmr6" path="res://recursos/imagenes/objetos/controles_movil/botonsalto.png" id="4_lax52"]
+[ext_resource type="Texture2D" uid="uid://bj7cultlps7hw" path="res://recursos/imagenes/objetos/controles_movil/btnreset.png" id="5_jvift"]
+[ext_resource type="Texture2D" uid="uid://dcpj0lol6eyfw" path="res://recursos/imagenes/objetos/controles_movil/btnpausa.png" id="6_jta1l"]
+[ext_resource type="Texture2D" uid="uid://cgjt5w7icwevk" path="res://recursos/imagenes/objetos/controles_movil/botonaccion.png" id="7_4plp2"]
+
+[node name="ControlMovil" type="CanvasLayer"]
+script = ExtResource("1_jvift")
+
+[node name="JoystickBase" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.112
+anchor_top = 0.85600007
+anchor_right = 0.112
+anchor_bottom = 0.85600007
+offset_left = 0.3199997
+offset_top = 3.8399658
+offset_right = 0.3199997
+offset_bottom = 51.839966
+grow_vertical = 0
+pivot_offset = Vector2(80, 52)
+script = ExtResource("1_ope6i")
+
+[node name="Fondo" type="Sprite2D" parent="JoystickBase"]
+texture = ExtResource("2_n26y3")
+
+[node name="Palanca" type="Sprite2D" parent="JoystickBase"]
+texture = ExtResource("3_qvkuj")
+
+[node name="BtnSalto" type="TouchScreenButton" parent="."]
+position = Vector2(480, 280)
+texture_normal = ExtResource("4_lax52")
+action = "saltar"
+
+[node name="BtnReset" type="TouchScreenButton" parent="."]
+position = Vector2(592, 40)
+texture_normal = ExtResource("5_jvift")
+action = "reiniciar_nivel"
+
+[node name="BtnPausa" type="TouchScreenButton" parent="."]
+position = Vector2(304, 32)
+texture_normal = ExtResource("6_jta1l")
+action = "ui_cancel"
+
+[node name="BtnAccion" type="TouchScreenButton" parent="."]
+position = Vector2(552, 208)
+texture_normal = ExtResource("7_4plp2")
+action = "Accion"

@@ -57,6 +57,7 @@ var tiempo_coyote: float = 0.0
 @onready var empuje_ray: RayCast2D = $EmpujeRay
 @onready var sonido_salto: AudioStreamPlayer = $SonidoSalto
 @onready var area_daño: Area2D = $AreaDaño
+@onready var joystick = get_tree().root.find_child("JoystickBase", true, false)
 
 const StateClasses := {
 	"idle": preload("res://scripts/jugador/estados/idle.gd"),
@@ -143,7 +144,16 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("saltar") and saltar_ahora():
 		cambiar_estado("saltar")
 
-	input_dir = Input.get_axis("izquierda", "derecha")
+	var input_teclado = Input.get_axis("izquierda", "derecha")
+	var input_joy = 0.0
+	
+	if joystick:
+		input_joy = joystick.valor_jugador
+	if abs(input_joy) > abs(input_teclado):
+		input_dir = input_joy
+	else:
+		input_dir = input_teclado
+		
 	actualizar_direccion(input_dir)
 	detectar_empuje()
 
