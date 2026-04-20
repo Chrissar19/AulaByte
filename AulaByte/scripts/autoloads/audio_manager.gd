@@ -1,12 +1,18 @@
-# ====================================================================
-# GESTOR DE AUDIO (AUDIO MANAGER)
-# ====================================================================
-## Administra los canales de música, efectos y narración de forma global.
 extends Node
 
-# ====================================================================
-# CONFIGURACIÓN DE RECURSOS (MÚSICA)
-# ====================================================================
+# =============================================================================
+#  PLAYERS INTERNOS
+# =============================================================================
+var musica_player: AudioStreamPlayer
+var sfx_player: AudioStreamPlayer
+var narr_player: AudioStreamPlayer   # Para voces / narraciones
+
+var _tween: Tween = null
+var _rng := RandomNumberGenerator.new()
+
+# =============================================================================
+#  CONFIG MÚSICA POR ESTADO
+# =============================================================================
 const MUSICA_MENU: AudioStream      = preload("res://recursos/Audio/musica/MenuPrincipal.wav")
 const MUSICA_SELECCION: AudioStream = preload("res://recursos/Audio/musica/seleccion.mp3")
 const MUSICA_MINIJUEGO: AudioStream = preload("res://recursos/Audio/musica/actividad.mp3")
@@ -14,7 +20,7 @@ const MUSICA_GAME_OVER: AudioStream = preload("res://recursos/Audio/efectos/Erro
 const MUSICA_CREDITOS: AudioStream  = preload("res://recursos/Audio/musica/creditos.mp3")
 
 # =============================================================================
-#  CONFIGURACIÓN DE RECURSOS (EFECTOS - SFX)
+#  CONFIG SFX GLOBALES
 # =============================================================================
 const SFX_CLICK: AudioStream        = preload("res://recursos/Audio/efectos/click.wav")
 const SFX_CONFIRMAR: AudioStream    = preload("res://recursos/Audio/efectos/click.wav")
@@ -25,22 +31,15 @@ const SFX_PERDER_VIDA: AudioStream  = preload("res://recursos/Audio/efectos/Vida
 # =============================================================================
 #  VARIABLES DE CONTROL
 # =============================================================================
-var reproductor_musica: AudioStreamPlayer
-var reproductor_sfx: AudioStreamPlayer
-var reproductor_narracion: AudioStreamPlayer
-
 var repetir_actual: bool = false
 var modo_shuffle: bool = false
 var pistas_nivel: Array[AudioStream] = []
 var ultimo_indice: int = -1
 
-# Volúmenes base (se pueden modificar desde un menú de opciones)
+# Volúmenes base (los puedes cambiar desde un menú de opciones)
 var volumen_musica_db: float = -10.0
 var volumen_sfx_db: float = 0.0
 var volumen_narraciones_db: float = -6.0
-
-var _tween: Tween = null
-var _rng := RandomNumberGenerator.new()
 
 # =============================================================================
 #  INICIO
@@ -51,34 +50,34 @@ func _ready() -> void:
 
 # Crea los players si aún no existen
 func _init_players() -> void:
-	if reproductor_musica != null:
-		return  # retorna si ya están creados
+	if musica_player != null:
+		return  # ya están creados
 
 	# ----- Player de música -----
-	reproductor_musica = AudioStreamPlayer.new()
-	reproductor_musica.bus = "Musica"
-	reproductor_musica.autoplay = false
-	reproductor_musica.volume_db = volumen_musica_db
-	add_child(reproductor_musica)
+	musica_player = AudioStreamPlayer.new()
+	musica_player.bus = "Musica"
+	musica_player.autoplay = false
+	musica_player.volume_db = volumen_musica_db
+	add_child(musica_player)
 
 	# ----- Player de SFX -----
-	reproductor_sfx = AudioStreamPlayer.new()
-	reproductor_sfx.bus = "Efectos"
-	reproductor_sfx.autoplay = false
-	reproductor_sfx.volume_db = volumen_sfx_db
-	add_child(reproductor_sfx)
+	sfx_player = AudioStreamPlayer.new()
+	sfx_player.bus = "Efectos"
+	sfx_player.autoplay = false
+	sfx_player.volume_db = volumen_sfx_db
+	add_child(sfx_player)
 
 	# ----- Player de Narraciones -----
-	reproductor_narracion = AudioStreamPlayer.new()
-	reproductor_narracion.bus = "Narraciones"
-	reproductor_narracion.autoplay = false
-	reproductor_narracion.volume_db = volumen_narraciones_db
-	add_child(reproductor_narracion)
+	narr_player = AudioStreamPlayer.new()
+	narr_player.bus = "Narraciones"
+	narr_player.autoplay = false
+	narr_player.volume_db = volumen_narraciones_db
+	add_child(narr_player)
 
 	# Señal fin de pista de música
-	reproductor_musica.finished.connect(_on_musica_terminada)
+	musica_player.finished.connect(_on_musica_terminada)
 
-	# Carga playlist de niveles (solo una vez)
+	# Cargar playlist de niveles (solo una vez)
 	cargar_pistas_nivel()
 
 # =============================================================================
@@ -95,53 +94,57 @@ func cargar_pistas_nivel() -> void:
 	]
 
 # =============================================================================
-#  LÓGICA DE MÚSICA
+#  API PÚBLICA PARA MÚSICA
 # =============================================================================
-## Reproduce una pista con opción de fundido (fade) y repetición.
 func reproducir(stream: AudioStream, repetir: bool = true, volumen_db: float = -10.0, con_fade: bool = true, duracion_fade: float = 0.6) -> void:
 	if stream == null:
 		return
+
 	_init_players()
+
 	modo_shuffle = false
 	repetir_actual = repetir
-	if not con_fade or not reproductor_musica.playing:
+
+	if not con_fade or not musica_player.playing:
 		_cambiar_stream(stream, volumen_db)
 		return
 
-	# Si ya hay un tween corriendo, se elimina
+	# Si ya hay un tween corriendo, lo matamos
 	if _tween and _tween.is_running():
 		_tween.kill()
+
 	_tween = create_tween()
+
 	# Fade out, cambio de pista y fade in
-	_tween.tween_property(reproductor_musica, "volume_db", -40.0, duracion_fade * 0.5)
+	_tween.tween_property(musica_player, "volume_db", -40.0, duracion_fade * 0.5)
 	_tween.tween_callback(Callable(self, "_cambiar_stream").bind(stream, volumen_db))
-	_tween.tween_property(reproductor_musica, "volume_db", volumen_db, duracion_fade * 0.5)
+	_tween.tween_property(musica_player, "volume_db", volumen_db, duracion_fade * 0.5)
 
 func _cambiar_stream(stream: AudioStream, volumen_db: float) -> void:
 	_init_players()
 
-	reproductor_musica.stop()
-	reproductor_musica.stream = stream
-	reproductor_musica.volume_db = volumen_db
-	reproductor_musica.stream_paused = false
-	reproductor_musica.play()
+	musica_player.stop()
+	musica_player.stream = stream
+	musica_player.volume_db = volumen_db
+	musica_player.stream_paused = false
+	musica_player.play()
 
 func detener_musica() -> void:
 	_init_players()
 	modo_shuffle = false
 	repetir_actual = false
-	if reproductor_musica and reproductor_musica.playing:
-		reproductor_musica.stop()
+	if musica_player and musica_player.playing:
+		musica_player.stop()
 
 func pausar_musica() -> void:
 	_init_players()
-	if reproductor_musica:
-		reproductor_musica.stream_paused = true
+	if musica_player:
+		musica_player.stream_paused = true
 
 func reanudar_musica() -> void:
 	_init_players()
-	if reproductor_musica and reproductor_musica.stream:
-		reproductor_musica.stream_paused = false
+	if musica_player and musica_player.stream:
+		musica_player.stream_paused = false
 
 func reproducir_aleatorio(volumen_db: float = -10.0) -> void:
 	_init_players()
@@ -160,41 +163,14 @@ func reproducir_aleatorio(volumen_db: float = -10.0) -> void:
 	reproducir(pistas_nivel[indice], false, volumen_db)
 
 # =============================================================================
-#  MANEJO DE SEÑALES Y EVENTOSA
+#  CALLBACK FIN DE PISTA
 # =============================================================================
 func _on_musica_terminada() -> void:
 	_init_players()
 	if modo_shuffle:
-		reproducir_aleatorio(reproductor_musica.volume_db)
+		reproducir_aleatorio(musica_player.volume_db)
 	elif repetir_actual:
-		reproductor_musica.play()
-		
-## Callback vinculado al GameManager para reaccionar a cambios de escena/estado.
-func _on_estado_cambiado(nombre_estado: String) -> void:
-	# Por si llega una señal muy temprano
-	_init_players()
-
-	match nombre_estado:
-		"MENU_PRINCIPAL":
-			reproducir(MUSICA_MENU, true, volumen_musica_db)
-		"SELECCION_PERSONAJE":
-			reproducir(MUSICA_SELECCION, true, volumen_musica_db)
-		"JUGANDO":
-			# Si esta reanudando desde pausa, sigue
-			if reproductor_musica.stream and reproductor_musica.stream_paused:
-				reanudar_musica()
-			else:
-				reproducir_aleatorio(volumen_musica_db)
-		"MINIJUEGO":
-			reproducir(MUSICA_MINIJUEGO, true, volumen_musica_db)
-		"PAUSA":
-			pausar_musica()
-		"GAME_OVER":
-			reproducir(MUSICA_GAME_OVER, false, volumen_musica_db)
-		"CREDITOS":
-			reproducir(MUSICA_CREDITOS, true, volumen_musica_db)
-		_:
-			pass
+		musica_player.play()
 
 # =============================================================================
 #  SFX
@@ -203,10 +179,10 @@ func reproducir_sfx(stream: AudioStream, volumen_db: float = 0.0) -> void:
 	if stream == null:
 		return
 	_init_players()
-	reproductor_sfx.stop() # Para UI está bien cortar el anterior
-	reproductor_sfx.stream = stream
-	reproductor_sfx.volume_db = volumen_db
-	reproductor_sfx.play()
+	sfx_player.stop() # Para UI está bien cortar el anterior
+	sfx_player.stream = stream
+	sfx_player.volume_db = volumen_db
+	sfx_player.play()
 
 func sfx_ui_click() -> void:
 	reproducir_sfx(SFX_CLICK, volumen_sfx_db)
@@ -230,15 +206,15 @@ func reproducir_narracion(stream: AudioStream, volumen_db: float = -6.0) -> void
 	if stream == null:
 		return
 	_init_players()
-	reproductor_narracion.stop()
-	reproductor_narracion.stream = stream
-	reproductor_narracion.volume_db = volumen_db
-	reproductor_narracion.play()
+	narr_player.stop()
+	narr_player.stream = stream
+	narr_player.volume_db = volumen_db
+	narr_player.play()
 
 func detener_narracion() -> void:
 	_init_players()
-	if reproductor_narracion and reproductor_narracion.playing:
-		reproductor_narracion.stop()
+	if narr_player and narr_player.playing:
+		narr_player.stop()
 
 # =============================================================================
 #  VOLUMEN (para menú de opciones)
@@ -246,17 +222,46 @@ func detener_narracion() -> void:
 func set_volumen_musica_db(db: float) -> void:
 	volumen_musica_db = db
 	_init_players()
-	if reproductor_musica:
-		reproductor_musica.volume_db = db
+	if musica_player:
+		musica_player.volume_db = db
 
 func set_volumen_sfx_db(db: float) -> void:
 	volumen_sfx_db = db
 	_init_players()
-	if reproductor_sfx:
-		reproductor_sfx.volume_db = db
+	if sfx_player:
+		sfx_player.volume_db = db
 
 func set_volumen_narraciones_db(db: float) -> void:
 	volumen_narraciones_db = db
 	_init_players()
-	if reproductor_narracion:
-		reproductor_narracion.volume_db = db
+	if narr_player:
+		narr_player.volume_db = db
+
+# =============================================================================
+#  INTEGRACIÓN CON GameManager
+# =============================================================================
+func _on_estado_cambiado(nombre_estado: String) -> void:
+	# Por si llega una señal muy temprano
+	_init_players()
+
+	match nombre_estado:
+		"MENU_PRINCIPAL":
+			reproducir(MUSICA_MENU, true, volumen_musica_db)
+		"SELECCION_PERSONAJE":
+			reproducir(MUSICA_SELECCION, true, volumen_musica_db)
+		"JUGANDO":
+			# Si estamos reanudando desde pausa, seguimos
+			if musica_player.stream and musica_player.stream_paused:
+				reanudar_musica()
+			else:
+				reproducir_aleatorio(volumen_musica_db)
+		"MINIJUEGO":
+			reproducir(MUSICA_MINIJUEGO, true, volumen_musica_db)
+		"PAUSA":
+			pausar_musica()
+		"GAME_OVER":
+			reproducir(MUSICA_GAME_OVER, false, volumen_musica_db)
+		"CREDITOS":
+			reproducir(MUSICA_CREDITOS, true, volumen_musica_db)
+		_:
+			pass

@@ -6,6 +6,12 @@ extends Control
 var touch_id = -1
 var valor_jugador := 0.0
 
+func _ready():
+	if not OS.has_feature("editor") and not (OS.has_feature("android") or OS.has_feature("ios")):
+		visible = false
+		set_process_input(false)
+		return
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
 		if event.pressed and touch_id == -1:
