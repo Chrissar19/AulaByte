@@ -7,7 +7,7 @@
 [ext_resource type="TileSet" uid="uid://i5ue5h42c5s8" path="res://datos/fondos.tres" id="5_4xxjf"]
 [ext_resource type="PackedScene" uid="uid://brfxoes3nrqbr" path="res://escenas/ui/hud.tscn" id="5_auyua"]
 [ext_resource type="PackedScene" uid="uid://1eeeqekb3ych" path="res://escenas/objetos_interacciones/caja.tscn" id="6_1g06v"]
-[ext_resource type="Texture2D" uid="uid://bupuxtacyglx3" path="res://recursos/imagenes/objetos/Flecha.png" id="6_4xxjf"]
+[ext_resource type="Texture2D" uid="uid://4bsikcucyosv" path="res://recursos/imagenes/objetos/flechas.png" id="6_4xxjf"]
 [ext_resource type="PackedScene" uid="uid://mher13w4mave" path="res://escenas/trampas/zona_muerte.tscn" id="6_k7v1a"]
 [ext_resource type="Script" uid="uid://cspfhqnyxnneo" path="res://scripts/objetos/flecha_intro.gd" id="7_rxrtu"]
 [ext_resource type="PackedScene" uid="uid://cydd1023br6iv" path="res://escenas/objetos_interacciones/bits_moneda.tscn" id="10_wsaak"]
@@ -64,8 +64,7 @@ tile_map_data = PackedByteArray("AAAsAAkAAgACAAIAAAArAAkAAgABAAIAAAAqAAkAAgABAAI
 tile_set = ExtResource("5_4xxjf")
 
 [node name="Flecha" type="Sprite2D" parent="Tiles"]
-position = Vector2(312, -32)
-rotation = 4.712389
+position = Vector2(376, -24)
 texture = ExtResource("6_4xxjf")
 script = ExtResource("7_rxrtu")
 
