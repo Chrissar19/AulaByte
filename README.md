@@ -28,7 +28,7 @@ Este proyecto y sus derivados están pensados para un **uso académico y educati
 
 ## Licencia
 
-Este proyecto se distribuye bajo **Creative Commons Atribución-NoComercial 4.0 Internacional (CC BY-NC 4.0)** (ver `LICENSE.txt`). En resumen:
+Este proyecto se distribuye bajo **Creative Commons Atribución-NoComercial 4.0 Internacional (CC BY-NC 4.0)** (ver `LICENSE`). En resumen:
 
 - ✅ Puedes usar y modificar el proyecto libremente.
 - ✅ Puedes compartir tus adaptaciones.
